@@ -1,37 +1,75 @@
-// Copyright (c) 2024 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2020 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
+@import "./../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
+@import "./../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
+@import "./../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
 
-// Import Auro tokens
-@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
-@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariableMap';
-
-// general WCSS imports
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/animation';
-
-// Support for auroElement styles
-// @import './node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
+// layout styles - define any layout specifications for UI that is contained WITHIN the component
+// never define layout that would cause effect on element outside the scope of this component
 
 
-// Selector is for initial setup only
-// delete when building new custom element
-.testClass {
-  display: inline-block;
-  padding: var(--auro-text-body-size-default);
-  border: 1px solid var(--auro-color-border-error-on-light);
-  color:  var(--auro-color-border-error-on-light);
+// Default selector setting mobile-first specs
+.dialog {
+  top: 0;
+  left: unset;
+
+  max-width: 90%;
+  height: 100%;
+  max-height: unset;
+
+  transform: translateX(100%);
+  overflow: visible;
+
+  // open modifier
+  &--open {
+    transform: translateX(0%);
+  }
 }
 
-// Selector for native :focus-visible support
-:focus-visible {
-  background-color: var(--auro-color-border-error-on-light);
-  color: var(--auro-color-base-white);
+::slotted([slot="content"]) {
+  position: relative;
 }
+
+:host([left]) {
+  .dialog {
+    right: unset;
+    left: 0;
+
+    transform: translateX(-100%);
+
+    // open modifier
+    &--open {
+      transform: translateX(0%);
+    }
+  }
+}
+
+:host([sm]),
+:host([md]),
+:host([lg]) {
+  @include auro_breakpoint--md {
+    .dialog {
+      top: 0%;
+
+      max-height: unset;
+    }
+  }
+  .dialog {
+    max-height: 100%;
+  }
+}
+
+:host([sm][lg]),
+:host([md][lg]) {
+  @include auro_breakpoint--md {
+    .dialog {
+      max-height: 100%;
+    }
+  }
+  .dialog {
+    max-height: 100%;
+  }
+}
+

@@ -1,14 +1,16 @@
-// Copyright (c) 2020 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2024 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
-@import "./../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
-@import "./../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
-@import "./../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
+
+/* stylelint-disable declaration-empty-line-before, order/properties-order, rule-empty-line-before */
+
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SassCustomProperties";
+@import "./../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints";
 
 // layout styles - define any layout specifications for UI that is contained WITHIN the component
 // never define layout that would cause effect on element outside the scope of this component
-
 
 // Default selector setting mobile-first specs
 .dialog {

@@ -12,7 +12,7 @@ import styleCss from "./style-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * @attr {Boolean} left - Sets dialog box to open from the left
+ * @attr {Boolean} left - Sets drawer box to open from the left
  */
 
 // build the component class

@@ -57,7 +57,7 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
 
 The auro-drawer supports a modal drawer state that will lock a user into interacting with the `modal` drawer. To activate, use the modal attribute.
 
-When using this state, the modal drawer must include a button action to dismiss the modal dialog as the closing icon will not be available and the user will not be able to click outside the modal drawer to dismiss.
+When using this state, the modal drawer must include a button action to dismiss the modal drawer as the closing icon will not be available and the user will not be able to click outside the modal drawer to dismiss.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/modal.html) -->
@@ -128,7 +128,7 @@ import '@aurodesignsystem/auro-drawer@/dist/style-unformatted.css'
 
 ### Accessibility
 
-Within the scope of the auro-drawer there is `aria-labelledby="dialog-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="dialog-header"` to the content header within the drawer content.
+Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="drawer-header"` to the content header within the drawer content.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/accessibility.html) -->

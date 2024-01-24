@@ -30,7 +30,7 @@ $auro-spacing-options: none;
 }
 
 // container shape styles
-.dialogOverlay {
+.drawerOverlay {
   position: fixed;
   z-index: -1;
   bottom: 0;
@@ -39,7 +39,7 @@ $auro-spacing-options: none;
   width: 100%;
   height: 100%;
 
-  // Open modifier for default dialog state
+  // Open modifier for default drawer state
   &--open {
     z-index: var(--ds-depth-overlay);
 
@@ -59,7 +59,7 @@ $auro-spacing-options: none;
 }
 
 // Default selector setting mobile-first specs
-.dialog {
+.drawer {
   position: fixed;
   z-index: -1;
 
@@ -82,10 +82,10 @@ $auro-spacing-options: none;
   background: var(--ds-color-background-lightest, $ds-color-background-lightest);
   color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
 
-  // baseline dialog UI / mobile-first
+  // baseline drawer UI / mobile-first
 
   @include auro_transition(all, 0.3s, ease-in-out);
-  // 1024px breakpoint / large dialog size is default
+  // 1024px breakpoint / large drawer size is default
   @include auro_breakpoint--md {
     box-shadow: 0 10px 20px 0 rgba(0,0,0,0.12), 0 1px 10px 0 rgba(0,0,0,0.1);
   }
@@ -123,7 +123,7 @@ $auro-spacing-options: none;
 }
 
 :host([left]) {
-  .dialog {
+  .drawer {
     right: unset;
     left: 0;
 
@@ -136,7 +136,7 @@ $auro-spacing-options: none;
   }
 }
 
-.dialog-header {
+.drawer-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -167,7 +167,7 @@ $auro-spacing-options: none;
 
 // sets dynamic placement of close-X based on padding specs
 :host([unformatted]) {
-  .dialog-header--action {
+  .drawer-header--action {
     position: absolute;
     top: var(--ds-size-400, $ds-size-400);
     right: var(--ds-size-400, $ds-size-400);
@@ -178,25 +178,25 @@ $auro-spacing-options: none;
     }
   }
 
-  .dialog {
+  .drawer {
     padding: 0;
   }
 }
 
 :host([unformatted][onDark]) {
-  .dialog-header--action {
+  .drawer-header--action {
     color: var(--ds-color-base-white, $ds-color-base-white);
   }
 }
 
 :host([sm]) {
   @include auro_breakpoint--md {
-    .dialog {
+    .drawer {
       max-width: 40%;
     }
   }
   @include auro_breakpoint--lg {
-    .dialog {
+    .drawer {
       max-width: 740px;
     }
   }
@@ -204,12 +204,12 @@ $auro-spacing-options: none;
 
 :host([md]) {
   @include auro_breakpoint--md {
-    .dialog {
+    .drawer {
       max-width: 70%;
     }
   }
   @include auro_breakpoint--lg {
-    .dialog {
+    .drawer {
       max-width: 986px;
     }
   }
@@ -218,11 +218,11 @@ $auro-spacing-options: none;
 :host([sm][lg]),
 :host([md][lg]) {
   @include auro_breakpoint--md {
-    .dialog {
+    .drawer {
       max-height: 100%;
     }
   }
-  .dialog {
+  .drawer {
     max-height: 100%;
   }
 }

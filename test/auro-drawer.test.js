@@ -20,7 +20,7 @@ describe('auro-drawer', () => {
     await expect(el).to.be.true;
   });
 
-  it('auro-drawer modal-dialog does not render a close icon', async () => {
+  it('auro-drawer modal-drawer does not render a close icon', async () => {
     const el = await fixture(html`
       <auro-drawer modal></auro-drawer>
     `);
@@ -33,7 +33,7 @@ describe('auro-drawer', () => {
   it('closes when ESC pressed', async () => {
     const el = await fixture(html`
       <auro-drawer open>
-        <span slot="header">It's a dialog</span>
+        <span slot="header">It's a drawer</span>
         <span slot="content">Hello World!</span>
       </auro-drawer>
     `);
@@ -46,7 +46,7 @@ describe('auro-drawer', () => {
   it('does not close when ESC pressed if modal', async () => {
     const el = await fixture(html`
       <auro-drawer open modal>
-        <span slot="header">It's a dialog</span>
+        <span slot="header">It's a drawer</span>
         <span slot="content">Hello World!</span>
       </auro-drawer>
     `);
@@ -59,7 +59,7 @@ describe('auro-drawer', () => {
   it('dispatches toggle event on close', async () => {
     const el = await fixture(html`
       <auro-drawer open>
-        <span slot="header">It's a dialog</span>
+        <span slot="header">It's a drawer</span>
         <span slot="content">Hello World!</span>
       </auro-drawer>
     `);
@@ -71,7 +71,7 @@ describe('auro-drawer', () => {
   it('does not throw error when open set to false and already closed', async () => {
     const el = await fixture(html`
       <auro-drawer>
-        <span slot="header">It's a dialog</span>
+        <span slot="header">It's a drawer</span>
         <span slot="content">Hello World!</span>
       </auro-drawer>
     `);
@@ -91,7 +91,7 @@ async function getFixtureWithOpenButton() {
   }
   const el = await fixture(html`
     <auro-drawer>
-      <span slot="header">It's a dialog</span>
+      <span slot="header">It's a drawer</span>
       <span slot="content">Hello World!</span>
       <span slot="footer"><button>Click</button></span>
     </auro-drawer>

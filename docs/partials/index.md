@@ -36,15 +36,15 @@ function toggleDrawer(elem) {
 // This function can be retrieved from https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@latest/dist/toggleDrawer.js
 ```
 
-Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a dialog with the ID of `#demo1`.
+Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a drawer with the ID of `#demo1`.
 
 ``` html
-<auro-button onClick="toggleDrawer('#demo1')">Open Dialog</auro-button>
+<auro-button onClick="toggleDrawer('#demo1')">Open Drawer</auro-button>
 ```
 
 ## The Structure
 
-The structure of the dialog itself consists of three slots. The `header`, `content` and `footer` slots. See the scaffolding example below for adding content to the component.
+The structure of the drawer itself consists of three slots. The `header`, `content` and `footer` slots. See the scaffolding example below for adding content to the component.
 
 ``` html
   <auro-drawer id="[unique ID]">

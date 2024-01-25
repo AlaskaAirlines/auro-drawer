@@ -17,7 +17,7 @@
 
 </auro-accordion>
 
-### Slide-in Options
+### Drawer slide-in options (<a name="left"></a>`left`, default)
 
 The auro-drawer supports two different entry options. Using the `left` attribute, the component supports this slide-in mode for both mobile and desktop experiences.
 
@@ -34,7 +34,7 @@ The auro-drawer supports two different entry options. Using the `left` attribute
 
 </auro-accordion>
 
-### Size Options
+### Drawer size options (<a name="sm"></a>`sm`, <a name="md"></a>`md`)
 
 The auro-drawer supports three different sizes. A default drawer is equal to the large size drawer. Using the `sm` and `md` attributes, the component supports these sizes for both mobile and desktop.
 
@@ -53,7 +53,7 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
 
 </auro-accordion>
 
-### Modal and Size Options
+### <a name="modal"></a>`modal`
 
 The auro-drawer supports a modal drawer state that will lock a user into interacting with the `modal` drawer. To activate, use the modal attribute.
 
@@ -108,7 +108,7 @@ This is a use case where there is a popover and combobox component inside the dr
 
 </auro-accordion>
 
-## Unformatted drawer
+### <a name="unformatted"></a>`unformatted`
 
 For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.
 

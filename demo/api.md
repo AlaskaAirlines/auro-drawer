@@ -77,7 +77,7 @@
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -154,7 +154,7 @@ The auro-drawer supports two different entry options. Using the `left` attribute
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/slideOptions.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/slideOptions.html -->
@@ -269,7 +269,7 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/sizeOptions.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/sizeOptions.html -->
@@ -408,7 +408,7 @@ When using this state, the modal drawer must include a button action to dismiss 
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/modal.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/modal.html -->
@@ -533,7 +533,7 @@ The use of these combinations will set the first value to the drawer for a deskt
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/decoupled.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/decoupled.html -->
@@ -632,7 +632,7 @@ This is a use case where there is a popover and combobox component inside the dr
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverAndDropdown.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/popoverAndDropdown.html -->
@@ -720,7 +720,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/accessibility.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/accessibility.html -->
@@ -772,7 +772,7 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/editCloseButton.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/editCloseButton.html -->

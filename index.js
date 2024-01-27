@@ -1,4 +1,4 @@
-import { AuroDrawer } from './src/auro-drawer';
+import { AuroDrawer } from './src/auro-drawer.js';
 
 /**
  * Register Custom Element.

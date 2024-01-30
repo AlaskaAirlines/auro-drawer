@@ -4,7 +4,7 @@ title: '[issue summary] Please verify version before submitting new issue'
 labels:
   - 'Type: Bug'
   - not-reviewed
-  - '[namespace]-[name]'
+  - 'auro-drawer'
 body:
   - type: markdown
     attributes:
@@ -13,12 +13,12 @@ body:
   - type: input
     id: version
     attributes:
-      label: Please verify the version of [namespace]-[name] you have installed
+      label: Please verify the version of auro-drawer you have installed
   - type: markdown
     attributes:
       value: >
         [![See it on
-        NPM!](https://img.shields.io/npm/v/@alaskaairux/[namespace]-[name]?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@alaskaairux/[namespace]-[name])
+        NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-drawer?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-drawer)
   - type: textarea
     id: details
     attributes:

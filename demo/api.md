@@ -753,7 +753,7 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
   <div>
     <auro-button onClick="toggleDrawer('#unformattedCustomMdDrawer')">Unformatted w/custom close button</auro-button>
   </div>
-  <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/auro-interruption@latest/dist/style-unformatted.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@latest/dist/style-unformatted.css" />
   <style>
     .example::part(close-button) {
       top: var(--ds-size-400);
@@ -781,7 +781,7 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 <div>
   <auro-button onClick="toggleDrawer('#unformattedCustomMdDrawer')">Unformatted w/custom close button</auro-button>
 </div>
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/auro-interruption@latest/dist/style-unformatted.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@latest/dist/style-unformatted.css" />
 <style>
   .example::part(close-button) {
     top: var(--ds-size-400);

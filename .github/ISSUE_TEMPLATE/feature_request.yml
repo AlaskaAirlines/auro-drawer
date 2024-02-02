@@ -1,10 +1,10 @@
 name: Feature request
 description: Suggest an idea for this project
-title: '[namespace]-[name]: [feature summary]'
+title: 'auro-drawer: [feature summary]'
 labels:
   - 'Type: Feature'
   - not-reviewed
-  - '[namespace]-[name]'
+  - 'auro-drawer'
 body:
   - type: textarea
     id: request

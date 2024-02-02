@@ -1,11 +1,11 @@
 name: General support
 description: Suggestions that are not related to bugs or new features
-title: '[namespace]-[name]: [issue]'
+title: 'auro-drawer: [issue]'
 labels:
   - 'Type: Question'
   - 'Type: Feature'
   - not-reviewed
-  - '[namespace]-[name]'
+  - 'auro-drawer'
 body:
   - type: textarea
     id: request

@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [1.0.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.2...v1.0.3) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dist:** add apiExample js file to dist [#7](https://github.com/AlaskaAirlines/auro-drawer/issues/7) ([4faf30a](https://github.com/AlaskaAirlines/auro-drawer/commit/4faf30a37b472564f6da6be4b170bac191616047))
+* **name:** update labels to auro-drawer ([e605781](https://github.com/AlaskaAirlines/auro-drawer/commit/e60578104df80c90c7e153cb78015e3bd885b636))
+
 ## [1.0.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.1...v1.0.2) (2024-01-31)
 
 

@@ -10,7 +10,7 @@ import { classMap } from 'lit/directives/class-map.js';
 
 import styleCss from "./style-css.js";
 import styleUnformattedCss from './style-unformatted-css.js';
-import closeIcon from '@alaskaairux/icons/dist/icons/interface/x-lg_es6.js';
+import closeIcon from '@alaskaairux/icons/dist/icons/interface/x-lg.mjs';
 
 /* eslint-disable one-var, prefer-destructuring */
 
@@ -22,7 +22,6 @@ const ESCAPE_KEYCODE = 27,
  * auro-drawer appear above the page and require the user's attention.
  *
  * @attr {Boolean} modal - Modal drawer restricts the user to take an action (no default close actions)
- * @attr {Boolean} fixed - Uses fixed pixel values for element shape
  * @attr {Boolean} unformatted - Unformatted drawer window, edge-to-edge fill for content
  * @attr {Boolean} sm - Sets drawer box to small style. Adding both sm and lg will set the drawer to sm for desktop and lg for mobile.
  * @attr {Boolean} md - Sets drawer box to medium style. Adding both md and lg will set the drawer to md for desktop and lg for mobile.

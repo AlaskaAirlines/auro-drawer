@@ -5,7 +5,7 @@
 
 // import { html } from "lit-element";
 // import { classMap } from 'lit-html/directives/class-map';
-import ComponentBase from './componentBase';
+import ComponentBase from './componentBase.js';
 
 // Import touch detection lib
 import styleCss from "./style-css.js";

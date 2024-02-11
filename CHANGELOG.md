@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.3...v1.0.4) (2024-02-11)
+
+
+### Performance Improvements
+
+* update to support ESM ([116e117](https://github.com/AlaskaAirlines/auro-drawer/commit/116e117717b56cb270fe090889c02412648fd9a7))
+
 ## [1.0.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.2...v1.0.3) (2024-02-05)
 
 

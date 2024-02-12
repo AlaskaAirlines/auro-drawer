@@ -7,7 +7,6 @@
 
 | Attribute | Type      | Description                                      |
 |-----------|-----------|--------------------------------------------------|
-| [fixed](#fixed)   | `Boolean` | Uses fixed pixel values for element shape        |
 | [left](#left)    | `Boolean` | Sets drawer box to open from the left            |
 | [md](#md)      | `Boolean` | Sets drawer box to medium style. Adding both md and lg will set the drawer to md for desktop and lg for mobile. |
 | [onDark](#onDark)  | `Boolean` | Sets close icon to white for dark backgrounds    |

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.6](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.5...v1.0.6) (2024-02-13)
+
+
+### Performance Improvements
+
+* update auro dependencies ([5e074c7](https://github.com/AlaskaAirlines/auro-drawer/commit/5e074c7c18cae65a7c95bf948cc3dc65db65ace8))
+
 ## [1.0.5](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.4...v1.0.5) (2024-02-13)
 
 

@@ -35,16 +35,15 @@ The `auro-drawer` component should be used in situations where users may:
 Triggering the drawer relies on functions being installed. See the following example code that is installed into this demo.
 
 ```javascript
-function toggleDrawer(elem) {
-  let drawer = document.querySelector(elem);
+function toggleDrawer(drawerID) {
+  const drawer = document.querySelector(drawerID);
 
-  drawer.hasAttribute('open')
-  ? drawer.removeAttribute("open")
-  : (drawer.removeAttribute("open"),
-    drawer.setAttribute("open", true))
+  if (drawer.hasAttribute('open')) {
+    drawer.removeAttribute('open');
+  } else {
+    drawer.setAttribute('open', true);
+  }
 }
-
-// This function can be retrieved from https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@latest/dist/toggleDrawer.js
 ```
 
 Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a drawer with the ID of `#demo1`.
@@ -77,9 +76,9 @@ It should be noted that the footer slot is reserved for the placement of action 
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
+    <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
   </div>
-  <auro-drawer id="defaultDrawer">
+  <auro-drawer id="basicDrawer">
     <span slot="header">Default Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -93,7 +92,7 @@ It should be noted that the footer slot is reserved for the placement of action 
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+      <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
     </div>
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -105,9 +104,9 @@ It should be noted that the footer slot is reserved for the placement of action 
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
+  <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
 </div>
-<auro-drawer id="defaultDrawer">
+<auro-drawer id="basicDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -121,7 +120,7 @@ It should be noted that the footer slot is reserved for the placement of action 
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+    <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
   </div>
 </auro-drawer>
 ```

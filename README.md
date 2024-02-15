@@ -88,9 +88,9 @@ import "@aurodesignsystem/auro-drawer";
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
+  <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
 </div>
-<auro-drawer id="defaultDrawer">
+<auro-drawer id="basicDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -104,7 +104,7 @@ import "@aurodesignsystem/auro-drawer";
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+    <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
   </div>
 </auro-drawer>
 ```
@@ -150,9 +150,9 @@ The `auro-drawer` component should be used in situations where users may:
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
+  <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
 </div>
-<auro-drawer id="defaultDrawer">
+<auro-drawer id="basicDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -166,7 +166,7 @@ The `auro-drawer` component should be used in situations where users may:
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+    <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
   </div>
 </auro-drawer>
 ```

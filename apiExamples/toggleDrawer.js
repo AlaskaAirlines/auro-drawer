@@ -1,8 +1,9 @@
-function toggleDrawer(elem) {
-  let drawer = document.querySelector(elem);
+export function toggleDrawer(drawerID) {
+  const drawer = document.querySelector(drawerID);
 
-  drawer.hasAttribute('open')
-  ? drawer.removeAttribute("open")
-  : (drawer.removeAttribute("open"),
-    drawer.setAttribute("open", true))
+  if (drawer.hasAttribute('open')) {
+    drawer.removeAttribute('open');
+  } else {
+    drawer.setAttribute('open', true);
+  }
 }

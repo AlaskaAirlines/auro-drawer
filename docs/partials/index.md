@@ -24,16 +24,15 @@ This file is generated based on a template fetched from `./docs/partials/index.m
 Triggering the drawer relies on functions being installed. See the following example code that is installed into this demo.
 
 ```javascript
-function toggleDrawer(elem) {
-  let drawer = document.querySelector(elem);
+function toggleDrawer(drawerID) {
+  const drawer = document.querySelector(drawerID);
 
-  drawer.hasAttribute('open')
-  ? drawer.removeAttribute("open")
-  : (drawer.removeAttribute("open"),
-    drawer.setAttribute("open", true))
+  if (drawer.hasAttribute('open')) {
+    drawer.removeAttribute('open');
+  } else {
+    drawer.setAttribute('open', true);
+  }
 }
-
-// This function can be retrieved from https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@latest/dist/toggleDrawer.js
 ```
 
 Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a drawer with the ID of `#demo1`.

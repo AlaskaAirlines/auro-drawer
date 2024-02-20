@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.7](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.6...v1.0.7) (2024-02-20)
+
+
+### Performance Improvements
+
+* **examples:** refactor example js system ([e88ae29](https://github.com/AlaskaAirlines/auro-drawer/commit/e88ae293b760a5d585235878e370008a7f90da3e))
+
 ## [1.0.6](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.5...v1.0.6) (2024-02-13)
 
 

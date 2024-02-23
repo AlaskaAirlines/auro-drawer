@@ -55,67 +55,7 @@
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
-  </div>
-  <auro-drawer id="basicDrawer">
-    <span slot="header">Default Drawer</span>
-    <div slot="content">
-      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
-      <ul>
-        <li>Caerphilly croque monsieur fondue</li>
-        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
-        <li>Cheddar cheese and biscuits chalk and cheese</li>
-        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
-      </ul>
-    </div>
-    <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
-    </div>
-  </auro-drawer>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
-
-```html
-<div>
-  <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
-</div>
-<auro-drawer id="basicDrawer">
-  <span slot="header">Default Drawer</span>
-  <div slot="content">
-    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
-    <ul>
-      <li>Caerphilly croque monsieur fondue</li>
-      <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
-      <li>Cheddar cheese and biscuits chalk and cheese</li>
-      <li>Camembert de normandie stinking bishop bavarian bergkase</li>
-    </ul>
-  </div>
-  <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
-  </div>
-</auro-drawer>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-### Drawer slide-in options (<a name="left"></a>`left`, default)
-
-The auro-drawer supports two different entry options. Using the `left` attribute, the component supports this slide-in mode for both mobile and desktop experiences.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/slideOptions.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/slideOptions.html -->
-  <div>
-    <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
-    <auro-button onClick="toggleDrawer('#leftDrawer')">Open left drawer</auro-button>
+    <auro-button id="openBasic">Open default drawer</auro-button>
   </div>
   <auro-drawer id="defaultDrawer">
     <span slot="header">Default Drawer</span>
@@ -131,37 +71,19 @@ The auro-drawer supports two different entry options. Using the `left` attribute
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
-    </div>
-  </auro-drawer>
-  <auro-drawer id="leftDrawer" left>
-    <span slot="header">Left Drawer</span>
-    <div slot="content">
-      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
-      <ul>
-        <li>Caerphilly croque monsieur fondue</li>
-        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
-        <li>Cheddar cheese and biscuits chalk and cheese</li>
-        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
-      </ul>
-    </div>
-    <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#leftDrawer')">Close</auro-button>
+      <auro-button secondary id="closeBasic">Close</auro-button>
     </div>
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/slideOptions.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/slideOptions.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
-  <auro-button onClick="toggleDrawer('#leftDrawer')">Open left drawer</auro-button>
+  <auro-button id="openBasic">Open default drawer</auro-button>
 </div>
 <auro-drawer id="defaultDrawer">
   <span slot="header">Default Drawer</span>
@@ -177,10 +99,88 @@ The auro-drawer supports two different entry options. Using the `left` attribute
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+    <auro-button secondary id="closeBasic">Close</auro-button>
   </div>
 </auro-drawer>
-<auro-drawer id="leftDrawer" left>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+### Drawer slide-in options (<a name="left"></a>`left`, default)
+
+The auro-drawer supports two different entry options. Using the `left` attribute, the component supports this slide-in mode for both mobile and desktop experiences.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/slideOptions.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/slideOptions.html -->
+  <div>
+    <auro-button id="openDefaultSlide">Open default drawer</auro-button>
+    <auro-button id="openLeftSlide">Open left drawer</auro-button>
+  </div>
+  <auro-drawer id="defaultSlideDrawer">
+    <span slot="header">Default Drawer</span>
+    <div slot="content">
+      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+      <ul>
+        <li>Caerphilly croque monsieur fondue</li>
+        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+        <li>Cheddar cheese and biscuits chalk and cheese</li>
+        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+      </ul>
+    </div>
+    <div slot="footer">
+      <auro-button secondary id="closeDefaultSlide">Close</auro-button>
+    </div>
+  </auro-drawer>
+  <auro-drawer id="leftSlideDrawer" left>
+    <span slot="header">Left Drawer</span>
+    <div slot="content">
+      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+      <ul>
+        <li>Caerphilly croque monsieur fondue</li>
+        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+        <li>Cheddar cheese and biscuits chalk and cheese</li>
+        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+      </ul>
+    </div>
+    <div slot="footer">
+      <auro-button secondary id="closeLeftSlide">Close</auro-button>
+    </div>
+  </auro-drawer>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/slideOptions.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/slideOptions.html -->
+
+```html
+<div>
+  <auro-button id="openDefaultSlide">Open default drawer</auro-button>
+  <auro-button id="openLeftSlide">Open left drawer</auro-button>
+</div>
+<auro-drawer id="defaultSlideDrawer">
+  <span slot="header">Default Drawer</span>
+  <div slot="content">
+    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+    <ul>
+      <li>Caerphilly croque monsieur fondue</li>
+      <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+      <li>Cheddar cheese and biscuits chalk and cheese</li>
+      <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+    </ul>
+  </div>
+  <div slot="footer">
+    <auro-button secondary id="closeDefaultSlide">Close</auro-button>
+  </div>
+</auro-drawer>
+<auro-drawer id="leftSlideDrawer" left>
   <span slot="header">Left Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -194,7 +194,7 @@ The auro-drawer supports two different entry options. Using the `left` attribute
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#leftDrawer')">Close</auro-button>
+    <auro-button secondary id="closeLeftSlide">Close</auro-button>
   </div>
 </auro-drawer>
 ```
@@ -211,11 +211,11 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/sizeOptions.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/sizeOptions.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
-    <auro-button onClick="toggleDrawer('#mediumDrawer')">Open medium drawer</auro-button>
-    <auro-button onClick="toggleDrawer('#smallDrawer')">Open small drawer</auro-button>
+    <auro-button id="openDefaultSize">Open default drawer</auro-button>
+    <auro-button id="openMediumSize">Open medium drawer</auro-button>
+    <auro-button id="openSmallSize">Open small drawer</auro-button>
   </div>
-  <auro-drawer id="defaultDrawer">
+  <auro-drawer id="defaultSizeDrawer">
     <span slot="header">Default Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -229,10 +229,10 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+      <auro-button secondary id="closeDefaultSize">Close</auro-button>
     </div>
   </auro-drawer>
-  <auro-drawer id="mediumDrawer" md>
+  <auro-drawer id="mediumSizeDrawer" md>
     <span slot="header">Medium Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -246,10 +246,10 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#mediumDrawer')">Close</auro-button>
+      <auro-button secondary id="closeMediumSize">Close</auro-button>
     </div>
   </auro-drawer>
-  <auro-drawer id="smallDrawer" sm>
+  <auro-drawer id="smallSizeDrawer" sm>
     <span slot="header">Small Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -263,7 +263,7 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#smallDrawer')">Close</auro-button>
+      <auro-button secondary id="closeSmallSize">Close</auro-button>
     </div>
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -275,11 +275,11 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultDrawer')">Open default drawer</auro-button>
-  <auro-button onClick="toggleDrawer('#mediumDrawer')">Open medium drawer</auro-button>
-  <auro-button onClick="toggleDrawer('#smallDrawer')">Open small drawer</auro-button>
+  <auro-button id="openDefaultSize">Open default drawer</auro-button>
+  <auro-button id="openMediumSize">Open medium drawer</auro-button>
+  <auro-button id="openSmallSize">Open small drawer</auro-button>
 </div>
-<auro-drawer id="defaultDrawer">
+<auro-drawer id="defaultSizeDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -293,10 +293,10 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#defaultDrawer')">Close</auro-button>
+    <auro-button secondary id="closeDefaultSize">Close</auro-button>
   </div>
 </auro-drawer>
-<auro-drawer id="mediumDrawer" md>
+<auro-drawer id="mediumSizeDrawer" md>
   <span slot="header">Medium Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -310,10 +310,10 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#mediumDrawer')">Close</auro-button>
+    <auro-button secondary id="closeMediumSize">Close</auro-button>
   </div>
 </auro-drawer>
-<auro-drawer id="smallDrawer" sm>
+<auro-drawer id="smallSizeDrawer" sm>
   <span slot="header">Small Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -327,7 +327,7 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#smallDrawer')">Close</auro-button>
+    <auro-button secondary id="closeSmallSize">Close</auro-button>
   </div>
 </auro-drawer>
 ```
@@ -344,9 +344,9 @@ When using this state, the modal drawer must include a button action to dismiss 
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/modal.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/modal.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#defaultModalDrawer')">Open default modal</auro-button>
-    <auro-button onClick="toggleDrawer('#mediumModalDrawer')">Open medium modal</auro-button>
-    <auro-button onClick="toggleDrawer('#smallModalDrawer')">Open small modal</auro-button>
+    <auro-button id="openDefaultModal">Open default modal</auro-button>
+    <auro-button id="openMediumModal">Open medium modal</auro-button>
+    <auro-button id="openSmallModal">Open small modal</auro-button>
   </div>
   <auro-drawer id="defaultModalDrawer" modal>
     <span slot="header">Default Modal Drawer</span>
@@ -362,7 +362,7 @@ When using this state, the modal drawer must include a button action to dismiss 
       </ul>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#defaultModalDrawer')">I understand
+      <auro-button id="closeDefaultModal">I understand
         <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
       </auro-button>
     </div>
@@ -381,7 +381,7 @@ When using this state, the modal drawer must include a button action to dismiss 
       </ul>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#mediumModalDrawer')">I understand
+      <auro-button id="closeMediumModal">I understand
         <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
       </auro-button>
     </div>
@@ -400,7 +400,7 @@ When using this state, the modal drawer must include a button action to dismiss 
       </ul>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#smallModalDrawer')">I understand
+      <auro-button id="closeSmallModal">I understand
         <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
       </auro-button>
     </div>
@@ -414,9 +414,9 @@ When using this state, the modal drawer must include a button action to dismiss 
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#defaultModalDrawer')">Open default modal</auro-button>
-  <auro-button onClick="toggleDrawer('#mediumModalDrawer')">Open medium modal</auro-button>
-  <auro-button onClick="toggleDrawer('#smallModalDrawer')">Open small modal</auro-button>
+  <auro-button id="openDefaultModal">Open default modal</auro-button>
+  <auro-button id="openMediumModal">Open medium modal</auro-button>
+  <auro-button id="openSmallModal">Open small modal</auro-button>
 </div>
 <auro-drawer id="defaultModalDrawer" modal>
   <span slot="header">Default Modal Drawer</span>
@@ -432,7 +432,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#defaultModalDrawer')">I understand
+    <auro-button id="closeDefaultModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -451,7 +451,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#mediumModalDrawer')">I understand
+    <auro-button id="closeMediumModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -470,7 +470,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smallModalDrawer')">I understand
+    <auro-button id="closeSmallModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -489,8 +489,8 @@ The use of these combinations will set the first value to the drawer for a deskt
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/decoupled.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/decoupled.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#smLgDrawer')">Open [sm lg] drawer</auro-button>
-    <auro-button onClick="toggleDrawer('#smMdDrawer')">Open [md lg] drawer</auro-button>
+    <auro-button id="openSmLg">Open [sm lg] drawer</auro-button>
+    <auro-button id="openMdLg">Open [md lg] drawer</auro-button>
   </div>
   <auro-drawer id="smLgDrawer" sm lg>
     <span slot="header">Small Modal Drawer</span>
@@ -506,12 +506,13 @@ The use of these combinations will set the first value to the drawer for a deskt
       </ul>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#smLgDrawer')">I understand
+      <auro-button id="closeSmLg">
+        I understand
         <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
-  <auro-drawer id="smMdDrawer" md lg>
+  <auro-drawer id="mdLgDrawer" md lg>
     <span slot="header">Medium Modal Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -525,7 +526,8 @@ The use of these combinations will set the first value to the drawer for a deskt
       </ul>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#smMdDrawer')">I understand
+      <auro-button id="closeMdLg">
+        I understand
         <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
       </auro-button>
     </div>
@@ -539,8 +541,8 @@ The use of these combinations will set the first value to the drawer for a deskt
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#smLgDrawer')">Open [sm lg] drawer</auro-button>
-  <auro-button onClick="toggleDrawer('#smMdDrawer')">Open [md lg] drawer</auro-button>
+  <auro-button id="openSmLg">Open [sm lg] drawer</auro-button>
+  <auro-button id="openMdLg">Open [md lg] drawer</auro-button>
 </div>
 <auro-drawer id="smLgDrawer" sm lg>
   <span slot="header">Small Modal Drawer</span>
@@ -556,12 +558,13 @@ The use of these combinations will set the first value to the drawer for a deskt
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smLgDrawer')">I understand
+    <auro-button id="closeSmLg">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
-<auro-drawer id="smMdDrawer" md lg>
+<auro-drawer id="mdLgDrawer" md lg>
   <span slot="header">Medium Modal Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -575,7 +578,8 @@ The use of these combinations will set the first value to the drawer for a deskt
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smMdDrawer')">I understand
+    <auro-button id="closeMdLg">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -592,14 +596,20 @@ This is a use case where there is a popover and combobox component inside the dr
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverAndDropdown.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/popoverAndDropdown.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#popover-drawer')">Open popover drawer</auro-button>
+    <auro-button id="openPopAndDrop">Open drawer with popover</auro-button>
   </div>
   <auro-drawer id="popover-drawer" sm lg>
     <span slot="header">Small Modal Drawer</span>
     <div slot="content">
-      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+      <p>
+        When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.
+      </p>
+      <p>
+        Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.
+      </p>
+      <auro-header level="3" display="500">
+        Before checking your bags, remember to:
+      </auro-header>
       <auro-popover>
         <div class="content">
           <ul>
@@ -624,7 +634,8 @@ This is a use case where there is a popover and combobox component inside the dr
       </auro-combobox>
     </div>
     <div slot="footer">
-      <auro-button onClick="toggleDrawer('#popover-drawer')">I understand
+      <auro-button id="closePopAndDrop">
+        I understand
         <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
       </auro-button>
     </div>
@@ -638,14 +649,20 @@ This is a use case where there is a popover and combobox component inside the dr
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#popover-drawer')">Open popover drawer</auro-button>
+  <auro-button id="openPopAndDrop">Open drawer with popover</auro-button>
 </div>
 <auro-drawer id="popover-drawer" sm lg>
   <span slot="header">Small Modal Drawer</span>
   <div slot="content">
-    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+    <p>
+      When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.
+    </p>
+    <p>
+      Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.
+    </p>
+    <auro-header level="3" display="500">
+      Before checking your bags, remember to:
+    </auro-header>
     <auro-popover>
       <div class="content">
         <ul>
@@ -670,7 +687,8 @@ This is a use case where there is a popover and combobox component inside the dr
     </auro-combobox>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#popover-drawer')">I understand
+    <auro-button id="closePopAndDrop">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -705,7 +723,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/accessibility.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/accessibility.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#unformattedMdDrawer')">Unformatted Medium Drawer</auro-button>
+    <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
   </div>
   <auro-drawer id="unformattedMdDrawer" unformatted md lg ondark>
     <span slot="content">
@@ -725,7 +743,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#unformattedMdDrawer')">Unformatted Medium Drawer</auro-button>
+  <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
 </div>
 <auro-drawer id="unformattedMdDrawer" unformatted md lg ondark>
   <span slot="content">
@@ -748,7 +766,7 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/editCloseButton.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/editCloseButton.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#unformattedCustomMdDrawer')">Unformatted w/custom close button</auro-button>
+    <auro-button id="openEditDrawer">Unformatted w/custom close button</auro-button>
   </div>
   <style>
     .example::part(close-button) {
@@ -775,7 +793,7 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#unformattedCustomMdDrawer')">Unformatted w/custom close button</auro-button>
+  <auro-button id="openEditDrawer">Unformatted w/custom close button</auro-button>
 </div>
 <style>
   .example::part(close-button) {

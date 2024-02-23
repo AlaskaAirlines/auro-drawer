@@ -1,13 +1,19 @@
 <div>
-  <auro-button onClick="toggleDrawer('#popover-drawer')">Open popover drawer</auro-button>
+  <auro-button id="openPopAndDrop">Open drawer with popover</auro-button>
 </div>
 
 <auro-drawer id="popover-drawer" sm lg>
   <span slot="header">Small Modal Drawer</span>
   <div slot="content">
-    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+    <p>
+      When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.
+    </p>
+    <p>
+      Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.
+    </p>
+    <auro-header level="3" display="500">
+      Before checking your bags, remember to:
+    </auro-header>
     <auro-popover>
       <div class="content">
         <ul>
@@ -32,7 +38,8 @@
     </auro-combobox>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#popover-drawer')">I understand
+    <auro-button id="closePopAndDrop">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>

@@ -76,9 +76,9 @@ It should be noted that the footer slot is reserved for the placement of action 
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
+    <auro-button id="openBasic">Open default drawer</auro-button>
   </div>
-  <auro-drawer id="basicDrawer">
+  <auro-drawer id="defaultDrawer">
     <span slot="header">Default Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -92,7 +92,7 @@ It should be noted that the footer slot is reserved for the placement of action 
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
+      <auro-button secondary id="closeBasic">Close</auro-button>
     </div>
   </auro-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -104,9 +104,9 @@ It should be noted that the footer slot is reserved for the placement of action 
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#basicDrawer')">Open default drawer</auro-button>
+  <auro-button id="openBasic">Open default drawer</auro-button>
 </div>
-<auro-drawer id="basicDrawer">
+<auro-drawer id="defaultDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -120,7 +120,7 @@ It should be noted that the footer slot is reserved for the placement of action 
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#basicDrawer')">Close</auro-button>
+    <auro-button secondary id="closeBasic">Close</auro-button>
   </div>
 </auro-drawer>
 ```
@@ -145,9 +145,9 @@ This will create a new custom element that you can use in your HTML that will fu
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/custom.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/custom.html -->
   <div>
-    <auro-button onClick="toggleDrawer('#customDrawer')">Open default drawer</auro-button>
+    <auro-button id="openCustom">Open default drawer</auro-button>
   </div>
-  <auro-drawer id="customDrawer">
+  <custom-drawer id="customDrawer">
     <span slot="header">Default Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -161,9 +161,9 @@ This will create a new custom element that you can use in your HTML that will fu
       </ul>
     </div>
     <div slot="footer">
-      <auro-button secondary onClick="toggleDrawer('#customDrawer')">Close</auro-button>
+      <auro-button secondary id="closeCustom">Close</auro-button>
     </div>
-  </auro-drawer>
+  </custom-drawer>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
@@ -173,9 +173,9 @@ This will create a new custom element that you can use in your HTML that will fu
 
 ```html
 <div>
-  <auro-button onClick="toggleDrawer('#customDrawer')">Open default drawer</auro-button>
+  <auro-button id="openCustom">Open default drawer</auro-button>
 </div>
-<auro-drawer id="customDrawer">
+<custom-drawer id="customDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -189,9 +189,9 @@ This will create a new custom element that you can use in your HTML that will fu
     </ul>
   </div>
   <div slot="footer">
-    <auro-button secondary onClick="toggleDrawer('#customDrawer')">Close</auro-button>
+    <auro-button secondary id="closeCustom">Close</auro-button>
   </div>
-</auro-drawer>
+</custom-drawer>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>

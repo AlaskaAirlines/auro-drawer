@@ -1,16 +1,19 @@
-import { toggleDrawer } from "../apiExamples/toggleDrawer";
+import { initBasicExample } from "../apiExamples/basic";
+import { initCustomExample } from "../apiExamples/custom";
 
-export function initDrawerIndexExamples(initCount) {
+export function initExamples(initCount) {
   initCount = initCount || 0;
 
   try {
-    toggleDrawer();
-  } catch (error) {
+    initBasicExample();
+    initCustomExample();
+  } catch (err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called
       setTimeout(() => {
-        initDrawerIndexExamples(initCount + 1);
+        initExamples(initCount + 1);
       }, 100);
     }
   }
 }
+

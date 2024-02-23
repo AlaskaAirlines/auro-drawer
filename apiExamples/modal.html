@@ -1,7 +1,7 @@
 <div>
-  <auro-button onClick="toggleDrawer('#defaultModalDrawer')">Open default modal</auro-button>
-  <auro-button onClick="toggleDrawer('#mediumModalDrawer')">Open medium modal</auro-button>
-  <auro-button onClick="toggleDrawer('#smallModalDrawer')">Open small modal</auro-button>
+  <auro-button id="openDefaultModal">Open default modal</auro-button>
+  <auro-button id="openMediumModal">Open medium modal</auro-button>
+  <auro-button id="openSmallModal">Open small modal</auro-button>
 </div>
 
 <auro-drawer id="defaultModalDrawer" modal>
@@ -18,7 +18,7 @@
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#defaultModalDrawer')">I understand
+    <auro-button id="closeDefaultModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -38,7 +38,7 @@
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#mediumModalDrawer')">I understand
+    <auro-button id="closeMediumModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>
@@ -58,7 +58,7 @@
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smallModalDrawer')">I understand
+    <auro-button id="closeSmallModal">I understand
       <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
     </auro-button>
   </div>

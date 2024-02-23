@@ -1,6 +1,6 @@
 <div>
-  <auro-button onClick="toggleDrawer('#smLgDrawer')">Open [sm lg] drawer</auro-button>
-  <auro-button onClick="toggleDrawer('#smMdDrawer')">Open [md lg] drawer</auro-button>
+  <auro-button id="openSmLg">Open [sm lg] drawer</auro-button>
+  <auro-button id="openMdLg">Open [md lg] drawer</auro-button>
 </div>
 
 <auro-drawer id="smLgDrawer" sm lg>
@@ -17,13 +17,14 @@
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smLgDrawer')">I understand
+    <auro-button id="closeSmLg">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
 
-<auro-drawer id="smMdDrawer" md lg>
+<auro-drawer id="mdLgDrawer" md lg>
   <span slot="header">Medium Modal Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -37,7 +38,8 @@
     </ul>
   </div>
   <div slot="footer">
-    <auro-button onClick="toggleDrawer('#smMdDrawer')">I understand
+    <auro-button id="closeMdLg">
+      I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>
   </div>

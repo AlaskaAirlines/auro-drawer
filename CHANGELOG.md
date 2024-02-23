@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+## [1.0.8](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.7...v1.0.8) (2024-02-23)
+
+
+### Bug Fixes
+
+* **unformatted:** fix error from unformatted drawer opening ([d19b693](https://github.com/AlaskaAirlines/auro-drawer/commit/d19b693f8b29efed828b0733994df34c2d27063e))
+
+
+### Performance Improvements
+
+* **deps:** update dependencies ([4b85d7b](https://github.com/AlaskaAirlines/auro-drawer/commit/4b85d7bf03267778b0046ccee3ada0c34fdcf585))
+* **min:** update min js structure for docsite ([855a57c](https://github.com/AlaskaAirlines/auro-drawer/commit/855a57cf9be960f676ae5b36ea54c24363e78a23))
+
 ## [1.0.7](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.6...v1.0.7) (2024-02-20)
 
 

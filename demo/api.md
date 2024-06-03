@@ -834,3 +834,25 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
+
+### Theme Support
+
+The component may be restyled using the following code sample and changing the values of the following token(s).
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../src/tokens.scss) -->
+<!-- The below code snippet is automatically added from ./../../src/tokens.scss -->
+
+```scss
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+
+:host {
+  --ds-auro-drawer-background-color: var(--ds-color-background-primary-100-default, #{$ds-color-background-primary-100-default});
+  --ds-auro-drawer-boxshadow-color-one: rgb(0 0 0 / 0.12);
+  --ds-auro-drawer-boxshadow-color-two: rgb(0 0 0 / 0.1);
+  --ds-auro-drawer-close-button-color: var(--ds-color-icon-primary-default, $ds-color-icon-primary-default);
+  --ds-auro-drawer-overlay-open-background-color: rgb(0 0 0 / 0.2);
+  --ds-auro-drawer-overlay-modal-background-color: rgb(0 0 0 / 0.5);
+  --ds-auro-drawer-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+}
+```
+<!-- AURO-GENERATED-CONTENT:END -->

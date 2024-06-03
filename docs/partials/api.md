@@ -159,3 +159,11 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
+
+
+### Theme Support
+
+The component may be restyled using the following code sample and changing the values of the following token(s).
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../src/tokens.scss) -->
+<!-- AURO-GENERATED-CONTENT:END -->

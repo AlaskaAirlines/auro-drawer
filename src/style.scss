@@ -67,11 +67,11 @@ $auro-spacing-options: none;
 
   display: block;
   visibility: hidden;
-  overflow: visible;
+  overflow: scroll;
 
   max-width: 90%;
   height: 100%;
-  
+
   padding: var(--insetPaddingXl);
 
   transform: translateX(100%);
@@ -84,9 +84,10 @@ $auro-spacing-options: none;
   // baseline drawer UI / mobile-first
 
   @include auro_transition(all, 0.3s, ease-in-out);
+
   // 1024px breakpoint / large drawer size is default
   @include auro_breakpoint--md {
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.12), 0 1px 10px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.12), 0 1px 10px 0 rgba(0, 0, 0, 0.1);
   }
 
   @include auro_breakpoint--lg {
@@ -194,6 +195,7 @@ $auro-spacing-options: none;
       max-width: 40%;
     }
   }
+
   @include auro_breakpoint--lg {
     .drawer {
       max-width: 740px;
@@ -207,6 +209,7 @@ $auro-spacing-options: none;
       max-width: 70%;
     }
   }
+
   @include auro_breakpoint--lg {
     .drawer {
       max-width: 986px;
@@ -221,6 +224,7 @@ $auro-spacing-options: none;
       max-height: 100%;
     }
   }
+
   .drawer {
     max-height: 100%;
   }

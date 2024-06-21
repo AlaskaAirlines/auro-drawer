@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [1.0.9](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.8...v1.0.9) (2024-06-21)
+
+
+### Bug Fixes
+
+* **#17:** adds scroll attribute to allow overflow content to be interactive ([78e36ba](https://github.com/AlaskaAirlines/auro-drawer/commit/78e36ba277320d8c59b61e0480fa28324a43b25f)), closes [#17](https://github.com/AlaskaAirlines/auro-drawer/issues/17)
+
+
+### Performance Improvements
+
+* **scroll:** prevent content behind drawer scrolling when user scrolls the drawer content ([d88aa59](https://github.com/AlaskaAirlines/auro-drawer/commit/d88aa59387fb78d34f7ba10a38563a76dbd3e7f2))
+
 ## [1.0.8](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.7...v1.0.8) (2024-02-23)
 
 

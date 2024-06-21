@@ -68,6 +68,7 @@ $auro-spacing-options: none;
   display: block;
   visibility: hidden;
   overflow: scroll;
+  overscroll-behavior: contain;
 
   max-width: 90%;
   height: 100%;

@@ -28,6 +28,11 @@ $auro-spacing-options: none;
   --insetPaddingXxxl: 0 var(--ds-size-800, $ds-size-800) var(--ds-size-800, $ds-size-800) var(--ds-size-800, $ds-size-800);
 }
 
+[auro-icon] {
+  height: var(--ds-size-300, $ds-size-300);
+  width: var(--ds-size-300, $ds-size-300);
+}
+
 // container shape styles
 .drawerOverlay {
   position: fixed;

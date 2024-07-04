@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+# [1.1.0-beta.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.9...v1.1.0-beta.1) (2024-07-04)
+
+
+### Features
+
+* refactor color token structure with tier 3 tokens [#14](https://github.com/AlaskaAirlines/auro-drawer/issues/14) ([3c78a06](https://github.com/AlaskaAirlines/auro-drawer/commit/3c78a060203054b59f917635da8bd53aebd9b035))
+* **version:** use custom versioned auro components ([8f8990c](https://github.com/AlaskaAirlines/auro-drawer/commit/8f8990c8c387b94775e06ebb67bbe418a360ead2))
+
 ## [1.0.9](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.8...v1.0.9) (2024-06-21)
 
 

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [1.1.0-beta.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2024-07-08)
+
+
+### Performance Improvements
+
+* **button:** use new beta version of flat variant button ([d6c9996](https://github.com/AlaskaAirlines/auro-drawer/commit/d6c99969fb8c12b67c324341b4da58e98caf54df))
+
 # [1.1.0-beta.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.9...v1.1.0-beta.1) (2024-07-04)
 
 

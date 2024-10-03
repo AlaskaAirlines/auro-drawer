@@ -42,10 +42,13 @@
     </script>
 
     <script type="module" data-demo-script="true">
-      import { registerComponent } from '../index.js';
+      import { AuroDrawer } from './src/auro-drawer.js';
+      import * as RuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
+      RuntimeUtils.default.prototype.registerComponent('custom-drawer', AuroDrawer);
+
       import { initExamples } from './index.min.js';
 
-      registerComponent('custom-drawer');
       initExamples();
     </script>
 

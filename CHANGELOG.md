@@ -1,20 +1,5 @@
 # Semantic Release Automated Changelog
 
-# [1.1.0-beta.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2024-07-08)
-
-
-### Performance Improvements
-
-* **button:** use new beta version of flat variant button ([d6c9996](https://github.com/AlaskaAirlines/auro-drawer/commit/d6c99969fb8c12b67c324341b4da58e98caf54df))
-
-# [1.1.0-beta.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.9...v1.1.0-beta.1) (2024-07-04)
-
-
-### Features
-
-* refactor color token structure with tier 3 tokens [#14](https://github.com/AlaskaAirlines/auro-drawer/issues/14) ([3c78a06](https://github.com/AlaskaAirlines/auro-drawer/commit/3c78a060203054b59f917635da8bd53aebd9b035))
-* **version:** use custom versioned auro components ([8f8990c](https://github.com/AlaskaAirlines/auro-drawer/commit/8f8990c8c387b94775e06ebb67bbe418a360ead2))
-
 ## [1.0.9](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.8...v1.0.9) (2024-06-21)
 
 

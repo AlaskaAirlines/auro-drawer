@@ -846,11 +846,10 @@ The component may be restyled using the following code sample and changing the v
 @import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
 
 :host {
-  --ds-auro-drawer-background-color: var(--ds-color-background-primary-100-default, #{$ds-color-background-primary-100-default});
-  --ds-auro-drawer-boxshadow-color-one: rgb(0 0 0 / 0.12);
-  --ds-auro-drawer-boxshadow-color-two: rgb(0 0 0 / 0.1);
-  --ds-auro-drawer-overlay-modal-background-color: rgb(0 0 0 / 0.5);
-  --ds-auro-drawer-overlay-open-background-color: rgb(0 0 0 / 0.2);
+  --ds-auro-drawer-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
+  --ds-auro-drawer-boxshadow-color: var(--ds-elevation-300, #{$ds-elevation-300});
+  --ds-auro-drawer-overlay-modal-background-color: var(--ds-color-background-scrimmed-default, #{$ds-color-background-scrimmed-default});
+  --ds-auro-drawer-overlay-open-background-color: var(--ds-color-background-scrimmed-default, #{$ds-color-background-scrimmed-default});
   --ds-auro-drawer-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
 }
 ```

@@ -1,5 +1,31 @@
 # Semantic Release Automated Changelog
 
+# [2.0.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.9...v2.0.0) (2024-10-04)
+
+
+### Bug Fixes
+
+* resolve minor color theming issues [#14](https://github.com/AlaskaAirlines/auro-drawer/issues/14) ([50471b1](https://github.com/AlaskaAirlines/auro-drawer/commit/50471b133856800a3ef422413de98fb580513602))
+
+
+### Features
+
+* add tag name as attribute when custom registered ([cea3dec](https://github.com/AlaskaAirlines/auro-drawer/commit/cea3dec3e5cf3c5d4881e8a4878d88c0fa40d083))
+* refactor color token structure with tier 3 tokens [#14](https://github.com/AlaskaAirlines/auro-drawer/issues/14) ([c732088](https://github.com/AlaskaAirlines/auro-drawer/commit/c73208874da56dd5d19beebb086076b0aa4c882c))
+* **version:** use custom versioned auro components ([da2886f](https://github.com/AlaskaAirlines/auro-drawer/commit/da2886fb13bf19bd030891cd08aae3eca5f6bc98))
+
+
+### Performance Improvements
+
+* **button:** use new beta version of flat variant button ([29223bc](https://github.com/AlaskaAirlines/auro-drawer/commit/29223bccf25bd5263c0f7476a93d890a095ae12f))
+* refactor custom component registration config ([13a6ba1](https://github.com/AlaskaAirlines/auro-drawer/commit/13a6ba1cca255be607ccee2abe4624ddfa18fac9))
+* update dependencies ([d0a8ab1](https://github.com/AlaskaAirlines/auro-drawer/commit/d0a8ab1e3d3d6553b1ffed6f033f99bf1fbbec68))
+
+
+### BREAKING CHANGES
+
+* trigger major release for color theme support
+
 ## [1.0.9](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.8...v1.0.9) (2024-06-21)
 
 

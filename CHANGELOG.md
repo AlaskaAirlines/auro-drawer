@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.0.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.0.0...v2.0.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* moves auro library to dependencies in package.json [#26](https://github.com/AlaskaAirlines/auro-drawer/issues/26) ([7f4e2d2](https://github.com/AlaskaAirlines/auro-drawer/commit/7f4e2d222612885b3c7468153f56582992445e30))
+
 # [2.0.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v1.0.9...v2.0.0) (2024-10-04)
 
 

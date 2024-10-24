@@ -1,5 +1,5 @@
 import { fixture, html, expect, oneEvent, elementUpdated } from '@open-wc/testing';
-import '../src/auro-drawer';
+import '../index.js';
 
 describe('auro-drawer', () => {
   it('auro-drawer is accessible', async () => {

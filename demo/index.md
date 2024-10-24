@@ -150,15 +150,14 @@ Having a closing statement about your example helps to really complete the thoug
 
 ## Recommended Use and Version Control
 
-There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-drawer` custom element is defined automatically.
+There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-drawer` custom element is defined automatically.
 
-To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name)` method and pass in a unique name.
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `AuroDrawer.register(name)` method and pass in a unique name.
 
 ```js
 import { AuroDrawer } from './src/auro-drawer.js';
-import * as RuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-RuntimeUtils.default.prototype.registerComponent('custom-drawer', AuroDrawer);
+AuroDrawer.register('custom-drawer');
 ```
 
 This will create a new custom element that you can use in your HTML that will function identically to the `auro-drawer` element.
@@ -167,10 +166,10 @@ This will create a new custom element that you can use in your HTML that will fu
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/custom.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/custom.html -->
   <div>
-    <auro-button id="openCustom">Open default drawer</auro-button>
+    <auro-button id="openCustom">Open custom drawer</auro-button>
   </div>
   <custom-drawer id="customDrawer">
-    <span slot="header">Default Drawer</span>
+    <span slot="header">Custom Drawer</span>
     <div slot="content">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
       <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
@@ -195,10 +194,10 @@ This will create a new custom element that you can use in your HTML that will fu
 
 ```html
 <div>
-  <auro-button id="openCustom">Open default drawer</auro-button>
+  <auro-button id="openCustom">Open custom drawer</auro-button>
 </div>
 <custom-drawer id="customDrawer">
-  <span slot="header">Default Drawer</span>
+  <span slot="header">Custom Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
     <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>

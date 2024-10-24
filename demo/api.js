@@ -6,6 +6,7 @@ import { initModalExample } from "../apiExamples/modal";
 import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
 import { initSizeOptionsExample } from "../apiExamples/sizeOptions";
 import { initSlideOptionsExample } from "../apiExamples/slideOptions";
+import '../index.js';
 
 export function initExamples(initCount) {
   initCount = initCount || 0;

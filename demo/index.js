@@ -1,5 +1,9 @@
 import { initBasicExample } from "../apiExamples/basic";
 import { initCustomExample } from "../apiExamples/custom";
+import { AuroDrawer } from '../src/auro-drawer.js';
+
+AuroDrawer.register();
+AuroDrawer.register('custom-drawer');
 
 export function initExamples(initCount) {
   initCount = initCount || 0;

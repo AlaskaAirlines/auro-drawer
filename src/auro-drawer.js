@@ -6,9 +6,10 @@
 // import { html } from "lit-element";
 // import { classMap } from 'lit-html/directives/class-map';
 import ComponentBase from './componentBase.js';
-
 // Import touch detection lib
 import styleCss from "./style-css.js";
+
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -39,10 +40,16 @@ export class AuroDrawer extends ComponentBase {
       styleCss,
     ];
   }
-}
 
-/* istanbul ignore else */
-// define the name of the custom component
-if (!customElements.get("auro-drawer")) {
-  customElements.define("auro-drawer", AuroDrawer);
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-drawer"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroDrawer.register("custom-drawer") // this will register this element to <custom-drawer/>
+   *
+   */
+  static register(name = "auro-drawer") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDrawer);
+  }
 }

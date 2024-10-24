@@ -1,6 +1,6 @@
 export function initCustomExample() {
   const buttons = [document.querySelector('#openCustom'), document.querySelector('#closeCustom')];
-  const drawer = document.querySelector('#defaultDrawer');
+  const drawer = document.querySelector('#customDrawer');
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => {

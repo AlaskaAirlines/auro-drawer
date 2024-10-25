@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.1.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.0.1...v2.1.0) (2024-10-25)
+
+
+### Features
+
+* **api:** add register static method [#28](https://github.com/AlaskaAirlines/auro-drawer/issues/28) ([10bbefe](https://github.com/AlaskaAirlines/auro-drawer/commit/10bbefecf7bf3d4413d57b534e4f2bdaf2303df4))
+
 ## [2.0.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.0.0...v2.0.1) (2024-10-08)
 
 

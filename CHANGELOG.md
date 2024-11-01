@@ -1,5 +1,22 @@
 # Semantic Release Automated Changelog
 
+# [2.2.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.1.0...v2.2.0) (2024-11-01)
+
+
+### Bug Fixes
+
+* update auro-icon package [#30](https://github.com/AlaskaAirlines/auro-drawer/issues/30) ([faf925e](https://github.com/AlaskaAirlines/auro-drawer/commit/faf925e865d29191f4f57c73237c278dfdd4b996))
+
+
+### Features
+
+* apply latest token ds-auro-icon-size [#30](https://github.com/AlaskaAirlines/auro-drawer/issues/30) ([48546f0](https://github.com/AlaskaAirlines/auro-drawer/commit/48546f09e24664dacc1aa55f73c4a31fee046a10))
+
+
+### Performance Improvements
+
+* update dependencies ([c26bb7f](https://github.com/AlaskaAirlines/auro-drawer/commit/c26bb7f231d5e6296aa66c37bfcb8931e733e519))
+
 # [2.1.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.0.1...v2.1.0) (2024-10-25)
 
 

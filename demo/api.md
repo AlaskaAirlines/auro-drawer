@@ -1,5 +1,5 @@
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../api.md) -->
-<!-- The below content is automatically added from ./../api.md -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/api.md) -->
+<!-- The below content is automatically added from ./../docs/api.md -->
 
 # auro-drawer
 
@@ -52,8 +52,8 @@
 ### Basic
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/basic.html -->
   <div>
     <auro-button id="openBasic">Open default drawer</auro-button>
   </div>
@@ -88,8 +88,8 @@
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
 <div>
@@ -131,8 +131,8 @@
 The auro-drawer supports two different entry options. Using the `left` attribute, the component supports this slide-in mode for both mobile and desktop experiences.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/slideOptions.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/slideOptions.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/slideOptions.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/slideOptions.html -->
   <div>
     <auro-button id="openDefaultSlide">Open default drawer</auro-button>
     <auro-button id="openLeftSlide">Open left drawer</auro-button>
@@ -175,8 +175,8 @@ The auro-drawer supports two different entry options. Using the `left` attribute
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/slideOptions.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/slideOptions.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/slideOptions.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/slideOptions.html -->
 
 ```html
 <div>
@@ -228,8 +228,8 @@ The auro-drawer supports three different sizes. A default drawer is equal to the
 The size attribute effects the `width` of the desktop drawer. Its `height` is always 100%. On mobile, the `size` attribute effects the `maximum width` the drawer will use of the device screen.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/sizeOptions.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/sizeOptions.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/sizeOptions.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/sizeOptions.html -->
   <div>
     <auro-button id="openDefaultSize">Open default drawer</auro-button>
     <auro-button id="openMediumSize">Open medium drawer</auro-button>
@@ -290,8 +290,8 @@ The size attribute effects the `width` of the desktop drawer. Its `height` is al
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/sizeOptions.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/sizeOptions.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/sizeOptions.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/sizeOptions.html -->
 
 ```html
 <div>
@@ -361,8 +361,8 @@ The auro-drawer supports a modal drawer state that will lock a user into interac
 When using this state, the modal drawer must include a button action to dismiss the modal drawer as the closing icon will not be available and the user will not be able to click outside the modal drawer to dismiss.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/modal.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/modal.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/modal.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/modal.html -->
   <div>
     <auro-button id="openDefaultModal">Open default modal</auro-button>
     <auro-button id="openMediumModal">Open medium modal</auro-button>
@@ -429,8 +429,8 @@ When using this state, the modal drawer must include a button action to dismiss 
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/modal.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/modal.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/modal.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/modal.html -->
 
 ```html
 <div>
@@ -506,8 +506,8 @@ For use case where the size of the drawer on desktop should not influence the si
 The use of these combinations will set the first value to the drawer for a desktop experience. The second value will set the mobile experience to be up to 90% of the screen.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/decoupled.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/decoupled.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/decoupled.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/decoupled.html -->
   <div>
     <auro-button id="openSmLg">Open [sm lg] drawer</auro-button>
     <auro-button id="openMdLg">Open [md lg] drawer</auro-button>
@@ -556,8 +556,8 @@ The use of these combinations will set the first value to the drawer for a deskt
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/decoupled.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/decoupled.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/decoupled.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/decoupled.html -->
 
 ```html
 <div>
@@ -613,8 +613,8 @@ The use of these combinations will set the first value to the drawer for a deskt
 This is a use case where there is a popover and combobox component inside the drawer component, creating a stack of layered components.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverAndDropdown.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/popoverAndDropdown.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/popoverAndDropdown.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/popoverAndDropdown.html -->
   <div>
     <auro-button id="openPopAndDrop">Open drawer with popover</auro-button>
   </div>
@@ -664,8 +664,8 @@ This is a use case where there is a popover and combobox component inside the dr
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverAndDropdown.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/popoverAndDropdown.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/popoverAndDropdown.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/popoverAndDropdown.html -->
 
 ```html
 <div>
@@ -740,8 +740,8 @@ import '@aurodesignsystem/auro-drawer@/dist/style-unformatted.css'
 Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="drawer-header"` to the content header within the drawer content.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/accessibility.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/accessibility.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/accessibility.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/accessibility.html -->
   <div>
     <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
   </div>
@@ -758,8 +758,8 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/accessibility.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/accessibility.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/accessibility.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/accessibility.html -->
 
 ```html
 <div>
@@ -783,8 +783,8 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 When using the drawer with the `unformatted` attribute, some may want to adjust the positioning of the X close button. This can be addressed using the CSS `::part` CSS pseudo-element API.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/editCloseButton.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/editCloseButton.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/editCloseButton.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/editCloseButton.html -->
   <div>
     <auro-button id="openEditDrawer">Unformatted w/custom close button</auro-button>
   </div>
@@ -808,8 +808,8 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/editCloseButton.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/editCloseButton.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/editCloseButton.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/editCloseButton.html -->
 
 ```html
 <div>
@@ -839,8 +839,8 @@ When using the drawer with the `unformatted` attribute, some may want to adjust 
 
 The component may be restyled using the following code sample and changing the values of the following token(s).
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../src/tokens.scss) -->
-<!-- The below code snippet is automatically added from ./../../src/tokens.scss -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../src/tokens.scss) -->
+<!-- The below code snippet is automatically added from ./../src/tokens.scss -->
 
 ```scss
 @import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";

@@ -1,5 +1,14 @@
 # Semantic Release Automated Changelog
 
+## [2.2.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.2.1...v2.2.2) (2025-01-24)
+
+
+### Performance Improvements
+
+* add auro-button to local demo [#35](https://github.com/AlaskaAirlines/auro-drawer/issues/35) ([e779b45](https://github.com/AlaskaAirlines/auro-drawer/commit/e779b45a8e1b22297eeb9e335ebd8605a595e579))
+* add nodeResolve for demo .js files [#37](https://github.com/AlaskaAirlines/auro-drawer/issues/37) ([9e711fd](https://github.com/AlaskaAirlines/auro-drawer/commit/9e711fde99cc503fbf02cbf059fb34863dad2ece))
+* update deps and doc structure [#36](https://github.com/AlaskaAirlines/auro-drawer/issues/36) ([2c33a92](https://github.com/AlaskaAirlines/auro-drawer/commit/2c33a92e96ff6ef0b0870ba7c8ab7e54f4b21e10))
+
 ## [2.2.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.2.0...v2.2.1) (2024-12-20)
 
 

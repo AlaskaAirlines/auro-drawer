@@ -83,7 +83,7 @@ $auro-spacing-options: none;
   // baseline drawer UI / mobile-first
   @include auro_transition(all, 0.3s, ease-in-out);
 
-  @include auro_breakpoint--lg {
+  @include auro_grid-breakpoint--lg {
     padding: var(--insetPaddingXxxl);
   }
 
@@ -102,7 +102,7 @@ $auro-spacing-options: none;
   &-footer {
     padding-top: var(--ds-size-400, $ds-size-400);
 
-    @include auro_breakpoint--md {
+    @include auro_grid-breakpoint--md {
       ::slotted(*) {
         display: flex;
         justify-content: flex-end;
@@ -156,7 +156,7 @@ $auro-spacing-options: none;
     top: var(--ds-size-400, $ds-size-400);
     right: var(--ds-size-400, $ds-size-400);
 
-    @include auro_breakpoint--md {
+    @include auro_grid-breakpoint--md {
       top: var(--ds-size-800, $ds-size-800);
       right: var(--ds-size-800, $ds-size-800);
     }
@@ -168,13 +168,13 @@ $auro-spacing-options: none;
 }
 
 :host([sm]) {
-  @include auro_breakpoint--md {
+  @include auro_grid-breakpoint--md {
     .drawer {
       max-width: 40%;
     }
   }
 
-  @include auro_breakpoint--lg {
+  @include auro_grid-breakpoint--lg {
     .drawer {
       max-width: 740px;
     }
@@ -182,13 +182,13 @@ $auro-spacing-options: none;
 }
 
 :host([md]) {
-  @include auro_breakpoint--md {
+  @include auro_grid-breakpoint--md {
     .drawer {
       max-width: 70%;
     }
   }
 
-  @include auro_breakpoint--lg {
+  @include auro_grid-breakpoint--lg {
     .drawer {
       max-width: 986px;
     }
@@ -197,7 +197,7 @@ $auro-spacing-options: none;
 
 :host([sm][lg]),
 :host([md][lg]) {
-  @include auro_breakpoint--md {
+  @include auro_grid-breakpoint--md {
     .drawer {
       max-height: 100%;
     }

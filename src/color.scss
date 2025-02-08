@@ -24,7 +24,7 @@
   color: var(--ds-auro-drawer-text-color);
 
   // 1024px breakpoint / large drawer size is default
-  @include auro_breakpoint--md {
+  @include auro_grid-breakpoint--md {
     box-shadow: 0 10px 20px 0 var(--ds-auro-drawer-boxshadow-color-one), 0 1px 10px 0 var(--ds-auro-drawer-boxshadow-color-two);
   }
 }

@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [2.2.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.2.2...v2.2.3) (2025-02-08)
+
+
+### Performance Improvements
+
+* update dependencies ([51f8944](https://github.com/AlaskaAirlines/auro-drawer/commit/51f89449d4e62e9ffd44a2e661d04538f19f5b57))
+* update mixin per new WCSS spec ([f690d31](https://github.com/AlaskaAirlines/auro-drawer/commit/f690d31c91d1eb3d2067b9f2218841c1486e9f55))
+
 ## [2.2.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.2.1...v2.2.2) (2025-01-24)
 
 

@@ -16,12 +16,13 @@ export class AuroFloater extends LitElement {
 
   constructor() {
     super();
+    this.placement = "right";
   }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      direction: {
+      placement: {
         type: String,
         reflect: true
       },
@@ -93,13 +94,22 @@ export class AuroFloater extends LitElement {
     return html`
       <slot name="trigger"></slot>
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
-      <auro-floater-content id="bib">
+      <auro-floater-content id="bib"
+      .placement=${this.placement}>
       </auro-floater-content>
     `;
   }
 }
 
 class AuroFloaterContent extends LitElement {
+  static get properties() {
+    return {
+      placement: {
+        type: String,
+        reflect: true
+      },
+    };
+  }
   static get styles() {
     return [
       styleCss,
@@ -108,7 +118,9 @@ class AuroFloaterContent extends LitElement {
 
   render() {
     return html`
-      <slot></slot>
+      <div id="wrapper">
+        <slot></slot>
+      </div>
     `;
   }
 }

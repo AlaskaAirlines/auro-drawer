@@ -1,0 +1,30 @@
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+
+
+/* stylelint-disable scss/selector-nest-combinators */
+
+:host {
+  position: absolute;
+  display: none;
+  overflow: hidden;
+}
+
+:host([data-show]) {
+  z-index: var(--ds-depth-modal, $ds-depth-modal);
+  display: block;
+
+  .container{
+    background: var(--ds-auro-drawer-container-color);
+  }
+}
+
+:host([data-show][isfullscreen]) {
+  width: 100%;
+  height: 100%;
+
+  .container {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+  }
+}

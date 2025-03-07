@@ -46,19 +46,19 @@ export default class AuroFloatingUI {
    * @returns {String} The positioning strategy, one of 'fullscreen', 'floating', 'drawer'.
    */
   getPositioningStrategy() {
-    if (this.element.behavior) {
+    if (!this.element.behavior || this.element.behavior === 'dropdown') {
+      let strategy = 'floating';
+      if (this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint) {
+        const smallerThanBreakpoint = window.matchMedia(`(max-width: ${this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint})`).matches;
+        if (smallerThanBreakpoint) {
+          strategy = 'fullscreen';
+        }
+      }
+
+      return strategy;
+    } else {
       return this.element.behavior;
     }
-
-    let strategy = 'floating';
-    if (this.element.bib.mobileFullscreenBreakpoint) {
-      const smallerThanBreakpoint = window.matchMedia(`(max-width: ${this.element.bib.mobileFullscreenBreakpoint})`).matches;
-      if (smallerThanBreakpoint) {
-        strategy = 'fullscreen';
-      }
-    }
-
-    return strategy;
   }
 
   /**
@@ -139,6 +139,7 @@ export default class AuroFloatingUI {
     if (strategy === 'fullscreen') {
       this.element.isBibFullscreen = true;
       // reset the prev position
+      this.element.bib.setAttribute('isfullscreen', "");
       this.element.bib.style.top = "0px";
       this.element.bib.style.left = "0px";
 
@@ -153,6 +154,7 @@ export default class AuroFloatingUI {
         this.lockScroll(true);
       }
     } else {
+      this.element.bib.removeAttribute('isfullscreen');
       this.element.isBibFullscreen = false;
 
       this.lockScroll(false);

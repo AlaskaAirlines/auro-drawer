@@ -9,3 +9,8 @@ export function initBasicExample() {
     drawer.setAttribute('placement', event.target.value);
   })
 }
+export function initDropdownExample() {
+  const trigger = document.querySelector('#dropdownTrigger');
+  const drawer = document.querySelector('#defaultDropdown');
+  drawer.triggerElement = trigger;
+}

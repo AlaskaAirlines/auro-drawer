@@ -7,10 +7,10 @@ import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-import styleCss from "./floaterStyles-css.js";
-import tokensCss from "./tokens-css.js";
-
 import FloatingUI from './util/flotingUI.js';
+
+import "./auro-floater-bib.js";
+import "./auro-drawer-bib.js";
 
 // build the component class
 export class AuroFloater extends LitElement {
@@ -18,6 +18,16 @@ export class AuroFloater extends LitElement {
   constructor() {
     super();
     this.placement = "right";
+    /**
+     * @private
+     */
+    this.floaterConfig = {
+      placement: 'bottom-start',
+      flip: true,
+      autoPlacement: false,
+      offset: 0,
+      fullscreenBreakpoint: "576px",
+    };
   }
 
   // function to define props used within the scope of this component
@@ -50,10 +60,8 @@ export class AuroFloater extends LitElement {
     super.connectedCallback();
 
     AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-floater');
-  }
 
-  firstUpdated() {
-    this.floater = new FloatingUI();
+    this.floater = new FloatingUI();    
   }
 
   updated(changedProperties) {
@@ -95,41 +103,14 @@ export class AuroFloater extends LitElement {
     return html`
       <slot name="trigger"></slot>
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
-      <auro-floater-content id="bib"
-      .placement=${this.placement}>
-      </auro-floater-content>
+      <slot name="header" @slotchange="${this.handleDefaultSlot}"></slot>
+      <slot name="footer" @slotchange="${this.handleDefaultSlot}"></slot>
+      ${ this.behavior === 'drawer' ? 
+        html`<auro-drawer-bib id="bib"
+        .placement=${this.placement}>
+        </auro-drawer-bib>` 
+        : html`<auro-floater-bib id="bib"></auro-floater-bib>`}
+      
     `;
   }
 }
-
-class AuroFloaterContent extends LitElement {
-  static get properties() {
-    return {
-      placement: {
-        type: String,
-        reflect: true
-      },
-    };
-  }
-  static get styles() {
-    return [
-      tokensCss,
-      styleCss,
-    ];
-  }
-
-  render() {
-    return html`
-      <div id="wrapper">
-        <slot></slot>
-      </div>
-    `;
-  }
-}
-
-/* istanbul ignore else */
-// define the name of the custom component
-if (!customElements.get("auro-floater-content")) {
-  customElements.define("auro-floater-content", AuroFloaterContent);
-}
-

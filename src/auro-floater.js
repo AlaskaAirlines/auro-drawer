@@ -8,6 +8,7 @@ import { html } from 'lit/static-html.js';
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 import styleCss from "./floaterStyles-css.js";
+import tokensCss from "./tokens-css.js";
 
 import FloatingUI from './util/flotingUI.js';
 
@@ -112,6 +113,7 @@ class AuroFloaterContent extends LitElement {
   }
   static get styles() {
     return [
+      tokensCss,
       styleCss,
     ];
   }

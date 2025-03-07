@@ -281,7 +281,6 @@ export default class AuroFloatingUI {
       this.setupHideHandlers();
 
       // Setup auto update to handle resize and scroll
-      console.log('showBib', this.element.bib);
       this.element.cleanup = autoUpdate(this.element.trigger, this.element.bib, () => {
         this.position();
       });

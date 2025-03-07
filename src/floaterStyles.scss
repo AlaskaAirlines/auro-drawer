@@ -5,71 +5,83 @@
 
 :host {
   position: absolute;
-  z-index: var(--depth-tooltip, $ds-depth-tooltip);
   display: none;
   overflow: hidden;
+  background: var(--ds-auro-drawer-overlay-modal-background-color);
+  opacity: 0;
   pointer-events: none;
-}
-
-:host([data-show]) {
-  display: block;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 0), display 0.3s;
+  transition-behavior: allow-discrete;
 }
 
 #wrapper {
   position: absolute;
   display: inline-block;
   overflow: auto;
+  background: var(--ds-auro-drawer-container-color);
   pointer-events: none;
+  transition: transform 0.3s ease-in-out, display 0.3s, overlay 0.3s;
+  transition-behavior: allow-discrete;
+  will-change: transform;
 }
 
 ::slotted(*) {
+  color: var(--ds-auro-drawer-text-color);
   pointer-events: initial;
 }
 
-@keyframes slide-right-to-left {
-  from { transform: translateX(100%) }
-  to { transform: translateX(0) }
+:host([data-show]) {
+  z-index: var(--ds-depth-modal, $ds-depth-modal);
+  display: block;
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
 }
 
 :host([placement="right"]) #wrapper {
   right: 0;
   height: 100%;
-  animation: slide-right-to-left 200ms ease-in-out;
-  animation-iteration-count: 1;
   overflow-x: hidden;
-}
-
-@keyframes slide-left-to-right {
-  from { transform: translateX(-100%) }
-  to { transform: translateX(0) }
+  transform: translate3d(100%, 0, 0);
 }
 
 :host([placement="left"]) #wrapper {
   height: 100%;
-  animation: slide-left-to-right 200ms ease-in-out;
-  animation-iteration-count: 1;
   overflow-x: hidden;
-}
-
-@keyframes slide-top-to-bottom {
-  from { transform: translateY(-100%) }
-  to { transform: translateY(0) }
+  transform: translateX(-100%);
 }
 
 :host([placement="top"]) #wrapper {
   width: 100%;
-  animation: slide-top-to-bottom 200ms ease-in-out;
-  animation-iteration-count: 1;
-}
-
-@keyframes slide-bottom-to-top {
-  from { transform: translateY(100%) }
-  to { transform: translateY(0) }
+  transform: translateY(-100%);
 }
 
 :host([placement="bottom"]) #wrapper {
   bottom: 0;
   width: 100%;
-  animation: slide-bottom-to-top 200ms ease-in-out;
-  animation-iteration-count: 1;
+  transform: translate3d(0, 100%, 0);
+}
+
+:host([data-show]) #wrapper{
+  transform: translate3d(0,0,0);
+}
+
+@starting-style {
+  :host([data-show][placement="right"]) #wrapper {
+    transform: translateX(100%);
+  }
+
+  :host([data-show][placement="left"]) #wrapper {
+    transform: translateX(-100%);
+  }
+
+  :host([data-show][placement="top"]) #wrapper {
+    transform: translateY(-100%);
+  }
+
+  :host([data-show][placement="bottom"]) #wrapper {
+    transform: translate3d(0, 100%, 0);
+  }
 }

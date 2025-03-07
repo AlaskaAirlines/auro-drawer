@@ -43,4 +43,14 @@ const apiExamplesConfig = {
   plugins: [nodeResolve()]
 };
 
-export default [modernConfig, indexExamplesConfig, apiExamplesConfig];
+const floaterExamplesConfig = {
+  input: {
+    ['floater.min']: './demo/floater.js',
+  },
+  output: {
+    format: 'esm',
+    dir: 'demo/'
+  },
+  plugins: [nodeResolve()]
+};
+export default [modernConfig, indexExamplesConfig, apiExamplesConfig, floaterExamplesConfig];

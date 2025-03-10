@@ -3,7 +3,12 @@
 import { autoUpdate, computePosition, offset, autoPlacement, flip } from '@floating-ui/dom';
 
 export default class AuroFloatingUI {
-  constructor() {
+  constructor(element) {
+    this.element = element;
+    if (this.element.behavior === 'tooltip') {
+      this.element.hoverToggle = true;
+    }
+
     // Store event listener references for cleanup
     this.focusHandler = null;
     this.clickHandler = null;
@@ -46,6 +51,10 @@ export default class AuroFloatingUI {
    * @returns {String} The positioning strategy, one of 'fullscreen', 'floating', 'drawer'.
    */
   getPositioningStrategy() {
+    if (this.element.behavior === 'tooltip') {
+      return 'floating';
+    }
+
     if (!this.element.behavior || this.element.behavior === 'dropdown') {
       let strategy = 'floating';
       if (this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint) {
@@ -84,7 +93,7 @@ export default class AuroFloatingUI {
 
       // Compute the position of the bib
       computePosition(this.element.trigger, this.element.bib, {
-        placement: this.element.floaterConfig?.placement || 'bottom',
+        placement: this.element.floaterConfig?.placement,
         middleware: middleware || []
       }).then(({x, y}) => { // eslint-disable-line id-length
         Object.assign(this.element.bib.style, {
@@ -416,17 +425,22 @@ export default class AuroFloatingUI {
 
   configure(elem, eventPrefix) {
     this.eventPrefix = eventPrefix;
-    this.element = elem;
-    this.element.trigger = this.element.triggerElement || this.element.shadowRoot.querySelector('#trigger');
+    if (this.element !== elem) {
+      this.element = elem;
+    }
+    if (this.element.trigger) {
+      this.disconnect();
+    }
+    this.element.trigger = this.element.triggerElement || this.element.shadowRoot.querySelector('#trigger') || this.element.trigger;
     this.element.bib = this.element.shadowRoot.querySelector('#bib') || this.element.bib;
     this.element.bibSizer = this.element.shadowRoot.querySelector('#bibSizer');
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
 
-    console.log(this.element.bib, this.element.trigger);
     document.body.append(this.element.bib);
 
     this.handleTriggerTabIndex();
 
+    console.log(this.element, this.element.trigger)
     this.handleEvent = this.handleEvent.bind(this);
     this.element.trigger.addEventListener('keydown', this.handleEvent);
     this.element.trigger.addEventListener('click', this.handleEvent);

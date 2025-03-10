@@ -2,17 +2,16 @@
 
 @import "./floaterBibStyles";
 
-/* stylelint-disable scss/selector-nest-combinators */
+/* stylelint-disable scss/selector-nest-combinators, selector-max-class */
 
 :host {
   background: var(--ds-auro-drawer-overlay-modal-background-color);
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 0), display 0.3s;
   transition-behavior: allow-discrete;
 }
 
-#wrapper {
+.container {
   position: absolute;
   display: inline-flex;
   overflow: auto;
@@ -22,6 +21,12 @@
   transition: transform 0.3s ease-in-out, display 0.3s, overlay 0.3s;
   transition-behavior: allow-discrete;
   will-change: transform;
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 
   .content {
     overflow: auto;
@@ -42,14 +47,14 @@
   }
 }
 
-:host([placement="right"]) #wrapper {
+:host([placement="right"]) .container {
   right: 0;
   height: 100%;
   overflow-x: hidden;
   transform: translate3d(100%, 0, 0);
 }
 
-:host([placement="left"]) #wrapper {
+:host([placement="left"]) .container {
   height: 100%;
   overflow-x: hidden;
   transform: translateX(-100%);
@@ -61,49 +66,42 @@
   }
 }
 
-:host([placement="top"]) #wrapper {
+:host([placement="top"]), :host([placement="bottom"]){
+  ::slotted(*) {
+    min-width: 100%;
+  }
+}
+
+:host([placement="top"]) .container {
   width: 100%;
   transform: translateY(-100%);
   
 }
 
-:host([placement="bottom"]) #wrapper {
+:host([placement="bottom"]) .container {
   bottom: 0;
   width: 100%;
   transform: translate3d(0, 100%, 0);
 }
 
-:host([data-show]) #wrapper {
+:host([data-show]) .container {
   transform: translate3d(0,0,0);
 }
 
 @starting-style {
-  :host([data-show][placement="right"]) #wrapper {
+  :host([data-show][placement="right"]) .container {
     transform: translateX(100%);
   }
 
-  :host([data-show][placement="left"]) #wrapper {
+  :host([data-show][placement="left"]) .container {
     transform: translateX(-100%);
   }
 
-  :host([data-show][placement="top"]) #wrapper {
+  :host([data-show][placement="top"]) .container {
     transform: translateY(-100%);
   }
 
-  :host([data-show][placement="bottom"]) #wrapper {
+  :host([data-show][placement="bottom"]) .container {
     transform: translate3d(0, 100%, 0);
-  }
-}
-
-#template {
-  .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding-top: var(--ds-size-800, $ds-size-800);
-  }
-
-  .footer {
-    padding-top: var(--ds-size-400, $ds-size-400);
   }
 }

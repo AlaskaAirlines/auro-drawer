@@ -1,16 +1,26 @@
 
 <style>
-    #drawerExampleContainer {
-      position: relative;
-      width: 80%;
-      height: 500px;
-      background: lightgrey;
-    }
-    #drawerContent {
-      width: 300px;
-      max-height: 100px;
-      overflow: auto;
-    }
+  auro-button {
+    display: inline-block;
+  }
+  #drawerExampleContainer, #tooltipExampleContainer {
+    position: relative;
+    width: 80%;
+    height: 350px;
+    background: lightgrey;
+    margin: 1rem 0;
+  }
+
+  #tooltipTrigger {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #drawerContent {
+    width: 300px;
+    max-height: 100px;
+    overflow: auto;
+  }
 </style>
 <div id="drawerExampleContainer">
   <auro-button id="openBasic">Open drawer</auro-button>
@@ -77,7 +87,25 @@
         <p>Volutpat blandit aliquam etiam erat velit scelerisque. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Lectus sit amet est placerat in egestas erat imperdiet sed. Platea dictumst quisque sagittis purus sit. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla pharetra diam sit amet nisl suscipit adipiscing. Id aliquet lectus proin nibh nisl condimentum id venenatis. Phasellus faucibus scelerisque eleifend donec pretium vulputate. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Duis at consectetur lorem donec massa sapien faucibus et molestie.</p>
     </div>
     <div slot="footer">
-      <auro-button secondary id="closeBasic">Close</auro-button>
+      <auro-button secondary id="closeDoropdown">Close</auro-button>
     </div>
   </auro-floater>
+</div>
+
+<div id="tooltipExampleContainer">
+  <auro-button id="tooltipTrigger">
+    Button with tooltip
+  </auro-button>
+  <auro-radio-group id="tooltip-placement-radio">
+    <span slot="legend">Select Tooltip Placement</span>
+    <auro-radio value="top" label="Top"></auro-radio>
+    <auro-radio value="bottom" label="Bottom"></auro-radio>
+    <auro-radio value="left" label="Left"></auro-radio>
+    <auro-radio value="right" label="Right"></auro-radio>
+  </auro-radio-group>
+  <auro-floater id="tooltipExample" behavior="tooltip" placement="bottom">This is a tooltip</auro-floater>
+</div>
+
+<div id="dialogExampleContainer">
+  <auro-floater id="detachedTooltipExample" behavior="tooltip" placement="bottom">This is a detached tooltip</auro-floater>
 </div>

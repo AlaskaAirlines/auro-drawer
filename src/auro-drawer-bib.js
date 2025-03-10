@@ -23,7 +23,7 @@ export class AuroDrawerBib extends LitElement {
 
   render() {
     return html`
-      <div id="wrapper">
+      <div class="container">
         <div class="header" part="drawer-header">
           <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
             <slot name="header"></slot>

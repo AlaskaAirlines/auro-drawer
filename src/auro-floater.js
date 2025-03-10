@@ -12,22 +12,36 @@ import FloatingUI from './util/flotingUI.js';
 import "./auro-floater-bib.js";
 import "./auro-drawer-bib.js";
 
+const FLOATER_CONFIG = {
+  'drawer': {},
+  'dropdown':  {
+    placement: 'bottom-start',
+    flip: true,
+    autoPlacement: false,
+    offset: 0,
+    fullscreenBreakpoint: "576px",
+  },
+  'tooltip':  {
+    flip: true,
+    autoPlacement: false,
+    offset: 0,
+  },
+}
+
 // build the component class
 export class AuroFloater extends LitElement {
 
   constructor() {
     super();
     this.placement = "right";
-    /**
-     * @private
-     */
-    this.floaterConfig = {
-      placement: 'bottom-start',
-      flip: true,
-      autoPlacement: false,
-      offset: 0,
-      fullscreenBreakpoint: "576px",
-    };
+  }
+
+  get floaterConfig() {
+    const config = { ...FLOATER_CONFIG[this.behavior] };
+    if (!config.placement) {
+      config.placement = this.placement;
+    }
+    return config;
   }
 
   // function to define props used within the scope of this component
@@ -60,8 +74,10 @@ export class AuroFloater extends LitElement {
     super.connectedCallback();
 
     AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-floater');
+  }
 
-    this.floater = new FloatingUI();    
+  firstUpdated() {
+    this.floater = new FloatingUI(this);
   }
 
   updated(changedProperties) {
@@ -98,7 +114,7 @@ export class AuroFloater extends LitElement {
   static register(name = "auro-floater") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroFloater);
   }
-  
+
   render() {
     return html`
       <slot name="trigger"></slot>
@@ -107,9 +123,13 @@ export class AuroFloater extends LitElement {
       <slot name="footer" @slotchange="${this.handleDefaultSlot}"></slot>
       ${ this.behavior === 'drawer' ? 
         html`<auro-drawer-bib id="bib"
+        .modal=${this.modal}
         .placement=${this.placement}>
         </auro-drawer-bib>` 
-        : html`<auro-floater-bib id="bib"></auro-floater-bib>`}
+        : html`<auro-floater-bib
+        id="bib"
+        >
+        </auro-floater-bib>`}
       
     `;
   }

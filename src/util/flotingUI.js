@@ -48,25 +48,28 @@ export default class AuroFloatingUI {
    * This method checks if the current viewport width is less than or equal to the specified mobile fullscreen breakpoint 
    * defined in the bib element. If it is, the strategy is set to 'fullscreen'; otherwise, it defaults to 'floating'.
    *
-   * @returns {String} The positioning strategy, one of 'fullscreen', 'floating', 'drawer'.
+   * @returns {String} The positioning strategy, one of 'fullscreen', 'floating', 'cover'.
    */
   getPositioningStrategy() {
-    if (this.element.behavior === 'tooltip') {
-      return 'floating';
-    }
-
-    if (!this.element.behavior || this.element.behavior === 'dropdown') {
-      let strategy = 'floating';
-      if (this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint) {
-        const smallerThanBreakpoint = window.matchMedia(`(max-width: ${this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint})`).matches;
-        if (smallerThanBreakpoint) {
-          strategy = 'fullscreen';
+    switch (this.element.behavior) {
+      case "tooltip":
+        return "floating";
+      case "dialog":
+        return "fullscreen";
+      case "drawer":
+        return "cover";
+      case "dropdown":
+      case undefined:
+      case null:
+        if (this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint) {
+          const smallerThanBreakpoint = window.matchMedia(`(max-width: ${this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint})`).matches;
+          if (smallerThanBreakpoint) {
+            return 'fullscreen';
+          }
         }
-      }
-
-      return strategy;
-    } else {
-      return this.element.behavior;
+        return "floating";
+      default:
+        return this.element.behavior;
     }
   }
 
@@ -101,7 +104,7 @@ export default class AuroFloatingUI {
           top: `${y}px`,
         });
       });
-    } else if (strategy === 'drawer') {
+    } else if (strategy === 'cover') {
       // Compute the position of the bib
       computePosition(this.element.parentNode, this.element.bib, {
         placement: 'right'
@@ -183,18 +186,6 @@ export default class AuroFloatingUI {
 
   updateState() {
     const isVisible = this.element.isPopoverVisible;
-
-    // Refactor this to apply attribute to correct focusable element
-    // Reference Issue: https://github.com/AlaskaAirlines/auro-library/issues/105
-    //
-    // this.element.trigger.setAttribute('aria-expanded', isVisible);
-
-    if (isVisible) {
-      this.element.bib.setAttribute('data-show', true);
-    } else {
-      this.element.bib.removeAttribute('data-show');
-    }
-
     if (!isVisible) {
       this.cleanupHideHandlers();
       try {
@@ -423,6 +414,8 @@ export default class AuroFloatingUI {
     });
   }
 
+
+
   configure(elem, eventPrefix) {
     this.eventPrefix = eventPrefix;
     if (this.element !== elem) {
@@ -433,6 +426,7 @@ export default class AuroFloatingUI {
     }
     this.element.trigger = this.element.triggerElement || this.element.shadowRoot.querySelector('#trigger') || this.element.trigger;
     this.element.bib = this.element.shadowRoot.querySelector('#bib') || this.element.bib;
+    this.element.bib.removeAttribute("id");
     this.element.bibSizer = this.element.shadowRoot.querySelector('#bibSizer');
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
 

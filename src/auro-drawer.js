@@ -1,46 +1,15 @@
-// Copyright (c) 2020 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
-// See LICENSE in the project root for license information.
-
-// ---------------------------------------------------------------------
-
-// import { html } from "lit-element";
-// import { classMap } from 'lit-html/directives/class-map';
-import ComponentBase from './componentBase.js';
-// Import touch detection lib
-import styleCss from "./style-css.js";
-
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// See https://git.io/JJ6SJ for "How to document your components using JSDoc"
-/**
- * @attr {Boolean} left - Sets drawer box to open from the left
- */
+import { AuroFloater } from "./auro-floater";
+import "./auro-drawer-bib.js";
 
-// build the component class
-export class AuroDrawer extends ComponentBase {
-  // constructor() {
-  //   super();
-  // }
+export class AuroDrawer extends AuroFloater {
 
-  // function to define props used within the scope of this component
-  static get properties() {
-    return {
-      ...super.properties,
-      // use custom accessors on base class
-      open: {
-        ...super.properties.open,
-        noAccessor: true
-      }
-    };
+  constructor() {
+    super();
+
+    this.behavior = "drawer";
   }
-
-  static get styles() {
-    return [
-      super.styles,
-      styleCss,
-    ];
-  }
-
   /**
    * This will register this element with the browser.
    * @param {string} [name="auro-drawer"] - The name of element that you want to register to.
@@ -51,5 +20,28 @@ export class AuroDrawer extends ComponentBase {
    */
   static register(name = "auro-drawer") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDrawer);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-drawer');
+
+    this.drawerBib = document.createElement('auro-drawer-bib');
+    this.append(this.drawerBib);
+
+  }
+
+  updated(changedProperties) {
+    super.updated(changedProperties);
+
+    [...this.children].forEach(slot => {
+      if (slot !== this.drawerBib) {
+        this.drawerBib.append(slot)
+      }
+    });
+
+    this.drawerBib.placement = this.placement;
+    this.drawerBib.visible = this.isPopoverVisible;
   }
 }

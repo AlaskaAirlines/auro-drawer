@@ -10,11 +10,13 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 import FloatingUI from './util/flotingUI.js';
 
 import "./auro-floater-bib.js";
-import "./auro-drawer-bib.js";
 
 const FLOATER_CONFIG = {
-  'drawer': {},
+  'drawer': {
+    backdrop: true,
+  },
   'dropdown':  {
+    backdrop: false,
     placement: 'bottom-start',
     flip: true,
     autoPlacement: false,
@@ -22,6 +24,7 @@ const FLOATER_CONFIG = {
     fullscreenBreakpoint: "576px",
   },
   'tooltip':  {
+    backdrop: false,
     flip: true,
     autoPlacement: false,
     offset: 0,
@@ -117,20 +120,10 @@ export class AuroFloater extends LitElement {
 
   render() {
     return html`
-      <slot name="trigger"></slot>
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
-      <slot name="header" @slotchange="${this.handleDefaultSlot}"></slot>
-      <slot name="footer" @slotchange="${this.handleDefaultSlot}"></slot>
-      ${ this.behavior === 'drawer' ? 
-        html`<auro-drawer-bib id="bib"
-        .modal=${this.modal}
-        .placement=${this.placement}>
-        </auro-drawer-bib>` 
-        : html`<auro-floater-bib
-        id="bib"
-        >
-        </auro-floater-bib>`}
-      
+      <auro-floater-bib id="bib"
+      ?aria-expanded="${this.isPopoverVisible}"
+      ?onBackdrop="${this.floaterConfig.backdrop}"></auro-floater-bib>
     `;
   }
 }

@@ -12,6 +12,15 @@ export class AuroFloaterBib extends LitElement {
       tokensCss,
     ];
   }
+  
+  static get properties() {
+    return {
+      visible: {
+        attribute: "aria-expanded",
+        reflect:true,
+      }
+    };
+  }
 
   render() {
     return html`

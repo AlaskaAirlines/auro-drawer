@@ -12,6 +12,10 @@ export class AuroDrawerBib extends LitElement {
         type: String,
         reflect: true
       },
+      visible: {
+        type: Boolean,
+        reflect: true,
+      }
     };
   }
   static get styles() {
@@ -23,18 +27,16 @@ export class AuroDrawerBib extends LitElement {
 
   render() {
     return html`
-      <div class="container">
-        <div class="header" part="drawer-header">
-          <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
-            <slot name="header"></slot>
-          </h1>
-        </div>
-        <div class="content" part="drawer-content">
-          <slot></slot>
-        </div>
-        <div class="footer" id="footerWrapper" part="drawer-footer">
-          <slot name="footer" id="footer"></slot>
-        </div>
+      <div class="header" part="drawer-header">
+        <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
+          <slot name="header"></slot>
+        </h1>
+      </div>
+      <div class="content" part="drawer-content">
+        <slot></slot>
+      </div>
+      <div class="footer" id="footerWrapper" part="drawer-footer">
+        <slot name="footer" id="footer"></slot>
       </div>
     `;
   }

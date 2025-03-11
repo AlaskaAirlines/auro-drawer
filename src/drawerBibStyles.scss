@@ -1,17 +1,8 @@
 @import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
 
-@import "./floaterBibStyles";
-
 /* stylelint-disable scss/selector-nest-combinators, selector-max-class */
 
 :host {
-  background: var(--ds-auro-drawer-overlay-modal-background-color);
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 0), display 0.3s;
-  transition-behavior: allow-discrete;
-}
-
-.container {
   position: absolute;
   display: inline-flex;
   overflow: auto;
@@ -39,22 +30,14 @@
   pointer-events: initial;
 }
 
-:host([data-show]) {
-  opacity: 1;
-
-  @starting-style {
-    opacity: 0;
-  }
-}
-
-:host([placement="right"]) .container {
+:host([placement="right"]) {
   right: 0;
   height: 100%;
   overflow-x: hidden;
   transform: translate3d(100%, 0, 0);
 }
 
-:host([placement="left"]) .container {
+:host([placement="left"]) {
   height: 100%;
   overflow-x: hidden;
   transform: translateX(-100%);
@@ -72,36 +55,36 @@
   }
 }
 
-:host([placement="top"]) .container {
+:host([placement="top"]) {
   width: 100%;
   transform: translateY(-100%);
   
 }
 
-:host([placement="bottom"]) .container {
+:host([placement="bottom"]) {
   bottom: 0;
   width: 100%;
   transform: translate3d(0, 100%, 0);
 }
 
-:host([data-show]) .container {
+:host([visible]) {
   transform: translate3d(0,0,0);
 }
 
 @starting-style {
-  :host([data-show][placement="right"]) .container {
+  :host([visible][placement="right"]) {
     transform: translateX(100%);
   }
 
-  :host([data-show][placement="left"]) .container {
+  :host([visible][placement="left"]) {
     transform: translateX(-100%);
   }
 
-  :host([data-show][placement="top"]) .container {
+  :host([visible][placement="top"]) {
     transform: translateY(-100%);
   }
 
-  :host([data-show][placement="bottom"]) .container {
+  :host([visible][placement="bottom"]) {
     transform: translate3d(0, 100%, 0);
   }
 }

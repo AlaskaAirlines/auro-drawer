@@ -2,6 +2,8 @@ import { initBasicExample, initDropdownExample, initTooltipExample } from "../ap
 
 import { AuroFloater } from '../src/auro-floater.js';
 AuroFloater.register();
+import { AuroDrawer } from '../src/auro-drawer.js';
+AuroDrawer.register();
 
 export function initExamples(initCount) {
   initCount = initCount || 0;

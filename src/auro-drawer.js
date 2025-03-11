@@ -9,6 +9,11 @@ export class AuroDrawer extends AuroFloater {
     super();
 
     this.behavior = "drawer";
+
+    /**
+     * @private
+     */
+    this.drawerBib = undefined;
   }
   /**
    * This will register this element with the browser.
@@ -41,7 +46,7 @@ export class AuroDrawer extends AuroFloater {
       }
     });
 
-    this.drawerBib.placement = this.placement;
+    this.drawerBib.setAttribute('placement', this.placement);
     this.drawerBib.visible = this.isPopoverVisible;
   }
 }

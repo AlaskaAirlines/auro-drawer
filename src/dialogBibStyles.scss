@@ -1,0 +1,46 @@
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+
+/* stylelint-disable scss/selector-nest-combinators, selector-max-class */
+
+:host {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-flex;
+  overflow: hidden;
+  width: 80%;
+  max-height: 80%;
+  flex-direction: column;
+  background: var(--ds-auro-drawer-container-color);
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform 0.3s ease-in-out, display 0.3s, overlay 0.3s;
+  transition-behavior: allow-discrete;
+  will-change: transform;
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .content {
+    overflow: auto;
+    flex: 1 100%;;
+  }
+}
+
+::slotted(*) {
+  color: var(--ds-auro-drawer-text-color);
+  pointer-events: initial;
+}
+
+:host([sm]) {
+  max-width: 740px;
+  max-height: 30%;
+}
+
+:host([md]) {
+  max-width: 986px;
+  max-height: 50%;
+}

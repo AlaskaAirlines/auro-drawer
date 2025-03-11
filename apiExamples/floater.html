@@ -11,6 +11,13 @@
     margin: 1rem 0;
   }
 
+  #dialogExampleContainer {
+    width: 80%;
+    height: 550px;
+    background: lightgrey;
+    margin: 1rem 0;
+  }
+
   #tooltipTrigger {
     margin-left: 50%;
     transform: translateX(-50%);
@@ -107,5 +114,22 @@
 </div>
 
 <div id="dialogExampleContainer">
-  <auro-floater id="dialogExample" behavior="dialog">This is a Dialog</auro-floater>
+  <auro-button id="openDialog">Open Dailog</auro-button>
+  <auro-radio-group id="dialog-size-radio">
+    <span slot="legend">Dialog Size</span>
+    <auro-radio value="default" label="Large (default)"></auro-radio>
+    <auro-radio value="sm" label="Small"></auro-radio>
+    <auro-radio value="md" label="Medium"></auro-radio>
+  </auro-radio-group>
+
+  <auro-dialog id="defaultDialog">
+    <span slot="header">Default Dialog</span>
+    <div id="dialogContent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
+      <p>Tristique senectus et netus et. Vel pharetra vel turpis nunc eget. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Aliquet enim tortor at auctor urna nunc id. Ut consequat semper viverra nam libero justo. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Et leo duis ut diam. In dictum non consectetur a erat nam. Elementum nibh tellus molestie nunc. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Semper feugiat nibh sed pulvinar proin gravida. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. In cursus turpis massa tincidunt dui ut ornare lectus sit. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.</p>
+    </div>
+    <div slot="footer">
+      <auro-button secondary id="closedialog">Close</auro-button>
+    </div>
+  </auro-dialog>
 </div>

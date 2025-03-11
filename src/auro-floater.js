@@ -15,6 +15,9 @@ const FLOATER_CONFIG = {
   'drawer': {
     backdrop: true,
   },
+  'dialog': {
+    backdrop: true,
+  },
   'dropdown':  {
     backdrop: false,
     placement: 'bottom-start',
@@ -55,7 +58,7 @@ export class AuroFloater extends LitElement {
         reflect: true
       },
       behavior: {
-        type: String,
+        type: String, // 'drawer', 'tooltip', 'dropdown', 'dialog'
         reflect: true
       },
       modal: {

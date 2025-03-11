@@ -2,10 +2,10 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
-import styleCss from "./drawerBibStyles-css.js";
+import styleCss from "./dialogBibStyles-css.js";
 import tokensCss from "./tokens-css.js";
 
-export class AuroDrawerBib extends LitElement {
+export class AuroDialogBib extends LitElement {
   static get properties() {
     return {
       visible: {
@@ -23,15 +23,15 @@ export class AuroDrawerBib extends LitElement {
 
   render() {
     return html`
-      <div class="header" part="drawer-header">
-        <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
+      <div class="header" part="dialog-header">
+        <h1 class="heading heading--700 util_stackMarginNone--top" id="dialog-header">
           <slot name="header"></slot>
         </h1>
       </div>
-      <div class="content" part="drawer-content">
+      <div class="content" part="dialog-content">
         <slot></slot>
       </div>
-      <div class="footer" id="footerWrapper" part="drawer-footer">
+      <div class="footer" id="footerWrapper" part="dialog-footer">
         <slot name="footer" id="footer"></slot>
       </div>
     `;
@@ -40,7 +40,7 @@ export class AuroDrawerBib extends LitElement {
 
 /* istanbul ignore else */
 // define the name of the custom component
-if (!customElements.get("auro-drawer-bib")) {
-  customElements.define("auro-drawer-bib", AuroDrawerBib);
+if (!customElements.get("auro-dialog-bib")) {
+  customElements.define("auro-dialog-bib", AuroDialogBib);
 }
 

@@ -13,8 +13,8 @@ export function initBasicExample() {
   closer.addEventListener('click', () => {
     drawer.removeAttribute('open');
   })
-
 }
+
 export function initDropdownExample() {
   const trigger = document.querySelector('#dropdownTrigger');
   const drawer = document.querySelector('#defaultDropdown');
@@ -37,5 +37,21 @@ export function initTooltipExample() {
   radio.addEventListener('input', (event) => {
     tooltip.setAttribute('placement', event.target.value);
   });
-
 }
+
+export function initDialogExample() {
+  const trigger = document.querySelector('#openDialog');
+  const dialog = document.querySelector('#defaultDialog');
+  dialog.triggerElement = trigger;
+
+  const radio = document.querySelector("#dialog-size-radio");
+  radio.value = ['default'];
+  radio.addEventListener('input', (event) => {
+    dialog.setAttribute('size', event.target.value);
+  });
+  const closer = document.querySelector('#closeDialog');
+  closer.addEventListener('click', () => {
+    drawer.removeAttribute('open');
+  })
+}
+

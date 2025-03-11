@@ -18,6 +18,11 @@ export default class AuroFloatingUI {
      * @private
      */
     this.eventPrefix = undefined;
+
+    /**
+     * @private
+     */
+    this.id = undefined;
   }
 
   /**
@@ -55,7 +60,6 @@ export default class AuroFloatingUI {
       case "tooltip":
         return "floating";
       case "dialog":
-        return "fullscreen";
       case "drawer":
         return "cover";
       case "dropdown":
@@ -414,7 +418,36 @@ export default class AuroFloatingUI {
     });
   }
 
+  /**
+   * 
+   * @param {*} eventPrefix 
+   */
+  setupAria() {
+    this.id = this.element.getAttribute('id');
+    if (!this.id) {
+      this.id = Math.random().toString(16).replace(".", '');
+      element.setAttribute('id', this.id);
+    }
 
+    this.element.bib.setAttribute("id", this.id + "-floater-bib");
+
+    switch (this.element.behavior) {
+      case 'tooltip':
+        this.element.setAttribute("aria-describedby", this.element.bib.getAttribute("id"));
+        this.element.bib.setAttribute('role', 'tooltip');
+        break;
+      case 'drawer':
+      case 'dialog':
+        this.element.trigger.setAttribute('aria-haspopup', 'dialog');
+        this.element.bib.setAttribute('role', 'dialog');
+        if (this.element.modal) {
+          this.element.bib.setAttribute('aria-modal', 'true');
+        }
+        break;
+      default:
+        break;
+    }
+  }
 
   configure(elem, eventPrefix) {
     this.eventPrefix = eventPrefix;
@@ -426,15 +459,14 @@ export default class AuroFloatingUI {
     }
     this.element.trigger = this.element.triggerElement || this.element.shadowRoot.querySelector('#trigger') || this.element.trigger;
     this.element.bib = this.element.shadowRoot.querySelector('#bib') || this.element.bib;
-    this.element.bib.removeAttribute("id");
     this.element.bibSizer = this.element.shadowRoot.querySelector('#bibSizer');
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
 
     document.body.append(this.element.bib);
 
+    this.setupAria();
     this.handleTriggerTabIndex();
 
-    console.log(this.element, this.element.trigger)
     this.handleEvent = this.handleEvent.bind(this);
     this.element.trigger.addEventListener('keydown', this.handleEvent);
     this.element.trigger.addEventListener('click', this.handleEvent);

@@ -5,9 +5,6 @@ import { autoUpdate, computePosition, offset, autoPlacement, flip } from '@float
 export default class AuroFloatingUI {
   constructor(element) {
     this.element = element;
-    if (this.element.behavior === 'tooltip') {
-      this.element.hoverToggle = true;
-    }
 
     // Store event listener references for cleanup
     this.focusHandler = null;
@@ -61,7 +58,10 @@ export default class AuroFloatingUI {
         return "floating";
       case "dialog":
       case "drawer":
-        return "cover";
+        if (this.element.nested) {
+          return "cover";
+        }
+        return 'fullscreen';
       case "dropdown":
       case undefined:
       case null:
@@ -111,17 +111,15 @@ export default class AuroFloatingUI {
     } else if (strategy === 'cover') {
       // Compute the position of the bib
       computePosition(this.element.parentNode, this.element.bib, {
-        placement: 'right'
+        placement: 'bottom-start'
       }).then(({x, y}) => { // eslint-disable-line id-length
-        // Put this layer on top of the container
         Object.assign(this.element.bib.style, {
-          left: `${x - this.element.parentNode.offsetWidth}px`,
-          top: `${y}px`,
-          height: `${this.element.parentNode.offsetHeight}px`,
+          left: `${x}px`,
+          top: `${y - this.element.parentNode.offsetHeight}px`,
           width: `${this.element.parentNode.offsetWidth}px`,
+          height: `${this.element.parentNode.offsetHeight}px`
         });
       });
-      
     }
   }
 
@@ -222,7 +220,8 @@ export default class AuroFloatingUI {
 
     this.clickHandler = (evt) => {
       if (!evt.composedPath().includes(this.element.trigger) && 
-          !evt.composedPath().includes(this.element.bib)) {
+          !evt.composedPath().includes(this.element.bib) &&
+          (!this.element.backdrop || !evt.composedPath().includes(this.element.backdrop))) {
         this.hideBib();
       }
     };
@@ -447,6 +446,11 @@ export default class AuroFloatingUI {
       default:
         break;
     }
+
+    if (this.element.backdrop) {
+      this.element.backdrop.setAttribute('aria-decorative', "");
+      this.element.backdrop.setAttribute('id', this.id + 'floater-bib')
+    }
   }
 
   configure(elem, eventPrefix) {
@@ -461,8 +465,13 @@ export default class AuroFloatingUI {
     this.element.bib = this.element.shadowRoot.querySelector('#bib') || this.element.bib;
     this.element.bibSizer = this.element.shadowRoot.querySelector('#bibSizer');
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
+    this.element.backdrop = this.element.shadowRoot.querySelector("#backdrop");
+
+
+    this.element.hoverToggle = this.element.floaterConfig.hoverToggle;;
 
     document.body.append(this.element.bib);
+    document.body.append(this.element.backdrop || '');
 
     this.setupAria();
     this.handleTriggerTabIndex();

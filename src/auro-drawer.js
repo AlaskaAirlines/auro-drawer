@@ -3,18 +3,46 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 import { AuroFloater } from "./auro-floater";
 import "./auro-drawer-bib.js";
 
+const CONFIG = {
+  backdrop: true,
+}
 export class AuroDrawer extends AuroFloater {
 
   constructor() {
-    super();
+    super('drawer');
 
-    this.behavior = "drawer";
+    this.placement = "right";
+    this.size = 'lg';
 
     /**
      * @private
      */
     this.drawerBib = undefined;
   }
+
+  // function to define props used within the scope of this component
+  static get properties() {
+    return {
+      ...super.properties,
+      nested: {
+        type: Boolean,
+        reflect: true,
+      },
+      placement: {
+        type: String,
+        reflect: true
+      },
+      size: {
+        type: String, // sm, md, lg
+        reflect: true,
+      },
+      modal: {
+        type: Boolean,
+        reflect: true
+      },
+    }
+  }
+
   /**
    * This will register this element with the browser.
    * @param {string} [name="auro-drawer"] - The name of element that you want to register to.
@@ -25,6 +53,13 @@ export class AuroDrawer extends AuroFloater {
    */
   static register(name = "auro-drawer") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDrawer);
+  }
+
+  get floaterConfig() {
+    return {
+      ...CONFIG,
+      placement: this.placement,
+    };
   }
 
   connectedCallback() {
@@ -46,7 +81,19 @@ export class AuroDrawer extends AuroFloater {
       }
     });
 
-    this.drawerBib.setAttribute('placement', this.placement);
-    this.drawerBib.visible = this.isPopoverVisible;
+    if (changedProperties.has('placement')) {
+      this.drawerBib.setAttribute('placement', this.placement);
+    }
+
+    if (changedProperties.has('size')) {
+      this.drawerBib.setAttribute('size', this.size);
+    }
+
+    if (changedProperties.has('isPopoverVisible')) {
+      this.drawerBib.visible = this.isPopoverVisible;
+      if (!this.isPopoverVisible) {
+        this.dispatchEvent(new CustomEvent('toggle'));
+      }
+    }
   }
 }

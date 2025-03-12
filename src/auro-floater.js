@@ -10,61 +10,24 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 import FloatingUI from './util/flotingUI.js';
 
 import "./auro-floater-bib.js";
-
-const FLOATER_CONFIG = {
-  'drawer': {
-    backdrop: true,
-  },
-  'dialog': {
-    backdrop: true,
-  },
-  'dropdown':  {
-    backdrop: false,
-    placement: 'bottom-start',
-    flip: true,
-    autoPlacement: false,
-    offset: 0,
-    fullscreenBreakpoint: "576px",
-  },
-  'tooltip':  {
-    backdrop: false,
-    flip: true,
-    autoPlacement: false,
-    offset: 0,
-  },
-}
+import "./auro-floater-backdrop.js";
 
 // build the component class
 export class AuroFloater extends LitElement {
 
-  constructor() {
+  constructor(behavior) {
     super();
-    this.placement = "right";
+
+    this.behavior = behavior;
   }
 
   get floaterConfig() {
-    const config = { ...FLOATER_CONFIG[this.behavior] };
-    if (!config.placement) {
-      config.placement = this.placement;
-    }
-    return config;
+    return {};
   }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      placement: {
-        type: String,
-        reflect: true
-      },
-      behavior: {
-        type: String, // 'drawer', 'tooltip', 'dropdown', 'dialog'
-        reflect: true
-      },
-      modal: {
-        type: Boolean,
-        reflect: true
-      },
       isPopoverVisible: {
         attribute: "open",
         type: Boolean,

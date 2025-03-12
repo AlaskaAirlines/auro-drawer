@@ -11,7 +11,7 @@ export class AuroDrawerBib extends LitElement {
       visible: {
         type: Boolean,
         reflect: true,
-      }
+      },
     };
   }
   static get styles() {
@@ -23,6 +23,7 @@ export class AuroDrawerBib extends LitElement {
 
   render() {
     return html`
+    <div class="wrapper">
       <div class="header" part="drawer-header">
         <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
           <slot name="header"></slot>
@@ -34,6 +35,7 @@ export class AuroDrawerBib extends LitElement {
       <div class="footer" id="footerWrapper" part="drawer-footer">
         <slot name="footer" id="footer"></slot>
       </div>
+    </div>
     `;
   }
 }

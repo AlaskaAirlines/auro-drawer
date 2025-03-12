@@ -24,8 +24,6 @@
   }
 
   #drawerContent {
-    width: 300px;
-    max-height: 100px;
     overflow: auto;
   }
 </style>
@@ -36,7 +34,13 @@
     <auro-radio value="top" label="Top"></auro-radio>
     <auro-radio value="bottom" label="Bottom"></auro-radio>
     <auro-radio value="left" label="Left"></auro-radio>
-    <auro-radio value="right" label="Right"></auro-radio>
+    <auro-radio value="right" label="Right (default)"></auro-radio>
+  </auro-radio-group>
+  <auro-radio-group id="basic-size-radio">
+    <span slot="legend">Select Drawer Size</span>
+    <auro-radio value="default" label="Large (default)"></auro-radio>
+    <auro-radio value="sm" label="Small"></auro-radio>
+    <auro-radio value="md" label="Medium"></auro-radio>
   </auro-radio-group>
 
   <auro-drawer id="defaultDrawer" placement="bottom">
@@ -68,9 +72,9 @@
   </auro-drawer>
 </div>
 
-<div id="dropdownExampleContainer">
+<!-- <div id="dropdownExampleContainer">
   <auro-button id="dropdownTrigger">Open Dropdown</auro-button>
-  <auro-floater id="defaultDropdown" behavior="dropdown" placement="bottom">
+  <auro-dropdown id="defaultDropdown" placement="bottom">
     <span slot="header">Default Drawer</span>
     <div id="drawerContent">
       <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -96,8 +100,8 @@
     <div slot="footer">
       <auro-button secondary id="closeDoropdown">Close</auro-button>
     </div>
-  </auro-floater>
-</div>
+  </auro-dropdown>
+</div> -->
 
 <div id="tooltipExampleContainer">
   <auro-button id="tooltipTrigger">
@@ -106,11 +110,11 @@
   <auro-radio-group id="tooltip-placement-radio">
     <span slot="legend">Select Tooltip Placement</span>
     <auro-radio value="top" label="Top"></auro-radio>
-    <auro-radio value="bottom" label="Bottom"></auro-radio>
+    <auro-radio value="bottom" label="Bottom (default)"></auro-radio>
     <auro-radio value="left" label="Left"></auro-radio>
     <auro-radio value="right" label="Right"></auro-radio>
   </auro-radio-group>
-  <auro-floater id="tooltipExample" behavior="tooltip" placement="bottom">This is a tooltip</auro-floater>
+  <auro-tooltip id="tooltipExample" placement="bottom">This is a tooltip</auro-tooltip>
 </div>
 
 <div id="dialogExampleContainer">
@@ -129,7 +133,7 @@
       <p>Tristique senectus et netus et. Vel pharetra vel turpis nunc eget. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Aliquet enim tortor at auctor urna nunc id. Ut consequat semper viverra nam libero justo. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Et leo duis ut diam. In dictum non consectetur a erat nam. Elementum nibh tellus molestie nunc. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Semper feugiat nibh sed pulvinar proin gravida. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. In cursus turpis massa tincidunt dui ut ornare lectus sit. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.</p>
     </div>
     <div slot="footer">
-      <auro-button secondary id="closedialog">Close</auro-button>
+      <auro-button secondary id="closeDialog">Close</auro-button>
     </div>
   </auro-dialog>
 </div>

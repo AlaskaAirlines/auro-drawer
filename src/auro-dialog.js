@@ -3,26 +3,37 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 import { AuroFloater } from "./auro-floater";
 import "./auro-dialog-bib.js";
 
+const CONFIG = {
+  backdrop: true,
+}
 export class AuroDialog extends AuroFloater {
 
   constructor() {
-    super();
-
-    this.behavior = "dialog";
+    super('dialog');
 
     /**
      * @private
      */
     this.dialogBib = undefined;
+    this.size = "lg";
   }
   
   static get properties() {
     return {
+      ...super.properties,
       size: {
         type: String,
         reflect: true,
-      }
+      },
+      modal: {
+        type: Boolean,
+        reflect: true
+      },
     };
+  }
+
+  get floaterConfig() {
+    return CONFIG;
   }
 
   /**

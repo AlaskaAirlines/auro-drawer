@@ -1,19 +1,21 @@
 import { initBasicExample, initDropdownExample, initTooltipExample, initDialogExample } from "../apiExamples/floater.js";
 
-import { AuroFloater } from '../src/auro-floater.js';
 import { AuroDrawer } from '../src/auro-drawer.js';
 import { AuroDialog } from '../src/auro-dialog.js';
+import { AuroTooltip } from "../src/auro-tooltip.js";
+import { AuroDropdown } from "../src/auro-dropdown.js";
 
-AuroFloater.register();
 AuroDrawer.register();
 AuroDialog.register();
+AuroDropdown.register();
+AuroTooltip.register();
 
 export function initExamples(initCount) {
   initCount = initCount || 0;
 
   try {
     initBasicExample();
-    initDropdownExample();
+    // initDropdownExample();
     initTooltipExample();
     initDialogExample();
   } catch (err) {

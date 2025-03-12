@@ -4,9 +4,15 @@ export function initBasicExample() {
   drawer.triggerElement = trigger;
 
   const radio = document.querySelector("#basic-placement-radio");
-  radio.value = ['right'];
+  radio.value = 'right';
   radio.addEventListener('input', (event) => {
     drawer.setAttribute('placement', event.target.value);
+  });
+
+  const sizeRadio = document.querySelector("#basic-size-radio");
+  sizeRadio.value = 'lg';
+  sizeRadio.addEventListener('input', (event) => {
+    drawer.setAttribute('size', event.target.value);
   });
 
   const closer = document.querySelector('#closeBasic');
@@ -33,7 +39,7 @@ export function initTooltipExample() {
 
 
   const radio = document.querySelector("#tooltip-placement-radio");
-  radio.value = ['right'];
+  radio.value = 'bottom';
   radio.addEventListener('input', (event) => {
     tooltip.setAttribute('placement', event.target.value);
   });
@@ -45,13 +51,13 @@ export function initDialogExample() {
   dialog.triggerElement = trigger;
 
   const radio = document.querySelector("#dialog-size-radio");
-  radio.value = ['default'];
+  radio.value = 'default';
   radio.addEventListener('input', (event) => {
     dialog.setAttribute('size', event.target.value);
   });
   const closer = document.querySelector('#closeDialog');
   closer.addEventListener('click', () => {
-    drawer.removeAttribute('open');
+    dialog.removeAttribute('open');
   })
 }
 

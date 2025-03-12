@@ -1,0 +1,41 @@
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+
+/* stylelint-disable scss/selector-nest-combinators */
+:host {
+  position: relative;
+  display: block;
+  max-width: calc(100% - var(--ds-size-400, $ds-size-400));
+  padding: var(--ds-size-300, $ds-size-300);
+  border-radius: var(--ds-border-radius, $ds-border-radius);
+}
+
+:host:before {
+  position: absolute;
+  display: block;
+  width: var(--ds-size-150, $ds-size-150);
+  height: var(--ds-size-150, $ds-size-150);
+  background: var(--ds-auro-drawer-container-color);
+  content: "";
+  transform: rotate(45deg);
+}
+
+:host([placement="left"]):before{
+  top: calc(50% - var(--ds-size-150, $ds-size-150) * 0.5);
+  right: calc(var(--ds-size-150, $ds-size-150) * -0.5);
+}
+
+:host([placement="right"]):before{
+  top: calc(50% - var(--ds-size-150, $ds-size-150) * 0.5);
+  left: calc(var(--ds-size-150, $ds-size-150) * -0.5);
+}
+
+
+:host([placement="top"]):before{
+  bottom: calc(var(--ds-size-150, $ds-size-150) * -0.5);
+  left: calc(50% - var(--ds-size-150, $ds-size-150) * 0.5);
+}
+
+:host([placement="bottom"]):before{
+  top: calc(var(--ds-size-150, $ds-size-150) * -0.5);
+  left: calc(50% - var(--ds-size-150, $ds-size-150) * 0.5);
+}

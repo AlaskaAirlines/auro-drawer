@@ -44,6 +44,10 @@ export class AuroFloater extends LitElement {
     this.floater.configure(this, this.floaterConfig.prefix);
   }
 
+  disconnectedCallback() {
+    this.floater.disconnect();
+  }
+
   updated(changedProperties) {
     this.floater.handleUpdate(changedProperties);
 

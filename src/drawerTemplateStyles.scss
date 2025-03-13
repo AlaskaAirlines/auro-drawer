@@ -1,7 +1,7 @@
 @import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
 @import "./../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints";
 
-/* stylelint-disable scss/selector-nest-combinators, selector-max-class, custom-property-pattern, selector-class-pattern */
+/* stylelint-disable scss/selector-nest-combinators, selector-max-class, custom-property-pattern, selector-class-pattern, no-descending-specificity */
 
 :host {
   display: contents;
@@ -171,4 +171,9 @@
 :host([size="md"][placement="top"]) .wrapper,
 :host([size="md"][placement="bottom"]) .wrapper {
   max-height: 50%;
+}
+
+:host([stretch]) .wrapper {
+  max-width: 100%;
+  max-height: 100%;
 }

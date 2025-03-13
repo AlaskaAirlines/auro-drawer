@@ -2,6 +2,7 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 
 import { AuroFloater } from "./auro-floater";
 import "./auro-drawer-template.js";
+import { parseBreakpointToken } from "./util/breakpointParser.js";
 
 const CONFIG = {
   backdrop: true,
@@ -15,6 +16,7 @@ export class AuroDrawer extends AuroFloater {
 
     this.placement = "right";
     this.size = 'lg';
+    this.fullscreenBreakpoint = "sm";
 
     /**
      * @private
@@ -35,18 +37,23 @@ export class AuroDrawer extends AuroFloater {
         type: Boolean,
         reflect: true,
       },
+      /**
+       * @private
+       */
       placement: {
         type: String,
         carryDown: true,
-        reflect: true
+        // reflect: true
+      },
+      /**
+       * @private
+       */
+      size: {
+        type: String, // sm, md, lg
+        carryDown: true,
       },
       onDark: {
         type: Boolean,
-        carryDown: true,
-        reflect: true,
-      },
-      size: {
-        type: String, // sm, md, lg
         carryDown: true,
         reflect: true,
       },
@@ -66,7 +73,16 @@ export class AuroDrawer extends AuroFloater {
       md: {
         type: Boolean,
         reflect: true,
-      }
+      },
+      /**
+       * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the dropdown switches to fullscreen mode on mobile.
+       * When expanded, the dropdown will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
+       * @default sm
+       */
+      fullscreenBreakpoint: {
+        type: String,
+        reflect: true
+      },
     }
   }
 
@@ -86,7 +102,16 @@ export class AuroDrawer extends AuroFloater {
     return {
       ...CONFIG,
       placement: this.placement,
+      fullscreenBreakpoint: parseBreakpointToken(this.fullscreenBreakpoint),
     };
+  }
+
+  set expanded(value) {
+    if (value) {
+      this.drawerBib.setAttribute('stretch', "");
+    } else {
+      this.drawerBib.removeAttribute('stretch');
+    }
   }
 
   firstUpdated() {
@@ -128,14 +153,11 @@ export class AuroDrawer extends AuroFloater {
     })
 
     this.placement = this.left ? 'left': 'right';
-    this.left = this.placement === 'left';
     if (this.sm) {
       this.size = 'sm';
     } else if (this.md) {
       this.size = "md";
     }
-    this.sm = this.size === 'sm';
-    this.md = this.size === 'md';
 
     if (changedProperties.has('isPopoverVisible')) {
       this.drawerBib.visible = this.isPopoverVisible;

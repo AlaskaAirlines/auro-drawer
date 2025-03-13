@@ -63,21 +63,21 @@ export class AuroDrawerTemplate extends LitElement {
   render() {
     return html`
     <div class="wrapper">
-      <div class="header" part="drawer-header">
-        ${this.unformatted ? '' : html`
-          <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
-            <slot name="header"></slot>
-          </h1>
-        `}
-        ${this.modal ? '' : 
-          html`
-          <${this.buttonTag} variant="flat" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
-            <${this.iconTag} customColor category="interface" name="x-lg"></${this.iconTag}>
-            <span class="util_displayHiddenVisually">Close</span>
-          </${this.buttonTag}>
-          `
-        }
-      </div>
+      ${this.unformatted ? '' : html`
+        <div class="header" part="drawer-header">
+            <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
+              <slot name="header"></slot>
+            </h1>
+        </div>
+      `}
+      ${this.modal ? '' : 
+        html`
+        <${this.buttonTag} variant="flat" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
+          <${this.iconTag} customColor category="interface" name="x-lg"></${this.iconTag}>
+          <span class="util_displayHiddenVisually">Close</span>
+        </${this.buttonTag}>
+        `
+      }
       <div class="content" part="drawer-content">
         <slot></slot>
         <slot name="content"></slot>

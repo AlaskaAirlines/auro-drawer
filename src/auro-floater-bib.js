@@ -6,6 +6,15 @@ import styleCss from "./floaterBibStyles-css.js";
 import tokensCss from "./tokens-css.js";
 
 export class AuroFloaterBib extends LitElement {
+  constructor() {
+    super();
+
+    /**
+     * @private
+     */
+    this._mobileBreakpointValue = undefined;
+  }
+
   static get styles() {
     return [
       styleCss,
@@ -27,4 +36,3 @@ export class AuroFloaterBib extends LitElement {
 if (!customElements.get("auro-floater-bib")) {
   customElements.define("auro-floater-bib", AuroFloaterBib);
 }
-

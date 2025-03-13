@@ -1,44 +1,73 @@
-// Copyright (c) 2020 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
-// See LICENSE in the project root for license information.
-
-// ---------------------------------------------------------------------
-
-// import { html } from "lit-element";
-// import { classMap } from 'lit-html/directives/class-map';
-import ComponentBase from './componentBase.js';
-// Import touch detection lib
-import styleCss from "./style-css.js";
-
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// See https://git.io/JJ6SJ for "How to document your components using JSDoc"
-/**
- * @attr {Boolean} left - Sets drawer box to open from the left
- */
+import { AuroFloater } from "./auro-floater";
+import "./auro-drawer-template.js";
 
-// build the component class
-export class AuroDrawer extends ComponentBase {
-  // constructor() {
-  //   super();
-  // }
+const CONFIG = {
+  backdrop: true,
+  prefix: 'auroDrawer'
+}
+
+export class AuroDrawer extends AuroFloater {
+
+  constructor() {
+    super('drawer');
+
+    this.placement = "right";
+    this.size = 'lg';
+
+    /**
+     * @private
+     */
+    this.drawerBib = undefined;
+  }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
       ...super.properties,
-      // use custom accessors on base class
-      open: {
-        ...super.properties.open,
-        noAccessor: true
+      unformatted: {
+        type: Boolean,
+        carryDown: true,
+        reflect: true
+      },
+      nested: {
+        type: Boolean,
+        reflect: true,
+      },
+      placement: {
+        type: String,
+        carryDown: true,
+        reflect: true
+      },
+      onDark: {
+        type: Boolean,
+        carryDown: true,
+        reflect: true,
+      },
+      size: {
+        type: String, // sm, md, lg
+        carryDown: true,
+        reflect: true,
+      },
+      modal: {
+        type: Boolean,
+        carryDown: true,
+        reflect: true
+      },
+      left: {
+        type: Boolean,
+        reflect: true
+      },
+      sm: {
+        type: Boolean,
+        reflect: true
+      },
+      md: {
+        type: Boolean,
+        reflect: true,
       }
-    };
-  }
-
-  static get styles() {
-    return [
-      super.styles,
-      styleCss,
-    ];
+    }
   }
 
   /**
@@ -51,5 +80,68 @@ export class AuroDrawer extends ComponentBase {
    */
   static register(name = "auro-drawer") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDrawer);
+  }
+
+  get floaterConfig() {
+    return {
+      ...CONFIG,
+      placement: this.placement,
+    };
+  }
+
+  firstUpdated() {
+    super.firstUpdated();
+
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-drawer');
+
+    this.drawerBib = document.createElement('auro-drawer-template');
+    this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
+    this.append(this.drawerBib);
+
+  }
+
+  updateDrawerBibAttribute(attribute, value) {
+    if (typeof value === 'boolean' || typeof value === 'undefined') {
+      if (value) {
+        this.drawerBib.setAttribute(attribute, "");
+      } else {
+        this.drawerBib.remove(attribute);
+      }
+    } else {
+      this.drawerBib.setAttribute(attribute, value);
+    }
+  }
+
+  updated(changedProperties) {
+    super.updated(changedProperties);
+
+    [...this.children].forEach(slot => {
+      if (slot !== this.drawerBib) {
+        this.drawerBib.append(slot)
+      }
+    });
+
+    changedProperties.entries().forEach(([entry]) => {
+      if (AuroDrawer.properties[entry].carryDown) {
+        this.updateDrawerBibAttribute(entry, this[entry]);
+      }
+    })
+
+    this.placement = this.left ? 'left': 'right';
+    this.left = this.placement === 'left';
+    if (this.sm) {
+      this.size = 'sm';
+    } else if (this.md) {
+      this.size = "md";
+    }
+    this.sm = this.size === 'sm';
+    this.md = this.size === 'md';
+
+    if (changedProperties.has('isPopoverVisible')) {
+      this.drawerBib.visible = this.isPopoverVisible;
+      if (!this.isPopoverVisible) {
+        this.dispatchEvent(new CustomEvent('toggle'));
+      }
+    }
   }
 }

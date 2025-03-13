@@ -1,0 +1,174 @@
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "./../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints";
+
+/* stylelint-disable scss/selector-nest-combinators, selector-max-class, custom-property-pattern, selector-class-pattern */
+
+:host {
+  display: contents;
+
+  --insetPaddingXl: var(--ds-size-400, $ds-size-400);
+  --insetPaddingXxl: var(--ds-size-600, $ds-size-600);
+  --insetPaddingXxxl: var(--ds-size-800, $ds-size-800);
+
+  .wrapper {
+    position: absolute;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--ds-auro-drawer-container-color);
+    box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
+    transition: transform 0.3s ease-in-out, overlay 0.3s;
+    transition-behavior: allow-discrete;
+    will-change: transform;
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+  }
+
+  .footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-top: var(--insetPaddingXl);
+  }
+
+}
+
+:host(:not([unformatted])) .wrapper{
+  padding: var(--insetPaddingXl);
+
+  @include auro_grid-breakpoint--lg {
+    padding: var(--insetPaddingXxxl);
+  }
+}
+
+#closeButton {
+  position: absolute;
+  top: var(--insetPaddingXl);
+  right: var(--insetPaddingXl);
+  padding:0;
+  margin:0;
+
+  @include auro_grid-breakpoint--lg {
+    top: var(--insetPaddingXxxl);
+    right: var(--insetPaddingXxxl);
+  }
+
+  &:hover {
+    cursor:pointer;
+  }
+
+  .util_displayHiddenVisually{
+    position:absolute;
+    overflow:hidden;
+    width:1px;
+    height:1px;
+    padding:0;
+    border:0;
+    clip:rect(1px, 1px, 1px, 1px);
+  }
+}
+
+::slotted(*) {
+  color: var(--ds-auro-drawer-text-color);
+}
+
+
+:host([placement="right"]), :host([placement="left"]) {
+  .wrapper{
+    max-width: 90%;
+  }
+
+  overflow-x: hidden;
+
+  ::slotted(*) {
+    min-height: 100%;
+  }
+}
+
+:host([placement="top"]), :host([placement="bottom"]) {
+  width: 100%;
+
+  ::slotted(*) {
+    min-width: 100%;
+  }
+}
+
+:host([placement="right"]) .wrapper {
+  right: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+:host([placement="left"]) .wrapper {
+  transform: translateX(-100%);
+}
+
+:host([placement="top"]) .wrapper {
+  transform: translateY(-100%);
+}
+
+:host([placement="bottom"]) .wrapper {
+  bottom: 0;
+  transform: translate3d(0, 100%, 0);
+}
+
+:host([visible]) .wrapper{
+  transform: translate3d(0,0,0);
+}
+
+@starting-style {
+  :host([visible][placement="right"]) .wrapper {
+    transform: translateX(100%);
+  }
+
+  :host([visible][placement="left"]) .wrapper  {
+    transform: translateX(-100%);
+  }
+
+  :host([visible][placement="top"]) .wrapper {
+    transform: translateY(-100%);
+  }
+
+  :host([visible][placement="bottom"]) .wrapper {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+:host([size="sm"][placement="left"]),
+:host([size="sm"][placement="right"]) {
+  @include auro_grid-breakpoint--md {
+    .wrapper {
+      max-width: 40%;
+    }
+  }
+  @include auro_grid-breakpoint--lg {
+    .drawer {
+      max-width: 740px;
+    }
+  }
+}
+
+:host([size="md"][placement="left"]) .wrapper,
+:host([size="md"][placement="right"]) .wrapper {
+  @include auro_grid-breakpoint--md {
+    max-width: 70%;
+  }
+  @include auro_grid-breakpoint--lg {
+    max-width: 986px;
+  }
+}
+
+:host([size="sm"][placement="top"]) .wrapper,
+:host([size="sm"][placement="bottom"]) .wrapper {
+  max-height: 30%;
+}
+
+:host([size="md"][placement="top"]) .wrapper,
+:host([size="md"][placement="bottom"]) .wrapper {
+  max-height: 50%;
+}

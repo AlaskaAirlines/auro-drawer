@@ -1,0 +1,69 @@
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+
+
+/* stylelint-disable scss/selector-nest-combinators */
+
+:host {
+  position: absolute;
+  z-index: var(--ds-depth-overlay, $ds-depth-overlay);
+  display: none;
+  flex-direction: column;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, display 0.3s;
+  transition-behavior: allow-discrete;
+  will-change: opacity;
+}
+
+
+.container {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+::slotted(*) {
+  pointer-events: initial;
+}
+
+.container ::slotted(:only-child){
+  background: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
+  box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
+  color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+}
+
+:host([onbackdrop]) {
+  overflow: hidden;
+}
+
+:host([onbackdrop]:not([aria-expanded])) {
+  opacity: 0;
+}
+
+:host([aria-expanded]) {
+  z-index: var(--ds-depth-modal, $ds-depth-modal);
+  display: block;
+}
+
+:host([aria-expanded][onbackdrop]) {
+  background: var(--ds-auro-drawer-overlay-modal-background-color);
+  opacity: 1;
+  
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+:host([aria-expanded][modal]) {
+  pointer-events: initial;
+}
+
+:host([aria-expanded][isfullscreen]) {
+  width: 100%;
+  height: 100%;
+
+  .container {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+  }
+}

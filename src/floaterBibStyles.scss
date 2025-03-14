@@ -26,9 +26,7 @@
 }
 
 .container ::slotted(:only-child){
-  background: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
   box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
-  color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
 }
 
 :host([onbackdrop]) {
@@ -45,7 +43,6 @@
 }
 
 :host([aria-expanded][onbackdrop]) {
-  background: var(--ds-auro-drawer-overlay-modal-background-color);
   opacity: 1;
   
   @starting-style {

@@ -1,9 +1,0 @@
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
-
-:host {
-  --ds-auro-drawer-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
-  --ds-auro-drawer-boxshadow-color: var(--ds-elevation-300, #{$ds-elevation-300});
-  --ds-auro-drawer-overlay-modal-background-color: var(--ds-color-background-scrimmed-default, #{$ds-color-background-scrimmed-default});
-  --ds-auro-drawer-overlay-open-background-color: var(--ds-color-background-scrimmed-default, #{$ds-color-background-scrimmed-default});
-  --ds-auro-drawer-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
-}

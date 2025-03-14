@@ -24,7 +24,7 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib = undefined;
   }
 
-  // function to define props used within the scope of this component
+  // when `carryDown` is true, the value of the property will be passed down to `this.drawerBib` in `updated` cycle.
   static get properties() {
     return {
       ...super.properties,
@@ -40,7 +40,6 @@ export class AuroDrawer extends AuroFloater {
       placement: {
         type: String,
         carryDown: true,
-        // reflect: true
       },
       size: {
         type: String, // sm, md, lg
@@ -112,7 +111,7 @@ export class AuroDrawer extends AuroFloater {
       if (value) {
         this.drawerBib.setAttribute(attribute, "");
       } else {
-        this.drawerBib.remove(attribute);
+        this.drawerBib.removeAttribute(attribute);
       }
     } else {
       this.drawerBib.setAttribute(attribute, value);

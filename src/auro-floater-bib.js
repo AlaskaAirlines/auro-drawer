@@ -2,8 +2,9 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
+import colorCss from "./floaterBibColor-css.js";
 import styleCss from "./floaterBibStyles-css.js";
-import tokensCss from "./tokens-css.js";
+import tokensCss from "./floaterBibTokens-css.js";
 
 export class AuroFloaterBib extends LitElement {
   constructor() {
@@ -17,6 +18,7 @@ export class AuroFloaterBib extends LitElement {
 
   static get styles() {
     return [
+      colorCss,
       styleCss,
       tokensCss,
     ];

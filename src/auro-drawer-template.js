@@ -2,6 +2,7 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
+import colorCss from "./drawerTemplateColor-css.js";
 import styleCss from "./drawerTemplateStyles-css.js";
 import tokensCss from "./tokens-css.js";
 
@@ -51,6 +52,7 @@ export class AuroDrawerTemplate extends LitElement {
   }
   static get styles() {
     return [
+      colorCss,
       tokensCss,
       styleCss,
     ];

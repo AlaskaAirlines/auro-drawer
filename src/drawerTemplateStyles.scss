@@ -16,7 +16,6 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background: var(--ds-auro-drawer-container-color);
     box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
     transition: transform 0.3s ease-in-out, overlay 0.3s;
     transition-behavior: allow-discrete;
@@ -72,10 +71,6 @@
     border:0;
     clip:rect(1px, 1px, 1px, 1px);
   }
-}
-
-::slotted(*) {
-  color: var(--ds-auro-drawer-text-color);
 }
 
 

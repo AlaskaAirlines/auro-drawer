@@ -37,17 +37,11 @@ export class AuroDrawer extends AuroFloater {
         type: Boolean,
         reflect: true,
       },
-      /**
-       * @private
-       */
       placement: {
         type: String,
         carryDown: true,
         // reflect: true
       },
-      /**
-       * @private
-       */
       size: {
         type: String, // sm, md, lg
         carryDown: true,
@@ -61,18 +55,6 @@ export class AuroDrawer extends AuroFloater {
         type: Boolean,
         carryDown: true,
         reflect: true
-      },
-      left: {
-        type: Boolean,
-        reflect: true
-      },
-      sm: {
-        type: Boolean,
-        reflect: true
-      },
-      md: {
-        type: Boolean,
-        reflect: true,
       },
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the dropdown switches to fullscreen mode on mobile.
@@ -151,13 +133,6 @@ export class AuroDrawer extends AuroFloater {
         this.updateDrawerBibAttribute(entry, this[entry]);
       }
     })
-
-    this.placement = this.left ? 'left': 'right';
-    if (this.sm) {
-      this.size = 'sm';
-    } else if (this.md) {
-      this.size = "md";
-    }
 
     if (changedProperties.has('isPopoverVisible')) {
       this.drawerBib.visible = this.isPopoverVisible;

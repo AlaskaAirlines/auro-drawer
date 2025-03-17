@@ -1,4 +1,3 @@
-
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
@@ -33,7 +32,6 @@ export class AuroFloaterBib extends LitElement {
   }
 }
 
-/* istanbul ignore else */
 // define the name of the custom component
 if (!customElements.get("auro-floater-bib")) {
   customElements.define("auro-floater-bib", AuroFloaterBib);

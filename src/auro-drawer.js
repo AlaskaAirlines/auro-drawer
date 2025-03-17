@@ -1,3 +1,8 @@
+// Copyright (c) 2025 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// See LICENSE in the project root for license information.
+
+// ---------------------------------------------------------------------
+
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 import { AuroFloater } from "./auro-floater";
@@ -103,7 +108,6 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib = document.createElement('auro-drawer-template');
     this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
     this.append(this.drawerBib);
-
   }
 
   updateDrawerBibAttribute(attribute, value) {

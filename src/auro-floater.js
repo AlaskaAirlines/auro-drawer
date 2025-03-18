@@ -15,9 +15,17 @@ export class AuroFloater extends LitElement {
   constructor(behavior) {
     super();
 
+    /**
+     * @private
+     */
     this.behavior = behavior;
   }
 
+  /**
+   * @ignore
+   * The configuration for floaingUI.
+   * @returns {object} Floater configuration object.
+   */
   get floaterConfig() {
     return {
       prefix: 'auroFloater'
@@ -27,11 +35,17 @@ export class AuroFloater extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
+      /**
+       * Sets state of drawer to open.
+       */
       isPopoverVisible: {
         attribute: "open",
         type: Boolean,
         reflect: true
       },
+      /**
+       * The element to focus when the drawer is closed. If not set, defaults to the value of document.activeElement when the drawer is opened.
+       */
       triggerElement: {
         attribute: false
       }
@@ -39,7 +53,7 @@ export class AuroFloater extends LitElement {
   }
 
   firstUpdated() {
-    this.floater = new FloatingUI(this);
+    this.floater = new FloatingUI(this, this.behavior);
 
     this.floater.configure(this, this.floaterConfig.prefix);
   }

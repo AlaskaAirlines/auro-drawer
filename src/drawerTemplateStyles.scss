@@ -89,6 +89,10 @@
 :host([placement="top"]), :host([placement="bottom"]) {
   width: 100%;
 
+  .wrapper{
+    max-height: 90%;
+  }
+
   ::slotted(*) {
     min-width: 100%;
   }

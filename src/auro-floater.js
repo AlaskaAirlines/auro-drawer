@@ -37,6 +37,7 @@ export class AuroFloater extends LitElement {
     return {
       /**
        * Sets state of drawer to open.
+       * @default false
        */
       isPopoverVisible: {
         attribute: "open",
@@ -44,10 +45,11 @@ export class AuroFloater extends LitElement {
         reflect: true
       },
       /**
-       * The element to focus when the drawer is closed. If not set, defaults to the value of document.activeElement when the drawer is opened.
+       * The element to focus when the drawer is closed.
        */
       triggerElement: {
-        attribute: false
+        attribute: false,
+        type: HTMLElement
       }
     };
   }

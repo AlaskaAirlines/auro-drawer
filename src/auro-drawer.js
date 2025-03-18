@@ -139,9 +139,6 @@ export class AuroDrawer extends AuroFloater {
 
     if (changedProperties.has('isPopoverVisible')) {
       this.drawerBib.visible = this.isPopoverVisible;
-      if (!this.isPopoverVisible) {
-        this.dispatchEvent(new CustomEvent('toggle'));
-      }
     }
   }
 }

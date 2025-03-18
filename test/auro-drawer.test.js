@@ -22,8 +22,8 @@ describe('auro-drawer', () => {
         <button> Open Drawer</button>
       </div>
     `);
-
     const drawer = el.querySelector('auro-drawer');
+
     const button = el.querySelector('button');
     drawer.triggerElement = button;
     await elementUpdated(drawer); // wait drawer setup the trigger event handlers
@@ -135,7 +135,9 @@ describe('auro-drawer', () => {
     `);
 
     el.removeAttribute('open');
-    await oneEvent(el, 'toggle');
+
+    const { detail } = await oneEvent(el, 'auroDrawer-toggled');
+    expect(detail.expanded).to.be.false;
   });
 
   it('does not throw error when open set to false and already closed', async () => {

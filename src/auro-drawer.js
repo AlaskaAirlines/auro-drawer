@@ -14,6 +14,17 @@ const CONFIG = {
   prefix: 'auroDrawer'
 }
 
+/**
+ * Auro-drawer provides users a way to implement an expandable drawer component.
+ *
+ * @element auro-drawer
+ *
+ * @slot - Default slot for the body content in drawer.
+ * @slot header - Text to display as the header of the modal.
+ * @slot footer - Used for action options, e.g. buttons.
+ *
+ * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
+ */
 export class AuroDrawer extends AuroFloater {
 
   constructor() {
@@ -33,33 +44,6 @@ export class AuroDrawer extends AuroFloater {
   static get properties() {
     return {
       ...super.properties,
-      unformatted: {
-        type: Boolean,
-        carryDown: true,
-        reflect: true
-      },
-      nested: {
-        type: Boolean,
-        reflect: true,
-      },
-      placement: {
-        type: String,
-        carryDown: true,
-      },
-      size: {
-        type: String, // sm, md, lg
-        carryDown: true,
-      },
-      onDark: {
-        type: Boolean,
-        carryDown: true,
-        reflect: true,
-      },
-      modal: {
-        type: Boolean,
-        carryDown: true,
-        reflect: true
-      },
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the dropdown switches to fullscreen mode on mobile.
        * When expanded, the dropdown will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
@@ -67,6 +51,57 @@ export class AuroDrawer extends AuroFloater {
        */
       fullscreenBreakpoint: {
         type: String,
+        reflect: true
+      },
+      /**
+       * Modal drawer restricts the user to take an action (no default close actions).
+       * @default false
+       */
+      modal: {
+        type: Boolean,
+        carryDown: true,
+        reflect: true
+      },
+      /**
+       * Sets the anchor placement for the bib. If true, bib will open based off its parennt size and position.
+       * @default false
+       */
+      nested: {
+        type: Boolean,
+        reflect: true,
+      },
+      /**
+       * Sets close icon to white for dark backgrounds.
+       * @default false
+       */
+      onDark: {
+        type: Boolean,
+        carryDown: true,
+        reflect: true,
+      },
+      /**
+       * Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`
+       * @default right
+       */
+      placement: {
+        type: String, // 'left', 'right', 'top', 'bottom',
+        carryDown: true,
+      },
+      /**
+       * Sets the size of drawer bib to `sm`, `md`, `lg`
+       * @default lg
+       */
+      size: {
+        type: String, // sm, md, lg
+        carryDown: true,
+      },
+      /**
+       * Unformatted drawer window, edge-to-edge fill for content.
+       * @default false
+       */
+      unformatted: {
+        type: Boolean,
+        carryDown: true,
         reflect: true
       },
     }
@@ -84,20 +119,39 @@ export class AuroDrawer extends AuroFloater {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDrawer);
   }
 
+  /**
+   * @ignore
+   */
   get floaterConfig() {
     return {
+      ...super.floaterConfig,
       ...CONFIG,
       placement: this.placement,
       fullscreenBreakpoint: parseBreakpointToken(this.fullscreenBreakpoint),
     };
   }
 
+  /**
+   * Sets the expanded state of the drawer.
+   * Called by floatingUI.
+   * @ignore
+   * @param {boolean} value - Whether the drawer is expanded.
+   */
   set expanded(value) {
     if (value) {
       this.drawerBib.setAttribute('stretch', "");
     } else {
       this.drawerBib.removeAttribute('stretch');
     }
+  }
+
+  /**
+   * Gets the expanded state of the drawer.
+   * @ignore
+   * @returns {boolean} Whether the drawer is expanded.
+   */
+  get expanded() {
+    return this.drawerBib.hasAttribute('stretch');
   }
 
   firstUpdated() {
@@ -110,6 +164,12 @@ export class AuroDrawer extends AuroFloater {
     this.append(this.drawerBib);
   }
 
+  /**
+   * @private
+   * Updates an attribute on the drawer template element.
+   * @param {string} attribute - The name of the attribute to update.
+   * @param {string | boolean} value - The value to set the attribute to.
+   */
   updateDrawerBibAttribute(attribute, value) {
     if (typeof value === 'boolean' || typeof value === 'undefined') {
       if (value) {
@@ -131,11 +191,11 @@ export class AuroDrawer extends AuroFloater {
       }
     });
 
-    changedProperties.entries().forEach(([entry]) => {
+    [...changedProperties.entries()].forEach(([entry]) => {
       if (AuroDrawer.properties[entry].carryDown) {
         this.updateDrawerBibAttribute(entry, this[entry]);
       }
-    })
+    });
 
     if (changedProperties.has('isPopoverVisible')) {
       this.drawerBib.visible = this.isPopoverVisible;

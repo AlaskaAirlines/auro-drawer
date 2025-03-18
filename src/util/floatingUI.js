@@ -6,8 +6,9 @@ import { autoUpdate, computePosition, offset, autoPlacement, flip } from '@float
 const MAX_CONFIGURATION_COUNT = 10;
 
 export default class AuroFloatingUI {
-  constructor(element) {
+  constructor(element, behavior) {
     this.element = element;
+    this.behavior = behavior;
 
     // Store event listener references for cleanup
     this.focusHandler = null;
@@ -67,7 +68,7 @@ export default class AuroFloatingUI {
    */
   getPositioningStrategy() {
     const breakpoint = this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint;
-    switch (this.element.behavior) {
+    switch (this.behavior) {
       case "tooltip":
         return "floating";
       case "dialog":
@@ -92,7 +93,7 @@ export default class AuroFloatingUI {
         }
         return "floating";
       default:
-        return this.element.behavior;
+        return this.behavior;
     }
   }
 
@@ -481,7 +482,7 @@ export default class AuroFloatingUI {
 
     this.element.bib.setAttribute("id", `${this.id}-floater-bib`);
 
-    switch (this.element.behavior) {
+    switch (this.behavior) {
       case 'tooltip':
         this.element.setAttribute("aria-describedby", this.element.bib.getAttribute("id"));
         this.element.bib.setAttribute('role', 'tooltip');

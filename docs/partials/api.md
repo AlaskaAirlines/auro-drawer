@@ -57,7 +57,7 @@ When using this state, the modal drawer must include a button action to dismiss 
 
 ### <a name="nested">`nested`</a>
 
-In case the drawer should sit inside of an container, not to the body, set `nested` attribute
+In case the drawer should sit inside of a container, not to the body, set `nested` attribute
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/nested.html) -->
@@ -78,23 +78,26 @@ In case the drawer should sit inside of an container, not to the body, set `nest
 You can set the position where the drawer should sit 
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/slideOptions.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/placement.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/slideOptions.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/placement.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
 ### <a name="size">`size`</a>
 
-The auro-drawer supports three different sizes. A default drawer is equal to the large size drawer. Using the `sm` and `md` attributes, the component supports these sizes for both mobile and desktop.
+The auro-drawer supports three different sizes. A default drawer is equal to the large size drawer. 
 
-The size attribute effects the `width` of the desktop drawer. Its `height` is always 100%. On mobile, the `size` attribute effects the `maximum width` the drawer will use of the device screen.
+The size attribute controls the width of left and right drawers, which always have a height of 100%.
+For top and bottom drawers, size controls the height, and the width is always 100%.
+
+For mobile or small screen, read <a href="#fullscreenBreakpoint">`fullscreenBreakpoint`</a>
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/sizeOptions.html) -->

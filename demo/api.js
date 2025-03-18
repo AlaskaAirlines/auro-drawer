@@ -6,7 +6,7 @@ import { initModalExample } from "../apiExamples/modal";
 import { initNestedExample } from '../apiExamples/nested';
 import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
 import { initSizeOptionsExample } from "../apiExamples/sizeOptions";
-import { initSlideOptionsExample } from "../apiExamples/slideOptions";
+import { initPlacementExample } from "../apiExamples/placement.js";
 import '../index.js';
 
 export function initExamples(initCount) {
@@ -20,7 +20,7 @@ export function initExamples(initCount) {
     initNestedExample();
     initPopoverAndDropdownExample();
     initSizeOptionsExample();
-    initSlideOptionsExample();
+    initPlacementExample();
     initFullscreenBreakpointExample();
   } catch (err) {
     if (initCount <= 20) {

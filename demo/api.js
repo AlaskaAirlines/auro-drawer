@@ -1,7 +1,6 @@
 import { initBasicExample } from "../apiExamples/basic";
 import { initAccessibilityExample } from "../apiExamples/accessibility";
 import { initFullscreenBreakpointExample } from "../apiExamples/fullscreenBreakpoint";
-import { initEditCloseButtonExample } from "../apiExamples/editCloseButton";
 import { initModalExample } from "../apiExamples/modal";
 import { initNestedExample } from '../apiExamples/nested';
 import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
@@ -15,7 +14,6 @@ export function initExamples(initCount) {
   try {
     initBasicExample();
     initAccessibilityExample();
-    initEditCloseButtonExample();
     initModalExample();
     initNestedExample();
     initPopoverAndDropdownExample();

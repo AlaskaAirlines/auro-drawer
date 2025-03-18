@@ -130,25 +130,13 @@ This is a use case where there is a popover and combobox component inside the dr
 
 </auro-accordion>
 
-### <a name="unformatted"></a>`unformatted`
+### <a name="unformatted">`unformatted`</a>
 
 For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.
 
 This property can be used in combination of any other use case of the drawer, but it will render a unformatted drawer window allowing for full customization of content within the scope of the window.
 
-### Responsive padding
-
-Part of the drawer design spec is its responsive padding. To take advantage of this for your content within the scope of the drawer, be sure to use the selector `unformattedWrapper` that can be imported from the package here;
-
-```scss
-import '@aurodesignsystem/auro-drawer/dist/style-unformatted.scss'
-
-or
-
-import '@aurodesignsystem/auro-drawer@/dist/style-unformatted.css'
-```
-
-### Accessibility
+#### Accessibility
 
 Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="drawer-header"` to the content header within the drawer content.
 
@@ -164,28 +152,3 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
-
-### Edit close button position
-
-When using the drawer with the `unformatted` attribute, some may want to adjust the positioning of the X close button. This can be addressed using the CSS `::part` CSS pseudo-element API.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/editCloseButton.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/editCloseButton.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-
-### Theme Support
-
-The component may be restyled using the following code sample and changing the values of the following token(s).
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../src/drawerTemplateTokens.scss) -->
-<!-- AURO-GENERATED-CONTENT:END -->

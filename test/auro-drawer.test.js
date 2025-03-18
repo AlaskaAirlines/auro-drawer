@@ -80,14 +80,20 @@ describe('auro-drawer', () => {
     await expect(wrapper.querySelector('.footer')).to.equal(null);
   });
 
-  it('auro-drawer renders a close icon', async () => {
+  it('auro-drawer renders a close icon and closes on click', async () => {
     const el = await fixture(html`
       <auro-drawer></auro-drawer>
     `);
 
     const root = el.drawerBib;
-    const title = root.shadowRoot.querySelector('#closeButton');
-    await expect(title).to.not.equal(null);
+    const closeButton = root.shadowRoot.querySelector('#closeButton');
+    await expect(closeButton).to.not.equal(null);
+
+    closeButton.click();
+
+    await elementUpdated(el);
+
+    await expect(el.hasAttribute('open')).to.be.false;
   });
 
   it('auro-drawer modal-drawer does not render a close icon', async () => {

@@ -28,6 +28,11 @@ export default class AuroFloatingUI {
      * @private
      */
     this.id = undefined;
+
+    /**
+     * @private
+     */
+    this.showing = false;
   }
 
   /**
@@ -308,16 +313,18 @@ export default class AuroFloatingUI {
   }
 
   showBib() {
-    if (!this.element.disabled) {
+    if (!this.element.disabled && !this.showing) {
       this.updateCurrentExpandedDropdown();
       this.element.triggerChevron?.setAttribute('data-expanded', true);
-      if (!this.element.isPopoverVisible) {
+
+      // prevent double showing: isPopovervisible gets first and showBib gets called later
+      if (!this.showing) {
+        this.setupHideHandlers();
+        this.showing = true;
         this.element.isPopoverVisible = true;
+        this.position();
         this.dispatchEventDropdownToggle();
       }
-      this.position();
-
-      this.setupHideHandlers();
 
       // Setup auto update to handle resize and scroll
       this.element.cleanup = autoUpdate(this.element.trigger || this.element.parentNode, this.element.bib, () => {
@@ -333,8 +340,11 @@ export default class AuroFloatingUI {
 
       if (this.element.isPopoverVisible) {
         this.element.isPopoverVisible = false;
-        this.dispatchEventDropdownToggle();
+      }
+      if (this.showing) {
         this.cleanupHideHandlers();
+        this.showing = false;
+        this.dispatchEventDropdownToggle();
       }
     }
     document.expandedAuroDropdown = null;
@@ -347,7 +357,7 @@ export default class AuroFloatingUI {
   dispatchEventDropdownToggle() {
     const event = new CustomEvent(this.eventPrefix ? `${this.eventPrefix}-toggled` : 'toggled', {
       detail: {
-        expanded: this.element.isPopoverVisible,
+        expanded: this.showing,
       },
       composed: true
     });

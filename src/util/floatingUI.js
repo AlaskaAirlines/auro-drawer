@@ -252,21 +252,23 @@ export default class AuroFloatingUI {
     this.focusHandler = () => this.handleFocusLoss();
 
     this.clickHandler = (evt) => {
-      if (!evt.composedPath().includes(this.element.trigger) &&
-          !evt.composedPath().includes(this.element.bib)) {
+      if ((!evt.composedPath().includes(this.element.trigger) &&
+          !evt.composedPath().includes(this.element.bib)) ||
+          evt.composedPath().includes(this.element.bib.backdrop)) {
         this.hideBib();
       }
     };
 
     // ESC key handler
     this.keyDownHandler = (evt) => {
-      if (evt.key === 'Escape' && this.element.isPopoverVisible && !this.element.modal) {
+      if (evt.key === 'Escape' && this.element.isPopoverVisible) {
         this.hideBib();
       }
     };
 
     // Add event listeners using the stored references
     document.addEventListener('focusin', this.focusHandler);
+
     document.addEventListener('keydown', this.keyDownHandler);
 
     // send this task to the end of queue to prevent conflicting
@@ -320,7 +322,9 @@ export default class AuroFloatingUI {
 
       // prevent double showing: isPopovervisible gets first and showBib gets called later
       if (!this.showing) {
-        this.setupHideHandlers();
+        if (!this.element.modal) {
+          this.setupHideHandlers();
+        }
         this.showing = true;
         this.element.isPopoverVisible = true;
         this.position();

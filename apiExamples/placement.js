@@ -1,4 +1,4 @@
-export function initSlideOptionsExample() {
+export function initPlacementExample() {
   const defaultButtons = [document.querySelector('#openDefaultSlide'), document.querySelector('#closeDefaultSlide')];
   const defaultDrawer = document.querySelector('#defaultSlideDrawer');
 

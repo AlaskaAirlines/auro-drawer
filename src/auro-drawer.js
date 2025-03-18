@@ -45,8 +45,8 @@ export class AuroDrawer extends AuroFloater {
     return {
       ...super.properties,
       /**
-       * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the dropdown switches to fullscreen mode on mobile.
-       * When expanded, the dropdown will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
+       * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
+       * When expanded, the drawer will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
        * @default sm
        */
       fullscreenBreakpoint: {
@@ -63,7 +63,7 @@ export class AuroDrawer extends AuroFloater {
         reflect: true
       },
       /**
-       * Sets the anchor placement for the bib. If true, bib will open based off its parennt size and position.
+       * Sets the anchor placement for the bib. If true, bib will open based off its parent size and position.
        * @default false
        */
       nested: {

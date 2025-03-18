@@ -1,6 +1,8 @@
 
 :host([aria-expanded][onbackdrop]) {
-  background: var(--ds-auro-floater-backdrop-modal-background-color);
+  .backdrop {
+    background: var(--ds-auro-floater-backdrop-modal-background-color);
+  }
 }
 
 ::slotted(*) {

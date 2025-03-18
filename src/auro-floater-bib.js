@@ -23,9 +23,14 @@ export class AuroFloaterBib extends LitElement {
     ];
   }
 
+  firstUpdated() {
+    this.backdrop = this.shadowRoot.querySelector('.backdrop');
+  }
+
   render() {
     return html`
       <div class="container">
+        <div class="backdrop"></div>
         <slot></slot>
       </div>
     `;

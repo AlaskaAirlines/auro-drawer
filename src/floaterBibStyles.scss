@@ -8,7 +8,6 @@
   z-index: var(--ds-depth-overlay, $ds-depth-overlay);
   display: none;
   flex-direction: column;
-  pointer-events: none;
   transition: opacity 0.3s ease-in-out, display 0.3s;
   transition-behavior: allow-discrete;
   will-change: opacity;
@@ -19,10 +18,13 @@
   display: inline-block;
   width: 100%;
   height: 100%;
-}
 
-::slotted(*) {
-  pointer-events: initial;
+  .backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
 }
 
 .container ::slotted(:only-child){
@@ -48,10 +50,6 @@
   @starting-style {
     opacity: 0;
   }
-}
-
-:host([aria-expanded][modal]) {
-  pointer-events: initial;
 }
 
 :host([aria-expanded][isfullscreen]) {

@@ -34,6 +34,11 @@ export default class AuroFloatingUI {
      * @private
      */
     this.showing = false;
+
+    /**
+     * @private
+     */
+    this.strategy = undefined;
   }
 
   /**
@@ -73,13 +78,13 @@ export default class AuroFloatingUI {
         return "floating";
       case "dialog":
       case "drawer":
-        if (this.element.nested) {
-          return "cover";
-        }
         if (breakpoint) {
           const smallerThanBreakpoint = window.matchMedia(`(max-width: ${breakpoint})`).matches;
 
           this.element.expanded = smallerThanBreakpoint;
+        }
+        if (this.element.nested) {
+          return "cover";
         }
         return 'fullscreen';
       case "dropdown":
@@ -168,9 +173,8 @@ export default class AuroFloatingUI {
    *
    * @param {string} strategy - The positioning strategy ('fullscreen' or 'floating').
    */
-  configureBibStrategy(strategy) {
-    const prevStrategy = this.element.isBibFullscreen ? 'fullscreen' : 'floating';
-    if (strategy === 'fullscreen') {
+  configureBibStrategy(value) {
+    if (value === 'fullscreen') {
       this.element.isBibFullscreen = true;
       // reset the prev position
       this.element.bib.setAttribute('isfullscreen', "");
@@ -192,7 +196,7 @@ export default class AuroFloatingUI {
         this.configureTrial += 1;
 
         setTimeout(() => {
-          this.configureBibStrategy(strategy);
+          this.configureBibStrategy(value);
         });
       }
 
@@ -207,10 +211,12 @@ export default class AuroFloatingUI {
       this.lockScroll(false);
     }
 
-    if (prevStrategy !== strategy) {
+    const isChanged = this.strategy && this.strategy !== value;
+    this.strategy = value;
+    if (isChanged) {
       const event = new CustomEvent(this.eventPrefix ? `${this.eventPrefix}-strategy-change` : 'strategy-change', {
         detail: {
-          strategy,
+          value,
         },
         composed: true
       });

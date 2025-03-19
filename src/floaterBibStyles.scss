@@ -13,16 +13,8 @@
   will-change: opacity;
 }
 
-
 .container {
   display: inline-block;
-  width: 100%;
-  height: 100%;
-}
-
-.backdrop {
-  position: absolute;
-  z-index: 0;
   width: 100%;
   height: 100%;
 }
@@ -33,6 +25,11 @@
 
 :host([onbackdrop]) {
   overflow: hidden;
+
+  .backdrop {
+    position: absolute;
+    inset: 0;
+  }
 }
 
 :host([onbackdrop]:not([aria-expanded])) {
@@ -52,7 +49,11 @@
   }
 }
 
-:host([aria-expanded][isfullscreen]) {
+:host([aria-expanded][modal]) {
+  pointer-events: initial;
+}
+
+:host([isfullscreen]) {
   width: 100%;
   height: 100%;
 

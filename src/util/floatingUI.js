@@ -127,7 +127,7 @@ export default class AuroFloatingUI {
       computePosition(this.element.trigger, this.element.bib, {
         placement: this.element.floaterConfig?.placement,
         middleware: middleware || []
-      }).then(({x, y}) => { // eslint-disable-line id-length
+      }).then(({ x, y }) => { // eslint-disable-line id-length
         Object.assign(this.element.bib.style, {
           left: `${x}px`,
           top: `${y}px`,
@@ -137,7 +137,7 @@ export default class AuroFloatingUI {
       // Compute the position of the bib
       computePosition(this.element.parentNode, this.element.bib, {
         placement: 'bottom-start'
-      }).then(({x, y}) => { // eslint-disable-line id-length
+      }).then(({ x, y }) => { // eslint-disable-line id-length
         Object.assign(this.element.bib.style, {
           left: `${x}px`,
           top: `${y - this.element.parentNode.offsetHeight}px`,
@@ -237,14 +237,14 @@ export default class AuroFloatingUI {
 
   handleFocusLoss() {
     if (this.element.noHideOnThisFocusLoss ||
-        this.element.hasAttribute('noHideOnThisFocusLoss')) {
+      this.element.hasAttribute('noHideOnThisFocusLoss')) {
       return;
     }
 
-    const {activeElement} = document;
+    const { activeElement } = document;
     if (activeElement === document.querySelector('body') ||
-        this.element.contains(activeElement) ||
-        this.element.bib?.contains(activeElement)) {
+      this.element.contains(activeElement) ||
+      this.element.bib?.contains(activeElement)) {
       return;
     }
 
@@ -257,17 +257,17 @@ export default class AuroFloatingUI {
 
     this.clickHandler = (evt) => {
       if ((!evt.composedPath().includes(this.element.trigger) &&
-          !evt.composedPath().includes(this.element.bib)) ||
-          evt.composedPath().includes(this.element.bib.backdrop)) {
-            const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
-            if (existedVisibleFloatingUI && existedVisibleFloatingUI.element.isPopoverVisible){
-              existedVisibleFloatingUI.hideBib();
-              document.expandedAuroDropdown = null;
-              document.expandedAuroFormkitDropdown = null;
-              document.expandedAuroFloater = this;
-            } else {
-              this.hideBib();
-            }
+        !evt.composedPath().includes(this.element.bib)) ||
+        evt.composedPath().includes(this.element.bib.backdrop)) {
+        const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+        if (existedVisibleFloatingUI && existedVisibleFloatingUI.element.isPopoverVisible) {
+          existedVisibleFloatingUI.hideBib();
+          document.expandedAuroDropdown = null;
+          document.expandedAuroFormkitDropdown = null;
+          document.expandedAuroFloater = this;
+        } else {
+          this.hideBib();
+        }
       }
     };
 
@@ -441,7 +441,7 @@ export default class AuroFloatingUI {
           this.handleClick();
           break;
         default:
-          // Do nothing
+        // Do nothing
       }
     }
   }
@@ -531,7 +531,7 @@ export default class AuroFloatingUI {
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
 
 
-    this.element.hoverToggle = this.element.floaterConfig.hoverToggle; ;
+    this.element.hoverToggle = this.element.floaterConfig.hoverToggle;
 
     document.body.append(this.element.bib);
 

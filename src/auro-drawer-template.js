@@ -4,7 +4,7 @@ import { html } from 'lit/static-html.js';
 
 import colorCss from "./drawerTemplateColor-css.js";
 import styleCss from "./drawerTemplateStyles-css.js";
-import tokensCss from "./tokens-css.js";
+import tokensCss from "./drawerTemplateTokens-css.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 

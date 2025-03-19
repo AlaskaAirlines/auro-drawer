@@ -207,8 +207,6 @@ export default class AuroFloatingUI {
       this.element.bib.style.position = '';
       this.element.bib.removeAttribute('isfullscreen');
       this.element.isBibFullscreen = false;
-
-      this.lockScroll(false);
     }
 
     const isChanged = this.strategy && this.strategy !== value;
@@ -261,7 +259,12 @@ export default class AuroFloatingUI {
       if ((!evt.composedPath().includes(this.element.trigger) &&
           !evt.composedPath().includes(this.element.bib)) ||
           evt.composedPath().includes(this.element.bib.backdrop)) {
-        this.hideBib();
+            if (document.expandedAuroDropdown && document.expandedAuroDropdown.element.isPopoverVisible){
+              document.expandedAuroDropdown.hideBib();
+              document.expandedAuroDropdown = this;
+            } else {
+              this.hideBib();
+            }
       }
     };
 
@@ -310,7 +313,7 @@ export default class AuroFloatingUI {
 
   updateCurrentExpandedDropdown() {
     // Close any other dropdown that is already open
-    if (document.expandedAuroDropdown && document.expandedAuroDropdown !== this) {
+    if (document.expandedAuroDropdown && document.expandedAuroDropdown !== this && document.expandedAuroDropdown.eventPrefix === this.eventPrefix) {
       if (document.expandedAuroDropdown.hideBib) {
         document.expandedAuroDropdown.hideBib();
       } else {

@@ -17,7 +17,7 @@
     height: 100%;
     box-sizing: border-box;
     box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
-    transition: transform 0.3s ease-in-out, overlay 0.3s;
+    transition: transform 0.3s ease-in-out, display 0.3s;
     transition-behavior: allow-discrete;
     will-change: transform;
   }
@@ -162,13 +162,13 @@
   }
 }
 
-:host([size="sm"][placement="top"]) .wrapper,
-:host([size="sm"][placement="bottom"]) .wrapper {
+:host([size="sm"][placement="top"]:not([stretch])) .wrapper,
+:host([size="sm"][placement="bottom"]:not([stretch])) .wrapper {
   max-height: 30%;
 }
 
-:host([size="md"][placement="top"]) .wrapper,
-:host([size="md"][placement="bottom"]) .wrapper {
+:host([size="md"][placement="top"]:not([stretch])) .wrapper,
+:host([size="md"][placement="bottom"]:not([stretch])) .wrapper {
   max-height: 50%;
 }
 

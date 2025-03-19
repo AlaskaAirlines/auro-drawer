@@ -143,7 +143,6 @@ export class AuroDrawerTemplate extends LitElement {
         if (this.prevActiveElement) {
           this.prevActiveElement.focus();
           this.prevActiveElement = undefined;
-          console.log(this.visible, document.activeElement);
         }
       }
     }

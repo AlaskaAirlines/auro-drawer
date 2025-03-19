@@ -14,6 +14,18 @@ import buttonVersion from './buttonVersion.js';
 import { AuroIcon } from '@aurodesignsystem/auro-icon/src/auro-icon.js';
 import iconVersion from './iconVersion.js';
 
+
+const INTERACTIVE_ELEMENT_TAG = [
+  'auro-dropdown',
+  'auro-button',
+  'auro-combobox',
+  'auro-input',
+  'auro-counter',
+  'auro-menu',
+  'auro-select',
+  'auro-datepicker',
+];
+
 export class AuroDrawerTemplate extends LitElement {
   constructor() {
     super();
@@ -28,6 +40,22 @@ export class AuroDrawerTemplate extends LitElement {
     */
    this.iconTag = AuroDependencyVersioning.prototype.generateTag('auro-icon', iconVersion, AuroIcon);
 
+   /**
+    * @private
+    */
+   this.prevActiveElement = undefined;
+
+   /**
+    * @private
+    */
+   this.focusables = undefined;
+
+   /**
+    * @private
+    */
+   this.focusIndex = 0;
+
+   this.focus = this.focus.bind(this);
   }
 
   static get properties() {
@@ -62,9 +90,68 @@ export class AuroDrawerTemplate extends LitElement {
     this.dispatchEvent(new CustomEvent("close-click"));
   }
 
+  handleKeydown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      if (this.focusables.length >= 2) {
+        if (event.shiftKey) {
+          this.focusIndex--;
+          if (this.focusIndex < 0) {
+            this.focusIndex += this.focusables.length;
+          }
+        } else {
+          this.focusIndex++;
+          if (this.focusIndex >= this.focusables.length) {
+            this.focusIndex %= this.focusables.length;
+          }
+        }
+      }
+      this.focusables[this.focusIndex].focus();
+    }
+  }
+
+  focus() {
+    let query = "";
+    INTERACTIVE_ELEMENT_TAG.forEach(tag => query += `${tag}, [${tag}], `);
+    this.focusables = [...this.querySelectorAll(query + 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')];
+
+    const closeButton = this.shadowRoot.getElementById('closeButton');
+    if (closeButton) {
+      this.focusables.push(closeButton);
+    }
+
+    this.focusIndex = 0;
+
+    this.shadowRoot.querySelector('.wrapper').focus();
+  }
+
+  handleWrapperFocus() {
+    this.focusables[this.focusIndex].focus();
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('visible')) {
+      if (this.visible) {
+        this.prevActiveElement = document.activeElement;
+        if (this.prevActiveElement === document.body && this.triggerElement) {
+          this.prevActiveElement = this.triggerElement;
+        }
+        this.prevActiveElement.blur();
+
+        setTimeout(this.focus, 333);
+      } else {
+        if (this.prevActiveElement) {
+          this.prevActiveElement.focus();
+          this.prevActiveElement = undefined;
+          console.log(this.visible, document.activeElement);
+        }
+      }
+    }
+  }
+
   render() {
     return html`
-    <div class="wrapper">
+    <div class="wrapper" tabindex="-1" @keydown=${this.handleKeydown} @focus=${this.handleWrapperFocus}>
       ${this.unformatted ? '' : html`
         <div class="header" part="drawer-header">
             <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">

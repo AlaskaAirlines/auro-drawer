@@ -57,7 +57,7 @@ When using this state, the modal drawer must include a button action to dismiss 
 
 ### <a name="nested">`nested`</a>
 
-In case the drawer should sit inside of a container, not to the body, set `nested` attribute
+In case the drawer should sit inside of a container, not to the body, set `nested` attribute.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/nested.html) -->

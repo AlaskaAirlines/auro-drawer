@@ -259,9 +259,12 @@ export default class AuroFloatingUI {
       if ((!evt.composedPath().includes(this.element.trigger) &&
           !evt.composedPath().includes(this.element.bib)) ||
           evt.composedPath().includes(this.element.bib.backdrop)) {
-            if (document.expandedAuroDropdown && document.expandedAuroDropdown.element.isPopoverVisible){
-              document.expandedAuroDropdown.hideBib();
-              document.expandedAuroDropdown = this;
+            const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+            if (existedVisibleFloatingUI && existedVisibleFloatingUI.element.isPopoverVisible){
+              existedVisibleFloatingUI.hideBib();
+              document.expandedAuroDropdown = null;
+              document.expandedAuroFormkitDropdown = null;
+              document.expandedAuroFloater = this;
             } else {
               this.hideBib();
             }
@@ -271,6 +274,11 @@ export default class AuroFloatingUI {
     // ESC key handler
     this.keyDownHandler = (evt) => {
       if (evt.key === 'Escape' && this.element.isPopoverVisible) {
+        const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+        if (existedVisibleFloatingUI && existedVisibleFloatingUI !== this && existedVisibleFloatingUI.element.isPopoverVisible) {
+          // if something else is open, let it handle itself
+          return;
+        }
         this.hideBib();
       }
     };
@@ -313,15 +321,11 @@ export default class AuroFloatingUI {
 
   updateCurrentExpandedDropdown() {
     // Close any other dropdown that is already open
-    if (document.expandedAuroDropdown && document.expandedAuroDropdown !== this && document.expandedAuroDropdown.eventPrefix === this.eventPrefix) {
-      if (document.expandedAuroDropdown.hideBib) {
-        document.expandedAuroDropdown.hideBib();
-      } else {
-        document.expandedAuroDropdown.hide();
-      }
+    if (document.expandedAuroFloater && document.expandedAuroFloater !== this && document.expandedAuroFloater.eventPrefix === this.eventPrefix) {
+      document.expandedAuroFloater.hideBib();
     }
 
-    document.expandedAuroDropdown = this;
+    document.expandedAuroFloater = this;
   }
 
   showBib() {
@@ -361,7 +365,7 @@ export default class AuroFloatingUI {
         this.dispatchEventDropdownToggle();
       }
     }
-    document.expandedAuroDropdown = null;
+    document.expandedAuroFloater = null;
   }
 
   /**

@@ -1,5 +1,34 @@
 # Semantic Release Automated Changelog
 
+# [4.0.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v3.0.0...v4.0.0) (2025-03-20)
+
+
+### Bug Fixes
+
+* `open` attribute change to properly show and hide drawer ([079f64f](https://github.com/AlaskaAirlines/auro-drawer/commit/079f64f701d185eaf66e73eb9a35cbb74d05057b))
+* close drawer with `escape` only when there is no other dropdown-like component is open ([597ee0f](https://github.com/AlaskaAirlines/auro-drawer/commit/597ee0f2a65461a91c73571fa99e4ea32908abce))
+* import correct tokenscss path ([442c462](https://github.com/AlaskaAirlines/auro-drawer/commit/442c462e7cdf3481bee82435308acb38087fb25f))
+* make backdrop not to be event-thru ([6d52aa3](https://github.com/AlaskaAirlines/auro-drawer/commit/6d52aa38ef7d6d7e0d679ba160c47d116cc1a063))
+* make the drawer to have sliding effect on closing [#51](https://github.com/AlaskaAirlines/auro-drawer/issues/51) ([4039bf8](https://github.com/AlaskaAirlines/auro-drawer/commit/4039bf86ead0af8c9f1f276ca05a287eab77de7f))
+* not to close drawer on backdrop click when any dropdown components is open inside [#50](https://github.com/AlaskaAirlines/auro-drawer/issues/50) ([d8538b6](https://github.com/AlaskaAirlines/auro-drawer/commit/d8538b6cc6650ff805f69daf23213e5bc94f4e7a))
+* properly carrydown the property value to drawerBib ([90136a1](https://github.com/AlaskaAirlines/auro-drawer/commit/90136a10226a9b0cf862b8224dcc7c6933e48a59))
+
+
+### Features
+
+* add `fullscreenBreakpoint` to expand bib on smaller screen ([d565474](https://github.com/AlaskaAirlines/auro-drawer/commit/d5654748f66a9f70392cdb8a4d71bcf9817fbfb7))
+* deprecate `sm`, `md`, `left` ([c9dedc3](https://github.com/AlaskaAirlines/auro-drawer/commit/c9dedc3ea5955e8ba6c5c47a498c9b747ff1bb9c))
+
+
+### Performance Improvements
+
+* isolate `Tab` keydown to loop through focusable elements in drawer ([3eced16](https://github.com/AlaskaAirlines/auro-drawer/commit/3eced16132395fe28925dc529dd40e497a9946bb))
+
+
+### BREAKING CHANGES
+
+* replace `sm` and `md` to `size` and `left` to `placement` and remove `css-parts`
+
 # [3.0.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v2.2.3...v3.0.0) (2025-02-28)
 
 

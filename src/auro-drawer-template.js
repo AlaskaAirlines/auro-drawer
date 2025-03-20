@@ -129,6 +129,12 @@ export class AuroDrawerTemplate extends LitElement {
     this.focusables[this.focusIndex].focus();
   }
 
+  handleWrapperTransitionEnd() {
+    if (this.visible) {
+      this.focus();
+    }
+  }
+
   updated(changedProperties) {
     if (changedProperties.has('visible')) {
       if (this.visible) {
@@ -137,8 +143,6 @@ export class AuroDrawerTemplate extends LitElement {
           this.prevActiveElement = this.triggerElement;
         }
         this.prevActiveElement.blur();
-
-        setTimeout(this.focus, 333);
       } else {
         if (this.prevActiveElement) {
           this.prevActiveElement.focus();
@@ -150,7 +154,7 @@ export class AuroDrawerTemplate extends LitElement {
 
   render() {
     return html`
-    <div class="wrapper" tabindex="-1" @keydown=${this.handleKeydown} @focus=${this.handleWrapperFocus}>
+    <div class="wrapper" tabindex="-1" @keydown=${this.handleKeydown} @focus=${this.handleWrapperFocus} @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
         <div class="header" part="drawer-header">
             <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">

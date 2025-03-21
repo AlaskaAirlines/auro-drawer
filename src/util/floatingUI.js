@@ -72,7 +72,7 @@ export default class AuroFloatingUI {
    * @returns {String} The positioning strategy, one of 'fullscreen', 'floating', 'cover'.
    */
   getPositioningStrategy() {
-    const breakpoint = this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig.fullscreenBreakpoint;
+    const breakpoint = this.element.bib.mobileFullscreenBreakpoint || this.element.floaterConfig?.fullscreenBreakpoint;
     switch (this.behavior) {
       case "tooltip":
         return "floating";
@@ -258,23 +258,25 @@ export default class AuroFloatingUI {
     this.clickHandler = (evt) => {
       if ((!evt.composedPath().includes(this.element.trigger) &&
         !evt.composedPath().includes(this.element.bib)) ||
-        evt.composedPath().includes(this.element.bib.backdrop)) {
-        const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+        (this.element.bib.backdrop && evt.composedPath().includes(this.element.bib.backdrop))) {
+        const existedVisibleFloatingUI = document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+
         if (existedVisibleFloatingUI && existedVisibleFloatingUI.element.isPopoverVisible) {
+          // if something else is open, clost that
           existedVisibleFloatingUI.hideBib();
-          document.expandedAuroDropdown = null;
           document.expandedAuroFormkitDropdown = null;
           document.expandedAuroFloater = this;
         } else {
           this.hideBib();
         }
+        evt.preventDefault();
       }
     };
 
     // ESC key handler
     this.keyDownHandler = (evt) => {
       if (evt.key === 'Escape' && this.element.isPopoverVisible) {
-        const existedVisibleFloatingUI = document.expandedAuroDropdown || document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+        const existedVisibleFloatingUI = document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
         if (existedVisibleFloatingUI && existedVisibleFloatingUI !== this && existedVisibleFloatingUI.element.isPopoverVisible) {
           // if something else is open, let it handle itself
           return;
@@ -283,8 +285,10 @@ export default class AuroFloatingUI {
       }
     };
 
-    // Add event listeners using the stored references
-    document.addEventListener('focusin', this.focusHandler);
+    if (this.behavior !== 'drawer' && this.behavior !== 'dialog') {
+      // Add event listeners using the stored references
+      document.addEventListener('focusin', this.focusHandler);
+    }
 
     document.addEventListener('keydown', this.keyDownHandler);
 
@@ -321,7 +325,10 @@ export default class AuroFloatingUI {
 
   updateCurrentExpandedDropdown() {
     // Close any other dropdown that is already open
-    if (document.expandedAuroFloater && document.expandedAuroFloater !== this && document.expandedAuroFloater.eventPrefix === this.eventPrefix) {
+    const existedVisibleFloatingUI = document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
+    if (existedVisibleFloatingUI && existedVisibleFloatingUI !== this &&
+      existedVisibleFloatingUI.isPopoverVisible &&
+      document.expandedAuroFloater.eventPrefix === this.eventPrefix) {
       document.expandedAuroFloater.hideBib();
     }
 
@@ -492,8 +499,7 @@ export default class AuroFloatingUI {
   setupAria() {
     this.id = this.element.getAttribute('id');
     if (!this.id) {
-      this.id = Math.random().toString(16).
-        replace(".", '');
+      this.id = window.crypto.randomUUID();
       this.element.setAttribute('id', this.id);
     }
 
@@ -522,6 +528,11 @@ export default class AuroFloatingUI {
     if (this.element !== elem) {
       this.element = elem;
     }
+
+    if (this.behavior !== this.element.behavior) {
+      this.behavior = this.element.behavior;
+    }
+
     if (this.element.trigger) {
       this.disconnect();
     }
@@ -531,7 +542,9 @@ export default class AuroFloatingUI {
     this.element.triggerChevron = this.element.shadowRoot.querySelector('#showStateIcon');
 
 
-    this.element.hoverToggle = this.element.floaterConfig.hoverToggle;
+    if (this.element.floaterConfig) {
+      this.element.hoverToggle = this.element.floaterConfig.hoverToggle;
+    }
 
     document.body.append(this.element.bib);
 

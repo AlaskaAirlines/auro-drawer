@@ -5,7 +5,7 @@
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-import { AuroFloater } from "./auro-floater";
+import { AuroFloater } from "./auro-floater.js";
 import "./auro-drawer-template.js";
 import { parseBreakpointToken } from "./util/breakpointParser.js";
 

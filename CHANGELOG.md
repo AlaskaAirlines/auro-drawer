@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [4.0.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.0...v4.0.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* fix to run on svelte, not to close when clicking datepicker ([727d226](https://github.com/AlaskaAirlines/auro-drawer/commit/727d2260b9c8c8cdf9d6f5d34bf67911eb706ae5))
+* put correct value on `aria-expanded` ([973e455](https://github.com/AlaskaAirlines/auro-drawer/commit/973e45591efffdbeb4976304e06c53ff4ee60eed))
+
 # [4.0.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v3.0.0...v4.0.0) (2025-03-20)
 
 

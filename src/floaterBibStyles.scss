@@ -32,16 +32,16 @@
   }
 }
 
-:host([onbackdrop]:not([aria-expanded])) {
+:host([onbackdrop]):not([data-show]) {
   opacity: 0;
 }
 
-:host([aria-expanded]) {
+:host([data-show]) {
   z-index: var(--ds-depth-modal, $ds-depth-modal);
   display: block;
 }
 
-:host([aria-expanded][onbackdrop]) {
+:host([data-show][onbackdrop]) {
   opacity: 1;
   
   @starting-style {
@@ -49,7 +49,7 @@
   }
 }
 
-:host([aria-expanded][modal]) {
+:host([data-show][modal]) {
   pointer-events: initial;
 }
 

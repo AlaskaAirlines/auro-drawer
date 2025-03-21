@@ -48,8 +48,7 @@ export class AuroFloater extends LitElement {
        * The element to focus when the drawer is closed.
        */
       triggerElement: {
-        attribute: false,
-        type: HTMLElement
+        attribute: false
       }
     };
   }

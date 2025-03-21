@@ -162,6 +162,22 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib = document.createElement('auro-drawer-template');
     this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
     this.append(this.drawerBib);
+
+    this.setupAria();
+  }
+  
+  /**
+   * @private
+   */
+  setupAria() {
+    if (this.triggerElement) {
+      this.triggerElement.setAttribute('aria-haspopup', 'dialog');
+      this.triggerElement.setAttribute('aria-controls', this.bib.getAttribute('id'));
+    }
+    this.bib.setAttribute('role', 'dialog');
+    if (this.modal) {
+      this.bib.setAttribute('aria-modal', 'true');
+    }
   }
 
   /**

@@ -262,7 +262,7 @@ export default class AuroFloatingUI {
         const existedVisibleFloatingUI = document.expandedAuroFormkitDropdown || document.expandedAuroFloater;
 
         if (existedVisibleFloatingUI && existedVisibleFloatingUI.element.isPopoverVisible) {
-          // if something else is open, clost that
+          // if something else is open, close that
           existedVisibleFloatingUI.hideBib();
           document.expandedAuroFormkitDropdown = null;
           document.expandedAuroFloater = this;
@@ -496,31 +496,14 @@ export default class AuroFloatingUI {
    *
    * @param {*} eventPrefix
    */
-  setupAria() {
+  regenerateBibId() {
     this.id = this.element.getAttribute('id');
     if (!this.id) {
       this.id = window.crypto.randomUUID();
       this.element.setAttribute('id', this.id);
     }
-
+    
     this.element.bib.setAttribute("id", `${this.id}-floater-bib`);
-
-    switch (this.behavior) {
-      case 'tooltip':
-        this.element.setAttribute("aria-describedby", this.element.bib.getAttribute("id"));
-        this.element.bib.setAttribute('role', 'tooltip');
-        break;
-      case 'drawer':
-      case 'dialog':
-        this.element.trigger?.setAttribute('aria-haspopup', 'dialog');
-        this.element.bib.setAttribute('role', 'dialog');
-        if (this.element.modal) {
-          this.element.bib.setAttribute('aria-modal', 'true');
-        }
-        break;
-      default:
-        break;
-    }
   }
 
   configure(elem, eventPrefix) {
@@ -548,7 +531,7 @@ export default class AuroFloatingUI {
 
     document.body.append(this.element.bib);
 
-    this.setupAria();
+    this.regenerateBibId();
     this.handleTriggerTabIndex();
 
     this.handleEvent = this.handleEvent.bind(this);

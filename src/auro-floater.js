@@ -100,7 +100,7 @@ export class AuroFloater extends LitElement {
     return html`
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
       <auro-floater-bib id="bib"
-      data-show=${this.isPopoverVisible}
+      ?data-show=${this.isPopoverVisible}
       ?onBackdrop="${this.floaterConfig.backdrop}"></auro-floater-bib>
     `;
   }

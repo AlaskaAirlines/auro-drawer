@@ -8,6 +8,7 @@
   z-index: var(--ds-depth-overlay, $ds-depth-overlay);
   display: none;
   flex-direction: column;
+  opacity: 0;
   transition: opacity 0.3s ease-in-out, display 0.3s;
   transition-behavior: allow-discrete;
   will-change: opacity;
@@ -20,6 +21,7 @@
 }
 
 .container ::slotted(:only-child){
+  z-index: var(--ds-depth-modal, $ds-depth-modal);
   box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
 }
 
@@ -32,16 +34,8 @@
   }
 }
 
-:host([onbackdrop]):not([data-show]) {
-  opacity: 0;
-}
-
 :host([data-show]) {
-  z-index: var(--ds-depth-modal, $ds-depth-modal);
   display: block;
-}
-
-:host([data-show][onbackdrop]) {
   opacity: 1;
   
   @starting-style {

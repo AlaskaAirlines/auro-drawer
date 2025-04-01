@@ -7,7 +7,10 @@ import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
 import FloatingUI from './util/floatingUI.js';
-import "./auro-floater-bib.js";
+import { AuroFloaterBib } from "./auro-floater-bib.js";
+
+import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
+import drawerVersion from './drawerVersion.js';
 
 // build the component class
 export class AuroFloater extends LitElement {
@@ -19,6 +22,18 @@ export class AuroFloater extends LitElement {
      * @private
      */
     this.behavior = behavior;
+
+    /** 
+     * @private
+     */
+    this.floater = undefined;
+
+
+    const tagPrefix = this.floaterConfig.prefix.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`) + "-bib";
+    /**
+     * @private
+     */
+    this.floaterBibTag = AuroDependencyVersioning.prototype.generateTag(tagPrefix, drawerVersion, AuroFloaterBib);
   }
 
   /**
@@ -99,9 +114,9 @@ export class AuroFloater extends LitElement {
   render() {
     return html`
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
-      <auro-floater-bib id="bib"
+      <${this.floaterBibTag} id="bib"
       ?data-show=${this.isPopoverVisible}
-      ?onBackdrop="${this.floaterConfig.backdrop}"></auro-floater-bib>
+      ?onBackdrop="${this.floaterConfig.backdrop}"></${this.floaterBibTag}b>
     `;
   }
 }

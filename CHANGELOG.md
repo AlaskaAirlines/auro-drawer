@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.0.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.1...v4.0.2) (2025-04-01)
+
+
+### Bug Fixes
+
+* properly hide backdrop after hiding ([0b9dea4](https://github.com/AlaskaAirlines/auro-drawer/commit/0b9dea4ee26cce95ee5d898b2b2f182703c257fa))
+
 ## [4.0.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.0...v4.0.1) (2025-03-21)
 
 

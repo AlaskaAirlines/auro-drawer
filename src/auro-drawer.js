@@ -6,7 +6,7 @@
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 import { AuroFloater } from "./auro-floater.js";
-import "./auro-drawer-template.js";
+import "./auro-drawer-content.js";
 import { parseBreakpointToken } from "./util/breakpointParser.js";
 
 const CONFIG = {
@@ -159,7 +159,7 @@ export class AuroDrawer extends AuroFloater {
 
     AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-drawer');
 
-    this.drawerBib = document.createElement('auro-drawer-template');
+    this.drawerBib = document.createElement('auro-drawer-content');
     this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
     this.append(this.drawerBib);
 

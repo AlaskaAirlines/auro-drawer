@@ -2,9 +2,9 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
-import colorCss from "./drawerTemplateColor-css.js";
-import styleCss from "./drawerTemplateStyles-css.js";
-import tokensCss from "./drawerTemplateTokens-css.js";
+import colorCss from "./drawerContentColor-css.js";
+import styleCss from "./drawerContentStyles-css.js";
+import tokensCss from "./drawerContentTokens-css.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 
@@ -26,7 +26,7 @@ const INTERACTIVE_ELEMENT_TAG = [
   'auro-datepicker',
 ];
 
-export class AuroDrawerTemplate extends LitElement {
+export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
 
@@ -185,7 +185,7 @@ export class AuroDrawerTemplate extends LitElement {
 }
 
 // define the name of the custom component
-if (!customElements.get("auro-drawer-template")) {
-  customElements.define("auro-drawer-template", AuroDrawerTemplate);
+if (!customElements.get("auro-drawer-content")) {
+  customElements.define("auro-drawer-content", AuroDrawerContent);
 }
 

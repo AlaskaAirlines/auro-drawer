@@ -116,7 +116,7 @@ export class AuroFloater extends LitElement {
       <slot @slotchange="${this.handleDefaultSlot}"></slot>
       <${this.floaterBibTag} id="bib"
       ?data-show=${this.isPopoverVisible}
-      ?onBackdrop="${this.floaterConfig.backdrop}"></${this.floaterBibTag}b>
+      ?onBackdrop="${this.floaterConfig.backdrop}"></${this.floaterBibTag}>
     `;
   }
 }

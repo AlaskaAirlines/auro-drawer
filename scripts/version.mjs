@@ -5,6 +5,11 @@ import path from "path";
 versionWriter.writeDepVersionFile('@aurodesignsystem/auro-button');
 versionWriter.writeDepVersionFile('@aurodesignsystem/auro-icon');
 
+/**
+ * Writes the package version of auro-drawer to a file.
+ * This function reads the version from the package.json file and writes it to a version file in the src directory.
+ * It supplements auro-library.versionWriter, which does not support self-versioning.
+ */
 function writeSelfVersionFile() {
   const auroSubNameIndex = 5;
 

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.0.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.2...v4.0.3) (2025-04-10)
+
+
+### Bug Fixes
+
+* fix typo and add JSDoc comments ([b44e8a2](https://github.com/AlaskaAirlines/auro-drawer/commit/b44e8a2d6903bd868d091c8914cf1aba77b7ca14))
+
 ## [4.0.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.1...v4.0.2) (2025-04-01)
 
 

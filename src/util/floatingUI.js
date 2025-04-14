@@ -547,16 +547,23 @@ export default class AuroFloatingUI {
 
   disconnect() {
     this.cleanupHideHandlers();
-    this.element.cleanup?.();
 
-    // Remove event & keyboard listeners
-    if (this.element?.trigger) {
-      this.element.trigger.removeEventListener('keydown', this.handleEvent);
-      this.element.trigger.removeEventListener('click', this.handleEvent);
-      this.element.trigger.removeEventListener('mouseenter', this.handleEvent);
-      this.element.trigger.removeEventListener('mouseleave', this.handleEvent);
-      this.element.trigger.removeEventListener('focus', this.handleEvent);
-      this.element.trigger.removeEventListener('blur', this.handleEvent);
+    if (this.element) {
+      this.element.cleanup?.();
+
+      if (this.element.bib) {
+        this.element.shadowRoot.append(this.element.bib);
+      }
+
+      // Remove event & keyboard listeners
+      if (this.element?.trigger) {
+        this.element.trigger.removeEventListener('keydown', this.handleEvent);
+        this.element.trigger.removeEventListener('click', this.handleEvent);
+        this.element.trigger.removeEventListener('mouseenter', this.handleEvent);
+        this.element.trigger.removeEventListener('mouseleave', this.handleEvent);
+        this.element.trigger.removeEventListener('focus', this.handleEvent);
+        this.element.trigger.removeEventListener('blur', this.handleEvent);
+      }
     }
   }
 }

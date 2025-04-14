@@ -84,7 +84,7 @@ export class AuroFloater extends LitElement {
     if (changedProperties.has('triggerElement')) {
       this.floater.configure(this, this.floaterConfig.prefix);
     }
-    
+
     if (changedProperties.has('isPopoverVisible')) {
       if (this.isPopoverVisible) {
         this.floater.showBib();

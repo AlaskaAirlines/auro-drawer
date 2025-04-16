@@ -9,8 +9,8 @@
 | `modal`                | `modal`                | `boolean` | "false" | Modal drawer restricts the user to take an action (no default close actions). |
 | `nested`               | `nested`               | `boolean` | "false" | Sets the anchor placement for the bib. If true, bib will open based off its parent size and position. |
 | `onDark`               | `onDark`               | `boolean` | "false" | Sets close icon to white for dark backgrounds.   |
-| `placement`            | `placement`            | `string`  | "right" | Sets the placement of drawer bib to `right`, `left`, `top`, `bottom` |
-| `size`                 | `size`                 | `string`  | "lg"    | Sets the size of drawer bib to `sm`, `md`, `lg`  |
+| `placement`            | `placement`            | `string`  | "right" | Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`. |
+| `size`                 | `size`                 | `string`  | "lg"    | Sets the size of drawer bib to `sm`, `md`, `lg`. |
 | `triggerElement`       |                        |           |         | The element to focus when the drawer is closed.  |
 | `unformatted`          | `unformatted`          | `boolean` | "false" | Unformatted drawer window, edge-to-edge fill for content. |
 

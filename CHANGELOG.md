@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.0.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.3...v4.0.4) (2025-04-16)
+
+
+### Bug Fixes
+
+* remove bib on disconnect in auro-floater ([7f7b5b2](https://github.com/AlaskaAirlines/auro-drawer/commit/7f7b5b2f951f126915548e77daa3dbcb3b63ea03))
+
 ## [4.0.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.2...v4.0.3) (2025-04-10)
 
 

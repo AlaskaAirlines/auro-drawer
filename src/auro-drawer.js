@@ -12,7 +12,7 @@ import { parseBreakpointToken } from "./util/breakpointParser.js";
 const CONFIG = {
   backdrop: true,
   prefix: 'auroDrawer'
-}
+};
 
 /**
  * Auro-drawer provides users a way to implement an expandable drawer component.
@@ -44,6 +44,7 @@ export class AuroDrawer extends AuroFloater {
   static get properties() {
     return {
       ...super.properties,
+
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
        * When expanded, the drawer will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
@@ -53,6 +54,7 @@ export class AuroDrawer extends AuroFloater {
         type: String,
         reflect: true
       },
+
       /**
        * Modal drawer restricts the user to take an action (no default close actions).
        * @default false
@@ -62,6 +64,7 @@ export class AuroDrawer extends AuroFloater {
         carryDown: true,
         reflect: true
       },
+
       /**
        * Sets the anchor placement for the bib. If true, bib will open based off its parent size and position.
        * @default false
@@ -70,6 +73,7 @@ export class AuroDrawer extends AuroFloater {
         type: Boolean,
         reflect: true,
       },
+
       /**
        * Sets close icon to white for dark backgrounds.
        * @default false
@@ -79,22 +83,27 @@ export class AuroDrawer extends AuroFloater {
         carryDown: true,
         reflect: true,
       },
+
       /**
-       * Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`
+       * Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`.
        * @default right
        */
       placement: {
-        type: String, // 'left', 'right', 'top', 'bottom',
+        // 'left', 'right', 'top', 'bottom'
+        type: String,
         carryDown: true,
       },
+
       /**
-       * Sets the size of drawer bib to `sm`, `md`, `lg`
+       * Sets the size of drawer bib to `sm`, `md`, `lg`.
        * @default lg
        */
       size: {
-        type: String, // sm, md, lg
+        // sm, md, lg
+        type: String,
         carryDown: true,
       },
+
       /**
        * Unformatted drawer window, edge-to-edge fill for content.
        * @default false
@@ -104,7 +113,7 @@ export class AuroDrawer extends AuroFloater {
         carryDown: true,
         reflect: true
       },
-    }
+    };
   }
 
   /**
@@ -165,7 +174,7 @@ export class AuroDrawer extends AuroFloater {
 
     this.setupAria();
   }
-  
+
   /**
    * @private
    */
@@ -201,9 +210,9 @@ export class AuroDrawer extends AuroFloater {
   updated(changedProperties) {
     super.updated(changedProperties);
 
-    [...this.children].forEach(slot => {
+    [...this.children].forEach((slot) => {
       if (slot !== this.drawerBib) {
-        this.drawerBib.append(slot)
+        this.drawerBib.append(slot);
       }
     });
 

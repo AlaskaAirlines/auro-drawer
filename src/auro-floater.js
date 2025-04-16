@@ -23,13 +23,14 @@ export class AuroFloater extends LitElement {
      */
     this.behavior = behavior;
 
-    /** 
+    /**
      * @private
      */
     this.floater = undefined;
 
 
     const tagPrefix = this.floaterConfig.prefix.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`) + "-bib";
+
     /**
      * @private
      */
@@ -50,6 +51,7 @@ export class AuroFloater extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
+
       /**
        * Sets state of drawer to open.
        * @default false
@@ -59,6 +61,7 @@ export class AuroFloater extends LitElement {
         type: Boolean,
         reflect: true
       },
+
       /**
        * The element to focus when the drawer is closed.
        */

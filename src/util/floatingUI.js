@@ -4,6 +4,14 @@ import { autoUpdate, computePosition, offset, autoPlacement, flip } from '@float
 
 
 const MAX_CONFIGURATION_COUNT = 10;
+const TRIGGER_HANDLING_EVENTS = [
+  'keydown',
+  'click',
+  'mouseenter',
+  'mouseleave',
+  'focus',
+  'blur',
+];
 
 export default class AuroFloatingUI {
   constructor(element, behavior) {
@@ -536,34 +544,29 @@ export default class AuroFloatingUI {
 
     this.handleEvent = this.handleEvent.bind(this);
     if (this.element.trigger) {
-      this.element.trigger.addEventListener('keydown', this.handleEvent);
-      this.element.trigger.addEventListener('click', this.handleEvent);
-      this.element.trigger.addEventListener('mouseenter', this.handleEvent);
-      this.element.trigger.addEventListener('mouseleave', this.handleEvent);
-      this.element.trigger.addEventListener('focus', this.handleEvent);
-      this.element.trigger.addEventListener('blur', this.handleEvent);
+      TRIGGER_HANDLING_EVENTS.forEach((event) => {
+        this.element.trigger.addEventListener(event, this.handleEvent);
+      });
     }
   }
 
   disconnect() {
     this.cleanupHideHandlers();
+    if (!this.element) {
+      return;
+    }
 
-    if (this.element) {
-      this.element.cleanup?.();
+    this.element.cleanup?.();
 
-      if (this.element.bib) {
-        this.element.shadowRoot.append(this.element.bib);
-      }
+    if (this.element.bib) {
+      this.element.shadowRoot.append(this.element.bib);
+    }
 
-      // Remove event & keyboard listeners
-      if (this.element?.trigger) {
-        this.element.trigger.removeEventListener('keydown', this.handleEvent);
-        this.element.trigger.removeEventListener('click', this.handleEvent);
-        this.element.trigger.removeEventListener('mouseenter', this.handleEvent);
-        this.element.trigger.removeEventListener('mouseleave', this.handleEvent);
-        this.element.trigger.removeEventListener('focus', this.handleEvent);
-        this.element.trigger.removeEventListener('blur', this.handleEvent);
-      }
+    // Remove event & keyboard listeners
+    if (this.element?.trigger) {
+      TRIGGER_HANDLING_EVENTS.forEach((event) => {
+        this.element.trigger.removeEventListener(event, this.handleEvent);
+      });
     }
   }
 }

@@ -1,6 +1,7 @@
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables";
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/alaska/SCSSVariables--alaska";
 
 :host {
-  --ds-auro-drawer-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
-  --ds-auro-drawer-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+  --ds-auro-drawer-container-color: var(--ds-basic-color-surface-default, #{$ds-basic-color-surface-default});
+  --ds-auro-drawer-text-color: var(--ds-basic-color-texticon-default, #{$ds-basic-color-texticon-default});
 }

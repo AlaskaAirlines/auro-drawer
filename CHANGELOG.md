@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [4.1.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.4...v4.1.0) (2025-04-28)
+
+
+### Features
+
+* update to use new color theme tokens [#62](https://github.com/AlaskaAirlines/auro-drawer/issues/62) ([695c9eb](https://github.com/AlaskaAirlines/auro-drawer/commit/695c9eb6cc24eaaf8bcb5edadc15dc52a92389de))
+
 ## [4.0.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.3...v4.0.4) (2025-04-16)
 
 

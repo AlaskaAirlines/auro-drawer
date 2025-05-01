@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.1.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.0...v4.1.1) (2025-05-01)
+
+
+### Bug Fixes
+
+* update SCSS token formatting ([0b89f4a](https://github.com/AlaskaAirlines/auro-drawer/commit/0b89f4a7e2eccd9e2204d7c668b12474c2755054))
+
 # [4.1.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.0.4...v4.1.0) (2025-04-28)
 
 

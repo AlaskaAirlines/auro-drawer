@@ -7,9 +7,9 @@
 :host {
   display: contents;
 
-  --insetPaddingXl: var(--ds-size-400, $ds-size-400);
-  --insetPaddingXxl: var(--ds-size-600, $ds-size-600);
-  --insetPaddingXxxl: var(--ds-size-800, $ds-size-800);
+  --insetPaddingXl: var(--ds-size-400, #{$ds-size-400});
+  --insetPaddingXxl: var(--ds-size-600, #{$ds-size-600});
+  --insetPaddingXxxl: var(--ds-size-800, #{$ds-size-800});
 
   .wrapper {
     position: absolute;

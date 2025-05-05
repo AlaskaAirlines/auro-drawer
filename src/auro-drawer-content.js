@@ -16,6 +16,8 @@ import iconVersion from './iconVersion.js';
 
 
 const INTERACTIVE_ELEMENT_TAG = [
+  'auro-checkbox',
+  'auro-radio',
   'auro-dropdown',
   'auro-button',
   'auro-combobox',

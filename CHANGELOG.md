@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.1.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.1...v4.1.2) (2025-05-06)
+
+
+### Bug Fixes
+
+* allow checkbox and radio as focusable elements ([a651d70](https://github.com/AlaskaAirlines/auro-drawer/commit/a651d709a9e65bc1ed7590894ac342851aaa683f))
+
 ## [4.1.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.0...v4.1.1) (2025-05-01)
 
 

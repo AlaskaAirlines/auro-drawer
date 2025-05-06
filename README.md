@@ -89,8 +89,48 @@ import "@aurodesignsystem/auro-drawer";
     <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
     <ul>
       <li>Caerphilly croque monsieur fondue</li>
+      <auro-radio-group>
+        <span slot="legend">Accordion Test</span>
+        <auro-radio
+          id="basicGroupRadio1"
+          label="Credit or debit card"
+          name="creditordebit"
+          value="credit"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio2"
+          label="Apple Pay"
+          name="applePay"
+          value="applePay"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio3"
+          label="Alaska Airlines Commercial Account"
+          name="alaskaCommercial"
+          value="alaskaCommercial"
+        ></auro-radio>
+      </auro-radio-group>
+      <auro-input placeholder="John Doe" bordered required>
+        <span slot="label">Full name</span>
+        <span slot="helptext">Please enter your full name.</span>
+      </auro-input>  
       <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
       <li>Cheddar cheese and biscuits chalk and cheese</li>
+      <auro-checkbox-group>
+        <span slot="legend">Form label goes here</span>
+        <auro-checkbox value="value1" name="basic" id="checkbox-basic1"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value2" name="basic" id="checkbox-basic2" checked
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value3" name="basic" id="checkbox-basic3"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value4" name="basic" id="checkbox-basic4"
+          >Checkbox option</auro-checkbox
+        >
+      </auro-checkbox-group>
       <li>Camembert de normandie stinking bishop bavarian bergkase</li>
     </ul>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
@@ -127,7 +167,7 @@ In cases where the project is not able to process JS assets, there are pre-proce
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@/dist/auro-classic/CSSCustomProperties.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@/dist/bundled/essentials.css" />
-<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@4.1.1/dist/auro-drawer__bundled.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-drawer@4.1.2/dist/auro-drawer__bundled.js" type="module"></script>
 ```
 
 <!-- AURO-GENERATED-CONTENT:END -->
@@ -161,8 +201,48 @@ The `auro-drawer` component should be used in situations where users may:
     <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
     <ul>
       <li>Caerphilly croque monsieur fondue</li>
+      <auro-radio-group>
+        <span slot="legend">Accordion Test</span>
+        <auro-radio
+          id="basicGroupRadio1"
+          label="Credit or debit card"
+          name="creditordebit"
+          value="credit"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio2"
+          label="Apple Pay"
+          name="applePay"
+          value="applePay"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio3"
+          label="Alaska Airlines Commercial Account"
+          name="alaskaCommercial"
+          value="alaskaCommercial"
+        ></auro-radio>
+      </auro-radio-group>
+      <auro-input placeholder="John Doe" bordered required>
+        <span slot="label">Full name</span>
+        <span slot="helptext">Please enter your full name.</span>
+      </auro-input>  
       <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
       <li>Cheddar cheese and biscuits chalk and cheese</li>
+      <auro-checkbox-group>
+        <span slot="legend">Form label goes here</span>
+        <auro-checkbox value="value1" name="basic" id="checkbox-basic1"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value2" name="basic" id="checkbox-basic2" checked
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value3" name="basic" id="checkbox-basic3"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value4" name="basic" id="checkbox-basic4"
+          >Checkbox option</auro-checkbox
+        >
+      </auro-checkbox-group>
       <li>Camembert de normandie stinking bishop bavarian bergkase</li>
     </ul>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>

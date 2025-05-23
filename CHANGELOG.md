@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.1.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.2...v4.1.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* update focus trap to always have a relevant list of focusable elements ([eee2a4f](https://github.com/AlaskaAirlines/auro-drawer/commit/eee2a4f5a10792b4acc88f461c25da6f0c076f91))
+
 ## [4.1.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.1...v4.1.2) (2025-05-06)
 
 

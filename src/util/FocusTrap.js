@@ -71,9 +71,9 @@ export class FocusTrap {
   // If the container somehow gets focus, move the focus back into the container, accounting for the tab direction
   _onContainerFocus = () => {
     if (this.tabDirection === 'backward') {
-      this._focusLastElement();
+      this.focusLastElement();
     } else {
-      this._focusFirstElement();
+      this.focusFirstElement();
     }
   };
 
@@ -85,13 +85,13 @@ export class FocusTrap {
 
   _onBookendFocusStart = () => {
     if (this.tabDirection === 'backward') {
-      this._focusLastElement();
+      this.focusLastElement();
     }
   };
 
   _onBookendFocusEnd = () => {
     if (this.tabDirection === 'forward') {
-      this._focusFirstElement();
+      this.focusFirstElement();
     }
   };
 
@@ -108,12 +108,12 @@ export class FocusTrap {
     return results;
   }
 
-  _focusFirstElement() {
+  focusFirstElement() {
     const focusables = this._getFocusableElements();
     if (focusables.length) focusables[0].focus();
   }
 
-  _focusLastElement() {
+  focusLastElement() {
     const focusables = this._getFocusableElements();
     if (focusables.length) focusables[focusables.length - 1].focus();
   }

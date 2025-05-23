@@ -70,7 +70,8 @@ export class AuroDrawerContent extends LitElement {
 
   handleWrapperTransitionEnd() {
     if (!this.visible) return;
-    this.shadowRoot.querySelector('.wrapper').focus();
+    if (!this.focusTrap) return;
+    this.focusTrap.focusFirstElement();
   }
 
   updated(changedProperties) {
@@ -104,7 +105,7 @@ export class AuroDrawerContent extends LitElement {
 
   render() {
     return html`
-    <div class="wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
+    <div class="wrapper" tabindex="-1" @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
         <div class="header" part="drawer-header">
             <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.1.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.3...v4.1.4) (2025-05-23)
+
+
+### Bug Fixes
+
+* use robust method for focusing on open instead of relying on browser for focus functionality ([9783bbc](https://github.com/AlaskaAirlines/auro-drawer/commit/9783bbc07594db3cf27841e521e6849dd4c40b30))
+
 ## [4.1.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.2...v4.1.3) (2025-05-23)
 
 

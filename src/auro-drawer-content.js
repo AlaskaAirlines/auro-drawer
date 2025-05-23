@@ -13,20 +13,7 @@ import buttonVersion from './buttonVersion.js';
 
 import { AuroIcon } from '@aurodesignsystem/auro-icon/src/auro-icon.js';
 import iconVersion from './iconVersion.js';
-
-
-const INTERACTIVE_ELEMENT_TAG = [
-  'auro-checkbox',
-  'auro-radio',
-  'auro-dropdown',
-  'auro-button',
-  'auro-combobox',
-  'auro-input',
-  'auro-counter',
-  'auro-menu',
-  'auro-select',
-  'auro-datepicker',
-];
+import { FocusTrap } from "./util/FocusTrap.js";
 
 export class AuroDrawerContent extends LitElement {
   constructor() {
@@ -35,29 +22,17 @@ export class AuroDrawerContent extends LitElement {
     /*
     * @private
     */
-   this.buttonTag = AuroDependencyVersioning.prototype.generateTag('auro-button', buttonVersion, AuroButton);
+    this.buttonTag = AuroDependencyVersioning.prototype.generateTag('auro-button', buttonVersion, AuroButton);
 
-   /**
-    * @private
-    */
-   this.iconTag = AuroDependencyVersioning.prototype.generateTag('auro-icon', iconVersion, AuroIcon);
+    /**
+     * @private
+     */
+    this.iconTag = AuroDependencyVersioning.prototype.generateTag('auro-icon', iconVersion, AuroIcon);
 
-   /**
-    * @private
-    */
-   this.prevActiveElement = undefined;
-
-   /**
-    * @private
-    */
-   this.focusables = undefined;
-
-   /**
-    * @private
-    */
-   this.focusIndex = 0;
-
-   this.focus = this.focus.bind(this);
+    /**
+     * @private
+     */
+    this.prevActiveElement = undefined;
   }
 
   static get properties() {
@@ -80,6 +55,7 @@ export class AuroDrawerContent extends LitElement {
       }
     };
   }
+
   static get styles() {
     return [
       colorCss,
@@ -92,54 +68,17 @@ export class AuroDrawerContent extends LitElement {
     this.dispatchEvent(new CustomEvent("close-click"));
   }
 
-  handleKeydown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      if (this.focusables.length >= 2) {
-        if (event.shiftKey) {
-          this.focusIndex--;
-          if (this.focusIndex < 0) {
-            this.focusIndex += this.focusables.length;
-          }
-        } else {
-          this.focusIndex++;
-          if (this.focusIndex >= this.focusables.length) {
-            this.focusIndex %= this.focusables.length;
-          }
-        }
-      }
-      this.focusables[this.focusIndex].focus();
-    }
-  }
-
-  focus() {
-    let query = "";
-    INTERACTIVE_ELEMENT_TAG.forEach(tag => query += `${tag}, [${tag}], `);
-    this.focusables = [...this.querySelectorAll(query + 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')];
-
-    const closeButton = this.shadowRoot.getElementById('closeButton');
-    if (closeButton) {
-      this.focusables.push(closeButton);
-    }
-
-    this.focusIndex = 0;
-
-    this.shadowRoot.querySelector('.wrapper').focus();
-  }
-
-  handleWrapperFocus() {
-    this.focusables[this.focusIndex].focus();
-  }
-
   handleWrapperTransitionEnd() {
-    if (this.visible) {
-      this.focus();
-    }
+    if (!this.visible) return;
+    this.shadowRoot.querySelector('.wrapper').focus();
   }
 
   updated(changedProperties) {
     if (changedProperties.has('visible')) {
       if (this.visible) {
+        if (!this.focusTrap) {
+          this.focusTrap = new FocusTrap(this);
+        }
         this.prevActiveElement = document.activeElement;
         if (this.prevActiveElement === document.body && this.triggerElement) {
           this.prevActiveElement = this.triggerElement;
@@ -150,13 +89,22 @@ export class AuroDrawerContent extends LitElement {
           this.prevActiveElement.focus();
           this.prevActiveElement = undefined;
         }
+
+        if (this.focusTrap) {
+          this.focusTrap.disconnect();
+          this.focusTrap = null;
+        }
       }
     }
   }
 
+  firstUpdated() {
+    super.firstUpdated();
+  }
+
   render() {
     return html`
-    <div class="wrapper" tabindex="-1" @keydown=${this.handleKeydown} @focus=${this.handleWrapperFocus} @transitionend=${this.handleWrapperTransitionEnd}>
+    <div class="wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
         <div class="header" part="drawer-header">
             <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
@@ -164,7 +112,7 @@ export class AuroDrawerContent extends LitElement {
             </h1>
         </div>
       `}
-      ${this.modal ? '' : 
+      ${this.modal ? '' :
         html`
         <${this.buttonTag} variant="flat" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
           <${this.iconTag} customColor category="interface" name="x-lg"></${this.iconTag}>

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.1.5](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.4...v4.1.5) (2025-05-29)
+
+
+### Bug Fixes
+
+* update focus trap logic to improve focus management by accounting for web components / shadow dom and slot structure ([fdac5bb](https://github.com/AlaskaAirlines/auro-drawer/commit/fdac5bb51bd91dc4375e69a52c5c5f20571369f2))
+
 ## [4.1.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.3...v4.1.4) (2025-05-23)
 
 

@@ -182,6 +182,8 @@ export class AuroDrawer extends AuroFloater {
     if (this.triggerElement) {
       this.triggerElement.setAttribute('aria-haspopup', 'dialog');
       this.triggerElement.setAttribute('aria-controls', this.bib.getAttribute('id'));
+
+      this.bib.setAttribute('aria-label', this.triggerElement.textContent);
     }
     this.bib.setAttribute('role', 'dialog');
     if (this.modal) {
@@ -224,6 +226,10 @@ export class AuroDrawer extends AuroFloater {
 
     if (changedProperties.has('isPopoverVisible')) {
       this.drawerBib.visible = this.isPopoverVisible;
+    }
+
+    if (changedProperties.has('triggerElement')) {
+      this.setupAria();
     }
   }
 }

@@ -6,6 +6,7 @@ import { initNestedExample } from '../apiExamples/nested';
 import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
 import { initSizeOptionsExample } from "../apiExamples/sizeOptions";
 import { initPlacementExample } from "../apiExamples/placement.js";
+import { initCustomizedExample } from "../apiExamples/customizing.js";
 import '../index.js';
 
 export function initExamples(initCount) {
@@ -20,6 +21,7 @@ export function initExamples(initCount) {
     initSizeOptionsExample();
     initPlacementExample();
     initFullscreenBreakpointExample();
+    initCustomizedExample();
   } catch (err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called

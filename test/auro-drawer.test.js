@@ -5,13 +5,22 @@ import '../index.js';
 describe('auro-drawer', () => {
   it('auro-drawer is accessible', async () => {
     const el = await fixture(html`
-      <auro-drawer open="true">
-        <span slot="header">Blocking drawer</span>
-        <span slot="content">Hello World!</span>
-        <span slot="footer"><button>Click</button></span>
-      </auro-drawer>
+      <div>
+        <auro-drawer open="true">
+          <span slot="header">Blocking drawer</span>
+          <span slot="content">Hello World!</span>
+          <span slot="footer"><button>Click</button></span>
+        </auro-drawer>
+
+        <button id="drawerTrigger"> Open Drawer</button>
+      </div>
     `);
 
+    const drawer = el.querySelector('auro-drawer');
+    const button = el.querySelector('#drawerTrigger');
+    drawer.triggerElement = button;
+
+    await elementUpdated(drawer);
     await expect(el).to.be.accessible();
   });
 

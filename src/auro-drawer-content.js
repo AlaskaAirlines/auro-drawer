@@ -115,8 +115,8 @@ export class AuroDrawerContent extends LitElement {
       `}
       ${this.modal ? '' :
         html`
-        <${this.buttonTag} variant="flat" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
-          <${this.iconTag} customColor category="interface" name="x-lg"></${this.iconTag}>
+        <${this.buttonTag} variant="ghost" shape="circle" size="sm" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
+          <${this.iconTag} ?customColor="${!this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
           <span class="util_displayHiddenVisually">Close</span>
         </${this.buttonTag}>
         `

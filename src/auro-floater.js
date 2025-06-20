@@ -6,7 +6,7 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
-import FloatingUI from './util/floatingUI.js';
+import AuroFloatingUI from '@aurodesignsystem/auro-library/scripts/runtime/floatingUI.mjs';
 import { AuroFloaterBib } from "./auro-floater-bib.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
@@ -72,7 +72,7 @@ export class AuroFloater extends LitElement {
   }
 
   firstUpdated() {
-    this.floater = new FloatingUI(this, this.behavior);
+    this.floater = new AuroFloatingUI(this, this.behavior);
 
     this.floater.configure(this, this.floaterConfig.prefix);
   }
@@ -97,29 +97,13 @@ export class AuroFloater extends LitElement {
     }
   }
 
-  /**
-   * Handles the default slot change event and updates the content.
-   *
-   * This method retrieves all nodes assigned to the default slot of the event target and appends them
-   * to the `bibContent` element. If a callback function `onSlotChange` is defined, it is invoked to
-   * notify about the slot change.
-   *
-   * @private
-   * @method handleDefaultSlot
-   * @param {Event} event - The event object representing the slot change.
-   * @fires Function#onSlotChange - Optional callback invoked when the slot content changes.
-   */
-  handleDefaultSlot(event) {
-    const bib = this.shadowRoot.querySelector('#bib') || this.bib;
-    [...event.target.assignedNodes()].forEach((node) => bib.append(node));
-  }
-
   render() {
     return html`
-      <slot @slotchange="${this.handleDefaultSlot}"></slot>
       <${this.floaterBibTag} id="bib"
       ?data-show=${this.isPopoverVisible}
-      ?onBackdrop="${this.floaterConfig.backdrop}"></${this.floaterBibTag}>
+      ?onBackdrop="${this.floaterConfig.backdrop}">
+        <slot></slot>
+      </${this.floaterBibTag}>
     `;
   }
 }

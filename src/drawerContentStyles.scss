@@ -81,10 +81,6 @@
   }
 
   overflow-x: hidden;
-
-  ::slotted(*) {
-    min-height: 100%;
-  }
 }
 
 :host([placement="top"]), :host([placement="bottom"]) {
@@ -92,10 +88,6 @@
 
   .wrapper{
     max-height: 90%;
-  }
-
-  ::slotted(*) {
-    min-width: 100%;
   }
 }
 

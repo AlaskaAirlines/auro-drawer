@@ -22,8 +22,15 @@ const CONFIG = {
  * @slot - Default slot for the body content in drawer.
  * @slot header - Text to display as the header of the modal.
  * @slot footer - Used for action options, e.g. buttons.
+ * @slot close - Used to replace the close button.
  *
  * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
+ * 
+ * @csspart drawer-wrapper - to style the content wrapper.
+ * @csspart drawer-header - to style the header.
+ * @csspart drawer-content - to style the container of the drawer content.
+ * @csspart drawer-footer - to style the footer.
+ * @csspart close-button - to style the close button.
  */
 export class AuroDrawer extends AuroFloater {
 

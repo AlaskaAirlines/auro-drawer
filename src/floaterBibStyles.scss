@@ -37,6 +37,7 @@
 
 :host([data-show]) {
   display: block;
+  color: var(--ds-basic-color-texticon-default, $ds-basic-color-texticon-default);;
   opacity: 1;
   
   @starting-style {

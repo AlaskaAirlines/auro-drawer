@@ -1,7 +1,23 @@
+
+<style>
+  #customizedDrawer auro-drawer-content::part(drawer-header) {
+    display: none;
+  }
+  #customizedDrawer auro-drawer-content::part(drawer-content) {
+    width: 90%;
+  }
+  #customizedDrawer auro-drawer-content::part(close-button) {
+    transform: scale(2);
+  }
+  #customizedDrawer auro-drawer-content::part(drawer-wrapper) {
+    background: linear-gradient(180deg, #cdcdcd 50%, slategrey 100%);
+    width: 50%;
+  }
+</style>
 <div>
-  <auro-button id="openBasic">Open default drawer</auro-button>
+  <auro-button id="openCustomized">Open customized drawer</auro-button>
 </div>
-<auro-drawer id="defaultDrawer">
+<auro-drawer id="customizedDrawer">
   <span slot="header">Default Drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
@@ -66,7 +82,7 @@
       <p>Volutpat blandit aliquam etiam erat velit scelerisque. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Lectus sit amet est placerat in egestas erat imperdiet sed. Platea dictumst quisque sagittis purus sit. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla pharetra diam sit amet nisl suscipit adipiscing. Id aliquet lectus proin nibh nisl condimentum id venenatis. Phasellus faucibus scelerisque eleifend donec pretium vulputate. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Duis at consectetur lorem donec massa sapien faucibus et molestie.</p>
   </div>
   <div slot="footer">
-    <auro-button secondary id="closeBasic">Close</auro-button>
+    <auro-button secondary id="closeCustomized">Close</auro-button>
   </div>
 </auro-drawer>
 

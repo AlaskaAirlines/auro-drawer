@@ -152,3 +152,28 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
+
+
+
+### Customizing Styles
+
+The drawer's size and some styles can be styled using CSS `part`.
+
+- `auro-drawer-content::part(drawer-wrapper)` to style the container of the drawer content.
+- `auro-drawer-content::part(close-button)` to style the close button.
+- `auro-drawer-content::part(drawer-header)` to style the header.
+- `auro-drawer-content::part(drawer-content)` to style the content wrapper.
+- `auro-drawer-content::part(drawer-footer)` to style the footer.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizing.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/customizing.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>

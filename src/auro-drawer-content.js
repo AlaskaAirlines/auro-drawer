@@ -105,9 +105,9 @@ export class AuroDrawerContent extends LitElement {
 
   render() {
     return html`
-    <div class="wrapper" tabindex="-1" @transitionend=${this.handleWrapperTransitionEnd}>
+    <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
-        <div class="header" part="drawer-header">
+        <div part="drawer-header" class="header">
             <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
               <slot name="header"></slot>
             </h1>
@@ -115,18 +115,25 @@ export class AuroDrawerContent extends LitElement {
       `}
       ${this.modal ? '' :
         html`
-        <${this.buttonTag} variant="ghost" shape="circle" size="sm" ?onDark=${this.onDark} id="closeButton" @click="${this.handleCloseButtonClick}" part="close-button">
-          <${this.iconTag} ?customColor="${!this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
+        <${this.buttonTag} id="closeButton"
+         part="close-button"
+         variant="ghost"
+         shape="circle"
+         size="sm"
+         ?onDark=${this.onDark} 
+         @click="${this.handleCloseButtonClick}"
+         aria-label="Close">
+          <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
           <span class="util_displayHiddenVisually">Close</span>
         </${this.buttonTag}>
         `
       }
-      <div class="content" part="drawer-content">
+      <div part="drawer-content" class="content">
         <slot></slot>
         <slot name="content"></slot>
       </div>
       ${this.unformatted ? '' : html`
-        <div class="footer" id="footerWrapper" part="drawer-footer">
+        <div part="drawer-footer" class="footer" id="footerWrapper">
           <slot name="footer" id="footer"></slot>
         </div>
       `}

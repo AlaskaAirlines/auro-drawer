@@ -159,11 +159,13 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 
 The drawer's size and some styles can be styled using CSS `part`.
 
-- `auro-drawer-content::part(drawer-wrapper)` to style the container of the drawer content.
-- `auro-drawer-content::part(close-button)` to style the close button.
-- `auro-drawer-content::part(drawer-header)` to style the header.
-- `auro-drawer-content::part(drawer-content)` to style the content wrapper.
-- `auro-drawer-content::part(drawer-footer)` to style the footer.
+- `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content.
+- `auro-drawer ::part(drawer-header)` to style the header.
+- `auro-drawer ::part(drawer-content)` to style the content wrapper.
+- `auro-drawer ::part(drawer-footer)` to style the footer.
+- `auro-drawer ::part(close-button)` to style the close button.
+
+`close` slot can be used to replace the close button to a different element.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizing.html) -->

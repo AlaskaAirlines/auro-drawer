@@ -3,26 +3,6 @@ import { setViewport } from '@web/test-runner-commands';
 import '../index.js';
 
 describe('auro-drawer', () => {
-  it('auro-drawer is accessible', async () => {
-    const el = await fixture(html`
-      <div>
-        <auro-drawer open="true">
-          <span slot="header">Blocking drawer</span>
-          <span slot="content">Hello World!</span>
-          <span slot="footer"><button>Click</button></span>
-        </auro-drawer>
-
-        <button id="drawerTrigger"> Open Drawer</button>
-      </div>
-    `);
-
-    const drawer = el.querySelector('auro-drawer');
-    const button = el.querySelector('#drawerTrigger');
-    drawer.triggerElement = button;
-
-    await elementUpdated(drawer);
-    await expect(el).to.be.accessible();
-  });
 
   it('auro-drawer gets open by triggerElement', async () => {
     const el = await fixture(html`
@@ -197,6 +177,27 @@ describe('auro-drawer', () => {
     const contentWrapper = el.drawerBib.shadowRoot.querySelector('.wrapper');
     await expect(contentWrapper.offsetWidth).to.be.equal(visualViewport.width);
     await expect(contentWrapper.offsetHeight).to.be.equal(visualViewport.height);
+  });
+
+  it('auro-drawer is accessible', async () => {
+    const el = await fixture(html`
+      <div>
+        <auro-drawer open="true">
+          <span slot="header">Blocking drawer</span>
+          <span slot="content">Hello World!</span>
+          <span slot="footer"><button>Click</button></span>
+        </auro-drawer>
+
+        <button id="drawerTrigger"> Open Drawer</button>
+      </div>
+    `);
+
+    const drawer = el.querySelector('auro-drawer');
+    const button = el.querySelector('#drawerTrigger');
+    drawer.triggerElement = button;
+
+    await elementUpdated(drawer);
+    await expect(el).to.be.accessible();
   });
 });
 

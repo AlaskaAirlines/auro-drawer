@@ -25,5 +25,16 @@
 | Name     | Description                                  |
 |----------|----------------------------------------------|
 |          | Default slot for the body content in drawer. |
+| `close`  | Used to replace the close button.            |
 | `footer` | Used for action options, e.g. buttons.       |
 | `header` | Text to display as the header of the modal.  |
+
+## CSS Shadow Parts
+
+| Part             | Description                                   |
+|------------------|-----------------------------------------------|
+| `close-button`   | to style the close button.                    |
+| `drawer-content` | to style the container of the drawer content. |
+| `drawer-footer`  | to style the footer.                          |
+| `drawer-header`  | to style the header.                          |
+| `drawer-wrapper` | to style the content wrapper.                 |

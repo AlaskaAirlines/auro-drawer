@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+# [4.2.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.5...v4.2.0) (2025-06-24)
+
+
+### Features
+
+* add `close` slot ([a9f3d7e](https://github.com/AlaskaAirlines/auro-drawer/commit/a9f3d7e350e9b1f19c32ba0a366de86bcb60d43a))
+* add cssparts and example ([a262cb9](https://github.com/AlaskaAirlines/auro-drawer/commit/a262cb9b176cb9813f277366c3b28f48f0ec6957))
+
 ## [4.1.5](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.4...v4.1.5) (2025-05-29)
 
 

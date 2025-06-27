@@ -159,6 +159,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 
 The drawer's size and some styles can be styled using CSS `part`.
 
+- `auro-drawer::part(backdrop)` to style the backdrop behind the the content wrapper.
 - `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content.
 - `auro-drawer ::part(drawer-header)` to style the header.
 - `auro-drawer ::part(drawer-content)` to style the content wrapper.

@@ -34,7 +34,7 @@ export class AuroFloaterBib extends LitElement {
   render() {
     return html`
       <div class="container">
-        <div class="backdrop"></div>
+        <div class="backdrop" part="backdrop"></div>
         <slot></slot>
       </div>
     `;

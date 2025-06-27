@@ -10,8 +10,11 @@
     transform: scale(2);
   }
   #customizedDrawer ::part(drawer-wrapper) {
-    background: linear-gradient(180deg, #cdcdcd 50%, slategrey 100%);
+    background: linear-gradient(180deg, var(  --ds-advanced-color-accents-accent1) 50%, var(--ds-advanced-color-accents-accent1-muted) 100%);
     width: 50%;
+  }
+  #customizedDrawer::part(drawer-backdrop) {
+    background: var(--ds-advanced-color-button-primary-background-inverse-disabled);
   }
 </style>
 <div>

@@ -25,7 +25,8 @@ const CONFIG = {
  * @slot close - Used to replace the close button.
  *
  * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
- * 
+ *
+ * @csspart drawer-backdrop - to style the backdrop behind the the content wrapper.
  * @csspart drawer-wrapper - to style the content wrapper.
  * @csspart drawer-header - to style the header.
  * @csspart drawer-content - to style the container of the drawer content.
@@ -178,6 +179,8 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib = document.createElement('auro-drawer-content');
     this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
     this.append(this.drawerBib);
+
+    this.bib.setAttribute('exportparts', 'backdrop:drawer-backdrop');
 
     this.setupAria();
   }

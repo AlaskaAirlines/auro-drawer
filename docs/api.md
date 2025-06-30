@@ -31,10 +31,11 @@
 
 ## CSS Shadow Parts
 
-| Part             | Description                                   |
-|------------------|-----------------------------------------------|
-| `close-button`   | to style the close button.                    |
-| `drawer-content` | to style the container of the drawer content. |
-| `drawer-footer`  | to style the footer.                          |
-| `drawer-header`  | to style the header.                          |
-| `drawer-wrapper` | to style the content wrapper.                 |
+| Part              | Description                                      |
+|-------------------|--------------------------------------------------|
+| `close-button`    | to style the close button.                       |
+| `drawer-backdrop` | to style the backdrop behind the the content wrapper. |
+| `drawer-content`  | to style the container of the drawer content.    |
+| `drawer-footer`   | to style the footer.                             |
+| `drawer-header`   | to style the header.                             |
+| `drawer-wrapper`  | to style the content wrapper.                    |

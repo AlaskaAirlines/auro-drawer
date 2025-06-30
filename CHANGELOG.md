@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [4.3.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.2.0...v4.3.0) (2025-06-30)
+
+
+### Features
+
+* add `backdrop` csspart ([065e9cf](https://github.com/AlaskaAirlines/auro-drawer/commit/065e9cf0be35c5c04b49404bfe69463ebb10c813))
+
 # [4.2.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.1.5...v4.2.0) (2025-06-24)
 
 

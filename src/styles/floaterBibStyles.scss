@@ -1,12 +1,11 @@
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/alaska/SCSSVariables--alaska";
-
+@use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
+@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 
 /* stylelint-disable scss/selector-nest-combinators */
 
 :host {
   position: absolute;
-  z-index: var(--ds-depth-overlay, $ds-depth-overlay);
+  z-index: var(--ds-depth-overlay, vac.$ds-depth-overlay);
   display: none;
   flex-direction: column;
   opacity: 0;
@@ -22,8 +21,8 @@
 }
 
 .container ::slotted(:only-child){
-  z-index: var(--ds-depth-modal, $ds-depth-modal);
-  box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
+  z-index: var(--ds-depth-modal, vac.$ds-depth-modal);
+  box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
 }
 
 :host([onbackdrop]) {

@@ -3,9 +3,9 @@ import { html } from 'lit/static-html.js';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-import colorCss from "./floaterBibColor-css.js";
-import styleCss from "./floaterBibStyles-css.js";
-import tokensCss from "./floaterBibTokens-css.js";
+import colorCss from "./styles/floaterBibColor-css.js";
+import styleCss from "./styles/floaterBibStyles-css.js";
+import tokensCss from "./styles/floaterBibTokens-css.js";
 
 export class AuroFloaterBib extends LitElement {
   constructor() {

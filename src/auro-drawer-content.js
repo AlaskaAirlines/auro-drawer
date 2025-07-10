@@ -2,9 +2,9 @@
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
-import colorCss from "./drawerContentColor-css.js";
-import styleCss from "./drawerContentStyles-css.js";
-import tokensCss from "./drawerContentTokens-css.js";
+import colorCss from "./styles/drawerContentColor-css.js";
+import styleCss from "./styles/drawerContentStyles-css.js";
+import tokensCss from "./styles/drawerContentTokens-css.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 
@@ -108,7 +108,7 @@ export class AuroDrawerContent extends LitElement {
     <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
         <div part="drawer-header" class="header">
-            <h1 class="heading heading--700 util_stackMarginNone--top" id="drawer-header">
+            <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header">
               <slot name="header"></slot>
             </h1>
         </div>
@@ -131,7 +131,7 @@ export class AuroDrawerContent extends LitElement {
         </div>
         `
       }
-      <div part="drawer-content" class="content">
+      <div part="drawer-content" class="content body-default">
         <slot></slot>
         <slot name="content"></slot>
       </div>

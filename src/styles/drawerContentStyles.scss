@@ -1,15 +1,17 @@
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/alaska/SCSSVariables--alaska";
-@import "./../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints";
+@use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
+@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
+@use "@aurodesignsystem/webcorestylesheets/src/breakpoints" as breakpoints;
+
+@use '@aurodesignsystem/webcorestylesheets/dist/bundled/type/classes.alaska.min.css';
 
 /* stylelint-disable scss/selector-nest-combinators, selector-max-class, custom-property-pattern, selector-class-pattern, no-descending-specificity */
 
 :host {
   display: contents;
 
-  --insetPaddingXl: var(--ds-size-400, #{$ds-size-400});
-  --insetPaddingXxl: var(--ds-size-600, #{$ds-size-600});
-  --insetPaddingXxxl: var(--ds-size-800, #{$ds-size-800});
+  --insetPaddingXl: var(--ds-size-400, #{vac.$ds-size-400});
+  --insetPaddingXxl: var(--ds-size-600, #{vac.$ds-size-600});
+  --insetPaddingXxxl: var(--ds-size-800, #{vac.$ds-size-800});
 
   .wrapper {
     position: absolute;
@@ -17,7 +19,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    box-shadow: var(--ds-elevation-200, #{$ds-elevation-200});
+    box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
     transition: transform 0.3s ease-in-out, display 0.3s;
     transition-behavior: allow-discrete;
     will-change: transform;
@@ -27,7 +29,6 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    
   }
 
   .footer {
@@ -36,13 +37,12 @@
     justify-content: flex-end;
     margin-top: var(--insetPaddingXl);
   }
-
 }
 
 :host(:not([unformatted])) .wrapper{
   padding: var(--insetPaddingXl);
 
-  @include auro_grid-breakpoint--lg {
+  @include breakpoints.auro_grid-breakpoint--lg {
     padding: var(--insetPaddingXxxl);
   }
 }
@@ -51,26 +51,26 @@
   position: absolute;
   top: var(--insetPaddingXl);
   right: var(--insetPaddingXl);
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 
-  @include auro_grid-breakpoint--lg {
+  @include breakpoints.auro_grid-breakpoint--lg {
     top: var(--insetPaddingXxxl);
     right: var(--insetPaddingXxxl);
   }
 
   &:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
 
   .util_displayHiddenVisually{
-    position:absolute;
-    overflow:hidden;
-    width:1px;
-    height:1px;
-    padding:0;
-    border:0;
-    clip:rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
   }
 }
 
@@ -133,12 +133,12 @@
 
 :host([size="sm"][placement="left"]),
 :host([size="sm"][placement="right"]) {
-  @include auro_grid-breakpoint--md {
+  @include breakpoints.auro_grid-breakpoint--md {
     .wrapper {
       max-width: 40%;
     }
   }
-  @include auro_grid-breakpoint--lg {
+  @include breakpoints.auro_grid-breakpoint--lg {
     .drawer {
       max-width: 740px;
     }
@@ -147,10 +147,10 @@
 
 :host([size="md"][placement="left"]) .wrapper,
 :host([size="md"][placement="right"]) .wrapper {
-  @include auro_grid-breakpoint--md {
+  @include breakpoints.auro_grid-breakpoint--md {
     max-width: 70%;
   }
-  @include auro_grid-breakpoint--lg {
+  @include breakpoints.auro_grid-breakpoint--lg {
     max-width: 986px;
   }
 }

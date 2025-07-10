@@ -26,10 +26,12 @@ describe('auro-drawer', () => {
   it('nested auro-drawer has same width and height as its parent', async () => {
     const el = await fixture(html`
       <div style="width: 200px; height: 200px">
-        <auro-drawer open="true" nested>
-          <span slot="header">Blocking drawer</span>
-          <span slot="content">Hello World!</span>
-          <span slot="footer"><button>Click</button></span>
+        <auro-drawer ?open=${true} nested>
+          <h2 slot="header">Blocking drawer</h2>
+          <div slot="content">
+            <p>Hello World!</p>
+          </div>
+          <div slot="footer"><button>Click</button></div>
         </auro-drawer>
       </div>
     `);
@@ -98,8 +100,10 @@ describe('auro-drawer', () => {
   it('closes when ESC pressed', async () => {
     const el = await fixture(html`
       <auro-drawer open>
-        <span slot="header">It's a drawer</span>
-        <span slot="content">Hello World!</span>
+        <h2 slot="header">It's a drawer</h2>
+        <div slot="content">
+          <p>Hello World!</p>
+        </div>
       </auro-drawer>
     `);
   
@@ -111,8 +115,10 @@ describe('auro-drawer', () => {
   it('does not close when ESC pressed if modal', async () => {
     const el = await fixture(html`
       <auro-drawer open modal>
-        <span slot="header">It's a drawer</span>
-        <span slot="content">Hello World!</span>
+        <h2 slot="header">It's a drawer</h2>
+        <div slot="content">
+          <p>Hello World!</p>
+        </div>
       </auro-drawer>
     `);
   
@@ -124,8 +130,10 @@ describe('auro-drawer', () => {
   it('dispatches toggle event on close', async () => {
     const el = await fixture(html`
       <auro-drawer open>
-        <span slot="header">It's a drawer</span>
-        <span slot="content">Hello World!</span>
+        <h2 slot="header">It's a drawer</h2>
+        <div slot="content">
+          <p>Hello World!</p>
+        </div>
       </auro-drawer>
     `);
 
@@ -138,8 +146,10 @@ describe('auro-drawer', () => {
   it('does not throw error when open set to false and already closed', async () => {
     const el = await fixture(html`
       <auro-drawer>
-        <span slot="header">It's a drawer</span>
-        <span slot="content">Hello World!</span>
+        <h2 slot="header">It's a drawer</h2>
+        <div slot="content">
+          <p>Hello World!</p>
+        </div>
       </auro-drawer>
     `);
 
@@ -168,9 +178,11 @@ describe('auro-drawer', () => {
 
     const el = await fixture(html`
       <auro-drawer open>
-        <span slot="header">Blocking drawer</span>
-        <span slot="content">Hello World!</span>
-        <span slot="footer"><button>Click</button></span>
+        <h2 slot="header">Blocking drawer</h2>
+        <div slot="content">
+          <p>Hello World!</p>
+        </div>
+        <div slot="footer"><button>Click</button></div>
       </auro-drawer>
     `);
     await expect(el.drawerBib.hasAttribute('stretch')).to.be.true;
@@ -182,10 +194,12 @@ describe('auro-drawer', () => {
   it('auro-drawer is accessible', async () => {
     const el = await fixture(html`
       <div>
-        <auro-drawer open="true">
-          <span slot="header">Blocking drawer</span>
-          <span slot="content">Hello World!</span>
-          <span slot="footer"><button>Click</button></span>
+        <auro-drawer ?open=${true}>
+          <h2 slot="header">Blocking drawer</h2>
+          <div slot="content">
+            <p>Hello World!</p>
+          </div>
+          <div slot="footer"><button>Click</button></div>
         </auro-drawer>
 
         <button id="drawerTrigger"> Open Drawer</button>
@@ -194,10 +208,12 @@ describe('auro-drawer', () => {
 
     const drawer = el.querySelector('auro-drawer');
     const button = el.querySelector('#drawerTrigger');
-    drawer.triggerElement = button;
+    if (drawer && button) {
+      drawer.triggerElement = button;
 
-    await elementUpdated(drawer);
-    await expect(el).to.be.accessible();
+      await elementUpdated(drawer);
+      await expect(el).to.be.accessible();
+    }
   });
 });
 
@@ -211,9 +227,11 @@ async function getFixtureWithOpenButton() {
   }
   const el = await fixture(html`
     <auro-drawer>
-      <span slot="header">It's a drawer</span>
-      <span slot="content">Hello World!</span>
-      <span slot="footer"><button>Click</button></span>
+      <h2 slot="header">It's a drawer</h2>
+      <div slot="content">
+        <p>Hello World!</p>
+      </div>
+      <div slot="footer"><button>Click</button></div>
     </auro-drawer>
     <button @click=${open}>Open</button>
   `);

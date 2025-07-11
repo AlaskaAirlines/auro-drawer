@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.3.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.1...v4.3.2) (2025-07-11)
+
+
+### Bug Fixes
+
+* not to take away focus before drawer opens completely [#81](https://github.com/AlaskaAirlines/auro-drawer/issues/81) ([8a795d9](https://github.com/AlaskaAirlines/auro-drawer/commit/8a795d9f9f8eb6ab403897186feae42075fad60c))
+
 ## [4.3.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.0...v4.3.1) (2025-07-11)
 
 

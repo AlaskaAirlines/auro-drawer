@@ -84,7 +84,6 @@ export class AuroDrawerContent extends LitElement {
         if (this.prevActiveElement === document.body && this.triggerElement) {
           this.prevActiveElement = this.triggerElement;
         }
-        this.prevActiveElement.blur();
       } else {
         if (this.prevActiveElement) {
           this.prevActiveElement.focus();

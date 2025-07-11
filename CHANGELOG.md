@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [4.3.1](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.0...v4.3.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* add themable type classes ([79135c3](https://github.com/AlaskaAirlines/auro-drawer/commit/79135c3e6393405b0cf8578d2a35c502b0eea4b5))
+* update docs head content ([41e1e09](https://github.com/AlaskaAirlines/auro-drawer/commit/41e1e097e16f6d86fb6a6d20eaee2b426f8d8260))
+
 # [4.3.0](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.2.0...v4.3.0) (2025-06-30)
 
 

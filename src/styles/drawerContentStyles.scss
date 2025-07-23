@@ -25,10 +25,11 @@
     will-change: transform;
   }
 
-  .header {
+  .header-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    gap: var(--ds-size-200, #{vac.$ds-size-200});
   }
 
   .footer {
@@ -36,6 +37,10 @@
     align-items: flex-start;
     justify-content: flex-end;
     margin-top: var(--insetPaddingXl);
+  }
+
+  .heading {
+    margin-block-start: 0;
   }
 }
 
@@ -48,16 +53,7 @@
 }
 
 #closeButton {
-  position: absolute;
-  top: var(--insetPaddingXl);
-  right: var(--insetPaddingXl);
-  padding: 0;
-  margin: 0;
-
-  @include breakpoints.auro_grid-breakpoint--lg {
-    top: var(--insetPaddingXxxl);
-    right: var(--insetPaddingXxxl);
-  }
+  margin-left: auto;
 
   &:hover {
     cursor: pointer;

@@ -106,30 +106,30 @@ export class AuroDrawerContent extends LitElement {
     return html`
     <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
       ${this.unformatted ? '' : html`
-        <div part="drawer-header" class="header">
-            <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header">
+        <div class="header-row">
+            <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header" part="drawer-header">
               <slot name="header"></slot>
             </h1>
+          ${this.modal ? '' :
+            html`
+            <div id="closeButton" @click="${this.handleCloseButtonClick}">
+              <slot name="close">
+                <${this.buttonTag} 
+                part="close-button"
+                variant="ghost"
+                shape="circle"
+                size="sm"
+                ?onDark=${this.onDark} 
+                aria-label="Close">
+                  <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
+                  <span class="util_displayHiddenVisually">Close</span>
+                </${this.buttonTag}>
+              </slot>
+            </div>
+            `
+          }
         </div>
       `}
-      ${this.modal ? '' :
-        html`
-        <div id="closeButton" @click="${this.handleCloseButtonClick}">
-          <slot name="close">
-            <${this.buttonTag} 
-            part="close-button"
-            variant="ghost"
-            shape="circle"
-            size="sm"
-            ?onDark=${this.onDark} 
-            aria-label="Close">
-              <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
-              <span class="util_displayHiddenVisually">Close</span>
-            </${this.buttonTag}>
-          </slot>
-        </div>
-        `
-      }
       <div part="drawer-content" class="content body-default">
         <slot></slot>
         <slot name="content"></slot>

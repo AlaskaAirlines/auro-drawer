@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.3.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.2...v4.3.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* close button not to overlap with headline area ([94960ab](https://github.com/AlaskaAirlines/auro-drawer/commit/94960ab7534dd877ee143e077fc0959e0059e3f5))
+
 ## [4.3.2](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.1...v4.3.2) (2025-07-11)
 
 

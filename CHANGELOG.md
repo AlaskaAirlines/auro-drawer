@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.3.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.3...v4.3.4) (2025-07-28)
+
+
+### Bug Fixes
+
+* update library to fix highlighting text bug ([e15e5eb](https://github.com/AlaskaAirlines/auro-drawer/commit/e15e5eb2b254090bbb4679fdaf6788c42b3f3dc5))
+
 ## [4.3.3](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.2...v4.3.3) (2025-07-24)
 
 

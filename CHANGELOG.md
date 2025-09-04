@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [4.3.5](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.4...v4.3.5) (2025-09-04)
+
+
+### Bug Fixes
+
+* update auro-library to latest version ([e59193d](https://github.com/AlaskaAirlines/auro-drawer/commit/e59193d373177035cbb8178e2508ca0ee80648b1))
+
+
+### Performance Improvements
+
+* update button for icon fix and all other auro dependencies [#88](https://github.com/AlaskaAirlines/auro-drawer/issues/88) ([840c1f9](https://github.com/AlaskaAirlines/auro-drawer/commit/840c1f9553aa9d69393ab9950418cdb5574281e6))
+
 ## [4.3.4](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.3...v4.3.4) (2025-07-28)
 
 

@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.3.6](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.5...v4.3.6) (2025-09-15)
+
+
+### Bug Fixes
+
+* upgrade auro-library to support vitest environment [#90](https://github.com/AlaskaAirlines/auro-drawer/issues/90) ([07b669c](https://github.com/AlaskaAirlines/auro-drawer/commit/07b669c9c233655828989552cc37d9d68c1f0d5d))
+
 ## [4.3.5](https://github.com/AlaskaAirlines/auro-drawer/compare/v4.3.4...v4.3.5) (2025-09-04)
 
 

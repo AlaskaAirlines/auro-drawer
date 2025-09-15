@@ -22,7 +22,7 @@
   "dependencies": {
     "@aurodesignsystem/auro-button": "^11.4.0",
     "@aurodesignsystem/auro-icon": "8.1.4",
-    "@aurodesignsystem/auro-library": "^5.5.2",
+    "@aurodesignsystem/auro-library": "^5.5.3",
     "@aurodesignsystem/design-tokens": "^8.4.2",
     "@aurodesignsystem/webcorestylesheets": "^10.0.4",
     "chalk": "^5.4.1",

@@ -1,3 +1,3 @@
-import { AuroDrawer } from './src/auro-drawer.js';
+import { AuroDrawer } from "./src/auro-drawer.js";
 
 AuroDrawer.register();

@@ -1,31 +1,31 @@
 // Do not add auro elements to this unless absolutely necessary
 const FOCUSABLE_SELECTORS = [
-  'a[href]',
-  'button:not([disabled])',
-  'textarea:not([disabled])',
-  'input:not([disabled])',
-  'select:not([disabled])',
+  "a[href]",
+  "button:not([disabled])",
+  "textarea:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
   '[role="tab"]:not([disabled])',
   '[role="link"]:not([disabled])',
   '[role="button"]:not([disabled])',
   '[tabindex]:not([tabindex="-1"])',
-  '[contenteditable]:not([contenteditable="false"])'
+  '[contenteditable]:not([contenteditable="false"])',
 ];
 
 const FOCUSABLE_COMPONENTS = [
-  'auro-checkbox',
-  'auro-radio',
-  'auro-dropdown',
-  'auro-button',
-  'auro-combobox',
-  'auro-input',
-  'auro-counter',
-  'auro-menu',
-  'auro-select',
-  'auro-datepicker',
-  'auro-hyperlink',
-  'auro-accordion',
-]
+  "auro-checkbox",
+  "auro-radio",
+  "auro-dropdown",
+  "auro-button",
+  "auro-combobox",
+  "auro-input",
+  "auro-counter",
+  "auro-menu",
+  "auro-select",
+  "auro-datepicker",
+  "auro-hyperlink",
+  "auro-accordion",
+];
 
 export class FocusTrap {
   constructor(container) {
@@ -34,48 +34,49 @@ export class FocusTrap {
     }
 
     this.container = container;
-    this.tabDirection = 'forward'; // or 'backward'
+    this.tabDirection = "forward"; // or 'backward'
 
     this._init();
   }
 
   _init() {
     // Support for shadow DOM / web components
-    const appendEl = this.container.shadowRoot || this.container;
+    const _appendEl = this.container.shadowRoot || this.container;
 
     // Add inert attribute to prevent focusing programmatically as well (if supported)
-    if ('inert' in HTMLElement.prototype) {
+    if ("inert" in HTMLElement.prototype) {
       this.container.inert = false; // Ensure the container isn't inert
-      this.container.setAttribute('data-focus-trap-container', true); // Mark for identification
+      this.container.setAttribute("data-focus-trap-container", true); // Mark for identification
     }
 
     // Track tab direction
-    this.container.addEventListener('keydown', this._onKeydown);
+    this.container.addEventListener("keydown", this._onKeydown);
   }
 
   _onKeydown = (e) => {
-    
-    if (e.key === 'Tab') {
-
+    if (e.key === "Tab") {
       // Set the tab direction based on the key pressed
-      this.tabDirection = e.shiftKey ? 'backward' : 'forward';
+      this.tabDirection = e.shiftKey ? "backward" : "forward";
 
       // Get the active element(s) in the document and shadow root
       // This will include the active element in the shadow DOM if it exists
       // Active element may be inside the shadow DOM depending on delegatesFocus, so we need to check both
-      const actives =  [
+      const actives = [
         document.activeElement,
-        ...document.activeElement.shadowRoot && [document.activeElement.shadowRoot.activeElement]
-      ]
+        ...(document.activeElement.shadowRoot && [
+          document.activeElement.shadowRoot.activeElement,
+        ]),
+      ];
 
       // Update the focusable elements
       const focusables = this._getFocusableElements();
 
       // If we're at either end of the focusable elements, wrap around to the other end
       const focusIndex =
-        actives.includes(focusables[0]) && this.tabDirection === 'backward'
+        actives.includes(focusables[0]) && this.tabDirection === "backward"
           ? focusables.length - 1
-          : actives.includes(focusables[focusables.length - 1]) && this.tabDirection === 'forward'
+          : actives.includes(focusables[focusables.length - 1]) &&
+              this.tabDirection === "forward"
             ? 0
             : null;
 
@@ -93,12 +94,11 @@ export class FocusTrap {
 
     // Define a recursive function to collect focusable elements in DOM order
     const collectFocusableElements = (root) => {
-
       // Check if current element is focusable
       if (root.nodeType === Node.ELEMENT_NODE) {
         // Check if this is one of our special Auro components
-        const isAuroComponent = FOCUSABLE_COMPONENTS.some(
-          component => root.tagName.toLowerCase()?.match(component)
+        const isAuroComponent = FOCUSABLE_COMPONENTS.some((component) =>
+          root.tagName.toLowerCase()?.match(component),
         );
 
         if (isAuroComponent) {
@@ -109,7 +109,10 @@ export class FocusTrap {
 
         // Check if the element itself matches any selector
         for (const selector of FOCUSABLE_SELECTORS) {
-          if (root.matches?.(selector) && !root.classList.contains('focus-bookend')) {
+          if (
+            root.matches?.(selector) &&
+            !root.classList.contains("focus-bookend")
+          ) {
             orderedFocusableElements.push(root);
             break; // Once we know it's focusable, no need to check other selectors
           }
@@ -119,14 +122,14 @@ export class FocusTrap {
         if (root.shadowRoot) {
           // Process shadow DOM children in order
           if (root.shadowRoot.children) {
-            Array.from(root.shadowRoot.children).forEach(child => {
+            Array.from(root.shadowRoot.children).forEach((child) => {
               collectFocusableElements(child);
             });
           }
         }
 
         // Process slots and their assigned nodes in order
-        if (root.tagName === 'SLOT') {
+        if (root.tagName === "SLOT") {
           const assignedNodes = root.assignedNodes({ flatten: true });
           for (const node of assignedNodes) {
             collectFocusableElements(node);
@@ -134,7 +137,7 @@ export class FocusTrap {
         } else {
           // Process light DOM children in order
           if (root.children) {
-            Array.from(root.children).forEach(child => {
+            Array.from(root.children).forEach((child) => {
               collectFocusableElements(child);
             });
           }
@@ -172,12 +175,12 @@ export class FocusTrap {
 
   disconnect() {
     // Remove the tabIndex we set
-    this.container.removeAttribute('tabIndex');
+    this.container.removeAttribute("tabIndex");
 
-    if (this.container.hasAttribute('data-focus-trap-container')) {
-      this.container.removeAttribute('data-focus-trap-container');
+    if (this.container.hasAttribute("data-focus-trap-container")) {
+      this.container.removeAttribute("data-focus-trap-container");
     }
 
-    this.container.removeEventListener('keydown', this._onKeydown);
+    this.container.removeEventListener("keydown", this._onKeydown);
   }
 }

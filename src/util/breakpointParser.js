@@ -1,10 +1,5 @@
-const DESIGN_TOKEN_BREAKPOINT_PREFIX = '--ds-grid-breakpoint-';
-const DESIGN_TOKEN_BREAKPOINT_OPTIONS = [
-  'lg',
-  'md',
-  'sm',
-  'xs',
-];
+const DESIGN_TOKEN_BREAKPOINT_PREFIX = "--ds-grid-breakpoint-";
+const DESIGN_TOKEN_BREAKPOINT_OPTIONS = ["lg", "md", "sm", "xs"];
 
 /**
  * Parses a design token to get its pixel value.
@@ -14,7 +9,9 @@ const DESIGN_TOKEN_BREAKPOINT_OPTIONS = [
  */
 export function parseBreakpointToken(value) {
   // verify the defined breakpoint is valid and exit out if not
-  const validatedValue = DESIGN_TOKEN_BREAKPOINT_OPTIONS.includes(value) ? value : undefined;
+  const validatedValue = DESIGN_TOKEN_BREAKPOINT_OPTIONS.includes(value)
+    ? value
+    : undefined;
   if (!validatedValue) {
     return undefined;
   }

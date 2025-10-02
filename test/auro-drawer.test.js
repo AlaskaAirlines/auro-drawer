@@ -6,7 +6,8 @@ import {
   oneEvent,
 } from "@open-wc/testing";
 import { setViewport } from "@web/test-runner-commands";
-import "../index.js";
+
+import "../src/registered.js";
 
 describe("auro-drawer", () => {
   it("auro-drawer gets open by triggerElement", async () => {

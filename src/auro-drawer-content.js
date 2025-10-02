@@ -1,14 +1,18 @@
-import { AuroButton } from "@aurodesignsystem/auro-button/src/auro-button.js";
-import { AuroIcon } from "@aurodesignsystem/auro-icon/src/auro-icon.js";
-import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
+
+import { AuroButton } from "@aurodesignsystem/auro-button/class";
+import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
+
+import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
+
+import { FocusTrap } from "./util/FocusTrap.js";
 import buttonVersion from "./buttonVersion.js";
 import iconVersion from "./iconVersion.js";
-import colorCss from "./styles/drawerContentColor-css.js";
-import styleCss from "./styles/drawerContentStyles-css.js";
-import tokensCss from "./styles/drawerContentTokens-css.js";
-import { FocusTrap } from "./util/FocusTrap.js";
+
+import colorCss from "./styles/drawerContentColor.scss";
+import styleCss from "./styles/drawerContentStyles.scss";
+import tokensCss from "./styles/drawerContentTokens.scss";
 
 export class AuroDrawerContent extends LitElement {
   constructor() {

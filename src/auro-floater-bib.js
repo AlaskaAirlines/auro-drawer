@@ -1,10 +1,11 @@
-import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
 
-import colorCss from "./styles/floaterBibColor-css.js";
-import styleCss from "./styles/floaterBibStyles-css.js";
-import tokensCss from "./styles/floaterBibTokens-css.js";
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+
+import colorCss from "./styles/floaterBibColor.scss";
+import styleCss from "./styles/floaterBibStyles.scss";
+import tokensCss from "./styles/floaterBibTokens.scss";
 
 export class AuroFloaterBib extends LitElement {
   constructor() {

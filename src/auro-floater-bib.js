@@ -1,7 +1,6 @@
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 import { LitElement } from "lit";
-import { html } from 'lit/static-html.js';
-
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+import { html } from "lit/static-html.js";
 
 import colorCss from "./styles/floaterBibColor-css.js";
 import styleCss from "./styles/floaterBibStyles-css.js";
@@ -18,17 +17,16 @@ export class AuroFloaterBib extends LitElement {
   }
 
   static get styles() {
-    return [
-      colorCss,
-      styleCss,
-      tokensCss,
-    ];
+    return [colorCss, styleCss, tokensCss];
   }
 
   firstUpdated() {
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-floater-bib');
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(
+      this,
+      "auro-floater-bib",
+    );
 
-    this.backdrop = this.shadowRoot.querySelector('.backdrop');
+    this.backdrop = this.shadowRoot.querySelector(".backdrop");
   }
 
   render() {

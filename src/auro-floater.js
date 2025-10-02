@@ -3,10 +3,12 @@
 
 // ---------------------------------------------------------------------
 
-import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
-import AuroFloatingUI from "@aurodesignsystem/auro-library/scripts/runtime/floatingUI.mjs";
 import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
+
+import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
+import AuroFloatingUI from "@aurodesignsystem/auro-library/scripts/runtime/floatingUI.mjs";
+
 import { AuroFloaterBib } from "./auro-floater-bib.js";
 import drawerVersion from "./drawerVersion.js";
 

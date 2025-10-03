@@ -197,3 +197,22 @@ The drawer's size and some styles can be styled using CSS `part`.
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
+
+### Close Button Appearance on Customized Drawer <a name="closeButtonAppearance"></a>
+
+If the drawer is customized to have a dark background, the close button may not be visible. 
+You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
+
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/closeButtonAppearance.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/closeButtonAppearance.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>

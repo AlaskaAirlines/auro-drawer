@@ -83,7 +83,7 @@ There are two important parts of every Auro component. The <a href="https://deve
 To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `AuroDrawer.register(name)` method and pass in a unique name.
 
 ```js
-import { AuroDrawer } from './src/auro-drawer.js';
+import { AuroDrawer } from '@aurodesignsystem/auro-drawer/class';
 
 AuroDrawer.register('custom-drawer');
 ```

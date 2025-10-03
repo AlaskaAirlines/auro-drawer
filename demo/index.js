@@ -1,17 +1,18 @@
 import { initBasicExample } from "../apiExamples/basic";
 import { initCustomExample } from "../apiExamples/custom";
-import { AuroDrawer } from '../src/auro-drawer.js';
+import { AuroDrawer } from "../src/index";
 
 AuroDrawer.register();
-AuroDrawer.register('custom-drawer');
+AuroDrawer.register("custom-drawer");
 
 export function initExamples(initCount) {
+  // biome-ignore lint/style/noParameterAssign: recursion counter
   initCount = initCount || 0;
 
   try {
     initBasicExample();
     initCustomExample();
-  } catch (err) {
+  } catch (_err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called
       setTimeout(() => {
@@ -20,4 +21,3 @@ export function initExamples(initCount) {
     }
   }
 }
-

@@ -1,9 +1,8 @@
-
-import { AuroDrawer } from '../../src/auro-drawer.js';
+import { AuroDrawer } from "../../src/auro-drawer.js";
 
 /**
-     * @private
-     */
+ * @private
+ */
 class AuroDrawerWCA extends AuroDrawer {}
 
 if (!customElements.get("auro-drawer")) {

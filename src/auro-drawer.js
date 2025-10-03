@@ -3,7 +3,7 @@
 
 // ---------------------------------------------------------------------
 
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 
 import { AuroFloater } from "./auro-floater.js";
 import "./auro-drawer-content.js";
@@ -11,7 +11,7 @@ import { parseBreakpointToken } from "./util/breakpointParser.js";
 
 const CONFIG = {
   backdrop: true,
-  prefix: 'auroDrawer'
+  prefix: "auroDrawer",
 };
 
 /**
@@ -34,12 +34,11 @@ const CONFIG = {
  * @csspart close-button - to style the close button.
  */
 export class AuroDrawer extends AuroFloater {
-
   constructor() {
-    super('drawer');
+    super("drawer");
 
     this.placement = "right";
-    this.size = 'lg';
+    this.size = "lg";
     this.fullscreenBreakpoint = "sm";
 
     /**
@@ -51,7 +50,7 @@ export class AuroDrawer extends AuroFloater {
   // when `carryDown` is true, the value of the property will be passed down to `this.drawerBib` in `updated` cycle.
   static get properties() {
     return {
-      ...super.properties,
+      ...AuroFloater.properties,
 
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
@@ -60,7 +59,7 @@ export class AuroDrawer extends AuroFloater {
        */
       fullscreenBreakpoint: {
         type: String,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -70,7 +69,7 @@ export class AuroDrawer extends AuroFloater {
       modal: {
         type: Boolean,
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -119,7 +118,7 @@ export class AuroDrawer extends AuroFloater {
       unformatted: {
         type: Boolean,
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
     };
   }
@@ -156,9 +155,9 @@ export class AuroDrawer extends AuroFloater {
    */
   set expanded(value) {
     if (value) {
-      this.drawerBib.setAttribute('stretch', "");
+      this.drawerBib.setAttribute("stretch", "");
     } else {
-      this.drawerBib.removeAttribute('stretch');
+      this.drawerBib.removeAttribute("stretch");
     }
   }
 
@@ -168,19 +167,24 @@ export class AuroDrawer extends AuroFloater {
    * @returns {boolean} Whether the drawer is expanded.
    */
   get expanded() {
-    return this.drawerBib.hasAttribute('stretch');
+    return this.drawerBib.hasAttribute("stretch");
   }
 
   firstUpdated() {
     super.firstUpdated();
 
-    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(this, 'auro-drawer');
+    AuroLibraryRuntimeUtils.prototype.handleComponentTagRename(
+      this,
+      "auro-drawer",
+    );
 
-    this.drawerBib = document.createElement('auro-drawer-content');
-    this.drawerBib.addEventListener('close-click', () => this.floater.hideBib());
+    this.drawerBib = document.createElement("auro-drawer-content");
+    this.drawerBib.addEventListener("close-click", () =>
+      this.floater.hideBib(),
+    );
     this.append(this.drawerBib);
 
-    this.bib.setAttribute('exportparts', 'backdrop:drawer-backdrop');
+    this.bib.setAttribute("exportparts", "backdrop:drawer-backdrop");
 
     this.setupAria();
   }
@@ -190,14 +194,17 @@ export class AuroDrawer extends AuroFloater {
    */
   setupAria() {
     if (this.triggerElement) {
-      this.triggerElement.setAttribute('aria-haspopup', 'dialog');
-      this.triggerElement.setAttribute('aria-controls', this.bib.getAttribute('id'));
+      this.triggerElement.setAttribute("aria-haspopup", "dialog");
+      this.triggerElement.setAttribute(
+        "aria-controls",
+        this.bib.getAttribute("id"),
+      );
 
-      this.bib.setAttribute('aria-label', this.triggerElement.textContent);
+      this.bib.setAttribute("aria-label", this.triggerElement.textContent);
     }
-    this.bib.setAttribute('role', 'dialog');
+    this.bib.setAttribute("role", "dialog");
     if (this.modal) {
-      this.bib.setAttribute('aria-modal', 'true');
+      this.bib.setAttribute("aria-modal", "true");
     }
   }
 
@@ -208,7 +215,7 @@ export class AuroDrawer extends AuroFloater {
    * @param {string | boolean} value - The value to set the attribute to.
    */
   updateDrawerBibAttribute(attribute, value) {
-    if (typeof value === 'boolean' || typeof value === 'undefined') {
+    if (typeof value === "boolean" || typeof value === "undefined") {
       if (value) {
         this.drawerBib.setAttribute(attribute, "");
       } else {
@@ -234,11 +241,11 @@ export class AuroDrawer extends AuroFloater {
       }
     });
 
-    if (changedProperties.has('isPopoverVisible')) {
+    if (changedProperties.has("isPopoverVisible")) {
       this.drawerBib.visible = this.isPopoverVisible;
     }
 
-    if (changedProperties.has('triggerElement')) {
+    if (changedProperties.has("triggerElement")) {
       this.setupAria();
     }
   }

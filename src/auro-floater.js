@@ -4,17 +4,16 @@
 // ---------------------------------------------------------------------
 
 import { LitElement } from "lit";
-import { html } from 'lit/static-html.js';
+import { html } from "lit/static-html.js";
 
-import AuroFloatingUI from '@aurodesignsystem/auro-library/scripts/runtime/floatingUI.mjs';
+import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
+import AuroFloatingUI from "@aurodesignsystem/auro-library/scripts/runtime/floatingUI.mjs";
+
 import { AuroFloaterBib } from "./auro-floater-bib.js";
-
-import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
-import drawerVersion from './drawerVersion.js';
+import drawerVersion from "./drawerVersion.js";
 
 // build the component class
 export class AuroFloater extends LitElement {
-
   constructor(behavior) {
     super();
 
@@ -28,13 +27,16 @@ export class AuroFloater extends LitElement {
      */
     this.floater = undefined;
 
-
-    const tagPrefix = this.floaterConfig.prefix.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`) + "-bib";
+    const tagPrefix = `${this.floaterConfig.prefix.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}-bib`;
 
     /**
      * @private
      */
-    this.floaterBibTag = AuroDependencyVersioning.prototype.generateTag(tagPrefix, drawerVersion, AuroFloaterBib);
+    this.floaterBibTag = AuroDependencyVersioning.prototype.generateTag(
+      tagPrefix,
+      drawerVersion,
+      AuroFloaterBib,
+    );
   }
 
   /**
@@ -44,14 +46,13 @@ export class AuroFloater extends LitElement {
    */
   get floaterConfig() {
     return {
-      prefix: 'auroFloater'
+      prefix: "auroFloater",
     };
   }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
-
       /**
        * Sets state of drawer to open.
        * @default false
@@ -59,15 +60,15 @@ export class AuroFloater extends LitElement {
       isPopoverVisible: {
         attribute: "open",
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       /**
        * The element to focus when the drawer is closed.
        */
       triggerElement: {
-        attribute: false
-      }
+        attribute: false,
+      },
     };
   }
 
@@ -84,11 +85,11 @@ export class AuroFloater extends LitElement {
   updated(changedProperties) {
     this.floater.handleUpdate(changedProperties);
 
-    if (changedProperties.has('triggerElement')) {
+    if (changedProperties.has("triggerElement")) {
       this.floater.configure(this, this.floaterConfig.prefix);
     }
 
-    if (changedProperties.has('isPopoverVisible')) {
+    if (changedProperties.has("isPopoverVisible")) {
       if (this.isPopoverVisible) {
         this.floater.showBib();
       } else {

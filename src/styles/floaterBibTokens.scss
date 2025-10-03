@@ -1,7 +1,0 @@
-@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
-
-:host {
-  --ds-auro-floater-backdrop-modal-background-color: var(--ds-advanced-color-shared-scrim, #{v.$ds-advanced-color-shared-scrim});
-  --ds-auro-floater-container-background-color: var(--ds-basic-color-surface-default, #{v.$ds-basic-color-surface-default});
-  --ds-auro-floater-container-text-color: var(--ds-basic-color-texticon-default, #{v.$ds-basic-color-texticon-default});
-}

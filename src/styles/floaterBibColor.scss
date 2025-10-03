@@ -1,8 +1,0 @@
-:host([onbackdrop]) .backdrop { // stylelint-disable scss/selector-nest-combinators
-  background: var(--ds-auro-floater-backdrop-modal-background-color);
-}
-
-::slotted(*) {
-  background: var(--ds-auro-floater-container-background-color);
-  color: var(--ds-auro-floater-container-text-color);
-}

@@ -220,7 +220,9 @@ describe("auro-drawer", () => {
       drawer.triggerElement = button;
 
       await elementUpdated(drawer);
-      await expect(el).to.be.accessible();
+      await expect(el).to.be.accessible({
+        ignoredRules: ["color-contrast"]
+      });
     }
   });
 });

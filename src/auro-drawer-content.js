@@ -23,6 +23,7 @@ export class AuroDrawerContent extends LitElement {
      * @private
      */
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
+    this.closeButtonAppearance = 'default';
 
     /*
      * @private
@@ -50,6 +51,19 @@ export class AuroDrawerContent extends LitElement {
 
   static get properties() {
     return {
+
+      /**
+       * Defines whether the close button should be light colored for use on dark backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      closeButtonAppearance: {
+        type: String,
+        attribute: 'close-button-appearance',
+        reflect: true
+      },
+
+
       visible: {
         type: Boolean,
         reflect: true,
@@ -137,8 +151,8 @@ export class AuroDrawerContent extends LitElement {
                   shape="circle"
                   size="sm"
                   aria-label="${this.runtimeUtils.getSlotText(this, 'ariaLabel.drawer.close') || 'Close'}"
-                  ?onDark=${this.onDark}>
-                    <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
+                  appearance="${this.onDark ? 'inverse' : this.closeButtonAppearance}">
+                  <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === 'inverse'}" category="interface" name="x-lg"></${this.iconTag}>
                   </${this.buttonTag}>
                 </slot>
               </div>

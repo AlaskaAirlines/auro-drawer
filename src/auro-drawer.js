@@ -38,6 +38,7 @@ export class AuroDrawer extends AuroFloater {
   constructor() {
     super("drawer");
 
+    this.closeButtonAppearance = 'default';
     this.placement = "right";
     this.size = "lg";
     this.fullscreenBreakpoint = "sm";
@@ -52,6 +53,19 @@ export class AuroDrawer extends AuroFloater {
   static get properties() {
     return {
       ...AuroFloater.properties,
+
+
+      /**
+       * Defines whether the close button should be light colored for use on dark backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      closeButtonAppearance: {
+        type: String,
+        attribute: 'close-button-appearance',
+        carryDown: true,
+        reflect: true
+      },
 
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
@@ -83,7 +97,7 @@ export class AuroDrawer extends AuroFloater {
       },
 
       /**
-       * Sets close icon to white for dark backgrounds.
+       * DEPRECATED - use `closeButtonAppearance` instead.
        * @default false
        */
       onDark: {
@@ -238,7 +252,7 @@ export class AuroDrawer extends AuroFloater {
 
     [...changedProperties.entries()].forEach(([entry]) => {
       if (AuroDrawer.properties[entry].carryDown) {
-        this.updateDrawerBibAttribute(entry, this[entry]);
+        this.updateDrawerBibAttribute(AuroDrawer.properties[entry].attribute || entry, this[entry]);
       }
     });
 

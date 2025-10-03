@@ -38,6 +38,7 @@ export class AuroDrawer extends AuroFloater {
   constructor() {
     super('drawer');
 
+    this.appearance = 'default';
     this.placement = "right";
     this.size = 'lg';
     this.fullscreenBreakpoint = "sm";
@@ -52,6 +53,18 @@ export class AuroDrawer extends AuroFloater {
   static get properties() {
     return {
       ...super.properties,
+
+
+      /**
+       * Defines whether the drawer should be light colored for use on dark backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      appearance: {
+        type: String,
+        carryDown: true,
+        reflect: true
+      },
 
       /**
        * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
@@ -83,7 +96,7 @@ export class AuroDrawer extends AuroFloater {
       },
 
       /**
-       * Sets close icon to white for dark backgrounds.
+       * DEPRECATED - use `appearance` instead.
        * @default false
        */
       onDark: {

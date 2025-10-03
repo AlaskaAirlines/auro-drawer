@@ -8,16 +8,18 @@ import tokensCss from "./styles/drawerContentTokens-css.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 
-import { AuroButton } from '@aurodesignsystem/auro-button/src/auro-button.js';
+import { AuroButton } from '@aurodesignsystem-dev/auro-button/class';
 import buttonVersion from './buttonVersion.js';
 
-import { AuroIcon } from '@aurodesignsystem/auro-icon/src/auro-icon.js';
+import { AuroIcon } from '@aurodesignsystem-dev/auro-icon/class';
 import iconVersion from './iconVersion.js';
 import { FocusTrap } from "./util/FocusTrap.js";
 
 export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
+
+    this.appearance = 'default';
 
     /*
     * @private
@@ -37,6 +39,17 @@ export class AuroDrawerContent extends LitElement {
 
   static get properties() {
     return {
+
+      /**
+       * Defines whether the component should be light colored for use on dark backgrounds.
+       * @property {'default', 'inverse'}
+       * @default 'default'
+       */
+      appearance: {
+        type: String,
+        reflect: true
+      },
+
       visible: {
         type: Boolean,
         reflect: true,
@@ -115,13 +128,14 @@ export class AuroDrawerContent extends LitElement {
             <div id="closeButton" @click="${this.handleCloseButtonClick}">
               <slot name="close">
                 <${this.buttonTag} 
+                appearance=${this.appearance}
                 part="close-button"
                 variant="ghost"
                 shape="circle"
                 size="sm"
                 ?onDark=${this.onDark} 
                 aria-label="Close">
-                  <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
+                  <${this.iconTag} ?customColor="${this.onDark || this.appearance === 'inverse'}" category="interface" name="x-lg"></${this.iconTag}>
                   <span class="util_displayHiddenVisually">Close</span>
                 </${this.buttonTag}>
               </slot>

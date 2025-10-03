@@ -1,6 +1,6 @@
 import { initBasicExample } from "../apiExamples/basic";
 import { initCustomExample } from "../apiExamples/custom";
-import { AuroDrawer } from "../src/auro-drawer.js";
+import { AuroDrawer } from "../src/index";
 
 AuroDrawer.register();
 AuroDrawer.register("custom-drawer");

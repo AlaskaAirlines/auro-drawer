@@ -22,12 +22,13 @@
 
 ## Slots
 
-| Name     | Description                                  |
-|----------|----------------------------------------------|
-|          | Default slot for the body content in drawer. |
-| `close`  | Used to replace the close button.            |
-| `footer` | Used for action options, e.g. buttons.       |
-| `header` | Text to display as the header of the modal.  |
+| Name                     | Description                                      |
+|--------------------------|--------------------------------------------------|
+|                          | Default slot for the body content in drawer.     |
+| `ariaLabel.drawer.close` | Text to describe the "x" icon close button for screen readers. Default: "Close". |
+| `close`                  | Used to replace the close button.                |
+| `footer`                 | Used for action options, e.g. buttons.           |
+| `header`                 | Text to display as the header of the modal.      |
 
 ## CSS Shadow Parts
 

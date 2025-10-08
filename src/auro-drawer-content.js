@@ -5,6 +5,7 @@ import { AuroButton } from "@aurodesignsystem/auro-button/class";
 import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
 
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 
 import { FocusTrap } from "./util/FocusTrap.js";
 import buttonVersion from "./buttonVersion.js";
@@ -17,6 +18,11 @@ import tokensCss from "./styles/drawerContentTokens.scss";
 export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
+
+    /**
+     * @private
+     */
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
 
     /*
      * @private
@@ -107,52 +113,54 @@ export class AuroDrawerContent extends LitElement {
 
   render() {
     return html`
-    <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
-      ${
-        this.unformatted
-          ? ""
-          : html`
-        <div class="header-row">
-            <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header" part="drawer-header">
-              <slot name="header"></slot>
-            </h1>
-          ${
-            this.modal
-              ? ""
-              : html`
-            <div id="closeButton" @click="${this.handleCloseButtonClick}">
-              <slot name="close">
-                <${this.buttonTag} 
-                part="close-button"
-                variant="ghost"
-                shape="circle"
-                size="sm"
-                ?onDark=${this.onDark} 
-                aria-label="Close">
-                  <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
-                  <span class="util_displayHiddenVisually">Close</span>
-                </${this.buttonTag}>
-              </slot>
-            </div>
-            `
-          }
+      <!-- Hidden slot for close button aria-label -->
+      <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.requestUpdate}></slot>
+
+      <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
+        ${
+          this.unformatted
+            ? ""
+            : html`
+          <div class="header-row">
+              <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header" part="drawer-header">
+                <slot name="header"></slot>
+              </h1>
+            ${
+              this.modal
+                ? ""
+                : html`
+              <div id="closeButton" @click="${this.handleCloseButtonClick}">
+                <slot name="close">
+                  <${this.buttonTag} 
+                  part="close-button"
+                  variant="ghost"
+                  shape="circle"
+                  size="sm"
+                  aria-label="${this.runtimeUtils.getSlotText(this, 'ariaLabel.drawer.close') || 'Close'}"
+                  ?onDark=${this.onDark}>
+                    <${this.iconTag} ?customColor="${this.onDark}" category="interface" name="x-lg"></${this.iconTag}>
+                  </${this.buttonTag}>
+                </slot>
+              </div>
+              `
+            }
+          </div>
+        `
+        }
+        <div part="drawer-content" class="content body-default">
+          <slot></slot>
+          <slot name="content"></slot>
         </div>
-      `
-      }
-      <div part="drawer-content" class="content body-default">
-        <slot></slot>
-        <slot name="content"></slot>
+        ${
+          this.unformatted
+            ? ""
+            : html`
+          <div part="drawer-footer" class="footer" id="footerWrapper">
+            <slot name="footer" id="footer"></slot>
+          </div>
+        `
+        }
       </div>
-      ${
-        this.unformatted
-          ? ""
-          : html`
-        <div part="drawer-footer" class="footer" id="footerWrapper">
-          <slot name="footer" id="footer"></slot>
-        </div>
-      `
-      }
-    </div>
     `;
   }
 }

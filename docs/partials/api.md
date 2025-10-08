@@ -130,6 +130,23 @@ This is a use case where there is a popover and combobox component inside the dr
 
 </auro-accordion>
 
+### Aria Label Slot
+
+To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/ariaLabelSlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/ariaLabelSlot.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ### <a name="unformatted">`unformatted`</a>
 
 For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.

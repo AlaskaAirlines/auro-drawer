@@ -7,6 +7,7 @@ import { initNestedExample } from "../apiExamples/nested";
 import { initPlacementExample } from "../apiExamples/placement.js";
 import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
 import { initSizeOptionsExample } from "../apiExamples/sizeOptions";
+import { initAriaLabelSlotExample } from "../apiExamples/ariaLabelSlot.js";
 
 import "../src/registered.js";
 
@@ -24,6 +25,7 @@ export function initExamples(initCount) {
     initPlacementExample();
     initFullscreenBreakpointExample();
     initCustomizedExample();
+    initAriaLabelSlotExample();
   } catch (_err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called

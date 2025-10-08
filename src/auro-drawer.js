@@ -23,6 +23,7 @@ const CONFIG = {
  * @slot header - Text to display as the header of the modal.
  * @slot footer - Used for action options, e.g. buttons.
  * @slot close - Used to replace the close button.
+ * @slot ariaLabel.drawer.close - Text to describe the "x" icon close button for screen readers. Default: "Close".
  *
  * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
  *

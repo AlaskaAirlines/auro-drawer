@@ -25,12 +25,13 @@
 
 ## Slots
 
-| Name     | Description                                  |
-|----------|----------------------------------------------|
-|          | Default slot for the body content in drawer. |
-| [close](#close)  | Used to replace the close button.            |
-| [footer](#footer) | Used for action options, e.g. buttons.       |
-| [header](#header) | Text to display as the header of the modal.  |
+| Name                     | Description                                      |
+|--------------------------|--------------------------------------------------|
+|                          | Default slot for the body content in drawer.     |
+| `ariaLabel.drawer.close` | Text to describe the "x" icon close button for screen readers. Default: "Close". |
+| [close](#close)                  | Used to replace the close button.                |
+| [footer](#footer)                 | Used for action options, e.g. buttons.           |
+| [header](#header)                 | Text to display as the header of the modal.      |
 
 ## CSS Shadow Parts
 
@@ -894,6 +895,73 @@ This is a use case where there is a popover and combobox component inside the dr
   </div>
   <div slot="footer">
     <auro-button id="closePopAndDrop">
+      I understand
+      <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+    </auro-button>
+  </div>
+</auro-drawer>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+### Aria Label Slot
+
+To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/ariaLabelSlot.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/ariaLabelSlot.html -->
+  <div>  
+    <auro-button id="openAriaLabelSlotDrawer">Open drawer</auro-button>
+  </div>
+  <auro-drawer id="ariaLabelSlotDrawer" size="sm" fullscreenBreakpoint="lg">
+    <span slot="ariaLabel.drawer.close">This is the new aria-label for the close button</span>
+    <span slot="header">Small Drawer</span>
+    <div slot="content">
+      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+      <ul>
+        <li>Caerphilly croque monsieur fondue</li>
+        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+        <li>Cheddar cheese and biscuits chalk and cheese</li>
+        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+      </ul>
+    </div>
+    <div slot="footer">
+      <auro-button id="closeAriaLabelSlotDrawer">
+        I understand
+        <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+      </auro-button>
+    </div>
+  </auro-drawer>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/ariaLabelSlot.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/ariaLabelSlot.html -->
+
+```html
+<div>  
+  <auro-button id="openAriaLabelSlotDrawer">Open drawer</auro-button>
+</div>
+<auro-drawer id="ariaLabelSlotDrawer" size="sm" fullscreenBreakpoint="lg">
+  <span slot="ariaLabel.drawer.close">This is the new aria-label for the close button</span>
+  <span slot="header">Small Drawer</span>
+  <div slot="content">
+    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+    <ul>
+      <li>Caerphilly croque monsieur fondue</li>
+      <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+      <li>Cheddar cheese and biscuits chalk and cheese</li>
+      <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+    </ul>
+  </div>
+  <div slot="footer">
+    <auro-button id="closeAriaLabelSlotDrawer">
       I understand
       <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
     </auro-button>

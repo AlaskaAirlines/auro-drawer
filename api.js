@@ -1,5 +1,6 @@
 import { initAccessibilityExample } from "../apiExamples/accessibility";
 import { initBasicExample } from "../apiExamples/basic";
+import { initCloseButtonAppearanceExample } from "../apiExamples/closeButtonAppearance.js";
 import { initCustomizedExample } from "../apiExamples/customizing.js";
 import { initFullscreenBreakpointExample } from "../apiExamples/fullscreenBreakpoint";
 import { initModalExample } from "../apiExamples/modal";
@@ -26,6 +27,7 @@ export function initExamples(initCount) {
     initFullscreenBreakpointExample();
     initCustomizedExample();
     initAriaLabelSlotExample();
+    initCloseButtonAppearanceExample();
   } catch (_err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called

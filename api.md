@@ -5,17 +5,18 @@
 
 ## Properties
 
-| Property               | Attribute              | Type      | Default | Description                                      |
-|------------------------|------------------------|-----------|---------|--------------------------------------------------|
-| [fullscreenBreakpoint](#fullscreenBreakpoint) | `fullscreenBreakpoint` | `string`  | "sm"    | Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.<br />When expanded, the drawer will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint. |
-| [isPopoverVisible](#isPopoverVisible)     | `open`                 | `boolean` | "false" | Sets state of drawer to open.                    |
-| [modal](#modal)                | `modal`                | `boolean` | "false" | Modal drawer restricts the user to take an action (no default close actions). |
-| [nested](#nested)               | `nested`               | `boolean` | "false" | Sets the anchor placement for the bib. If true, bib will open based off its parent size and position. |
-| [onDark](#onDark)               | `onDark`               | `boolean` | "false" | Sets close icon to white for dark backgrounds.   |
-| [placement](#placement)            | `placement`            | `string`  | "right" | Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`. |
-| [size](#size)                 | `size`                 | `string`  | "lg"    | Sets the size of drawer bib to `sm`, `md`, `lg`. |
-| [triggerElement](#triggerElement)       |                        |           |         | The element to focus when the drawer is closed.  |
-| [unformatted](#unformatted)          | `unformatted`          | `boolean` | "false" | Unformatted drawer window, edge-to-edge fill for content. |
+| Property                | Attribute                 | Type      | Default     | Description                                      |
+|-------------------------|---------------------------|-----------|-------------|--------------------------------------------------|
+| [closeButtonAppearance](#closeButtonAppearance) | `close-button-appearance` | `string`  | "'default'" | Defines whether the close button should be light colored for use on dark backgrounds. |
+| [fullscreenBreakpoint](#fullscreenBreakpoint)  | `fullscreenBreakpoint`    | `string`  | "sm"        | Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.<br />When expanded, the drawer will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint. |
+| [isPopoverVisible](#isPopoverVisible)      | `open`                    | `boolean` | "false"     | Sets state of drawer to open.                    |
+| [modal](#modal)                 | `modal`                   | `boolean` | "false"     | Modal drawer restricts the user to take an action (no default close actions). |
+| [nested](#nested)                | `nested`                  | `boolean` | "false"     | Sets the anchor placement for the bib. If true, bib will open based off its parent size and position. |
+| [onDark](#onDark)                | `onDark`                  | `boolean` | "false"     | DEPRECATED - use `closeButtonAppearance` instead. |
+| [placement](#placement)             | `placement`               | `string`  | "right"     | Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`. |
+| [size](#size)                  | `size`                    | `string`  | "lg"        | Sets the size of drawer bib to `sm`, `md`, `lg`. |
+| [triggerElement](#triggerElement)        |                           |           |             | The element to focus when the drawer is closed.  |
+| [unformatted](#unformatted)           | `unformatted`             | `boolean` | "false"     | Unformatted drawer window, edge-to-edge fill for content. |
 
 ## Events
 
@@ -230,7 +231,7 @@ The default breakpoint is "sm".
     <div slot="footer">
       <auro-button id="closeSmLg">
         I understand
-        <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+        <auro-icon category="interface" name="check-lg" emphasis appearance="inverse"></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
@@ -261,7 +262,7 @@ The default breakpoint is "sm".
   <div slot="footer">
     <auro-button id="closeSmLg">
       I understand
-      <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+      <auro-icon category="interface" name="check-lg" emphasis appearance="inverse"></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
@@ -297,7 +298,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </div>
     <div slot="footer">
       <auro-button id="closeDefaultModal">I understand
-        <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+        <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
@@ -316,7 +317,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </div>
     <div slot="footer">
       <auro-button id="closeMediumModal">I understand
-        <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+        <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
@@ -335,7 +336,7 @@ When using this state, the modal drawer must include a button action to dismiss 
     </div>
     <div slot="footer">
       <auro-button id="closeSmallModal">I understand
-        <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+        <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
@@ -367,7 +368,7 @@ When using this state, the modal drawer must include a button action to dismiss 
   </div>
   <div slot="footer">
     <auro-button id="closeDefaultModal">I understand
-      <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+      <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
@@ -386,7 +387,7 @@ When using this state, the modal drawer must include a button action to dismiss 
   </div>
   <div slot="footer">
     <auro-button id="closeMediumModal">I understand
-      <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+      <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
@@ -405,7 +406,7 @@ When using this state, the modal drawer must include a button action to dismiss 
   </div>
   <div slot="footer">
     <auro-button id="closeSmallModal">I understand
-      <auro-icon category="interface" name="chevron-right" emphasis onDark></auro-icon>
+      <auro-icon category="interface" name="chevron-right" emphasis appearance="inverse"></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
@@ -843,7 +844,7 @@ This is a use case where there is a popover and combobox component inside the dr
     <div slot="footer">
       <auro-button id="closePopAndDrop">
         I understand
-        <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+        <auro-icon category="interface" name="check-lg" emphasis appearance="inverse"></auro-icon>
       </auro-button>
     </div>
   </auro-drawer>
@@ -896,7 +897,7 @@ This is a use case where there is a popover and combobox component inside the dr
   <div slot="footer">
     <auro-button id="closePopAndDrop">
       I understand
-      <auro-icon category="interface" name="check-lg" emphasis onDark></auro-icon>
+      <auro-icon category="interface" name="check-lg" emphasis appearance="inverse"></auro-icon>
     </auro-button>
   </div>
 </auro-drawer>
@@ -986,7 +987,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
   <div>
     <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
   </div>
-  <auro-drawer id="unformattedMdDrawer" unformatted md lg ondark>
+  <auro-drawer id="unformattedMdDrawer" md lg close-button-appearance="inverse">
     <span slot="content">
       <img style="display: block; width: 100%" src="https://blog.alaskaair.com/wp-content/uploads/2020/11/111-psp-blog-img-guide.jpg" alt="alaska airlines pride lights" />
       <div class="unformattedWrapper">
@@ -1006,7 +1007,7 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 <div>
   <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
 </div>
-<auro-drawer id="unformattedMdDrawer" unformatted md lg ondark>
+<auro-drawer id="unformattedMdDrawer" md lg close-button-appearance="inverse">
   <span slot="content">
     <img style="display: block; width: 100%" src="https://blog.alaskaair.com/wp-content/uploads/2020/11/111-psp-blog-img-guide.jpg" alt="alaska airlines pride lights" />
     <div class="unformattedWrapper">
@@ -1217,6 +1218,179 @@ The drawer's size and some styles can be styled using CSS `part`.
   </div>
   <div slot="footer">
     <auro-button secondary id="closeCustomized">Close</auro-button>
+  </div>
+</auro-drawer>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+### Close Button Appearance on Customized Drawer <a name="closeButtonAppearance"></a>
+If the drawer is customized to have a dark background, the close button may not be visible. 
+You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/closeButtonAppearance.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/closeButtonAppearance.html -->
+  <style>
+    #inverseCloseButtonAppearance ::part(drawer-wrapper) {
+      background: black;
+      --ds-auro-drawer-text-color: white;
+      width: 50%;
+    }
+  </style>
+  <div>
+    <auro-button id="openInverseCloseButtonAppearance">Open inverse CloseButtonAppearance drawer</auro-button>
+  </div>
+  <auro-drawer id="inverseCloseButtonAppearance" close-button-appearance="inverse">
+    <span slot="header">Default Drawer</span>
+    <div slot="content">
+      <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+      <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+      <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+      <ul>
+        <li>Caerphilly croque monsieur fondue</li>
+        <auro-radio-group appearance="inverse">
+          <span slot="legend">Accordion Test</span>
+          <auro-radio
+            id="basicGroupRadio1"
+            label="Credit or debit card"
+            name="creditordebit"
+            value="credit"
+          ></auro-radio>
+          <auro-radio
+            id="basicGroupRadio2"
+            label="Apple Pay"
+            name="applePay"
+            value="applePay"
+          ></auro-radio>
+          <auro-radio
+            id="basicGroupRadio3"
+            label="Alaska Airlines Commercial Account"
+            name="alaskaCommercial"
+            value="alaskaCommercial"
+          ></auro-radio>
+        </auro-radio-group>
+        <auro-input placeholder="John Doe" bordered required appearance="inverse">
+          <span slot="label">Full name</span>
+          <span slot="helptext">Please enter your full name.</span>
+        </auro-input>  
+        <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+        <li>Cheddar cheese and biscuits chalk and cheese</li>
+        <auro-checkbox-group appearance="inverse">
+          <span slot="legend">Form label goes here</span>
+          <auro-checkbox value="value1" name="basic" id="checkbox-basic1"
+            >Checkbox option</auro-checkbox
+          >
+          <auro-checkbox value="value2" name="basic" id="checkbox-basic2" checked
+            >Checkbox option</auro-checkbox
+          >
+          <auro-checkbox value="value3" name="basic" id="checkbox-basic3"
+            >Checkbox option</auro-checkbox
+          >
+          <auro-checkbox value="value4" name="basic" id="checkbox-basic4"
+            >Checkbox option</auro-checkbox
+          >
+        </auro-checkbox-group>
+        <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+      </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
+        <p>Tristique senectus et netus et. Vel pharetra vel turpis nunc eget. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Aliquet enim tortor at auctor urna nunc id. Ut consequat semper viverra nam libero justo. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Et leo duis ut diam. In dictum non consectetur a erat nam. Elementum nibh tellus molestie nunc. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Semper feugiat nibh sed pulvinar proin gravida. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. In cursus turpis massa tincidunt dui ut ornare lectus sit. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.</p>
+        <p>Libero volutpat sed cras ornare arcu dui vivamus arcu felis. Dignissim diam quis enim lobortis. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Integer eget aliquet nibh praesent. Ornare massa eget egestas purus viverra accumsan in nisl. Est ultricies integer quis auctor elit sed vulputate mi sit. Feugiat scelerisque varius morbi enim nunc faucibus. Pellentesque adipiscing commodo elit at imperdiet dui. Nam at lectus urna duis convallis. Sagittis eu volutpat odio facilisis mauris.</p>
+        <p>Magnis dis parturient montes nascetur ridiculus mus. Faucibus vitae aliquet nec ullamcorper sit amet risus. In eu mi bibendum neque egestas congue quisque egestas. Nibh praesent tristique magna sit amet purus gravida quis blandit. Tincidunt id aliquet risus feugiat in ante metus dictum at. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Molestie at elementum eu facilisis sed odio. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Egestas pretium aenean pharetra magna. Venenatis urna cursus eget nunc scelerisque viverra mauris. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Tempor commodo ullamcorper a lacus vestibulum sed arcu. Quis viverra nibh cras pulvinar mattis nunc. A scelerisque purus semper eget duis at tellus at urna. Cursus turpis massa tincidunt dui ut. Purus viverra accumsan in nisl nisi scelerisque eu. Et magnis dis parturient montes nascetur ridiculus mus.</p>
+        <p>Id eu nisl nunc mi. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Platea dictumst quisque sagittis purus sit amet volutpat. Egestas congue quisque egestas diam in arcu cursus. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ornare suspendisse sed nisi lacus sed. Ut ornare lectus sit amet est placerat in egestas erat. Tortor aliquam nulla facilisi cras fermentum odio eu. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pellentesque nec nam aliquam sem et tortor consequat id. Varius quam quisque id diam vel. Odio ut enim blandit volutpat maecenas volutpat. Urna cursus eget nunc scelerisque viverra mauris in aliquam.</p>
+        <p>Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo odio. Cras adipiscing enim eu turpis egestas pretium. Dolor purus non enim praesent. Vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Donec et odio pellentesque diam volutpat commodo sed. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. A pellentesque sit amet porttitor eget. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Consequat semper viverra nam libero. Vitae purus faucibus ornare suspendisse. Eget nunc lobortis mattis aliquam. Nibh nisl condimentum id venenatis a condimentum vitae. Eget egestas purus viverra accumsan in nisl. Leo in vitae turpis massa sed elementum tempus. Amet nisl purus in mollis nunc sed id semper risus. Et tortor consequat id porta nibh. Proin fermentum leo vel orci porta.</p>
+        <p>Duis ut diam quam nulla porttitor massa. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Enim eu turpis egestas pretium aenean pharetra magna. Commodo elit at imperdiet dui accumsan sit amet nulla. Eget felis eget nunc lobortis mattis aliquam faucibus purus in. Mauris augue neque gravida in. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor. Neque viverra justo nec ultrices dui sapien eget mi proin. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Mollis nunc sed id semper risus in hendrerit. Feugiat scelerisque varius morbi enim nunc. Pretium lectus quam id leo in vitae turpis massa sed. Ornare arcu odio ut sem nulla pharetra. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Sit amet risus nullam eget felis eget. Lorem ipsum dolor sit amet consectetur adipiscing elit. Ac turpis egestas integer eget aliquet nibh praesent tristique magna. Malesuada fames ac turpis egestas sed tempus.</p>
+        <p>Fusce ut placerat orci nulla pellentesque dignissim enim sit. Consequat nisl vel pretium lectus quam id leo in vitae. Lectus urna duis convallis convallis tellus id interdum. Arcu risus quis varius quam quisque id. Fermentum leo vel orci porta. Sed augue lacus viverra vitae congue. Consequat semper viverra nam libero. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Feugiat vivamus at augue eget arcu dictum varius duis. Fringilla urna porttitor rhoncus dolor purus non enim praesent elementum. Lacus vestibulum sed arcu non odio euismod. Pulvinar sapien et ligula ullamcorper malesuada. Ut ornare lectus sit amet est placerat in egestas erat. Pharetra massa massa ultricies mi. Interdum velit euismod in pellentesque.</p>
+        <p>Duis at consectetur lorem donec. Sed vulputate mi sit amet mauris commodo quis. Hendrerit dolor magna eget est lorem ipsum dolor sit amet. Eget arcu dictum varius duis. Nunc consequat interdum varius sit amet mattis. Pulvinar mattis nunc sed blandit. Sem viverra aliquet eget sit amet tellus. Vel turpis nunc eget lorem dolor sed. Pretium viverra suspendisse potenti nullam. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Odio euismod lacinia at quis risus sed vulputate odio. Imperdiet proin fermentum leo vel orci porta non pulvinar. Leo duis ut diam quam nulla porttitor massa id neque. Augue lacus viverra vitae congue eu consequat. Id cursus metus aliquam eleifend. Montes nascetur ridiculus mus mauris.</p>
+        <p>Volutpat blandit aliquam etiam erat velit scelerisque. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Lectus sit amet est placerat in egestas erat imperdiet sed. Platea dictumst quisque sagittis purus sit. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla pharetra diam sit amet nisl suscipit adipiscing. Id aliquet lectus proin nibh nisl condimentum id venenatis. Phasellus faucibus scelerisque eleifend donec pretium vulputate. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Duis at consectetur lorem donec massa sapien faucibus et molestie.</p>
+    </div>
+    <div slot="footer">
+      <auro-button secondary id="closeInverseCloseButtonAppearance" appearance="inverse">Close</auro-button>
+    </div>
+  </auro-drawer>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/closeButtonAppearance.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/closeButtonAppearance.html -->
+
+```html
+<style>
+  #inverseCloseButtonAppearance ::part(drawer-wrapper) {
+    background: black;
+    --ds-auro-drawer-text-color: white;
+    width: 50%;
+  }
+</style>
+<div>
+  <auro-button id="openInverseCloseButtonAppearance">Open inverse CloseButtonAppearance drawer</auro-button>
+</div>
+<auro-drawer id="inverseCloseButtonAppearance" close-button-appearance="inverse">
+  <span slot="header">Default Drawer</span>
+  <div slot="content">
+    <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
+    <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
+    <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
+    <ul>
+      <li>Caerphilly croque monsieur fondue</li>
+      <auro-radio-group appearance="inverse">
+        <span slot="legend">Accordion Test</span>
+        <auro-radio
+          id="basicGroupRadio1"
+          label="Credit or debit card"
+          name="creditordebit"
+          value="credit"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio2"
+          label="Apple Pay"
+          name="applePay"
+          value="applePay"
+        ></auro-radio>
+        <auro-radio
+          id="basicGroupRadio3"
+          label="Alaska Airlines Commercial Account"
+          name="alaskaCommercial"
+          value="alaskaCommercial"
+        ></auro-radio>
+      </auro-radio-group>
+      <auro-input placeholder="John Doe" bordered required appearance="inverse">
+        <span slot="label">Full name</span>
+        <span slot="helptext">Please enter your full name.</span>
+      </auro-input>  
+      <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
+      <li>Cheddar cheese and biscuits chalk and cheese</li>
+      <auro-checkbox-group appearance="inverse">
+        <span slot="legend">Form label goes here</span>
+        <auro-checkbox value="value1" name="basic" id="checkbox-basic1"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value2" name="basic" id="checkbox-basic2" checked
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value3" name="basic" id="checkbox-basic3"
+          >Checkbox option</auro-checkbox
+        >
+        <auro-checkbox value="value4" name="basic" id="checkbox-basic4"
+          >Checkbox option</auro-checkbox
+        >
+      </auro-checkbox-group>
+      <li>Camembert de normandie stinking bishop bavarian bergkase</li>
+    </ul>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
+      <p>Tristique senectus et netus et. Vel pharetra vel turpis nunc eget. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Aliquet enim tortor at auctor urna nunc id. Ut consequat semper viverra nam libero justo. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Et leo duis ut diam. In dictum non consectetur a erat nam. Elementum nibh tellus molestie nunc. Elementum tempus egestas sed sed risus pretium quam vulputate dignissim. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Semper feugiat nibh sed pulvinar proin gravida. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. In cursus turpis massa tincidunt dui ut ornare lectus sit. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium.</p>
+      <p>Libero volutpat sed cras ornare arcu dui vivamus arcu felis. Dignissim diam quis enim lobortis. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Integer eget aliquet nibh praesent. Ornare massa eget egestas purus viverra accumsan in nisl. Est ultricies integer quis auctor elit sed vulputate mi sit. Feugiat scelerisque varius morbi enim nunc faucibus. Pellentesque adipiscing commodo elit at imperdiet dui. Nam at lectus urna duis convallis. Sagittis eu volutpat odio facilisis mauris.</p>
+      <p>Magnis dis parturient montes nascetur ridiculus mus. Faucibus vitae aliquet nec ullamcorper sit amet risus. In eu mi bibendum neque egestas congue quisque egestas. Nibh praesent tristique magna sit amet purus gravida quis blandit. Tincidunt id aliquet risus feugiat in ante metus dictum at. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. Molestie at elementum eu facilisis sed odio. Odio facilisis mauris sit amet massa vitae tortor condimentum lacinia. Egestas pretium aenean pharetra magna. Venenatis urna cursus eget nunc scelerisque viverra mauris. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum. Blandit aliquam etiam erat velit scelerisque in dictum non consectetur. Tempor commodo ullamcorper a lacus vestibulum sed arcu. Quis viverra nibh cras pulvinar mattis nunc. A scelerisque purus semper eget duis at tellus at urna. Cursus turpis massa tincidunt dui ut. Purus viverra accumsan in nisl nisi scelerisque eu. Et magnis dis parturient montes nascetur ridiculus mus.</p>
+      <p>Id eu nisl nunc mi. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Platea dictumst quisque sagittis purus sit amet volutpat. Egestas congue quisque egestas diam in arcu cursus. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ornare suspendisse sed nisi lacus sed. Ut ornare lectus sit amet est placerat in egestas erat. Tortor aliquam nulla facilisi cras fermentum odio eu. Magna etiam tempor orci eu lobortis elementum nibh tellus. Pellentesque nec nam aliquam sem et tortor consequat id. Varius quam quisque id diam vel. Odio ut enim blandit volutpat maecenas volutpat. Urna cursus eget nunc scelerisque viverra mauris in aliquam.</p>
+      <p>Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo odio. Cras adipiscing enim eu turpis egestas pretium. Dolor purus non enim praesent. Vehicula ipsum a arcu cursus vitae congue mauris rhoncus. Donec et odio pellentesque diam volutpat commodo sed. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. A pellentesque sit amet porttitor eget. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Consequat semper viverra nam libero. Vitae purus faucibus ornare suspendisse. Eget nunc lobortis mattis aliquam. Nibh nisl condimentum id venenatis a condimentum vitae. Eget egestas purus viverra accumsan in nisl. Leo in vitae turpis massa sed elementum tempus. Amet nisl purus in mollis nunc sed id semper risus. Et tortor consequat id porta nibh. Proin fermentum leo vel orci porta.</p>
+      <p>Duis ut diam quam nulla porttitor massa. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Enim eu turpis egestas pretium aenean pharetra magna. Commodo elit at imperdiet dui accumsan sit amet nulla. Eget felis eget nunc lobortis mattis aliquam faucibus purus in. Mauris augue neque gravida in. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor. Neque viverra justo nec ultrices dui sapien eget mi proin. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. Mollis nunc sed id semper risus in hendrerit. Feugiat scelerisque varius morbi enim nunc. Pretium lectus quam id leo in vitae turpis massa sed. Ornare arcu odio ut sem nulla pharetra. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Sit amet risus nullam eget felis eget. Lorem ipsum dolor sit amet consectetur adipiscing elit. Ac turpis egestas integer eget aliquet nibh praesent tristique magna. Malesuada fames ac turpis egestas sed tempus.</p>
+      <p>Fusce ut placerat orci nulla pellentesque dignissim enim sit. Consequat nisl vel pretium lectus quam id leo in vitae. Lectus urna duis convallis convallis tellus id interdum. Arcu risus quis varius quam quisque id. Fermentum leo vel orci porta. Sed augue lacus viverra vitae congue. Consequat semper viverra nam libero. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Feugiat vivamus at augue eget arcu dictum varius duis. Fringilla urna porttitor rhoncus dolor purus non enim praesent elementum. Lacus vestibulum sed arcu non odio euismod. Pulvinar sapien et ligula ullamcorper malesuada. Ut ornare lectus sit amet est placerat in egestas erat. Pharetra massa massa ultricies mi. Interdum velit euismod in pellentesque.</p>
+      <p>Duis at consectetur lorem donec. Sed vulputate mi sit amet mauris commodo quis. Hendrerit dolor magna eget est lorem ipsum dolor sit amet. Eget arcu dictum varius duis. Nunc consequat interdum varius sit amet mattis. Pulvinar mattis nunc sed blandit. Sem viverra aliquet eget sit amet tellus. Vel turpis nunc eget lorem dolor sed. Pretium viverra suspendisse potenti nullam. Dui nunc mattis enim ut tellus elementum sagittis vitae et. Odio euismod lacinia at quis risus sed vulputate odio. Imperdiet proin fermentum leo vel orci porta non pulvinar. Leo duis ut diam quam nulla porttitor massa id neque. Augue lacus viverra vitae congue eu consequat. Id cursus metus aliquam eleifend. Montes nascetur ridiculus mus mauris.</p>
+      <p>Volutpat blandit aliquam etiam erat velit scelerisque. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Lectus sit amet est placerat in egestas erat imperdiet sed. Platea dictumst quisque sagittis purus sit. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla pharetra diam sit amet nisl suscipit adipiscing. Id aliquet lectus proin nibh nisl condimentum id venenatis. Phasellus faucibus scelerisque eleifend donec pretium vulputate. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Duis at consectetur lorem donec massa sapien faucibus et molestie.</p>
+  </div>
+  <div slot="footer">
+    <auro-button secondary id="closeInverseCloseButtonAppearance" appearance="inverse">Close</auro-button>
   </div>
 </auro-drawer>
 ```

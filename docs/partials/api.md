@@ -130,6 +130,23 @@ This is a use case where there is a popover and combobox component inside the dr
 
 </auro-accordion>
 
+### Aria Label Slot
+
+To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/ariaLabelSlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/ariaLabelSlot.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ### <a name="unformatted">`unformatted`</a>
 
 For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.
@@ -177,6 +194,25 @@ The drawer's size and some styles can be styled using CSS `part`.
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/customizing.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+### Close Button Appearance on Customized Drawer <a name="closeButtonAppearance"></a>
+
+If the drawer is customized to have a dark background, the close button may not be visible. 
+You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
+
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/closeButtonAppearance.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/closeButtonAppearance.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>

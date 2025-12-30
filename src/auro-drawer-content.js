@@ -15,15 +15,19 @@ import colorCss from "./styles/drawerContentColor.scss";
 import styleCss from "./styles/drawerContentStyles.scss";
 import tokensCss from "./styles/drawerContentTokens.scss";
 
+/**
+ * @internal
+ */
 export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
+
+    this.closeButtonAppearance = 'default';
 
     /**
      * @private
      */
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
-    this.closeButtonAppearance = 'default';
 
     /*
      * @private
@@ -51,7 +55,6 @@ export class AuroDrawerContent extends LitElement {
 
   static get properties() {
     return {
-
       /**
        * Defines whether the close button should be light colored for use on dark backgrounds.
        * @property {'default', 'inverse'}
@@ -63,23 +66,25 @@ export class AuroDrawerContent extends LitElement {
         reflect: true
       },
 
-
-      visible: {
-        type: Boolean,
-        reflect: true,
-      },
       modal: {
         type: Boolean,
-        reflect: true,
+        reflect: true
       },
-      unformatted: {
-        type: Boolean,
-        reflect: true,
-      },
+
       onDark: {
         type: Boolean,
-        reflect: true,
+        reflect: true
       },
+
+      unformatted: {
+        type: Boolean,
+        reflect: true
+      },
+      
+      visible: {
+        type: Boolean,
+        reflect: true
+      }
     };
   }
 

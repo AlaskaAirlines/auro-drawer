@@ -7,6 +7,9 @@ import colorCss from "./styles/floaterBibColor.scss";
 import styleCss from "./styles/floaterBibStyles.scss";
 import tokensCss from "./styles/floaterBibTokens.scss";
 
+/**
+ * @internal
+ */
 export class AuroFloaterBib extends LitElement {
   constructor() {
     super();

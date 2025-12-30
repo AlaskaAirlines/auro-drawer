@@ -12,7 +12,9 @@ import AuroFloatingUI from "@aurodesignsystem/auro-library/scripts/runtime/float
 import { AuroFloaterBib } from "./auro-floater-bib.js";
 import drawerVersion from "./drawerVersion.js";
 
-// build the component class
+/**
+ * @internal
+ */
 export class AuroFloater extends LitElement {
   constructor(behavior) {
     super();
@@ -54,16 +56,18 @@ export class AuroFloater extends LitElement {
   static get properties() {
     return {
       /**
+       * @private
        * Sets state of drawer to open.
        * @default false
        */
       isPopoverVisible: {
         attribute: "open",
         type: Boolean,
-        reflect: true,
+        reflect: true
       },
 
       /**
+       * @private
        * The element to focus when the drawer is closed.
        */
       triggerElement: {

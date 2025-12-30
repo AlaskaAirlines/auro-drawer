@@ -1,1 +1,0 @@
-**Important Notice**: This component no longer lives within the `auro-interruption` repository, as that is now being deprecated. `<auro-drawer>` is now a standalone component and users will be required to install it separately. See the [Install Page](https://auro.alaskaair.com/components/auro/drawer/install) for instructions on how to install the component.

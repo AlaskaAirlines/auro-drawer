@@ -1,8 +1,9 @@
 <div>
-  <auro-button id="openAccessibility">Unformatted Medium Drawer</auro-button>
+  <auro-button id="openUnformatted">Unformatted Medium Drawer</auro-button>
 </div>
 
-<auro-drawer id="unformattedMdDrawer" md lg close-button-appearance="inverse">
+<auro-drawer id="unformattedDrawer" md lg>
+  <span slot="header">Unformatted Drawer</span>
   <span slot="content">
     <img style="display: block; width: 100%" src="https://blog.alaskaair.com/wp-content/uploads/2020/11/111-psp-blog-img-guide.jpg" alt="alaska airlines pride lights" />
     <div class="unformattedWrapper">
@@ -10,4 +11,7 @@
       These are words that are slotted into the scope of the custom element.
     </div>
   </span>
+  <div slot="footer">
+    <auro-button secondary id="closeUnformatted">Close</auro-button>
+  </div>
 </auro-drawer>

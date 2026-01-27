@@ -1,14 +1,13 @@
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/api.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## API Examples
-
-### Basic
+## Basic
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
+
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
@@ -17,26 +16,46 @@
 
 </auro-accordion>
 
-### <a name="fullscreenBreakpoint">`fullscreenBreakpoint`</a>
+## Property & Attribute Examples
 
-On mobile view, adding the fullscreenBreakpoint="{breakpoint-token}" will switch the drawer to fullscreen mode.
-The default breakpoint is "sm".
+### Close Button Appearance on Customized Drawer
+
+If the drawer is customized to have a dark background, the close button may not be visible. 
+You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
+
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/fullscreenBreakpoint.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/close-button-appearance.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/fullscreenBreakpoint.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/close-button-appearance.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
+### Fullscreen Breakpoint
 
-### <a name="modal">`modal`</a>
+On mobile view, adding the `fullscreenBreakpoint="{breakpoint-token}"` will switch the drawer to fullscreen mode.
+The default breakpoint is `sm`.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/fullscreen-breakpoint.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/fullscreen-breakpoint.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+### Modal
 
 The auro-drawer supports a modal drawer state that will lock a user into interacting with the `modal` drawer. To activate, use the modal attribute.
 
@@ -55,7 +74,7 @@ When using this state, the modal drawer must include a button action to dismiss 
 
 </auro-accordion>
 
-### <a name="nested">`nested`</a>
+### Nested
 
 In case the drawer should sit inside of a container, not to the body, set `nested` attribute.
 
@@ -72,10 +91,9 @@ In case the drawer should sit inside of a container, not to the body, set `neste
 
 </auro-accordion>
 
+### Placement
 
-### <a name="placement">`placement`</a>
-
-You can set the position where the drawer should sit 
+You can set the position where the drawer should sit by using the `placement` attribute. The default placement is `right`. 
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/placement.html) -->
@@ -90,9 +108,9 @@ You can set the position where the drawer should sit
 
 </auro-accordion>
 
-### <a name="size">`size`</a>
+### Size
 
-The auro-drawer supports three different sizes. A default drawer is equal to the large size drawer. 
+The `auro-drawer` element supports three different sizes. A default drawer is equal to the `lg` size drawer. 
 
 The size attribute controls the width of left and right drawers, which always have a height of 100%.
 For top and bottom drawers, size controls the height, and the width is always 100%.
@@ -100,54 +118,19 @@ For top and bottom drawers, size controls the height, and the width is always 10
 For mobile or small screen, read <a href="#fullscreenBreakpoint">`fullscreenBreakpoint`</a>
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/sizeOptions.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/size-options.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/sizeOptions.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/size-options.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
-
-### Drawer with Dropdown Components
-
-This is a use case where there is a popover and combobox component inside the drawer component, creating a stack of layered components.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/popoverAndDropdown.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/popoverAndDropdown.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-### Aria Label Slot
-
-To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/ariaLabelSlot.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-
-<auro-accordion alignRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/ariaLabelSlot.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-### <a name="unformatted">`unformatted`</a>
+### Unformatted
 
 For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.
 
@@ -158,19 +141,38 @@ This property can be used in combination of any other use case of the drawer, bu
 Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="drawer-header"` to the content header within the drawer content.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/accessibility.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/unformatted.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/accessibility.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/unformatted.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
+## Slot Examples
 
+### Aria Label Slot
+
+To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label-slot.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/aria-label-slot.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+## CSS Shadow Part Examples
 
 ### Customizing Styles
 
@@ -198,21 +200,23 @@ The drawer's size and some styles can be styled using CSS `part`.
 
 </auro-accordion>
 
-### Close Button Appearance on Customized Drawer <a name="closeButtonAppearance"></a>
+## Common Usage Patterns & Functional Examples
 
-If the drawer is customized to have a dark background, the close button may not be visible. 
-You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
+### Drawer with Dropdown Components
 
+This is a use case where there is a popover and combobox component inside the drawer component, creating a stack of layered components.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/closeButtonAppearance.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/popover-and-dropdown.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/closeButtonAppearance.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/popover-and-dropdown.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
+
+

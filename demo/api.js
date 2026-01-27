@@ -1,14 +1,14 @@
-import { initAccessibilityExample } from "../apiExamples/accessibility";
+import { initUnformattedExample } from "../apiExamples/unformatted.js";
 import { initBasicExample } from "../apiExamples/basic";
-import { initCloseButtonAppearanceExample } from "../apiExamples/closeButtonAppearance.js";
+import { initCloseButtonAppearanceExample } from "../apiExamples/close-button-appearance.js";
 import { initCustomizedExample } from "../apiExamples/customizing.js";
-import { initFullscreenBreakpointExample } from "../apiExamples/fullscreenBreakpoint";
+import { initFullscreenBreakpointExample } from "../apiExamples/fullscreen-breakpoint.js";
 import { initModalExample } from "../apiExamples/modal";
 import { initNestedExample } from "../apiExamples/nested";
 import { initPlacementExample } from "../apiExamples/placement.js";
-import { initPopoverAndDropdownExample } from "../apiExamples/popoverAndDropdown";
-import { initSizeOptionsExample } from "../apiExamples/sizeOptions";
-import { initAriaLabelSlotExample } from "../apiExamples/ariaLabelSlot.js";
+import { initPopoverAndDropdownExample } from "../apiExamples/popover-and-dropdown.js";
+import { initSizeOptionsExample } from "../apiExamples/size-options.js";
+import { initAriaLabelSlotExample } from "../apiExamples/aria-label-slot.js";
 
 import "../src/registered.js";
 
@@ -18,16 +18,16 @@ export function initExamples(initCount) {
 
   try {
     initBasicExample();
-    initAccessibilityExample();
+    initCloseButtonAppearanceExample();
+    initFullscreenBreakpointExample();
     initModalExample();
     initNestedExample();
-    initPopoverAndDropdownExample();
-    initSizeOptionsExample();
     initPlacementExample();
-    initFullscreenBreakpointExample();
-    initCustomizedExample();
+    initSizeOptionsExample();
+    initUnformattedExample();
     initAriaLabelSlotExample();
-    initCloseButtonAppearanceExample();
+    initCustomizedExample();
+    initPopoverAndDropdownExample();
   } catch (_err) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called

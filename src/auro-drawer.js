@@ -15,9 +15,8 @@ const CONFIG = {
 };
 
 /**
- * Auro-drawer provides users a way to implement an expandable drawer component.
- *
- * @element auro-drawer
+ * The `auro-drawer` element provides users a way to implement an expandable drawer component.
+ * @customElement auro-drawer
  *
  * @slot - Default slot for the body content in drawer.
  * @slot header - Text to display as the header of the modal.
@@ -38,6 +37,10 @@ export class AuroDrawer extends AuroFloater {
   constructor() {
     super("drawer");
 
+    this._initializeDefaults();
+  }
+
+  _initializeDefaults() {
     this.closeButtonAppearance = 'default';
     this.placement = "right";
     this.size = "lg";
@@ -68,9 +71,10 @@ export class AuroDrawer extends AuroFloater {
       },
 
       /**
-       * Defines the screen size breakpoint (`lg`, `md`, `sm`, or `xs`) at which the drawer switches to fullscreen mode on mobile.
+       * Defines the screen size breakpoint, at which the drawer switches to fullscreen mode on mobile.
        * When expanded, the drawer will automatically display in fullscreen mode if the screen size is equal to or smaller than the selected breakpoint.
-       * @default sm
+       * @type {'lg' | 'md' | 'sm' | 'xs'}
+       * @default 'sm'
        */
       fullscreenBreakpoint: {
         type: String,
@@ -79,7 +83,6 @@ export class AuroDrawer extends AuroFloater {
 
       /**
        * Modal drawer restricts the user to take an action (no default close actions).
-       * @default false
        */
       modal: {
         type: Boolean,
@@ -89,16 +92,14 @@ export class AuroDrawer extends AuroFloater {
 
       /**
        * Sets the anchor placement for the bib. If true, bib will open based off its parent size and position.
-       * @default false
        */
       nested: {
         type: Boolean,
-        reflect: true,
+        reflect: true
       },
 
       /**
        * DEPRECATED - use `closeButtonAppearance` instead.
-       * @default false
        */
       onDark: {
         type: Boolean,
@@ -107,40 +108,39 @@ export class AuroDrawer extends AuroFloater {
       },
 
       /**
-       * Sets the placement of drawer bib to `right`, `left`, `top`, `bottom`.
-       * @default right
+       * Sets the placement of drawer bib.
+       * @type {'right' | 'left' | 'top' | 'bottom'}
+       * @default 'right'
        */
       placement: {
-        // 'left', 'right', 'top', 'bottom'
         type: String,
-        carryDown: true,
+        carryDown: true
       },
 
       /**
-       * Sets the size of drawer bib to `sm`, `md`, `lg`.
-       * @default lg
+       * Sets the size of drawer bib.
+       * @type {'sm' | 'md' | 'lg'}
+       * @default 'lg'
        */
       size: {
-        // sm, md, lg
         type: String,
-        carryDown: true,
+        carryDown: true
       },
 
       /**
        * Unformatted drawer window, edge-to-edge fill for content.
-       * @default false
        */
       unformatted: {
         type: Boolean,
         carryDown: true,
-        reflect: true,
+        reflect: true
       },
     };
   }
 
   /**
    * This will register this element with the browser.
-   * @param {string} [name="auro-drawer"] - The name of element that you want to register to.
+   * @param {string} [name="auro-drawer"] - The name of the element that you want to register.
    *
    * @example
    * AuroDrawer.register("custom-drawer") // this will register this element to <custom-drawer/>

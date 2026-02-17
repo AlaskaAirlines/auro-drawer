@@ -83,7 +83,10 @@ export class AuroFloater extends LitElement {
   }
 
   disconnectedCallback() {
-    this.floater.disconnect();
+    if (this.floater) {
+      this.floater.hideBib('disconnect');
+      this.floater.disconnect();
+    }
   }
 
   updated(changedProperties) {

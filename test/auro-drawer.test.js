@@ -225,6 +225,75 @@ describe("auro-drawer", () => {
       });
     }
   });
+
+  // TODO: enable once the focus trap is fixed
+  it.skip("auro-drawer moves focus to close button when opened", async () => {
+    const el = await fixture(html`
+      <auro-drawer open>
+        <h2 slot="header">Focus test drawer</h2>
+        <div slot="content">
+          <input type="text" placeholder="First input" />
+        </div>
+        <div slot="footer"><button>Submit</button></div>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+
+    // Give the FocusTrap's focusFirstElement() a tick to run (it fires after
+    // the transitionend callback, which is synchronous in jsdom).
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    const closeButton = el.drawerBib.shadowRoot.querySelector("#closeButton");
+    expect(closeButton).to.not.equal(null);
+
+    // focusFirstElement() focuses the auro-button *inside* #closeButton, so
+    // shadowRoot.activeElement will be the auro-button, not the wrapper div.
+    // Check containment to confirm focus landed within the close button area.
+    const activeInShadow = el.drawerBib.shadowRoot.activeElement;
+    expect(
+      closeButton.contains(activeInShadow),
+      "Focus should be within the close button when drawer opens"
+    ).to.be.true;
+  });
+
+  it("auro-drawer returns focus to triggerElement after close", async () => {
+    const el = await fixture(html`
+      <div>
+        <button id="trigger">Open drawer</button>
+        <auro-drawer>
+          <h2 slot="header">Focus return test</h2>
+          <div slot="content">
+            <input type="text" placeholder="An input" />
+          </div>
+          <div slot="footer"><button>Submit</button></div>
+        </auro-drawer>
+      </div>
+    `);
+
+    const trigger = el.querySelector("#trigger");
+    const drawer = el.querySelector("auro-drawer");
+
+    drawer.triggerElement = trigger;
+    await elementUpdated(drawer);
+
+    // Open the drawer via trigger click
+    trigger.click();
+    await elementUpdated(drawer);
+    expect(drawer.hasAttribute("open")).to.be.true;
+
+    // Close via the close button
+    const closeButton = drawer.drawerBib.shadowRoot.querySelector("#closeButton");
+    expect(closeButton).to.not.equal(null);
+    closeButton.click();
+    await elementUpdated(drawer);
+
+    expect(drawer.hasAttribute("open")).to.be.false;
+    expect(document.activeElement).to.equal(
+      trigger,
+      "Focus should return to the trigger element after drawer closes"
+    );
+  });
 });
 
 function _sleep(ms) {

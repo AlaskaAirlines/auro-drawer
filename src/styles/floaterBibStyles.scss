@@ -43,8 +43,23 @@ dialog.container {
   width: 100%;
   height: 100%;
 
+  // CSS custom properties passed through from the consumer (set on auro-drawer).
+  // The properties inherit through the shadow DOM chain and into ::backdrop.
+  // Defaults keep the backdrop invisible unless the component sets them internally.
   &::backdrop {
-    background: transparent; // non-modal / nested mode: no visible backdrop
+    background: var(--auro-drawer-backdrop-background, transparent);
+    backdrop-filter: var(--auro-drawer-backdrop-filter, none);
+    opacity: var(--auro-drawer-backdrop-opacity, 1);
+    transition: var(--auro-drawer-backdrop-transition, opacity 0.3s ease);
+  }
+
+  // Decorative div kept for backwards-compatible ::part(drawer-backdrop) styling.
+  // pointer-events: none ensures clicks pass through to the dialog element
+  // so backdrop click-to-close detection (e.target === dialog) still works.
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
   }
 }
 

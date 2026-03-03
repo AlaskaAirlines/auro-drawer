@@ -194,12 +194,22 @@ export class AuroDrawer extends AuroFloater {
     );
 
     this.drawerBib = document.createElement("auro-drawer-content");
+    this.drawerBib.triggerElement = this.triggerElement;
     this.drawerBib.addEventListener("close-click", () =>
       this.floater.hideBib(),
     );
     this.append(this.drawerBib);
 
     this.bib.setAttribute("exportparts", "backdrop:drawer-backdrop");
+
+    // Handle Escape key via native dialog cancel event.
+    // Always preventDefault in the bib; here we decide whether to actually close.
+    this.bib.addEventListener("dialog-cancel", () => {
+      if (this.modal) {
+        return; // Modal drawers ignore Escape.
+      }
+      this.floater.hideBib();
+    });
 
     this.setupAria();
   }
@@ -215,12 +225,12 @@ export class AuroDrawer extends AuroFloater {
         this.bib.getAttribute("id"),
       );
 
-      this.bib.setAttribute("aria-label", this.triggerElement.textContent);
+      // Use bibLabel + aria-labelledby on the <dialog> instead of aria-label
+      // directly — iOS VoiceOver does not reliably read aria-label on <dialog>.
+      this.bib.bibLabel = this.triggerElement.textContent.trim();
     }
-    this.bib.setAttribute("role", "dialog");
-    if (this.modal) {
-      this.bib.setAttribute("aria-modal", "true");
-    }
+    // role="dialog" and aria-modal are provided natively by the <dialog> element;
+    // do not set them manually here.
   }
 
   /**
@@ -258,9 +268,15 @@ export class AuroDrawer extends AuroFloater {
 
     if (changedProperties.has("isPopoverVisible")) {
       this.drawerBib.visible = this.isPopoverVisible;
+      if (!this.isPopoverVisible) {
+        this.drawerBib.closing = true;
+      }
     }
 
     if (changedProperties.has("triggerElement")) {
+      if (this.drawerBib) {
+        this.drawerBib.triggerElement = this.triggerElement;
+      }
       this.setupAria();
     }
   }

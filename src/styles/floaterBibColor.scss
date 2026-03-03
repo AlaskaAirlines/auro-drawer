@@ -1,4 +1,5 @@
-:host([onbackdrop]) .backdrop { // stylelint-disable scss/selector-nest-combinators
+// stylelint-disable scss/selector-nest-combinators
+:host([onbackdrop]) dialog.container::backdrop {
   background: var(--ds-auro-floater-backdrop-modal-background-color);
 }
 

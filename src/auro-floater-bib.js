@@ -68,6 +68,14 @@ export class AuroFloaterBib extends LitElement {
         new KeyboardEvent(e.type, { ...e, bubbles: true, composed: true }),
       );
     });
+
+    // Clicks on the empty dialog area (outside the drawer panel) target the
+    // dialog element directly; clicks inside the panel bubble up from a child.
+    this.dialog.addEventListener("click", (e) => {
+      if (e.target === this.dialog) {
+        this.dispatchEvent(new Event("dialog-backdrop-click", { bubbles: true, composed: true }));
+      }
+    });
   }
 
   /**
@@ -180,6 +188,7 @@ export class AuroFloaterBib extends LitElement {
     return html`
       <dialog class="container" aria-labelledby="dialogLabel">
         <span id="dialogLabel" class="util_displayHiddenVisually" aria-hidden="true">${this.bibLabel || ""}</span>
+        <div class="backdrop" part="backdrop"></div>
         <slot></slot>
       </dialog>
     `;

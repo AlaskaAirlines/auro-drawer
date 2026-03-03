@@ -1,5 +1,10 @@
 // stylelint-disable scss/selector-nest-combinators
-:host([onbackdrop]) dialog.container::backdrop {
+
+// Default scrim lives on the .backdrop div so existing consumers using
+// ::part(drawer-backdrop) see unchanged behavior. ::backdrop stays transparent
+// by default; consumers who opt in to the token approach should hide the div
+// via ::part(drawer-backdrop) { display: none }.
+:host([onbackdrop]) .backdrop {
   background: var(--ds-auro-floater-backdrop-modal-background-color);
 }
 

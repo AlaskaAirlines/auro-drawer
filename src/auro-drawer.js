@@ -195,9 +195,10 @@ export class AuroDrawer extends AuroFloater {
 
     this.drawerBib = document.createElement("auro-drawer-content");
     this.drawerBib.triggerElement = this.triggerElement;
-    this.drawerBib.addEventListener("close-click", () =>
-      this.floater.hideBib(),
-    );
+    this.drawerBib.addEventListener("close-click", () => {
+      this.bib?.hideDialog();
+      this.floater.hideBib();
+    });
     this.append(this.drawerBib);
 
     this.bib.setAttribute("exportparts", "backdrop:drawer-backdrop");

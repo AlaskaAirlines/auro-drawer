@@ -88,12 +88,20 @@ export class AuroFloaterBib extends LitElement {
     if (nested) {
       this.dialog.setAttribute("open", "");
     } else {
-      // Prevent browser scroll-to-dialog jump before showing.
-      const { documentElement } = document;
-      const prevOverflow = documentElement.style.overflow;
-      documentElement.style.overflow = "hidden";
+      // Lock page scroll for the entire duration the dialog is open.
+      // Using position:fixed on <body> is the only reliable way to prevent
+      // ALL scroll vectors — including VoiceOver three-finger swipe, which
+      // bypasses both overflow:hidden and touchmove preventDefault.
+      // We capture the current scrollY so we can restore position on close.
+      this._savedScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${this._savedScrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      this._scrollLocked = true;
+
       this.dialog.showModal();
-      documentElement.style.overflow = prevOverflow;
 
       this._lockTouchScroll();
     }
@@ -103,13 +111,33 @@ export class AuroFloaterBib extends LitElement {
    * Closes the dialog and releases touch-scroll lock.
    */
   hideDialog() {
-    if (!this.dialog || !this.dialog.open) {
-      return;
-    }
-    setTimeout(() => {
-      this.dialog.close();
-    }, 300);
+    // Restore scroll immediately — don't wait for dialog.close().
+    this._restorePageScroll();
     this._unlockTouchScroll();
+
+    if (this.dialog?.open) {
+      setTimeout(() => {
+        this.dialog.close();
+      }, 300);
+    }
+  }
+
+  /**
+   * Restores page scroll that was locked during showDialog().
+   * Safe to call multiple times — only acts when a lock is active.
+   * @private
+   */
+  _restorePageScroll() {
+    if (this._scrollLocked) {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      window.scrollTo(0, this._savedScrollY || 0);
+      this._savedScrollY = undefined;
+      this._scrollLocked = false;
+    }
   }
 
   /**

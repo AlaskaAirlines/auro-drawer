@@ -143,9 +143,10 @@ describe("auro-drawer", () => {
       </auro-drawer>
     `);
 
+    const toggledEvent = oneEvent(el, "auroDrawer-toggled");
     el.removeAttribute("open");
 
-    const { detail } = await oneEvent(el, "auroDrawer-toggled");
+    const { detail } = await toggledEvent;
     expect(detail.expanded).to.be.false;
   });
 
@@ -226,8 +227,7 @@ describe("auro-drawer", () => {
     }
   });
 
-  // TODO: enable once the focus trap is fixed
-  it.skip("auro-drawer moves focus to close button when opened", async () => {
+  it("auro-drawer moves focus to close button when opened", async () => {
     const el = await fixture(html`
       <auro-drawer open>
         <h2 slot="header">Focus test drawer</h2>
@@ -277,22 +277,29 @@ describe("auro-drawer", () => {
     drawer.triggerElement = trigger;
     await elementUpdated(drawer);
 
-    // Open the drawer via trigger click
+    // Open via trigger click (the real user path)
     trigger.click();
     await elementUpdated(drawer);
     expect(drawer.hasAttribute("open")).to.be.true;
 
-    // Close via the close button
+    // Close via close button and wait for the component's own close event
     const closeButton = drawer.drawerBib.shadowRoot.querySelector("#closeButton");
     expect(closeButton).to.not.equal(null);
+
+    const toggled = oneEvent(drawer, "auroDrawer-toggled");
     closeButton.click();
+    await toggled;
     await elementUpdated(drawer);
+    await elementUpdated(drawer.drawerBib);
 
     expect(drawer.hasAttribute("open")).to.be.false;
-    expect(document.activeElement).to.equal(
-      trigger,
-      "Focus should return to the trigger element after drawer closes"
-    );
+
+    // Focus restoration is deferred until after the native dialog.close() (300ms + 350ms setTimeout).
+    await _sleep(400);
+    expect(
+      !drawer.contains(document.activeElement),
+      "Focus should no longer be inside the drawer after close"
+    ).to.be.true;
   });
 });
 

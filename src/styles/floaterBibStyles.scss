@@ -14,24 +14,43 @@
   will-change: opacity;
 }
 
-.container {
+// Visually hidden — readable by screen readers, invisible on screen.
+// Defined locally because global utility classes don't penetrate shadow DOM.
+.util_displayHiddenVisually {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Reset browser-default <dialog> styles that would otherwise break layout.
+// transform: translateZ(0) fixes Safari GPU compositing artifacts.
+dialog.container {
+  background-color: transparent;
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  outline: none;
+  transform: translateZ(0);
   display: inline-block;
   width: 100%;
   height: 100%;
+
+  &::backdrop {
+    background: transparent; // non-modal / nested mode: no visible backdrop
+  }
 }
 
-.container ::slotted(:only-child){
+dialog.container ::slotted(:only-child){
   z-index: var(--ds-depth-modal, vac.$ds-depth-modal);
   box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
-}
-
-:host([onbackdrop]) {
-  overflow: hidden;
-
-  .backdrop {
-    position: absolute;
-    inset: 0;
-  }
 }
 
 :host([data-show]) {
@@ -51,7 +70,7 @@
   width: 100%;
   height: 100%;
 
-  .container {
+  dialog.container {
     overflow: auto;
     width: 100%;
     height: 100%;

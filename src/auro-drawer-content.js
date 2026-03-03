@@ -7,7 +7,7 @@ import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 
-import { FocusTrap } from "./util/FocusTrap.js";
+import { FocusTrap } from "@aurodesignsystem/auro-library/scripts/runtime/FocusTrap/FocusTrap.mjs";
 import buttonVersion from "./buttonVersion.js";
 import iconVersion from "./iconVersion.js";
 
@@ -84,6 +84,11 @@ export class AuroDrawerContent extends LitElement {
       visible: {
         type: Boolean,
         reflect: true
+      },
+
+      closing: {
+        type: Boolean,
+        reflect: true
       }
     };
   }
@@ -96,27 +101,33 @@ export class AuroDrawerContent extends LitElement {
     this.dispatchEvent(new CustomEvent("close-click"));
   }
 
-  handleWrapperTransitionEnd() {
-    if (!this.visible) return;
-    if (!this.focusTrap) return;
-    this.focusTrap.focusFirstElement();
-  }
-
   updated(changedProperties) {
     if (changedProperties.has("visible")) {
       if (this.visible) {
+        // Reset CSS animation so it replays each time the drawer opens
+        const wrapper = this.shadowRoot.querySelector('.wrapper');
+        if (wrapper) {
+          wrapper.style.animation = 'none';
+          // Force reflow to restart the animation
+          void wrapper.offsetHeight; // eslint-disable-line no-void
+          wrapper.style.animation = '';
+        }
+
         if (!this.focusTrap) {
           this.focusTrap = new FocusTrap(this);
         }
-        this.prevActiveElement = document.activeElement;
-        if (this.prevActiveElement === document.body && this.triggerElement) {
-          this.prevActiveElement = this.triggerElement;
-        }
+        this.prevActiveElement = this.triggerElement || document.activeElement;
+        // Move focus to the first focusable element inside the drawer.
+        // rAF lets showModal()'s native focus assignment settle before we override.
+        requestAnimationFrame(() => {
+          this.focusTrap?.focusFirstElement();
+        });
       } else {
-        if (this.prevActiveElement) {
-          this.prevActiveElement.focus();
-          this.prevActiveElement = undefined;
-        }
+        // Native dialog.close() fires after a 300ms delay (see auro-floater-bib hideDialog).
+        // Defer focus restoration so it runs after the dialog releases focus.
+        const target = this.prevActiveElement;
+        this.prevActiveElement = undefined;
+        setTimeout(() => target?.focus(), 350);
 
         if (this.focusTrap) {
           this.focusTrap.disconnect();
@@ -124,10 +135,13 @@ export class AuroDrawerContent extends LitElement {
         }
       }
     }
-  }
 
-  firstUpdated() {
-    super.firstUpdated();
+    if (changedProperties.has("closing") && this.closing) {
+      // Reset closing state after animation completes
+      setTimeout(() => {
+        this.closing = false;
+      }, 300);
+    }
   }
 
   render() {
@@ -135,7 +149,7 @@ export class AuroDrawerContent extends LitElement {
       <!-- Hidden slot for close button aria-label -->
       <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.requestUpdate}></slot>
 
-      <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
+      <div class="wrapper" tabindex="-1" part="drawer-wrapper">
         ${
           this.unformatted
             ? ""

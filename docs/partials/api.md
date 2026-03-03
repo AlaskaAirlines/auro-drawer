@@ -178,12 +178,35 @@ To customize the aria-label text for the close button, use the `ariaLabel.drawer
 
 The drawer's size and some styles can be styled using CSS `part`.
 
-- `auro-drawer::part(backdrop)` to style the backdrop behind the the content wrapper.
-- `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content.
+- `auro-drawer::part(drawer-wrapper)` to style the container of the drawer content (the drawer panel itself).
 - `auro-drawer ::part(drawer-header)` to style the header.
 - `auro-drawer ::part(drawer-content)` to style the content wrapper.
 - `auro-drawer ::part(drawer-footer)` to style the footer.
 - `auro-drawer ::part(close-button)` to style the close button.
+
+The drawer backdrop cannot be targeted via `::part()` because browser restrictions prevent CSS parts from targeting `::backdrop`. The `drawer-backdrop` part is kept for backwards compatibility — it targets a decorative `<div>` that sits behind the drawer panel.
+
+To migrate to the new token approach, hide the legacy div and use the CSS custom properties instead:
+
+```css
+/* Step 1: disable the legacy backdrop div */
+auro-drawer::part(drawer-backdrop) {
+  display: none;
+}
+
+/* Step 2: style via tokens on the native ::backdrop */
+auro-drawer {
+  --auro-drawer-backdrop-background: rgba(0, 0, 0, 0.6);
+  --auro-drawer-backdrop-filter: blur(4px);
+}
+```
+
+| Custom Property | Default | Description |
+|---|---|---|
+| `--auro-drawer-backdrop-background` | `transparent` | Background of the native `::backdrop`. |
+| `--auro-drawer-backdrop-filter` | `none` | `backdrop-filter` applied to the native `::backdrop` (e.g. `blur(4px)`). |
+| `--auro-drawer-backdrop-opacity` | `1` | Opacity of the native `::backdrop`. |
+| `--auro-drawer-backdrop-transition` | `opacity 0.3s ease` | Transition applied to the native `::backdrop`. |
 
 `close` slot can be used to replace the close button to a different element.
 

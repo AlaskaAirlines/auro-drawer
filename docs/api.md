@@ -39,11 +39,20 @@ The `auro-drawer` element provides users a way to implement an expandable drawer
 
 ### CSS Shadow Parts
 
-| Name            | Description                                           |
-| --------------- | ----------------------------------------------------- |
-| close-button    | to style the close button.                            |
-| drawer-backdrop | to style the backdrop behind the the content wrapper. |
-| drawer-content  | to style the container of the drawer content.         |
-| drawer-footer   | to style the footer.                                  |
-| drawer-header   | to style the header.                                  |
-| drawer-wrapper  | to style the content wrapper.                         |
+| Name            | Description                                                                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| close-button    | to style the close button.                                                                                                                            |
+| drawer-backdrop | DEPRECATED - To migrate to the token approach, set `display: none` on this part and use the `--auro-drawer-backdrop-*` CSS custom properties instead. |
+| drawer-content  | to style the container of the drawer content.                                                                                                         |
+| drawer-footer   | to style the footer.                                                                                                                                  |
+| drawer-header   | to style the header.                                                                                                                                  |
+| drawer-wrapper  | to style the content wrapper.                                                                                                                         |
+
+### CSS Custom Properties
+
+| Name                              | Description                                                                                                                                                |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --auro-drawer-backdrop-background | Background of the `::backdrop` pseudo-element. In modal/backdrop mode the component sets this to the design-system scrim token; consumers can override it. |
+| --auro-drawer-backdrop-filter     | `backdrop-filter` applied to the `::backdrop` pseudo-element (e.g. `blur(4px)`).                                                                           |
+| --auro-drawer-backdrop-opacity    | Opacity of the `::backdrop` pseudo-element.                                                                                                                |
+| --auro-drawer-backdrop-transition | Transition applied to the `::backdrop` pseudo-element (e.g. `opacity 0.3s ease`).                                                                          |

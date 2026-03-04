@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<!--
+  Audit and Document Current Keyboard Behavior
+  TRD: https://github.com/orgs/AlaskaAirlines/discussions/624
+
+  USAGE
+  -----
+  1. Run: npm run build && npm run dev
+  2. Open: http://localhost:8000/keyboard-audit.html
+  3. Work through each scenario using keyboard only. Check each box as you verify.
+  4. Screenshot or copy the results into ADO 1491978 as the Task 1 baseline.
+
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>auro-drawer · Keyboard Behavior Audit (Task 1)</title>
+
+    <!-- Design tokens -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/legacy/auro-classic/CSSCustomProperties.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/themes/alaska/CSSCustomProperties--alaska.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/themes/alaska.global.min.css" />
+
+    <!-- Auro components (CDN for dependencies, local build for the drawer itself) -->
+    <script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-button@latest/+esm" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem-dev/auro-formkit@0.0.0-pr1346.10/auro-input/+esm" type="module"></script>
+
+    <style>
+      :root {
+        --audit-pass: #1a6b2a;
+        --audit-fail: #b83232;
+        --audit-unknown: #555;
+        font-family: "AS CircularXX", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #f5f5f5;
+        color: #1a1a1a;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+      }
+
+      .subtitle {
+        color: #555;
+        margin-bottom: 32px;
+        font-size: 0.9rem;
+      }
+
+      .scenario {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 32px;
+      }
+
+      .scenario h2 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+      }
+
+      .scenario h2 span.badge {
+        display: inline-block;
+        background: #0074C8;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border-radius: 4px;
+        padding: 2px 7px;
+        margin-right: 8px;
+        vertical-align: middle;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .scenario h2 span.badge.repro {
+        background: #b83232;
+      }
+
+      .description {
+        font-size: 0.875rem;
+        color: #444;
+        margin-bottom: 16px;
+        padding: 10px 14px;
+        background: #f9f9f9;
+        border-left: 3px solid #0074C8;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .description.repro {
+        border-left-color: #b83232;
+        background: #fff5f5;
+      }
+
+      .trigger-zone {
+        margin-bottom: 20px;
+      }
+
+      .checklist {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 16px;
+      }
+
+      .checklist h3 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888;
+        margin: 0 0 12px;
+      }
+
+      .checklist label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+        font-size: 0.875rem;
+        cursor: pointer;
+      }
+
+      .checklist input[type="checkbox"] {
+        margin-top: 2px;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        accent-color: var(--audit-pass);
+      }
+
+      .checklist .behavior {
+        font-weight: 600;
+      }
+
+      .checklist .expected {
+        color: var(--audit-pass);
+      }
+
+      .checklist .broken {
+        color: var(--audit-fail);
+        font-style: italic;
+      }
+
+      select.result {
+        margin-left: auto;
+        font-size: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 2px 6px;
+        flex-shrink: 0;
+      }
+
+      .legend {
+        display: flex;
+        gap: 16px;
+        font-size: 0.8rem;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .dot.pass { background: var(--audit-pass); }
+      .dot.fail { background: var(--audit-fail); }
+      .dot.repro { background: #b83232; }
+      .dot.standard { background: #0074C8; }
+
+      .notes-area label {
+        font-size: 0.8rem;
+        color: #777;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .at-section {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 32px;
+      }
+
+      .at-section h2 {
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+
+      .at-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 640px) {
+        .at-grid { grid-template-columns: 1fr; }
+      }
+
+      .at-card {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 12px 16px;
+      }
+
+      .at-card h4 { margin: 0 0 8px; font-size: 0.9rem; }
+
+      .instructions-box {
+        background: #fffbea;
+        border: 1px solid #e8d96a;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 28px;
+        font-size: 0.875rem;
+      }
+
+      .instructions-box ol { margin: 8px 0 0; padding-left: 20px; }
+      .instructions-box li { margin-bottom: 6px; }
+      code { background: #eee; border-radius: 3px; padding: 1px 5px; font-size: 0.85em; }
+    </style>
+  </head>
+  <body>
+
+    <h1>auro-drawer — Keyboard Behavior Audit</h1>
+    <p class="subtitle">
+      Task 1 · TRD #624 · Baseline before any code changes · Current date: 2026-02-27
+    </p>
+
+    <div class="instructions-box">
+      <ol>
+        <li>Work through each scenario using <strong>keyboard only</strong> (Tab, Shift+Tab, Escape).</li>
+        <li>Check each passing behavior. Leave unchecked anything that's broken.</li>
+        <li>When done, screenshot or copy results into ADO 1491978 as the Task 1 baseline.</li>
+      </ol>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="dot standard"></div> Standard scenario</div>
+      <div class="legend-item"><div class="dot repro"></div> Confirmed repro scenario (expected to fail pre-fix)</div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 1: Standard drawer
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge">1</span>Standard Drawer — close button + 2 inputs + enabled button</h2>
+      <div class="description">
+        Baseline happy path. All interactive elements are enabled. Tab should cycle through:
+        close button → Input 1 → Input 2 → Submit button → (wraps back to close button).
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario1">Open standard drawer</auro-button>
+      </div>
+
+      <auro-drawer id="scenario1Drawer">
+        <span slot="header">Standard Drawer</span>
+        <div slot="content">
+          <p>Use Tab and Shift+Tab to cycle through the elements below.</p>
+          <auro-input id="s1input1" label="First name" required></auro-input>
+          <auro-input id="s1input2" label="Last name" style="margin-top: 16px;"></auro-input>
+        </div>
+        <div slot="footer">
+          <auro-button id="closeScenario1">Submit</auro-button>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on the close button (×) immediately after the drawer opens.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab moves focus through close button → Input 1 → Input 2 → Submit, in order.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps</span>: Pressing Tab from the Submit button wraps back to the close button (stays inside drawer).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab backward</span>: Shift+Tab reverses order correctly through all elements.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab wraps</span>: Pressing Shift+Tab from the close button wraps to the Submit button (stays inside drawer).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Close button click</span>: Clicking the × button closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to the "Open standard drawer" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 2: Repro A — disabled button
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge repro">2</span>Repro Scenario A — 2 inputs + <strong>disabled</strong> button</h2>
+      <div class="description repro">
+        ⚠️ <strong>Confirmed broken (ADO 1491978).</strong> The last enabled element is Input 2.
+        The disabled Submit button should be skipped by Tab. Focus must wrap from Input 2 back to
+        the close button — but currently escapes the drawer. Expect Tab wrapping to fail here.
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario2">Open drawer (disabled button)</auro-button>
+      </div>
+
+      <auro-drawer id="scenario2Drawer">
+        <span slot="header">Drawer With Disabled Button</span>
+        <div slot="content">
+          <p>The Submit button below is <strong>disabled</strong>. Tab should wrap from Input 2 back to the close button.</p>
+          <auro-input id="s2input1" label="First name" required></auro-input>
+          <auro-input id="s2input2" label="Last name" style="margin-top: 16px;"></auro-input>
+        </div>
+        <div slot="footer">
+          <auro-button disabled id="s2submit">Submit (disabled)</auro-button>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on the close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab cycles close button → Input 1 → Input 2 (disabled Submit is skipped).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps from Input 2</span>: Tab from Input 2 wraps back to close button (does NOT escape drawer). <span class="broken">← likely failing</span></span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab backward</span>: Shift+Tab moves Input 2 → Input 1 → close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab wraps from close button</span>: Wraps to Input 2 (skips disabled Submit). <span class="broken">← likely failing</span></span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to the "Open drawer (disabled button)" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 3: Repro B — no button
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge repro">3</span>Repro Scenario B — 2 inputs, <strong>no footer button</strong></h2>
+      <div class="description repro">
+        ⚠️ <strong>Confirmed broken.</strong> No footer button at all. The last focusable element is Input 2.
+        Tab must wrap from Input 2 to the close button. Same root cause as Scenario 2.
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario3">Open drawer (no button)</auro-button>
+      </div>
+
+      <auro-drawer id="scenario3Drawer">
+        <span slot="header">Drawer With No Footer Button</span>
+        <div slot="content">
+          <p>There is <strong>no footer button</strong>. Tab should wrap from Input 2 back to the close button.</p>
+          <auro-input id="s3input1" label="First name" required></auro-input>
+          <auro-input id="s3input2" label="Last name" style="margin-top: 16px;"></auro-input>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on the close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab cycles close button → Input 1 → Input 2.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps from Input 2</span>: Tab from Input 2 wraps to close button (does NOT escape). <span class="broken">← likely failing</span></span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab wraps from close button</span>: Wraps to Input 2. <span class="broken">← likely failing</span></span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to the "Open drawer (no button)" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 4: Modal drawer
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge">4</span>Modal Drawer — Escape should be suppressed</h2>
+      <div class="description">
+        Modal drawers do not close on Escape. The close button is hidden. The only exit is the
+        "I understand" button in the footer. Tab should cycle within the modal content.
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario4">Open modal drawer</auro-button>
+      </div>
+
+      <auro-drawer id="scenario4Drawer" modal>
+        <span slot="header">Modal Drawer</span>
+        <div slot="content">
+          <p>This is a modal drawer. Escape should <strong>not</strong> close it.</p>
+          <auro-input id="s4input1" label="Required field" required></auro-input>
+        </div>
+        <div slot="footer">
+          <auro-button id="closeScenario4">I understand</auro-button>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on first focusable element (Input or "I understand" button).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">No close button</span>: The × button is NOT rendered (modal mode hides it).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab cycles within modal</span>: Tab moves between Input and "I understand" only, does not escape.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape is blocked</span>: Pressing Escape does NOT close the modal drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Footer button closes</span>: Clicking "I understand" closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After close, focus returns to "Open modal drawer" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 5: Nested drawer
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge">5</span>Nested Drawer — anchored inside a positioned container</h2>
+      <div class="description">
+        The nested drawer renders inside its parent container (not in the top layer).
+        Focus should be contained within the nested drawer while it is open.
+        The nested drawer uses its own FocusTrap since it can't use <code>showModal()</code>.
+      </div>
+
+      <div style="height: 420px; position: relative; border: 2px dashed #ccc; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
+        <div style="padding: 16px;">
+          <auro-button id="openScenario5">Open nested drawer</auro-button>
+        </div>
+        <auro-drawer id="scenario5Drawer" nested>
+          <span slot="header">Nested Drawer</span>
+          <div slot="content">
+            <p>Nested inside a positioned container. Focus should be trapped within this drawer.</p>
+            <auro-input id="s5input1" label="First name"></auro-input>
+            <auro-input id="s5input2" label="Last name" style="margin-top: 16px;"></auro-input>
+          </div>
+          <div slot="footer">
+            <auro-button secondary id="closeScenario5">Close</auro-button>
+          </div>
+        </auro-drawer>
+      </div>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on the close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab cycles close button → Input 1 → Input 2 → Close (footer).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps</span>: Tab from Close (footer) wraps back to close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab backward</span>: Reverse order, wraps correctly.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the nested drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to "Open nested drawer" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         SCENARIO 6: Unformatted drawer (no close button)
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge">6</span>Unformatted Drawer — no header, no close button</h2>
+      <div class="description">
+        The <code>unformatted</code> attribute removes the header/footer chrome including the close button.
+        The only focusable elements are those slotted in by the consumer. Escape should still close it.
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario6">Open unformatted drawer</auro-button>
+      </div>
+
+      <auro-drawer id="scenario6Drawer" unformatted>
+        <div slot="content" style="padding: 24px;">
+          <p><strong>Unformatted drawer</strong> — no built-in close button or header.</p>
+          <auro-input id="s6input1" label="First input"></auro-input>
+          <auro-input id="s6input2" label="Second input" style="margin-top: 16px;"></auro-input>
+          <div style="margin-top: 16px;">
+            <auro-button id="closeScenario6">Done</auro-button>
+          </div>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on Input 1 (first focusable; no close button exists).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab cycles Input 1 → Input 2 → Done button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps</span>: Tab from Done wraps back to Input 1 (stays inside drawer).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab wraps</span>: Shift+Tab from Input 1 wraps to Done button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the drawer. (N/A if Escape is intentionally disabled in unformatted mode — note which.)</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to "Open unformatted drawer" button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
+         ASSISTIVE TECHNOLOGY
+         =================================================================== -->
+    <div class="at-section">
+      <h2>Assistive Technology Testing</h2>
+      <p style="font-size: 0.875rem; color: #555; margin-bottom: 16px;">Test with each available AT. Use Scenario 1 (standard) and Scenario 2 (repro / disabled button) at minimum.</p>
+      <div class="at-grid">
+        <div class="at-card">
+          <h4>VoiceOver + Safari (macOS)</h4>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Cursor confined while drawer is open
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Drawer title announced on open
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem;">
+            <input type="checkbox" /> "dialog" role announced
+          </label>
+        </div>
+        <div class="at-card">
+          <h4>VoiceOver + Safari (iOS)</h4>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Cursor confined while drawer is open
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Touch scroll inside drawer works (page doesn't scroll behind)
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem;">
+            <input type="checkbox" /> Virtual keyboard doesn't jump page layout
+          </label>
+        </div>
+        <div class="at-card">
+          <h4>NVDA + Chrome (Windows)</h4>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Cursor confined while drawer is open
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem;">
+            <input type="checkbox" /> Drawer title announced on open
+          </label>
+        </div>
+        <div class="at-card">
+          <h4>TalkBack + Chrome (Android)</h4>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Cursor confined while drawer is open
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem; margin-bottom:8px;">
+            <input type="checkbox" /> Touch scroll inside drawer works
+          </label>
+          <label style="display:flex; gap:8px; align-items:center; font-size:0.875rem;">
+            <input type="checkbox" /> Virtual keyboard doesn't jump page layout
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Local build of auro-drawer -->
+    <script type="module" src="./index.min.js"></script>
+
+    <script type="module">
+      // Set triggerElement once after elements upgrade so AuroFloatingUI can
+      // register its own click listener. Do NOT also call setAttribute('open')
+      // here — that would fight AuroFloatingUI's toggle handler and prevent
+      // the drawer from reopening on the second click.
+      function wireDrawer(openBtnId, drawerId, closeBtnId) {
+        const openBtn = document.getElementById(openBtnId);
+        const drawer  = document.getElementById(drawerId);
+
+        if (!openBtn || !drawer) return;
+
+        drawer.triggerElement = openBtn;
+
+        if (closeBtnId) {
+          const closeBtn = document.getElementById(closeBtnId);
+          if (closeBtn) {
+            closeBtn.addEventListener('click', () => drawer.removeAttribute('open'));
+          }
+        }
+      }
+
+      wireDrawer('openScenario1', 'scenario1Drawer', 'closeScenario1');
+      wireDrawer('openScenario2', 'scenario2Drawer', null);
+      wireDrawer('openScenario3', 'scenario3Drawer', null);
+      wireDrawer('openScenario4', 'scenario4Drawer', 'closeScenario4');
+      wireDrawer('openScenario5', 'scenario5Drawer', 'closeScenario5');
+      wireDrawer('openScenario6', 'scenario6Drawer', 'closeScenario6');
+    </script>
+
+  </body>
+</html>

@@ -31,6 +31,7 @@
     "@aurodesignsystem/auro-library": "^5.5.4",
     "@aurodesignsystem/design-tokens": "^8.7.0",
     "@aurodesignsystem/webcorestylesheets": "^10.1.4",
+    "@playwright/test": "^1.58.2",
     "@web/test-runner-commands": "^0.9.0",
     "baseline-browser-mapping": "^2.10.0",
     "husky": "^9.1.7"
@@ -62,7 +63,9 @@
     "test": "auro test",
     "test:watch": "auro test --watch",
     "test:coverage": "auro test --coverage-report --open",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:e2e": "playwright test --config=playwright.config.js",
+    "test:e2e:video": "playwright test --config=playwright.video.config.js && playwright show-report"
   },
   "exports": {
     "./package.json": "./package.json",

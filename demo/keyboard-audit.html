@@ -609,6 +609,71 @@
 
 
     <!-- ===================================================================
+         SCENARIO 7: auro-drawer with native HTML inputs + button
+         =================================================================== -->
+    <div class="scenario">
+      <h2><span class="badge">7</span>auro-drawer with <strong>native HTML</strong> inputs + button</h2>
+      <div class="description">
+        Same auro-drawer shell as Scenario 1, but the form elements are plain
+        <code>&lt;input&gt;</code> and <code>&lt;button&gt;</code> — no web
+        components inside the content. Use this to isolate whether focus-ring
+        visibility issues are caused by auro-input/auro-button or by the drawer
+        itself.
+      </div>
+
+      <div class="trigger-zone">
+        <auro-button id="openScenario7">Open drawer (native inputs)</auro-button>
+      </div>
+
+      <auro-drawer id="scenario7Drawer">
+        <span slot="header">Drawer — Native Inputs</span>
+        <div slot="content">
+          <p>These are plain <code>&lt;input&gt;</code> elements, not auro-input.</p>
+          <div style="margin-bottom: 16px;">
+            <label for="s7input1" style="display:block; margin-bottom:4px; font-size:0.875rem;">First name</label>
+            <input id="s7input1" type="text" style="width:100%; padding:8px; font-size:1rem; box-sizing:border-box;" />
+          </div>
+          <div>
+            <label for="s7input2" style="display:block; margin-bottom:4px; font-size:0.875rem;">Last name</label>
+            <input id="s7input2" type="text" style="width:100%; padding:8px; font-size:1rem; box-sizing:border-box;" />
+          </div>
+        </div>
+        <div slot="footer">
+          <button id="closeScenario7" style="padding:8px 20px; font-size:1rem; cursor:pointer;">Submit</button>
+        </div>
+      </auro-drawer>
+
+      <div class="checklist">
+        <h3>Keyboard Behavior Checklist</h3>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Open → Initial focus</span>: Focus lands on the close button (×).</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab forward</span>: Tab moves close button → Input 1 → Input 2 → Submit.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Tab wraps</span>: Tab from Submit wraps back to close button.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Shift+Tab backward</span>: Reverse order works correctly.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Escape closes</span>: Pressing Escape closes the drawer.</span>
+        </label>
+        <label>
+          <input type="checkbox" />
+          <span><span class="behavior">Focus returns to trigger</span>: After closing, focus returns to the trigger button.</span>
+        </label>
+      </div>
+    </div>
+
+
+    <!-- ===================================================================
          ASSISTIVE TECHNOLOGY
          =================================================================== -->
     <div class="at-section">
@@ -694,6 +759,7 @@
       wireDrawer('openScenario4', 'scenario4Drawer', 'closeScenario4');
       wireDrawer('openScenario5', 'scenario5Drawer', 'closeScenario5');
       wireDrawer('openScenario6', 'scenario6Drawer', 'closeScenario6');
+      wireDrawer('openScenario7', 'scenario7Drawer', 'closeScenario7');
     </script>
 
   </body>

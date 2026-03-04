@@ -26,3 +26,10 @@ demo/*.md
 demo/*.min.js
 
 custom-elements.json
+
+## Playwright
+test-results/
+playwright-report/
+.playwright-cli/
+# Stray playwright-cli snapshots accidentally written to repo root
+/*.yaml

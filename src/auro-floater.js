@@ -99,7 +99,7 @@ export class AuroFloater extends LitElement {
     if (changedProperties.has("isPopoverVisible")) {
       if (this.isPopoverVisible) {
         this.floater.showBib();
-        this.bib?.showDialog({ nested: this.nested });
+        this.bib?.showDialog({ nested: this.nested, modal: this.modal });
       } else {
         this.floater.hideBib();
         this.bib?.hideDialog();

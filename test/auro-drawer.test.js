@@ -301,6 +301,125 @@ describe("auro-drawer", () => {
       "Focus should no longer be inside the drawer after close"
     ).to.be.true;
   });
+
+  it("non-modal drawer opens via setAttribute, not showModal, so focus is not trapped", async () => {
+    const el = await fixture(html`
+      <auro-drawer open>
+        <h2 slot="header">Non-modal</h2>
+        <div slot="content"><p>Content</p></div>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+
+    // Scroll lock is only applied in the showModal() code path.
+    // A falsy _scrollLocked confirms setAttribute('open','') was used.
+    expect(el.bib._scrollLocked, "non-modal drawer must not lock page scroll").to.not.be.true;
+  });
+
+  it("modal drawer opens via showModal and locks page scroll", async () => {
+    const el = await fixture(html`
+      <auro-drawer open modal>
+        <h2 slot="header">Modal</h2>
+        <div slot="content"><p>Content</p></div>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+
+    // _scrollLocked is set to true only when showModal() is called.
+    expect(el.bib._scrollLocked, "modal drawer must lock page scroll via showModal()").to.be.true;
+  });
+
+  it("nested drawer opens via setAttribute regardless of modal state", async () => {
+    const el = await fixture(html`
+      <div style="width: 300px; height: 300px;">
+        <auro-drawer open nested>
+          <h2 slot="header">Nested</h2>
+          <div slot="content"><p>Content</p></div>
+        </auro-drawer>
+      </div>
+    `);
+
+    const drawer = el.querySelector("auro-drawer");
+    await elementUpdated(drawer);
+
+    // Nested drawers must never use showModal() — top-layer breaks positional anchoring.
+    expect(drawer.bib._scrollLocked, "nested drawer must not lock scroll").to.not.be.true;
+  });
+
+  it("non-modal drawer with a disabled footer button does not escape focus on open", async () => {
+    const el = await fixture(html`
+      <auro-drawer open>
+        <h2 slot="header">Repro scenario</h2>
+        <div slot="content">
+          <input type="text" placeholder="First input" />
+          <input type="text" placeholder="Second input" />
+        </div>
+        <div slot="footer">
+          <button disabled>Disabled Submit</button>
+        </div>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+
+    // The drawer must stay open — if the local FocusTrap bug were still present
+    // and focus escaped to document body, handleFocusLoss() would close it.
+    expect(el.hasAttribute("open"), "drawer stays open despite a disabled last element").to.be.true;
+    // Non-modal: scroll lock must not be active
+    expect(el.bib._scrollLocked, "non-modal repro drawer must not lock scroll").to.not.be.true;
+  });
+
+  it("non-modal drawer with no footer button does not escape focus on open", async () => {
+    const el = await fixture(html`
+      <auro-drawer open>
+        <h2 slot="header">No button scenario</h2>
+        <div slot="content">
+          <input type="text" placeholder="First input" />
+          <input type="text" placeholder="Second input" />
+        </div>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+
+    expect(el.hasAttribute("open"), "drawer stays open with no footer button").to.be.true;
+    expect(el.bib._scrollLocked, "non-modal no-button drawer must not lock scroll").to.not.be.true;
+  });
+
+  it("non-modal drawer closes when dialog-cancel event fires (Escape)", async () => {
+    const el = await fixture(html`
+      <auro-drawer open>
+        <h2 slot="header">Non-modal escape test</h2>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+    expect(el.hasAttribute("open")).to.be.true;
+
+    // Simulate the native <dialog> cancel event (fired by the browser on Escape).
+    el.bib.dispatchEvent(new Event("dialog-cancel", { bubbles: true, composed: true }));
+    await elementUpdated(el);
+
+    expect(el.hasAttribute("open"), "non-modal drawer should close on Escape").to.be.false;
+  });
+
+  it("modal drawer stays open when dialog-cancel event fires (Escape blocked)", async () => {
+    const el = await fixture(html`
+      <auro-drawer open modal>
+        <h2 slot="header">Modal escape test</h2>
+      </auro-drawer>
+    `);
+
+    await elementUpdated(el);
+    expect(el.hasAttribute("open")).to.be.true;
+
+    el.bib.dispatchEvent(new Event("dialog-cancel", { bubbles: true, composed: true }));
+    await elementUpdated(el);
+
+    expect(el.hasAttribute("open"), "modal drawer must ignore Escape").to.be.true;
+  });
 });
 
 function _sleep(ms) {

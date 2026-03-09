@@ -80,11 +80,18 @@ export class AuroFloaterBib extends LitElement {
 
   /**
    * Opens the dialog.
-   * Uses showModal() for standard/modal drawers (native focus containment, top-layer).
-   * Uses setAttribute('open') for nested drawers to keep positional CSS intact.
-   * @param {{ nested?: boolean }} [options]
+   *
+   * - `modal && !nested`: uses `showModal()` for native focus containment and top-layer
+   *   rendering. Page scroll and touch scroll are locked for the duration.
+   * - `nested`: uses `setAttribute('open','')` to keep positional CSS intact.
+   *   `showModal()` would promote the element to the top layer, breaking
+   *   `position: absolute` anchoring used by nested drawers.
+   * - `!modal && !nested`: uses `setAttribute('open','')` so keyboard focus can
+   *   flow freely to background page content (WCAG 2.1.2 No Keyboard Trap).
+   *
+   * @param {{ nested?: boolean, modal?: boolean }} [options]
    */
-  async showDialog({ nested = false } = {}) {
+  async showDialog({ nested = false, modal = false } = {}) {
     // firstUpdated() may not have run yet on initial render — wait for it.
     if (!this.dialog) {
       await this.updateComplete;
@@ -93,9 +100,11 @@ export class AuroFloaterBib extends LitElement {
       return;
     }
 
-    if (nested) {
+    if (nested || !modal) {
+      // Non-modal and nested drawers: open without entering the top layer.
       this.dialog.setAttribute("open", "");
     } else {
+      // Modal, non-nested: use showModal() for native focus containment and top-layer.
       // Lock page scroll for the entire duration the dialog is open.
       // Using position:fixed on <body> is the only reliable way to prevent
       // ALL scroll vectors — including VoiceOver three-finger swipe, which

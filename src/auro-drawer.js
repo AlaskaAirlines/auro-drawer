@@ -46,7 +46,7 @@ export class AuroDrawer extends AuroFloater {
   }
 
   _initializeDefaults() {
-    this.closeButtonAppearance = 'default';
+    this.closeButtonAppearance = "default";
     this.placement = "right";
     this.size = "lg";
     this.fullscreenBreakpoint = "sm";
@@ -62,7 +62,6 @@ export class AuroDrawer extends AuroFloater {
     return {
       ...AuroFloater.properties,
 
-
       /**
        * Defines whether the close button should be light colored for use on dark backgrounds.
        * @property {'default', 'inverse'}
@@ -70,9 +69,9 @@ export class AuroDrawer extends AuroFloater {
        */
       closeButtonAppearance: {
         type: String,
-        attribute: 'close-button-appearance',
+        attribute: "close-button-appearance",
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -100,7 +99,7 @@ export class AuroDrawer extends AuroFloater {
        */
       nested: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -119,7 +118,7 @@ export class AuroDrawer extends AuroFloater {
        */
       placement: {
         type: String,
-        carryDown: true
+        carryDown: true,
       },
 
       /**
@@ -129,7 +128,7 @@ export class AuroDrawer extends AuroFloater {
        */
       size: {
         type: String,
-        carryDown: true
+        carryDown: true,
       },
 
       /**
@@ -138,7 +137,7 @@ export class AuroDrawer extends AuroFloater {
       unformatted: {
         type: Boolean,
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
     };
   }
@@ -201,30 +200,11 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib = document.createElement("auro-drawer-content");
     this.drawerBib.triggerElement = this.triggerElement;
     this.drawerBib.addEventListener("close-click", () => {
-      this.bib?.hideDialog();
-      this.floater.hideBib();
+      this.hide();
     });
     this.append(this.drawerBib);
 
     this.bib.setAttribute("exportparts", "backdrop:drawer-backdrop");
-
-    // Handle Escape key via native dialog cancel event.
-    // Always preventDefault in the bib; here we decide whether to actually close.
-    this.bib.addEventListener("dialog-cancel", () => {
-      if (this.modal) {
-        return; // Modal drawers ignore Escape.
-      }
-      this.floater.hideBib();
-    });
-
-    // Handle backdrop clicks — close unless this is a modal drawer.
-    this.bib.addEventListener("dialog-backdrop-click", () => {
-      if (this.modal) {
-        return; // Modal drawers require an explicit action to close.
-      }
-      this.bib?.hideDialog();
-      this.floater.hideBib();
-    });
 
     this.setupAria();
   }
@@ -239,10 +219,6 @@ export class AuroDrawer extends AuroFloater {
         "aria-controls",
         this.bib.getAttribute("id"),
       );
-
-      // Use bibLabel + aria-labelledby on the <dialog> instead of aria-label
-      // directly — iOS VoiceOver does not reliably read aria-label on <dialog>.
-      this.bib.bibLabel = this.triggerElement.textContent.trim();
     }
     // role="dialog" and aria-modal are provided natively by the <dialog> element;
     // do not set them manually here.
@@ -277,7 +253,10 @@ export class AuroDrawer extends AuroFloater {
 
     [...changedProperties.entries()].forEach(([entry]) => {
       if (AuroDrawer.properties[entry].carryDown) {
-        this.updateDrawerBibAttribute(AuroDrawer.properties[entry].attribute || entry, this[entry]);
+        this.updateDrawerBibAttribute(
+          AuroDrawer.properties[entry].attribute || entry,
+          this[entry],
+        );
       }
     });
 

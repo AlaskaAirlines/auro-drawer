@@ -20,9 +20,11 @@ The `auro-drawer` element provides users a way to implement an expandable drawer
 
 ### Methods
 
-| Name     | Parameters                                                           | Return | Description                                       |
-| -------- | -------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of the element that you want to register. |        | This will register this element with the browser. |
+| Name     | Parameters                                                           | Return | Description                                                                                                                                                                                                                                                                                                                                                                |
+| -------- | -------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hide     | `eventType` (any)                                                    |        | Closes the native dialog and releases all scroll locks.                                                                                                                                                                                                                                                                                                                    |
+| register | `name` (string) - The name of the element that you want to register. |        | This will register this element with the browser.                                                                                                                                                                                                                                                                                                                          |
+| show     | None                                                                 |        | Opens the native dialog inside the bib.<br><br>- `modal && !nested`: `showModal()` for native focus containment and top-layer<br>  rendering. Page scroll and touch scroll are locked on mobile for the duration.<br>- `nested` or `!modal`: `setAttribute('open','')` to keep positional CSS intact<br>  and allow free keyboard flow to background content (WCAG 2.1.2). |
 
 ### Events
 

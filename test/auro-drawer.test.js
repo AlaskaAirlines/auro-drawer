@@ -222,7 +222,7 @@ describe("auro-drawer", () => {
 
       await elementUpdated(drawer);
       await expect(el).to.be.accessible({
-        ignoredRules: ["color-contrast"]
+        ignoredRules: ["color-contrast"],
       });
     }
   });
@@ -253,7 +253,7 @@ describe("auro-drawer", () => {
     const activeInShadow = el.drawerBib.shadowRoot.activeElement;
     expect(
       closeButton.contains(activeInShadow),
-      "Focus should be within the close button when drawer opens"
+      "Focus should be within the close button when drawer opens",
     ).to.be.true;
   });
 
@@ -283,7 +283,8 @@ describe("auro-drawer", () => {
     expect(drawer.hasAttribute("open")).to.be.true;
 
     // Close via close button and wait for the component's own close event
-    const closeButton = drawer.drawerBib.shadowRoot.querySelector("#closeButton");
+    const closeButton =
+      drawer.drawerBib.shadowRoot.querySelector("#closeButton");
     expect(closeButton).to.not.equal(null);
 
     const toggled = oneEvent(drawer, "auroDrawer-toggled");
@@ -298,7 +299,7 @@ describe("auro-drawer", () => {
     await _sleep(400);
     expect(
       !drawer.contains(document.activeElement),
-      "Focus should no longer be inside the drawer after close"
+      "Focus should no longer be inside the drawer after close",
     ).to.be.true;
   });
 
@@ -314,7 +315,8 @@ describe("auro-drawer", () => {
 
     // Scroll lock is only applied in the showModal() code path.
     // A falsy _scrollLocked confirms setAttribute('open','') was used.
-    expect(el.bib._scrollLocked, "non-modal drawer must not lock page scroll").to.not.be.true;
+    expect(el.bib._scrollLocked, "non-modal drawer must not lock page scroll")
+      .to.not.be.true;
   });
 
   it("modal drawer opens via showModal and locks page scroll", async () => {
@@ -328,7 +330,10 @@ describe("auro-drawer", () => {
     await elementUpdated(el);
 
     // _scrollLocked is set to true only when showModal() is called.
-    expect(el.bib._scrollLocked, "modal drawer must lock page scroll via showModal()").to.be.true;
+    expect(
+      el._scrollLocked,
+      "modal drawer must lock page scroll via showModal()",
+    ).to.be.true;
   });
 
   it("nested drawer opens via setAttribute regardless of modal state", async () => {
@@ -345,7 +350,8 @@ describe("auro-drawer", () => {
     await elementUpdated(drawer);
 
     // Nested drawers must never use showModal() — top-layer breaks positional anchoring.
-    expect(drawer.bib._scrollLocked, "nested drawer must not lock scroll").to.not.be.true;
+    expect(drawer.bib._scrollLocked, "nested drawer must not lock scroll").to
+      .not.be.true;
   });
 
   it("non-modal drawer with a disabled footer button does not escape focus on open", async () => {
@@ -366,9 +372,13 @@ describe("auro-drawer", () => {
 
     // The drawer must stay open — if the local FocusTrap bug were still present
     // and focus escaped to document body, handleFocusLoss() would close it.
-    expect(el.hasAttribute("open"), "drawer stays open despite a disabled last element").to.be.true;
+    expect(
+      el.hasAttribute("open"),
+      "drawer stays open despite a disabled last element",
+    ).to.be.true;
     // Non-modal: scroll lock must not be active
-    expect(el.bib._scrollLocked, "non-modal repro drawer must not lock scroll").to.not.be.true;
+    expect(el.bib._scrollLocked, "non-modal repro drawer must not lock scroll")
+      .to.not.be.true;
   });
 
   it("non-modal drawer with no footer button does not escape focus on open", async () => {
@@ -384,8 +394,12 @@ describe("auro-drawer", () => {
 
     await elementUpdated(el);
 
-    expect(el.hasAttribute("open"), "drawer stays open with no footer button").to.be.true;
-    expect(el.bib._scrollLocked, "non-modal no-button drawer must not lock scroll").to.not.be.true;
+    expect(el.hasAttribute("open"), "drawer stays open with no footer button")
+      .to.be.true;
+    expect(
+      el.bib._scrollLocked,
+      "non-modal no-button drawer must not lock scroll",
+    ).to.not.be.true;
   });
 
   it("non-modal drawer closes when dialog-cancel event fires (Escape)", async () => {
@@ -399,10 +413,13 @@ describe("auro-drawer", () => {
     expect(el.hasAttribute("open")).to.be.true;
 
     // Simulate the native <dialog> cancel event (fired by the browser on Escape).
-    el.bib.dispatchEvent(new Event("dialog-cancel", { bubbles: true, composed: true }));
+    el.bib.dispatchEvent(
+      new Event("dialog-cancel", { bubbles: true, composed: true }),
+    );
     await elementUpdated(el);
 
-    expect(el.hasAttribute("open"), "non-modal drawer should close on Escape").to.be.false;
+    expect(el.hasAttribute("open"), "non-modal drawer should close on Escape")
+      .to.be.false;
   });
 
   it("modal drawer stays open when dialog-cancel event fires (Escape blocked)", async () => {
@@ -415,10 +432,13 @@ describe("auro-drawer", () => {
     await elementUpdated(el);
     expect(el.hasAttribute("open")).to.be.true;
 
-    el.bib.dispatchEvent(new Event("dialog-cancel", { bubbles: true, composed: true }));
+    el.bib.dispatchEvent(
+      new Event("dialog-cancel", { bubbles: true, composed: true }),
+    );
     await elementUpdated(el);
 
-    expect(el.hasAttribute("open"), "modal drawer must ignore Escape").to.be.true;
+    expect(el.hasAttribute("open"), "modal drawer must ignore Escape").to.be
+      .true;
   });
 });
 

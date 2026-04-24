@@ -1,4 +1,7 @@
 export function initModalExample() {
+  if (initModalExample._initialized) {
+    return;
+  }
   const defaultButtons = [
     document.querySelector("#openDefaultModal"),
     document.querySelector("#closeDefaultModal"),
@@ -17,33 +20,34 @@ export function initModalExample() {
   ];
   const smallDrawer = document.querySelector("#smallModalDrawer");
 
-  defaultButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (defaultDrawer.hasAttribute("open")) {
-        defaultDrawer.removeAttribute("open");
-      } else {
-        defaultDrawer.setAttribute("open", true);
-      }
-    });
+  if (
+    !defaultButtons[0] ||
+    !defaultButtons[1] ||
+    !defaultDrawer ||
+    !mediumButtons[0] ||
+    !mediumButtons[1] ||
+    !mediumDrawer ||
+    !smallButtons[0] ||
+    !smallButtons[1] ||
+    !smallDrawer
+  ) {
+    return;
+  }
+
+  defaultDrawer.triggerElement = defaultButtons[0];
+  defaultButtons[1].addEventListener("click", () => {
+    defaultDrawer.removeAttribute("open");
   });
 
-  mediumButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (mediumDrawer.hasAttribute("open")) {
-        mediumDrawer.removeAttribute("open");
-      } else {
-        mediumDrawer.setAttribute("open", true);
-      }
-    });
+  mediumDrawer.triggerElement = mediumButtons[0];
+  mediumButtons[1].addEventListener("click", () => {
+    mediumDrawer.removeAttribute("open");
   });
 
-  smallButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (smallDrawer.hasAttribute("open")) {
-        smallDrawer.removeAttribute("open");
-      } else {
-        smallDrawer.setAttribute("open", true);
-      }
-    });
+  smallDrawer.triggerElement = smallButtons[0];
+  smallButtons[1].addEventListener("click", () => {
+    smallDrawer.removeAttribute("open");
   });
+
+  initModalExample._initialized = true;
 }

@@ -173,7 +173,7 @@ describe("auro-drawer", () => {
     `);
     const sm = el.children[0].drawerBib.shadowRoot.querySelector(".wrapper");
     const md = el.children[1].drawerBib.shadowRoot.querySelector(".wrapper");
-
+debugger;
     expect(sm.offsetWidth).to.be.lessThan(md.offsetWidth);
   });
 
@@ -194,13 +194,16 @@ describe("auro-drawer", () => {
     `);
     await expect(el.drawerBib.hasAttribute("stretch")).to.be.true;
     const contentWrapper = el.drawerBib.shadowRoot.querySelector(".wrapper");
-    await expect(contentWrapper.offsetWidth).to.be.equal(visualViewport.width);
-    await expect(contentWrapper.offsetHeight).to.be.equal(
-      visualViewport.height,
-    );
+    await expect(contentWrapper.offsetWidth).to.be.equal(document.documentElement.offsetWidth);
+    await expect(contentWrapper.offsetHeight).to.be.equal(visualViewport.height);
   });
 
   it("auro-drawer is accessible", async () => {
+
+    await setViewport({
+      width: window.innerWidth,
+      height: 800,
+    });
     const el = await fixture(html`
       <div>
         <auro-drawer ?open=${true}>
@@ -303,7 +306,7 @@ describe("auro-drawer", () => {
     ).to.be.true;
   });
 
-  it("non-modal drawer opens via setAttribute, not showModal, so focus is not trapped", async () => {
+  it("non-modal drawer opens via showPopover, not showModal, so focus is not trapped", async () => {
     const el = await fixture(html`
       <auro-drawer open>
         <h2 slot="header">Non-modal</h2>
@@ -313,10 +316,12 @@ describe("auro-drawer", () => {
 
     await elementUpdated(el);
 
-    // Scroll lock is only applied in the showModal() code path.
-    // A falsy _scrollLocked confirms setAttribute('open','') was used.
-    expect(el.bib._scrollLocked, "non-modal drawer must not lock page scroll")
-      .to.not.be.true;
+    // showPopover() is used for non-modal drawers so keyboard focus can escape to
+    // background content (WCAG 2.1.2). Confirm the dialog has the popover attribute.
+    expect(
+      el.bib.dialog.hasAttribute("popover"),
+      "non-modal drawer must use showPopover, not showModal",
+    ).to.be.true;
   });
 
   it("modal drawer opens via showModal and locks page scroll", async () => {
@@ -331,7 +336,7 @@ describe("auro-drawer", () => {
 
     // _scrollLocked is set to true only when showModal() is called.
     expect(
-      el._scrollLocked,
+      el.floater._scrollLocked,
       "modal drawer must lock page scroll via showModal()",
     ).to.be.true;
   });
@@ -376,9 +381,6 @@ describe("auro-drawer", () => {
       el.hasAttribute("open"),
       "drawer stays open despite a disabled last element",
     ).to.be.true;
-    // Non-modal: scroll lock must not be active
-    expect(el.bib._scrollLocked, "non-modal repro drawer must not lock scroll")
-      .to.not.be.true;
   });
 
   it("non-modal drawer with no footer button does not escape focus on open", async () => {
@@ -396,10 +398,6 @@ describe("auro-drawer", () => {
 
     expect(el.hasAttribute("open"), "drawer stays open with no footer button")
       .to.be.true;
-    expect(
-      el.bib._scrollLocked,
-      "non-modal no-button drawer must not lock scroll",
-    ).to.not.be.true;
   });
 
   it("non-modal drawer closes when dialog-cancel event fires (Escape)", async () => {

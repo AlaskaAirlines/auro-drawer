@@ -1,13 +1,10 @@
-import { LitElement } from "lit";
-import { html } from "lit/static-html.js";
-
 import { AuroButton } from "@aurodesignsystem/auro-button/class";
 import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
-
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
-import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-
 import { FocusTrap } from "@aurodesignsystem/auro-library/scripts/runtime/FocusTrap/FocusTrap.mjs";
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+import { LitElement } from "lit";
+import { html } from "lit/static-html.js";
 import buttonVersion from "./buttonVersion.js";
 import iconVersion from "./iconVersion.js";
 
@@ -22,7 +19,7 @@ export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
 
-    this.closeButtonAppearance = 'default';
+    this.closeButtonAppearance = "default";
 
     /**
      * @private
@@ -62,34 +59,34 @@ export class AuroDrawerContent extends LitElement {
        */
       closeButtonAppearance: {
         type: String,
-        attribute: 'close-button-appearance',
-        reflect: true
+        attribute: "close-button-appearance",
+        reflect: true,
       },
 
       modal: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       onDark: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       unformatted: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
-      
+
       visible: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       closing: {
         type: Boolean,
-        reflect: true
-      }
+        reflect: true,
+      },
     };
   }
 
@@ -105,12 +102,12 @@ export class AuroDrawerContent extends LitElement {
     if (changedProperties.has("visible")) {
       if (this.visible) {
         // Reset CSS animation so it replays each time the drawer opens
-        const wrapper = this.shadowRoot.querySelector('.wrapper');
+        const wrapper = this.shadowRoot.querySelector(".wrapper");
         if (wrapper) {
-          wrapper.style.animation = 'none';
+          wrapper.style.animation = "none";
           // Force reflow to restart the animation
           void wrapper.offsetHeight; // eslint-disable-line no-void
-          wrapper.style.animation = '';
+          wrapper.style.animation = "";
         }
 
         if (!this.focusTrap) {
@@ -164,14 +161,14 @@ export class AuroDrawerContent extends LitElement {
                 : html`
               <div id="closeButton" @click="${this.handleCloseButtonClick}">
                 <slot name="close">
-                  <${this.buttonTag} 
+                  <${this.buttonTag}
                   part="close-button"
                   variant="ghost"
                   shape="circle"
                   size="sm"
-                  aria-label="${this.runtimeUtils.getSlotText(this, 'ariaLabel.drawer.close') || 'Close'}"
-                  appearance="${this.onDark ? 'inverse' : this.closeButtonAppearance}">
-                  <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === 'inverse'}" category="interface" name="x-lg"></${this.iconTag}>
+                  aria-label="${this.runtimeUtils.getSlotText(this, "ariaLabel.drawer.close") || "Close"}"
+                  appearance="${this.onDark ? "inverse" : this.closeButtonAppearance}">
+                  <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === "inverse"}" category="interface" name="x-lg"></${this.iconTag}>
                   </${this.buttonTag}>
                 </slot>
               </div>

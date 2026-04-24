@@ -18,37 +18,37 @@
 // Defined locally because global utility classes don't penetrate shadow DOM.
 .util_displayHiddenVisually {
   position: absolute;
+  overflow: hidden;
   width: 1px;
   height: 1px;
   padding: 0;
+  border: 0;
   margin: -1px;
-  overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border: 0;
 }
 
 // Reset browser-default <dialog> styles that would otherwise break layout.
 // transform: translateZ(0) fixes Safari GPU compositing artifacts.
 dialog.container {
-  background-color: transparent;
+  display: inline-block;
+  width: 100%;
   max-width: none;
+  height: 100%;
   max-height: none;
   padding: 0;
   border: none;
   margin: 0;
+  background-color: transparent;
   outline: none;
   transform: translateZ(0);
-  display: inline-block;
-  width: 100%;
-  height: 100%;
 
   // CSS custom properties passed through from the consumer (set on auro-drawer).
   // The properties inherit through the shadow DOM chain and into ::backdrop.
   // Defaults keep the backdrop invisible unless the component sets them internally.
   &::backdrop {
-    background: var(--auro-drawer-backdrop-background, transparent);
     backdrop-filter: var(--auro-drawer-backdrop-filter, none);
+    background: var(--auro-drawer-backdrop-background, transparent);
     opacity: var(--auro-drawer-backdrop-opacity, 1);
     transition: var(--auro-drawer-backdrop-transition, opacity 0.3s ease);
   }
@@ -71,7 +71,23 @@ dialog.container ::slotted(:only-child){
 :host([data-show]) {
   display: block;
   opacity: 1;
-  
+}
+
+// Non-modal: <dialog> stays in normal flow and inherits :host opacity,
+// so fading :host in is enough.
+:host([data-show]:not([modal])) {
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+// Modal: showModal() promotes <dialog> to the top layer, which bypasses
+// :host opacity. Apply @starting-style directly on the dialog element so
+// the fade-in still works in the top layer.
+:host([data-show][modal]) dialog.container {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+
   @starting-style {
     opacity: 0;
   }

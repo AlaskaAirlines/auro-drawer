@@ -1,4 +1,4 @@
-import { initUnformattedExample } from "../apiExamples/unformatted.js";
+import { initAriaLabelSlotExample } from "../apiExamples/aria-label-slot.js";
 import { initBasicExample } from "../apiExamples/basic";
 import { initCloseButtonAppearanceExample } from "../apiExamples/close-button-appearance.js";
 import { initCustomizedExample } from "../apiExamples/customizing.js";
@@ -8,7 +8,7 @@ import { initNestedExample } from "../apiExamples/nested";
 import { initPlacementExample } from "../apiExamples/placement.js";
 import { initPopoverAndDropdownExample } from "../apiExamples/popover-and-dropdown.js";
 import { initSizeOptionsExample } from "../apiExamples/size-options.js";
-import { initAriaLabelSlotExample } from "../apiExamples/aria-label-slot.js";
+import { initUnformattedExample } from "../apiExamples/unformatted.js";
 
 import "../src/registered.js";
 

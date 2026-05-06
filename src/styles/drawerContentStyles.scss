@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
 @use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 @use "@aurodesignsystem/webcorestylesheets/src/breakpoints" as breakpoints;
@@ -20,8 +21,7 @@
     height: 100%;
     box-sizing: border-box;
     box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
-    transition: transform 0.3s ease-in-out, display 0.3s;
-    transition-behavior: allow-discrete;
+    transition: transform;
     will-change: transform;
   }
 
@@ -87,45 +87,59 @@
   }
 }
 
-:host([placement="right"]) .wrapper {
-  right: 0;
-  transform: translate3d(100%, 0, 0);
-}
+$animation-duration: 0.3s;
+$animation-delay: 0.05s;
 
-:host([placement="left"]) .wrapper {
-  transform: translateX(-100%);
-}
+// Mixin generates: initial positioning, visible/closing animations, and keyframes
+// Example output for @include drawerPlacement("right", 100%, translateX, 100%):
+//
+// :host([placement="right"]) .wrapper {
+//   right: 100%;
+// }
+// :host([visible][placement="right"]) .wrapper {
+//   animation: slideInFromRight 0.3s forwards;
+//   animation-delay: 0.05s;
+// }
+// :host([closing][placement="right"]) .wrapper {
+//   animation: slideOutToRight 0.3s forwards;
+// }
+// @keyframes slideInFromRight {
+//   from { transform: translateX(100%); right: 0; }
+//   to { transform: translate3d(0, 0, 0); right: 0; }
+// }
+// @keyframes slideOutToRight {
+//   from { transform: translate3d(0, 0, 0); right: 0; }
+//   to { transform: translateX(100%); right: 0; }
+// }
 
-:host([placement="top"]) .wrapper {
-  transform: translateY(-100%);
-}
-
-:host([placement="bottom"]) .wrapper {
-  bottom: 0;
-  transform: translate3d(0, 100%, 0);
-}
-
-:host([visible]) .wrapper{
-  transform: translate3d(0,0,0);
-}
-
-@starting-style {
-  :host([visible][placement="right"]) .wrapper {
-    transform: translateX(100%);
+@mixin drawerPlacement($direction, $initial-offset, $transform-axis, $transform-offset) {
+  :host([placement="#{$direction}"]) .wrapper {
+    #{$direction}: $initial-offset;
   }
 
-  :host([visible][placement="left"]) .wrapper  {
-    transform: translateX(-100%);
+  :host([visible][placement="#{$direction}"]) .wrapper {
+    animation: slideInFrom#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} $animation-duration forwards;
+    animation-delay: $animation-delay;
   }
 
-  :host([visible][placement="top"]) .wrapper {
-    transform: translateY(-100%);
+  :host([closing][placement="#{$direction}"]) .wrapper {
+    animation: slideOutTo#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} $animation-duration forwards;
   }
 
-  :host([visible][placement="bottom"]) .wrapper {
-    transform: translate3d(0, 100%, 0);
+  @keyframes slideInFrom#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} {
+    from { transform: #{$transform-axis}(#{$transform-offset}); #{$direction}: 0; }
+    to { transform: translate3d(0, 0, 0); #{$direction}: 0; }
+  }
+  @keyframes slideOutTo#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} {
+    from { transform: translate3d(0, 0, 0); #{$direction}: 0; }
+    to { transform: #{$transform-axis}(#{$transform-offset}); #{$direction}: 0; }
   }
 }
+
+@include drawerPlacement("right", 100%, translateX, 100%);
+@include drawerPlacement("left", -100%, translateX, -100%);
+@include drawerPlacement("top", -100%, translateY, -100%);
+@include drawerPlacement("bottom", 100%, translateY, 100%);
 
 :host([size="sm"][placement="left"]),
 :host([size="sm"][placement="right"]) {

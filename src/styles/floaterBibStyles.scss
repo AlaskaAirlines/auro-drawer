@@ -14,30 +14,80 @@
   will-change: opacity;
 }
 
-.container {
+// Visually hidden — readable by screen readers, invisible on screen.
+// Defined locally because global utility classes don't penetrate shadow DOM.
+.util_displayHiddenVisually {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+// Reset browser-default <dialog> styles that would otherwise break layout.
+// transform: translateZ(0) fixes Safari GPU compositing artifacts.
+dialog.container {
   display: inline-block;
   width: 100%;
+  max-width: none;
   height: 100%;
+  max-height: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  background-color: transparent;
+  outline: none;
+  transform: translateZ(0);
+
+  // CSS custom properties passed through from the consumer (set on auro-drawer).
+  // The properties inherit through the shadow DOM chain and into ::backdrop.
+  // Defaults keep the backdrop invisible unless the component sets them internally.
+  &::backdrop {
+    backdrop-filter: var(--auro-drawer-backdrop-filter, none);
+    background: var(--auro-drawer-backdrop-background, transparent);
+    opacity: var(--auro-drawer-backdrop-opacity, 1);
+    transition: var(--auro-drawer-backdrop-transition, opacity 0.3s ease);
+  }
+
+  // Decorative div kept for backwards-compatible ::part(drawer-backdrop) styling.
+  // pointer-events: none ensures clicks pass through to the dialog element
+  // so backdrop click-to-close detection (e.target === dialog) still works.
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
 }
 
-.container ::slotted(:only-child){
+dialog.container ::slotted(:only-child){
   z-index: var(--ds-depth-modal, vac.$ds-depth-modal);
   box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
-}
-
-:host([onbackdrop]) {
-  overflow: hidden;
-
-  .backdrop {
-    position: absolute;
-    inset: 0;
-  }
 }
 
 :host([data-show]) {
   display: block;
   opacity: 1;
-  
+}
+
+// Non-modal: <dialog> stays in normal flow and inherits :host opacity,
+// so fading :host in is enough.
+:host([data-show]:not([modal])) {
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+// Modal: showModal() promotes <dialog> to the top layer, which bypasses
+// :host opacity. Apply @starting-style directly on the dialog element so
+// the fade-in still works in the top layer.
+:host([data-show][modal]) dialog.container {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+
   @starting-style {
     opacity: 0;
   }
@@ -51,7 +101,7 @@
   width: 100%;
   height: 100%;
 
-  .container {
+  dialog.container {
     overflow: auto;
     width: 100%;
     height: 100%;

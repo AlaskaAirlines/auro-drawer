@@ -32,6 +32,7 @@
     "@aurodesignsystem/design-tokens": "^8.7.0",
     "@aurodesignsystem/webcorestylesheets": "^10.1.4",
     "@web/test-runner-commands": "^0.9.0",
+    "baseline-browser-mapping": "^2.10.0",
     "husky": "^9.1.7"
   },
   "browserslist": [

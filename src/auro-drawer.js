@@ -26,12 +26,17 @@ const CONFIG = {
  *
  * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
  *
- * @csspart drawer-backdrop - to style the backdrop behind the the content wrapper.
+ * @csspart {deprecated} drawer-backdrop - DEPRECATED - To migrate to the token approach, set `display: none` on this part and use the `--auro-drawer-backdrop-*` CSS custom properties instead.
  * @csspart drawer-wrapper - to style the content wrapper.
  * @csspart drawer-header - to style the header.
  * @csspart drawer-content - to style the container of the drawer content.
  * @csspart drawer-footer - to style the footer.
  * @csspart close-button - to style the close button.
+ *
+ * @cssprop [--auro-drawer-backdrop-background=transparent] - Background of the `::backdrop` pseudo-element. In modal/backdrop mode the component sets this to the design-system scrim token; consumers can override it.
+ * @cssprop [--auro-drawer-backdrop-filter=none] - `backdrop-filter` applied to the `::backdrop` pseudo-element (e.g. `blur(4px)`).
+ * @cssprop [--auro-drawer-backdrop-opacity=1] - Opacity of the `::backdrop` pseudo-element.
+ * @cssprop [--auro-drawer-backdrop-transition=opacity 0.3s ease] - Transition applied to the `::backdrop` pseudo-element (e.g. `opacity 0.3s ease`).
  */
 export class AuroDrawer extends AuroFloater {
   constructor() {
@@ -41,7 +46,7 @@ export class AuroDrawer extends AuroFloater {
   }
 
   _initializeDefaults() {
-    this.closeButtonAppearance = 'default';
+    this.closeButtonAppearance = "default";
     this.placement = "right";
     this.size = "lg";
     this.fullscreenBreakpoint = "sm";
@@ -57,7 +62,6 @@ export class AuroDrawer extends AuroFloater {
     return {
       ...AuroFloater.properties,
 
-
       /**
        * Defines whether the close button should be light colored for use on dark backgrounds.
        * @property {'default', 'inverse'}
@@ -65,9 +69,9 @@ export class AuroDrawer extends AuroFloater {
        */
       closeButtonAppearance: {
         type: String,
-        attribute: 'close-button-appearance',
+        attribute: "close-button-appearance",
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -95,7 +99,7 @@ export class AuroDrawer extends AuroFloater {
        */
       nested: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       /**
@@ -114,7 +118,7 @@ export class AuroDrawer extends AuroFloater {
        */
       placement: {
         type: String,
-        carryDown: true
+        carryDown: true,
       },
 
       /**
@@ -124,7 +128,7 @@ export class AuroDrawer extends AuroFloater {
        */
       size: {
         type: String,
-        carryDown: true
+        carryDown: true,
       },
 
       /**
@@ -133,7 +137,7 @@ export class AuroDrawer extends AuroFloater {
       unformatted: {
         type: Boolean,
         carryDown: true,
-        reflect: true
+        reflect: true,
       },
     };
   }
@@ -194,9 +198,10 @@ export class AuroDrawer extends AuroFloater {
     );
 
     this.drawerBib = document.createElement("auro-drawer-content");
-    this.drawerBib.addEventListener("close-click", () =>
-      this.floater.hideBib(),
-    );
+    this.drawerBib.triggerElement = this.triggerElement;
+    this.drawerBib.addEventListener("close-click", () => {
+      this.hide();
+    });
     this.append(this.drawerBib);
 
     this.bib.setAttribute("exportparts", "backdrop:drawer-backdrop");
@@ -214,13 +219,9 @@ export class AuroDrawer extends AuroFloater {
         "aria-controls",
         this.bib.getAttribute("id"),
       );
-
-      this.bib.setAttribute("aria-label", this.triggerElement.textContent);
     }
-    this.bib.setAttribute("role", "dialog");
-    if (this.modal) {
-      this.bib.setAttribute("aria-modal", "true");
-    }
+    // role="dialog" and aria-modal are provided natively by the <dialog> element;
+    // do not set them manually here.
   }
 
   /**
@@ -252,15 +253,24 @@ export class AuroDrawer extends AuroFloater {
 
     [...changedProperties.entries()].forEach(([entry]) => {
       if (AuroDrawer.properties[entry].carryDown) {
-        this.updateDrawerBibAttribute(AuroDrawer.properties[entry].attribute || entry, this[entry]);
+        this.updateDrawerBibAttribute(
+          AuroDrawer.properties[entry].attribute || entry,
+          this[entry],
+        );
       }
     });
 
     if (changedProperties.has("isPopoverVisible")) {
       this.drawerBib.visible = this.isPopoverVisible;
+      if (!this.isPopoverVisible) {
+        this.drawerBib.closing = true;
+      }
     }
 
     if (changedProperties.has("triggerElement")) {
+      if (this.drawerBib) {
+        this.drawerBib.triggerElement = this.triggerElement;
+      }
       this.setupAria();
     }
   }

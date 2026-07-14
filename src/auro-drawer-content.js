@@ -94,6 +94,18 @@ export class AuroDrawerContent extends LitElement {
     return [colorCss, tokensCss, styleCss];
   }
 
+  get ariaLabelDrawerClose() {
+    const slot = this.shadowRoot.querySelector('slot[name="ariaLabel.drawer.close"]');
+    if (slot) {
+      return this.runtimeUtils.getSlotText(this, "ariaLabel.drawer.close") || "Close";
+    }
+    return "Close";
+  }
+
+  handleSlotChange() {
+    this.requestUpdate();
+  }
+
   handleCloseButtonClick() {
     this.dispatchEvent(new CustomEvent("close-click"));
   }
@@ -124,7 +136,11 @@ export class AuroDrawerContent extends LitElement {
         // Defer focus restoration so it runs after the dialog releases focus.
         const target = this.prevActiveElement;
         this.prevActiveElement = undefined;
-        setTimeout(() => target?.focus(), 350);
+        setTimeout(() => {
+          if (!this.visible) {
+            target?.focus();
+          }
+        }, 350);
 
         if (this.focusTrap) {
           this.focusTrap.disconnect();
@@ -144,7 +160,7 @@ export class AuroDrawerContent extends LitElement {
   render() {
     return html`
       <!-- Hidden slot for close button aria-label -->
-      <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.requestUpdate}></slot>
+      <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.handleSlotChange}></slot>
 
       <div class="wrapper" tabindex="-1" part="drawer-wrapper">
         ${
@@ -166,7 +182,7 @@ export class AuroDrawerContent extends LitElement {
                   variant="ghost"
                   shape="circle"
                   size="sm"
-                  aria-label="${this.runtimeUtils.getSlotText(this, "ariaLabel.drawer.close") || "Close"}"
+                  aria-label="${this.ariaLabelDrawerClose}"
                   appearance="${this.onDark ? "inverse" : this.closeButtonAppearance}">
                   <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === "inverse"}" category="interface" name="x-lg"></${this.iconTag}>
                   </${this.buttonTag}>

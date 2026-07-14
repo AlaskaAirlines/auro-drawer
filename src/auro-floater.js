@@ -105,6 +105,8 @@ export class AuroFloater extends LitElement {
     if (this.floater) {
       this.hide("disconnect");
     }
+
+    super.disconnectedCallback();
   }
 
   updated(changedProperties) {
@@ -135,6 +137,7 @@ export class AuroFloater extends LitElement {
    *   and allow free keyboard flow to background content (WCAG 2.1.2).
    */
   async show() {
+    clearTimeout(this._closeTimeout);
     this.floater.showBib();
     if (!this.bib?.dialog) {
       await this.bib?.updateComplete;
@@ -149,8 +152,14 @@ export class AuroFloater extends LitElement {
     if (nested) {
       this.bib.dialog.setAttribute("open", "");
     } else if (!modal) {
-      this.bib.dialog.setAttribute("popover", "manual");
-      this.bib.dialog.showPopover();
+      if (typeof this.bib.dialog.showPopover === "function") {
+        this.bib.dialog.setAttribute("popover", "manual");
+        this.bib.dialog.showPopover();
+      } else {
+        // Fallback for browsers without the Popover API
+        this.bib.dialog.removeAttribute("popover");
+        this.bib.dialog.show();
+      }
     } else {
       this.bib.dialog.removeAttribute("popover");
       this.bib.dialog.showModal();
@@ -161,9 +170,33 @@ export class AuroFloater extends LitElement {
    * Closes the native dialog.
    */
   hide(eventType = undefined) {
-    if (this.bib?.dialog?.open) {
-      setTimeout(() => {
-        this.bib.dialog.close();
+    // Cancel any in-flight close timer so a rapid hide→show sequence doesn't
+    // let a stale timeout fire and close the dialog that was just reopened.
+    clearTimeout(this._closeTimeout);
+
+    // Capture now — floater.disconnect() may move or nullify this.bib before
+    // the deferred close fires (e.g. when the element is removed from the DOM).
+    const dialog = this.bib?.dialog;
+    if (dialog?.open) {
+      // Modal and nested drawers: opened via showModal() or setAttribute('open').
+      this._closeTimeout = setTimeout(() => {
+        if (dialog.open) {
+          dialog.close();
+        }
+      }, 300);
+    } else if (typeof dialog?.hidePopover === "function" && dialog.matches?.(':popover-open')) {
+      // Non-modal drawers: opened via showPopover() — dialog.open is never set,
+      // so the popover stays in the top layer unless hidePopover() is called.
+      // Guard on hidePopover support: matches(':popover-open') throws a SyntaxError
+      // on browsers that don't implement the Popover API.
+      this._closeTimeout = setTimeout(() => {
+        if (dialog.matches?.(':popover-open')) {
+          dialog.hidePopover();
+        }
+        // Always remove the attribute: show() for modal already does this before
+        // showModal(); mirroring it here keeps the element in a clean state after
+        // close and avoids stale [popover] CSS matching on a hidden drawer.
+        dialog.removeAttribute("popover");
       }, 300);
     }
     this.floater.hideBib(eventType);

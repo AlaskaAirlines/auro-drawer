@@ -262,7 +262,14 @@ export class AuroDrawer extends AuroFloater {
 
     if (changedProperties.has("isPopoverVisible")) {
       this.drawerBib.visible = this.isPopoverVisible;
-      this.drawerBib.closing = !this.isPopoverVisible;
+      if (this.isPopoverVisible) {
+        // Cancel any in-flight close animation when the drawer reopens.
+        this.drawerBib.closing = false;
+      } else if (changedProperties.get("isPopoverVisible") === true) {
+        // Only trigger the close animation when transitioning open → closed,
+        // not on initial render where the previous value is undefined.
+        this.drawerBib.closing = true;
+      }
     }
 
     if (changedProperties.has("triggerElement")) {

@@ -28,6 +28,11 @@ export class AuroFloater extends LitElement {
      */
     this.floater = undefined;
 
+    /**
+     * @private
+     */
+    this._showGeneration = 0;
+
     const tagPrefix = `${this.floaterConfig.prefix.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}-bib`;
 
     /**
@@ -138,12 +143,14 @@ export class AuroFloater extends LitElement {
    * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
    */
   async show() {
+    const generation = ++this._showGeneration;
     clearTimeout(this._closeTimeout);
     this.floater.showBib();
     if (!this.bib?.dialog) {
       await this.bib?.updateComplete;
     }
-    if (!this.bib?.dialog) {
+    // If hide() was called while we awaited, abort — the dialog should stay closed.
+    if (!this.bib?.dialog || this._showGeneration !== generation) {
       return;
     }
 
@@ -178,6 +185,9 @@ export class AuroFloater extends LitElement {
    * Closes the native dialog.
    */
   hide(eventType = undefined) {
+    // Invalidate any in-flight show() that is awaiting bib.updateComplete so it
+    // does not open the dialog after this hide() call completes.
+    this._showGeneration++;
     // Cancel any in-flight close timer so a rapid hide→show sequence doesn't
     // let a stale timeout fire and close the dialog that was just reopened.
     clearTimeout(this._closeTimeout);

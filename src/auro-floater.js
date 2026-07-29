@@ -132,9 +132,10 @@ export class AuroFloater extends LitElement {
   /**
    * Opens the native dialog inside the bib.
    *
-   * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
-   * - `nested` or `!modal`: `showPopover()` to keep positional CSS intact
+   * - `nested`: `setAttribute("open", "")` to anchor within the parent container.
+   * - `!modal && !nested`: `showPopover()` to keep positional CSS intact
    *   and allow free keyboard flow to background content (WCAG 2.1.2).
+   * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
    */
   async show() {
     clearTimeout(this._closeTimeout);
@@ -148,21 +149,28 @@ export class AuroFloater extends LitElement {
 
     const nested = this.nested ?? false;
     const modal = this.modal ?? false;
+    const dialog = this.bib.dialog;
 
     if (nested) {
-      this.bib.dialog.setAttribute("open", "");
+      dialog.setAttribute("open", "");
     } else if (!modal) {
-      if (typeof this.bib.dialog.showPopover === "function") {
-        this.bib.dialog.setAttribute("popover", "manual");
-        this.bib.dialog.showPopover();
+      if (typeof dialog.showPopover === "function") {
+        dialog.setAttribute("popover", "manual");
+        if (!dialog.matches(":popover-open")) {
+          dialog.showPopover();
+        }
       } else {
         // Fallback for browsers without the Popover API
-        this.bib.dialog.removeAttribute("popover");
-        this.bib.dialog.show();
+        dialog.removeAttribute("popover");
+        if (!dialog.open) {
+          dialog.show();
+        }
       }
     } else {
-      this.bib.dialog.removeAttribute("popover");
-      this.bib.dialog.showModal();
+      dialog.removeAttribute("popover");
+      if (!dialog.open) {
+        dialog.showModal();
+      }
     }
   }
 

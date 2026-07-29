@@ -132,8 +132,9 @@ export class AuroDrawerContent extends LitElement {
           this.focusTrap?.focusFirstElement();
         });
       } else {
-        // Native dialog.close() fires after a 300ms delay (see auro-floater-bib hideDialog).
-        // Defer focus restoration so it runs after the dialog releases focus.
+        // hide() in auro-floater.js defers dialog.close() by 300ms to let the
+        // slide-out animation finish before removing the dialog from the top layer.
+        // Wait 350ms so focus restoration runs after the dialog has released focus.
         const target = this.prevActiveElement;
         this.prevActiveElement = undefined;
         setTimeout(() => {

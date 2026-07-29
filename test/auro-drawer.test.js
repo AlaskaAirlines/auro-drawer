@@ -903,6 +903,43 @@ function runFullTest(mobileView) {
         expect(receivedEvent.key, "received event must carry the correct key").to.equal("Tab");
       });
 
+      it("should fire a host-level keydown handler when a key is pressed inside a form field in the drawer", async () => {
+        // Real-world scenario: consumer attaches a keydown listener to auro-drawer
+        // to handle app-level shortcuts (e.g. Enter to confirm a form) regardless
+        // of which element inside the drawer currently has focus.
+        //
+        // This works via native composed-event propagation: real browser keyboard
+        // events have e.composed === true, so they cross the shadow DOM boundary
+        // from the focused element up to the host without any manual re-dispatch.
+        const el = await fixture(html`
+          <auro-drawer open modal>
+            <h2 slot="header">Passenger Details</h2>
+            <div slot="content">
+              <input id="nameInput" type="text" value="John Doe" />
+              <button id="confirmBtn">Confirm</button>
+            </div>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        await new Promise((resolve) => setTimeout(resolve, 50));
+
+        const received = [];
+        el.addEventListener("keydown", (e) => {
+          received.push(e);
+        });
+
+        el.drawerBib.querySelector("#nameInput").focus();
+        await sendKeys({ press: "Enter" });
+
+        expect(received.length, "one keydown per keypress must reach the host listener").to.equal(1);
+        expect(received[0].key).to.equal("Enter");
+        // composed:true is what lets the event cross shadow boundaries naturally.
+        // If this were false, it would be a re-dispatched synthetic event — which
+        // would mean the handler only works because of the re-dispatch logic.
+        // The fact that it's true proves native propagation is doing the work.
+        expect(received[0].composed, "event must be a native composed event, not a synthetic re-dispatch").to.be.true;
+      });
+
       it("should allow keyboard Tab navigation within a drawer opened via dialog.show() fallback when showPopover is unavailable", async () => {
         // When the Popover API is absent, show() falls back to dialog.show().
         // Verify that real keyboard Tab navigation still works inside that drawer.

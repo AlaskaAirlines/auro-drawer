@@ -664,6 +664,57 @@
     </div>
 
 
+    <!-- Scenario 7: keydown event propagation -->
+    <div class="scenario">
+      <h2><span class="badge">7</span> Keydown events reach host-element listener</h2>
+      <div class="description">
+        Consumer attaches a <code>keydown</code> handler to <code>&lt;auro-drawer&gt;</code>.
+        Every key pressed while focus is inside the drawer should fire it — no re-dispatch
+        logic needed; native composed-event propagation carries the event through shadow DOM.
+        <br><br>
+        <strong>How to test:</strong> open the drawer, focus any field, press keys. Each
+        keypress should appear in the log below <em>and</em> in the browser console.
+      </div>
+      <div class="trigger-zone">
+        <auro-button id="openScenario7">Open drawer</auro-button>
+      </div>
+
+      <auro-drawer id="scenario7Drawer" modal>
+        <span slot="header">Passenger Details</span>
+        <div slot="content" style="display:flex; flex-direction:column; gap:16px;">
+          <label style="font-size:0.875rem;">
+            Name
+            <input id="s7Name" type="text" value="Jane Doe"
+              style="display:block; width:100%; margin-top:4px; padding:8px; box-sizing:border-box;" />
+          </label>
+          <label style="font-size:0.875rem;">
+            Flight number
+            <input id="s7Flight" type="text" placeholder="AS 123"
+              style="display:block; width:100%; margin-top:4px; padding:8px; box-sizing:border-box;" />
+          </label>
+          <p style="font-size:0.8rem; color:#555;">
+            Try: Tab between fields, type characters, Shift+Tab, Enter.
+          </p>
+        </div>
+        <div slot="footer">
+          <auro-button id="closeScenario7" secondary>Close</auro-button>
+        </div>
+      </auro-drawer>
+
+      <div style="margin-top:16px;">
+        <strong style="font-size:0.85rem;">Event log</strong>
+        <div id="s7Log"
+          style="margin-top:8px; padding:10px; background:#1a1a1a; color:#d4f5a0; font-family:monospace;
+                 font-size:0.8rem; border-radius:6px; min-height:60px; max-height:180px; overflow-y:auto;">
+          (no events yet — open the drawer and press keys)
+        </div>
+        <button id="s7Clear"
+          style="margin-top:6px; font-size:0.75rem; padding:3px 10px; cursor:pointer;">
+          Clear log
+        </button>
+      </div>
+    </div>
+
     <!-- Local build of auro-drawer -->
     <script type="module" src="./index.min.js"></script>
 
@@ -694,6 +745,37 @@
       wireDrawer('openScenario4', 'scenario4Drawer', 'closeScenario4');
       wireDrawer('openScenario5', 'scenario5Drawer', 'closeScenario5');
       wireDrawer('openScenario6', 'scenario6Drawer', 'closeScenario6');
+      wireDrawer('openScenario7', 'scenario7Drawer', 'closeScenario7');
+
+      // Scenario 7: log every keydown that reaches the host element
+      const s7Drawer = document.getElementById('scenario7Drawer');
+      const s7Log    = document.getElementById('s7Log');
+      let s7First    = true;
+
+      s7Drawer.addEventListener('keydown', (e) => {
+        const modifiers = [
+          e.ctrlKey  && 'Ctrl',
+          e.metaKey  && 'Meta',
+          e.altKey   && 'Alt',
+          e.shiftKey && 'Shift',
+        ].filter(Boolean).join('+');
+        const label    = modifiers ? `${modifiers}+${e.key}` : e.key;
+        const composed = e.composed ? '✓ composed' : '✗ NOT composed';
+        const msg      = `key="${label}"  code="${e.code}"  ${composed}  target=${e.target?.tagName ?? '?'}`;
+
+        console.log('[auro-drawer keydown]', msg, e);
+
+        if (s7First) { s7Log.textContent = ''; s7First = false; }
+        const line = document.createElement('div');
+        line.textContent = msg;
+        s7Log.appendChild(line);
+        s7Log.scrollTop = s7Log.scrollHeight;
+      });
+
+      document.getElementById('s7Clear').addEventListener('click', () => {
+        s7Log.textContent = '(cleared)';
+        s7First = true;
+      });
     </script>
 
   </body>

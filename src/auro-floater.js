@@ -145,6 +145,9 @@ export class AuroFloater extends LitElement {
   async show() {
     const generation = ++this._showGeneration;
     clearTimeout(this._closeTimeout);
+    if (!this.floater) {
+      await this.updateComplete;
+    }
     this.floater.showBib();
     if (!this.bib?.dialog) {
       await this.bib?.updateComplete;

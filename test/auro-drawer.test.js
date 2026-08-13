@@ -497,7 +497,7 @@ function runFullTest(mobileView) {
         `);
         const drawer = el.querySelector("auro-drawer");
         await elementUpdated(drawer);
-        expect(drawer.bib._scrollLocked, "nested drawer must not lock scroll").to.not.be.true;
+        expect(drawer.floater._scrollLocked, "nested drawer must not lock scroll").to.not.be.true;
       });
 
       it("should release the scroll lock after a modal drawer closes", async () => {

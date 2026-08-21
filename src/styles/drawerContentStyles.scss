@@ -1,3 +1,4 @@
+@use "sass:string";
 @use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
 @use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 @use "@aurodesignsystem/webcorestylesheets/src/breakpoints" as breakpoints;
@@ -20,8 +21,6 @@
     height: 100%;
     box-sizing: border-box;
     box-shadow: var(--ds-elevation-200, #{vac.$ds-elevation-200});
-    transition: transform 0.3s ease-in-out, display 0.3s;
-    transition-behavior: allow-discrete;
     will-change: transform;
   }
 
@@ -87,45 +86,89 @@
   }
 }
 
-:host([placement="right"]) .wrapper {
-  right: 0;
-  transform: translate3d(100%, 0, 0);
-}
+$animation-duration: 0.3s;
+$animation-delay: 0.05s;
 
-:host([placement="left"]) .wrapper {
-  transform: translateX(-100%);
-}
+// Mixin generates: initial positioning, visible/closing animations, and keyframes
+// Example output for @include drawerPlacement("right", 100%, translateX, 100%):
+//
+// :host([placement="right"]) .wrapper {
+//   right: 100%;
+// }
+// :host([visible][placement="right"]) .wrapper {
+//   animation: slideInFromRight 0.3s forwards;
+//   animation-delay: 0.05s;
+// }
+// :host([closing][placement="right"]) .wrapper {
+//   animation: slideOutToRight 0.3s forwards;
+// }
+// @keyframes slideInFromRight {
+//   from { transform: translateX(100%); right: 0; }
+//   to { transform: translate3d(0, 0, 0); right: 0; }
+// }
+// @keyframes slideOutToRight {
+//   from { transform: translate3d(0, 0, 0); right: 0; }
+//   to { transform: translateX(100%); right: 0; }
+// }
 
-:host([placement="top"]) .wrapper {
-  transform: translateY(-100%);
-}
-
-:host([placement="bottom"]) .wrapper {
-  bottom: 0;
-  transform: translate3d(0, 100%, 0);
-}
-
-:host([visible]) .wrapper{
-  transform: translate3d(0,0,0);
-}
-
-@starting-style {
-  :host([visible][placement="right"]) .wrapper {
-    transform: translateX(100%);
+@mixin drawerPlacement($direction, $initial-offset, $transform-axis, $transform-offset) {
+  :host([placement="#{$direction}"]) .wrapper {
+    // Default (closed) state: panel is hidden off-screen.
+    //
+    // The direction property uses $transform-offset (e.g. right: 100%) to push
+    // the panel into negative coordinate space — entirely past the opposing edge
+    // of the container. The viewport always clips content at negative coordinates
+    // (left of x=0, above y=0) for free, so no overflow:hidden is needed.
+    //
+    // The transform uses $initial-offset (0%) so it contributes no additional
+    // offset; all hiding is done by the direction property alone.
+    //
+    // This is intentionally swapped from what you might expect ($direction: $initial-offset
+    // + transform: $transform-offset). That original arrangement pushed right/bottom panels
+    // into positive overflow (right of / below the container), which is NOT clipped by the
+    // viewport and caused the panel to remain visible before the open animation started.
+    #{$direction}: #{$transform-offset};
+    transform: #{$transform-axis}(#{$initial-offset});
   }
 
-  :host([visible][placement="left"]) .wrapper  {
-    transform: translateX(-100%);
+  :host([visible][placement="#{$direction}"]) .wrapper {
+    animation: slideInFrom#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} $animation-duration forwards;
+    animation-delay: $animation-delay;
   }
 
-  :host([visible][placement="top"]) .wrapper {
-    transform: translateY(-100%);
+  :host([closing][placement="#{$direction}"]) .wrapper {
+    animation: slideOutTo#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} $animation-duration forwards;
   }
 
-  :host([visible][placement="bottom"]) .wrapper {
-    transform: translate3d(0, 100%, 0);
+  @keyframes slideInFrom#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} {
+    from {
+      transform: #{$transform-axis}(#{$transform-offset});
+      #{$direction}: #{$initial-offset};
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+      #{$direction}: #{$initial-offset};
+    }
+  }
+
+  @keyframes slideOutTo#{string.to-upper-case(string.slice($direction, 1, 1)) + string.slice($direction, 2)} {
+    from {
+      transform: translate3d(0, 0, 0);
+      #{$direction}: #{$initial-offset};
+    }
+
+    to {
+      transform: #{$transform-axis}(#{$transform-offset});
+      #{$direction}: #{$initial-offset};
+    }
   }
 }
+
+@include drawerPlacement("right", 0%, translateX, 100%);
+@include drawerPlacement("left", 0%, translateX, -100%);
+@include drawerPlacement("top", 0%, translateY, -100%);
+@include drawerPlacement("bottom", 0%, translateY, 100%);
 
 :host([size="sm"][placement="left"]),
 :host([size="sm"][placement="right"]) {

@@ -1,13 +1,10 @@
-import { LitElement } from "lit";
-import { html } from "lit/static-html.js";
-
 import { AuroButton } from "@aurodesignsystem/auro-button/class";
 import { AuroIcon } from "@aurodesignsystem/auro-icon/class";
-
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
+import { FocusTrap } from "@aurodesignsystem/auro-library/scripts/runtime/FocusTrap/FocusTrap.mjs";
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
-
-import { FocusTrap } from "./util/FocusTrap.js";
+import { LitElement } from "lit";
+import { html } from "lit/static-html.js";
 import buttonVersion from "./buttonVersion.js";
 import iconVersion from "./iconVersion.js";
 
@@ -22,7 +19,7 @@ export class AuroDrawerContent extends LitElement {
   constructor() {
     super();
 
-    this.closeButtonAppearance = 'default';
+    this.closeButtonAppearance = "default";
 
     /**
      * @private
@@ -62,29 +59,34 @@ export class AuroDrawerContent extends LitElement {
        */
       closeButtonAppearance: {
         type: String,
-        attribute: 'close-button-appearance',
-        reflect: true
+        attribute: "close-button-appearance",
+        reflect: true,
       },
 
       modal: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       onDark: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
 
       unformatted: {
         type: Boolean,
-        reflect: true
+        reflect: true,
       },
-      
+
       visible: {
         type: Boolean,
-        reflect: true
-      }
+        reflect: true,
+      },
+
+      closing: {
+        type: Boolean,
+        reflect: true,
+      },
     };
   }
 
@@ -92,31 +94,54 @@ export class AuroDrawerContent extends LitElement {
     return [colorCss, tokensCss, styleCss];
   }
 
-  handleCloseButtonClick() {
-    this.dispatchEvent(new CustomEvent("close-click"));
+  get ariaLabelDrawerClose() {
+    const slot = this.shadowRoot.querySelector('slot[name="ariaLabel.drawer.close"]');
+    if (slot) {
+      return this.runtimeUtils.getSlotText(this, "ariaLabel.drawer.close") || "Close";
+    }
+    return "Close";
   }
 
-  handleWrapperTransitionEnd() {
-    if (!this.visible) return;
-    if (!this.focusTrap) return;
-    this.focusTrap.focusFirstElement();
+  handleSlotChange() {
+    this.requestUpdate();
+  }
+
+  handleCloseButtonClick() {
+    this.dispatchEvent(new CustomEvent("close-click"));
   }
 
   updated(changedProperties) {
     if (changedProperties.has("visible")) {
       if (this.visible) {
+        // Reset CSS animation so it replays each time the drawer opens
+        const wrapper = this.shadowRoot.querySelector(".wrapper");
+        if (wrapper) {
+          wrapper.style.animation = "none";
+          // Force reflow to restart the animation
+          void wrapper.offsetHeight; // eslint-disable-line no-void
+          wrapper.style.animation = "";
+        }
+
         if (!this.focusTrap) {
           this.focusTrap = new FocusTrap(this);
         }
-        this.prevActiveElement = document.activeElement;
-        if (this.prevActiveElement === document.body && this.triggerElement) {
-          this.prevActiveElement = this.triggerElement;
-        }
+        this.prevActiveElement = this.triggerElement || document.activeElement;
+        // Move focus to the first focusable element inside the drawer.
+        // rAF lets showModal()'s native focus assignment settle before we override.
+        requestAnimationFrame(() => {
+          this.focusTrap?.focusFirstElement();
+        });
       } else {
-        if (this.prevActiveElement) {
-          this.prevActiveElement.focus();
-          this.prevActiveElement = undefined;
-        }
+        // hide() in auro-floater.js defers dialog.close() by 300ms to let the
+        // slide-out animation finish before removing the dialog from the top layer.
+        // Wait 350ms so focus restoration runs after the dialog has released focus.
+        const target = this.prevActiveElement;
+        this.prevActiveElement = undefined;
+        setTimeout(() => {
+          if (!this.visible) {
+            target?.focus();
+          }
+        }, 350);
 
         if (this.focusTrap) {
           this.focusTrap.disconnect();
@@ -124,18 +149,21 @@ export class AuroDrawerContent extends LitElement {
         }
       }
     }
-  }
 
-  firstUpdated() {
-    super.firstUpdated();
+    if (changedProperties.has("closing") && this.closing) {
+      // Reset closing state after animation completes
+      setTimeout(() => {
+        this.closing = false;
+      }, 300);
+    }
   }
 
   render() {
     return html`
       <!-- Hidden slot for close button aria-label -->
-      <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.requestUpdate}></slot>
+      <slot name="ariaLabel.drawer.close" hidden @slotchange=${this.handleSlotChange}></slot>
 
-      <div class="wrapper" tabindex="-1" part="drawer-wrapper" @transitionend=${this.handleWrapperTransitionEnd}>
+      <div class="wrapper" tabindex="-1" part="drawer-wrapper">
         ${
           this.unformatted
             ? ""
@@ -150,14 +178,14 @@ export class AuroDrawerContent extends LitElement {
                 : html`
               <div id="closeButton" @click="${this.handleCloseButtonClick}">
                 <slot name="close">
-                  <${this.buttonTag} 
+                  <${this.buttonTag}
                   part="close-button"
                   variant="ghost"
                   shape="circle"
                   size="sm"
-                  aria-label="${this.runtimeUtils.getSlotText(this, 'ariaLabel.drawer.close') || 'Close'}"
-                  appearance="${this.onDark ? 'inverse' : this.closeButtonAppearance}">
-                  <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === 'inverse'}" category="interface" name="x-lg"></${this.iconTag}>
+                  aria-label="${this.ariaLabelDrawerClose}"
+                  appearance="${this.onDark ? "inverse" : this.closeButtonAppearance}">
+                  <${this.iconTag} ?customColor="${this.onDark || this.closeButtonAppearance === "inverse"}" category="interface" name="x-lg"></${this.iconTag}>
                   </${this.buttonTag}>
                 </slot>
               </div>

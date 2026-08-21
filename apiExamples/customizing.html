@@ -13,8 +13,14 @@
     background: linear-gradient(180deg, var(  --ds-advanced-color-accents-accent1) 50%, var(--ds-advanced-color-accents-accent1-muted) 100%);
     width: 50%;
   }
+  /* Migrate to the token approach: disable the legacy backdrop div first,
+     then style the native ::backdrop via CSS custom properties. */
   #customizedDrawer::part(drawer-backdrop) {
-    background: var(--ds-advanced-color-button-primary-background-inverse-disabled);
+    display: none;
+  }
+  #customizedDrawer {
+    --auro-drawer-backdrop-background: rgba(255, 0, 0, 0.5);
+    --auro-drawer-backdrop-filter: blur(2px);
   }
 </style>
 <div>

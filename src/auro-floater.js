@@ -139,7 +139,10 @@ export class AuroFloater extends LitElement {
    *
    * - `nested`: `setAttribute("open", "")` to anchor within the parent container.
    * - `!modal && !nested`: `showPopover()` to keep positional CSS intact
-   *   and allow free keyboard flow to background content (WCAG 2.1.2).
+   *   without taking on `showModal()`'s native modal semantics — `dialog.open`
+   *   is never set and the background is never made inert. Focus is still
+   *   contained: auro-drawer-content installs a `FocusTrap` on every path, not
+   *   just the `showModal()` one.
    * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
    */
   async show() {

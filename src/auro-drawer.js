@@ -220,8 +220,16 @@ export class AuroDrawer extends AuroFloater {
         this.bib.getAttribute("id"),
       );
     }
-    // role="dialog" and aria-modal are provided natively by the <dialog> element;
-    // do not set them manually here.
+    // role="dialog" is provided natively by the <dialog> element — do not set it here.
+    //
+    // aria-modal is NOT, and the distinction matters: native modal semantics come
+    // from how the dialog is opened, not from the element. Only `modal && !nested`
+    // uses showModal(); `!modal && !nested` uses showPopover() (dialog.open is never
+    // even set) and `nested` uses setAttribute("open"), neither of which is exposed
+    // as modal. auro-library's lockScroll() therefore sets aria-modal on the inner
+    // <dialog> for any presentation that takes the page scroll lock, which is what
+    // makes the dismissible drawer report its modality correctly. See auro-floater.js
+    // show() for the three open paths.
   }
 
   /**

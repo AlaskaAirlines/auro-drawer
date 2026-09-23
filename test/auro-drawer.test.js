@@ -24,6 +24,57 @@ function runFullTest(mobileView) {
     );
   });
 
+  /**
+   * Snapshots the inline styles the page scroll lock mutates, then clears them.
+   *
+   * Clearing matters: several tests in this file leave a drawer open, which
+   * leaves the page locked. Without the clear, a test would snapshot that leaked
+   * lock and the restore below would faithfully put it back, so the leak
+   * outlives every test that touches it and later assertions read it as a
+   * failure. Snapshot-and-clear starts each test from a known page, matching the
+   * scroll-lock suite in auro-library.
+   * @returns {Function} Restores the snapshot.
+   */
+  function snapshotPageScrollStyles() {
+    const root = document.documentElement.style;
+    const body = document.body.style;
+    const saved = [
+      [root, "scrollbarGutter", root.scrollbarGutter],
+      [root, "overflow", root.overflow],
+      [body, "overflow", body.overflow],
+      [body, "position", body.position],
+      [body, "top", body.top],
+      [body, "width", body.width],
+    ];
+
+    for (const [style, prop] of saved) {
+      style[prop] = "";
+    }
+
+    return () => {
+      for (const [style, prop, value] of saved) {
+        style[prop] = value;
+      }
+    };
+  }
+
+  /**
+   * Asserts every property the page scroll lock sets, not just one of them.
+   * @param {String} because - Context included in assertion failures.
+   * @returns {void}
+   */
+  function expectPageScrollLocked(because) {
+    expect(document.documentElement.style.overflow, because).to.equal("hidden");
+    expect(document.documentElement.style.scrollbarGutter, because).to.equal(
+      "stable",
+    );
+    expect(document.body.style.overflow, because).to.equal("hidden");
+    // position:fixed is what blocks the VoiceOver three-finger swipe; overflow
+    // alone does not.
+    expect(document.body.style.position, because).to.equal("fixed");
+    expect(document.body.style.width, because).to.equal("100%");
+  }
+
   describe("Rendering", () => {
     it("should be defined as a custom element", async () => {
       const el = !!customElements.get("auro-drawer");
@@ -470,6 +521,142 @@ function runFullTest(mobileView) {
           el.bib.dialog.hasAttribute("popover"),
           "non-modal drawer must use showPopover, not showModal",
         ).to.be.true;
+      });
+
+      it("should lock page scroll for non-modal drawers (AB#1625435)", async () => {
+        // Above the fullscreen breakpoint a dismissible drawer resolves to the
+        // "dialog" positioning strategy, which used to leave the page behind it
+        // scrollable — the desktop pass of this suite is the one that
+        // reproduced AB#1625435. Fixed in auro-library (AB#1647843).
+        const restorePageScrollStyles = snapshotPageScrollStyles();
+        try {
+          const el = await fixture(html`
+            <auro-drawer open>
+              <h2 slot="header">Non-modal scroll lock</h2>
+              <div slot="content"><p>Content</p></div>
+            </auro-drawer>
+          `);
+          await elementUpdated(el);
+
+          expect(el.modal, "this drawer must be the dismissible one").to.not.be
+            .true;
+          expect(
+            el.floater._scrollLocked,
+            "a dismissible drawer must freeze the page behind it",
+          ).to.be.true;
+          expectPageScrollLocked(
+            "a dismissible drawer must freeze the page behind it",
+          );
+
+          el.removeAttribute("open");
+          await elementUpdated(el);
+
+          expect(
+            el.floater._scrollLocked,
+            "scroll lock must be released on close",
+          ).to.be.false;
+          expect(document.body.style.position).to.equal("");
+          expect(document.body.style.overflow).to.equal("");
+          expect(document.documentElement.style.overflow).to.equal("");
+          expect(document.documentElement.style.scrollbarGutter).to.equal("");
+        } finally {
+          restorePageScrollStyles();
+        }
+      });
+
+      it("should hold the page still while repositioning a non-modal drawer (AB#1647843)", async () => {
+        // The gate lived in configureBibStrategy(), which Floating UI's
+        // autoUpdate re-runs on every resize and scroll tick — so the old code
+        // did not merely skip the lock, it released it repeatedly while the
+        // drawer was open. Re-entering the strategy call must leave the lock on.
+        const restorePageScrollStyles = snapshotPageScrollStyles();
+        try {
+          const el = await fixture(html`
+            <auro-drawer open>
+              <h2 slot="header">Reposition scroll lock</h2>
+              <div slot="content"><p>Content</p></div>
+            </auro-drawer>
+          `);
+          await elementUpdated(el);
+          expectPageScrollLocked("drawer is open");
+
+          // Without this the test passes trivially: isPopoverVisible is the
+          // guard on the lock call, so a false value makes the re-entry below a
+          // no-op under both the old and new code.
+          expect(
+            el.isPopoverVisible,
+            "the strategy call must actually reach the scroll lock",
+          ).to.be.true;
+
+          // Drive the exact re-entry autoUpdate performs, for both overlay
+          // strategies, rather than waiting on a real resize.
+          el.floater.configureBibStrategy("dialog");
+          el.floater.configureBibStrategy("fullscreen");
+
+          expect(
+            el.floater._scrollLocked,
+            "repositioning must not release the scroll lock",
+          ).to.be.true;
+          expectPageScrollLocked("after repositioning while open");
+
+          el.removeAttribute("open");
+          await elementUpdated(el);
+        } finally {
+          restorePageScrollStyles();
+        }
+      });
+
+      it("should restore the scroll offset the page was at", async () => {
+        const restorePageScrollStyles = snapshotPageScrollStyles();
+        // height is not covered by snapshotPageScrollStyles(), so it has to be
+        // restored here or a failed assertion leaves the document 3000px tall
+        // for every test after this one.
+        const savedBodyHeight = document.body.style.height;
+        try {
+          // The page has to actually be scrollable, or this asserts nothing: at
+          // offset 0 the lock writes top:-0px, which the browser normalizes to
+          // 0px.
+          document.body.style.height = "3000px";
+          window.scrollTo(0, 120);
+          const scrollOffset = window.scrollY;
+          expect(scrollOffset, "test page must be scrolled").to.be.greaterThan(
+            0,
+          );
+
+          const el = await fixture(html`
+            <auro-drawer open>
+              <h2 slot="header">Scroll offset</h2>
+              <div slot="content"><p>Content</p></div>
+            </auro-drawer>
+          `);
+          await elementUpdated(el);
+
+          // body.top holds the negated offset while locked; that is what the
+          // page is scrolled back to on close.
+          expect(document.body.style.top).to.equal(`-${scrollOffset}px`);
+
+          // Prove the outcome rather than only the mechanism: with the body
+          // taken out of flow the document has no scrollable overflow left, so
+          // an attempt to scroll the page behind the drawer does nothing.
+          window.scrollTo(0, 500);
+          expect(
+            window.scrollY,
+            "the page must not scroll while the drawer is open",
+          ).to.equal(0);
+
+          el.removeAttribute("open");
+          await elementUpdated(el);
+
+          expect(document.body.style.top).to.equal("");
+          expect(
+            window.scrollY,
+            "closing must return the page to where the reader left it",
+          ).to.equal(scrollOffset);
+        } finally {
+          window.scrollTo(0, 0);
+          document.body.style.height = savedBodyHeight;
+          restorePageScrollStyles();
+        }
       });
 
       it("should use showModal and lock page scroll for modal drawers", async () => {
@@ -1006,6 +1193,41 @@ function runFullTest(mobileView) {
         // reference was not captured before cleanup, a TypeError is thrown as
         // an uncaught error and the test runner fails this test.
         await new Promise((resolve) => setTimeout(resolve, 400));
+      });
+
+      it("should release the page scroll lock when disconnected while open", async () => {
+        // hideBib() used to be the only unlock, so tearing down a drawer while
+        // its bib was open stranded body{position:fixed} with no path left to
+        // undo it — the page stayed frozen for the rest of the session.
+        const restorePageScrollStyles = snapshotPageScrollStyles();
+        try {
+          const el = document.createElement("auro-drawer");
+          document.body.appendChild(el);
+          await elementUpdated(el);
+          el.setAttribute("open", "");
+          await elementUpdated(el);
+
+          expectPageScrollLocked("drawer is open");
+
+          // Call the lifecycle hook directly to test cleanup without removing
+          // an active popover from the DOM (which crashes headless Chrome).
+          el.disconnectedCallback();
+
+          expect(
+            document.body.style.position,
+            "unmounting while open must not leave the page frozen",
+          ).to.equal("");
+          expect(document.body.style.overflow).to.equal("");
+          expect(document.documentElement.style.overflow).to.equal("");
+
+          el.removeAttribute("open");
+          await elementUpdated(el);
+          el.remove();
+          // Past the 300ms deferred close scheduled by hide("disconnect").
+          await new Promise((resolve) => setTimeout(resolve, 400));
+        } finally {
+          restorePageScrollStyles();
+        }
       });
     });
   });

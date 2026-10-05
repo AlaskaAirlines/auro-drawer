@@ -589,15 +589,19 @@ function runFullTest(mobileView) {
           ).to.be.true;
 
           // Drive the exact re-entry autoUpdate performs, for both overlay
-          // strategies, rather than waiting on a real resize.
-          el.floater.configureBibStrategy("dialog");
-          el.floater.configureBibStrategy("fullscreen");
+          // strategies, rather than waiting on a real resize. Assert after
+          // each call, not once at the end: the old gate released the lock on
+          // "dialog" and re-took it on "fullscreen", so a single trailing
+          // assertion passes against the very regression this test guards.
+          for (const strategy of ["dialog", "fullscreen"]) {
+            el.floater.configureBibStrategy(strategy);
 
-          expect(
-            el.floater._scrollLocked,
-            "repositioning must not release the scroll lock",
-          ).to.be.true;
-          expectPageScrollLocked("after repositioning while open");
+            expect(
+              el.floater._scrollLocked,
+              `repositioning as "${strategy}" must not release the scroll lock`,
+            ).to.be.true;
+            expectPageScrollLocked(`after repositioning as "${strategy}"`);
+          }
 
           el.removeAttribute("open");
           await elementUpdated(el);

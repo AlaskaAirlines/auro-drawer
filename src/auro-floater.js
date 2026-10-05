@@ -140,9 +140,11 @@ export class AuroFloater extends LitElement {
    * - `nested`: `setAttribute("open", "")` to anchor within the parent container.
    * - `!modal && !nested`: `showPopover()` to keep positional CSS intact
    *   without taking on `showModal()`'s native modal semantics — `dialog.open`
-   *   is never set and the background is never made inert. Focus is still
-   *   contained: auro-drawer-content installs a `FocusTrap` on every path, not
-   *   just the `showModal()` one.
+   *   is not set and the background is never made inert. Browsers without the
+   *   Popover API fall back to `dialog.show()`, which does set `dialog.open`
+   *   but is likewise non-modal. Focus is still contained on every path:
+   *   auro-drawer-content installs a `FocusTrap` regardless of how the dialog
+   *   was opened, not just on the `showModal()` one.
    * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
    */
   async show() {
@@ -202,15 +204,17 @@ export class AuroFloater extends LitElement {
     // the deferred close fires (e.g. when the element is removed from the DOM).
     const dialog = this.bib?.dialog;
     if (dialog?.open) {
-      // Modal and nested drawers: opened via showModal() or setAttribute('open').
+      // Modal and nested drawers (showModal() / setAttribute('open')), and
+      // non-modal drawers on browsers without the Popover API (dialog.show()).
       this._closeTimeout = setTimeout(() => {
         if (dialog.open) {
           dialog.close();
         }
       }, 300);
     } else if (typeof dialog?.hidePopover === "function" && dialog.matches?.(':popover-open')) {
-      // Non-modal drawers: opened via showPopover() — dialog.open is never set,
-      // so the popover stays in the top layer unless hidePopover() is called.
+      // Non-modal drawers opened via showPopover() — that path never sets
+      // dialog.open, so the popover stays in the top layer unless hidePopover()
+      // is called.
       // Guard on hidePopover support: matches(':popover-open') throws a SyntaxError
       // on browsers that don't implement the Popover API.
       this._closeTimeout = setTimeout(() => {

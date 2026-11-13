@@ -53,8 +53,8 @@ export class AuroDrawerContent extends LitElement {
   static get properties() {
     return {
       /**
-       * Defines whether the close button should be light colored for use on dark backgrounds.
-       * @property {'default', 'inverse'}
+       * Sets the color of the close button. Use `inverse` for a light button on a dark drawer background.
+       * @type {'default' | 'inverse'}
        * @default 'default'
        */
       closeButtonAppearance: {

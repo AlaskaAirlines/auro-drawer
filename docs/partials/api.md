@@ -16,13 +16,11 @@
 
 </auro-accordion>
 
-## Property & Attribute Examples
+## Property and attribute examples
 
-### Close Button Appearance on Customized Drawer
+### Close button appearance on a customized drawer
 
-If the drawer is customized to have a dark background, the close button may not be visible. 
-You can change the button's appearance by using `closeButtonAppearance` property (`close-button-appearance` attribute).
-
+If you give the drawer a dark background, the close button can be hard to see. Set `closeButtonAppearance` (the `close-button-appearance` attribute) to `inverse` to make it light.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/close-button-appearance.html) -->
@@ -37,10 +35,9 @@ You can change the button's appearance by using `closeButtonAppearance` property
 
 </auro-accordion>
 
-### Fullscreen Breakpoint
+### Fullscreen breakpoint
 
-On mobile view, adding the `fullscreenBreakpoint="{breakpoint-token}"` will switch the drawer to fullscreen mode.
-The default breakpoint is `sm`.
+Set `fullscreenBreakpoint` to `xs`, `sm`, `md`, or `lg` to make the drawer fill the screen at that screen width and smaller. The default is `sm`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/fullscreen-breakpoint.html) -->
@@ -57,9 +54,9 @@ The default breakpoint is `sm`.
 
 ### Modal
 
-The auro-drawer supports a modal drawer state that will lock a user into interacting with the `modal` drawer. To activate, use the modal attribute.
+In a modal drawer, people must act on the drawer's content, because pressing Escape or clicking outside it doesn't close it. To turn it on, set the `modal` attribute.
 
-When using this state, the modal drawer must include a button action to dismiss the modal drawer as the closing icon will not be available and the user will not be able to click outside the modal drawer to dismiss.
+A modal drawer has no close button, so include a button that closes it.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/modal.html) -->
@@ -76,7 +73,7 @@ When using this state, the modal drawer must include a button action to dismiss 
 
 ### Nested
 
-In case the drawer should sit inside of a container, not to the body, set `nested` attribute.
+To open the drawer inside a container instead of over the whole page, set the `nested` attribute.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/nested.html) -->
@@ -93,7 +90,7 @@ In case the drawer should sit inside of a container, not to the body, set `neste
 
 ### Placement
 
-You can set the position where the drawer should sit by using the `placement` attribute. The default placement is `right`. 
+Set the edge the drawer slides in from with the `placement` attribute. The default is `right`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/placement.html) -->
@@ -110,12 +107,11 @@ You can set the position where the drawer should sit by using the `placement` at
 
 ### Size
 
-The `auro-drawer` element supports three different sizes. A default drawer is equal to the `lg` size drawer. 
+Set the drawer's size with the `size` attribute: `sm`, `md`, or `lg`. The default is `lg`.
 
-The size attribute controls the width of left and right drawers, which always have a height of 100%.
-For top and bottom drawers, size controls the height, and the width is always 100%.
+`size` sets the width of `left` and `right` drawers, which always fill the screen's height. For `top` and `bottom` drawers, it sets the height, and the width always fills the screen.
 
-For mobile or small screen, read <a href="#fullscreenBreakpoint">`fullscreenBreakpoint`</a>
+To make a drawer fill the screen on smaller screens, see <a href="#fullscreenBreakpoint">`fullscreenBreakpoint`</a>.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/size-options.html) -->
@@ -132,13 +128,11 @@ For mobile or small screen, read <a href="#fullscreenBreakpoint">`fullscreenBrea
 
 ### Unformatted
 
-For use case where the use of a drawer is to be more freeform, but the experience and base tooling for the drawer are still requested, there is the `unformatted` property.
-
-This property can be used in combination of any other use case of the drawer, but it will render a unformatted drawer window allowing for full customization of content within the scope of the window.
+Use `unformatted` when you need full control of the drawer's layout. It removes the drawer's padding, header, footer, and close button, so your content fills the drawer edge to edge. Combine it with other options such as `placement` and `size`.
 
 #### Accessibility
 
-Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. To make proper use of this, in an unformatted drawer, the developer is required to add `id="drawer-header"` to the content header within the drawer content.
+Screen readers announce the text of the element that opens the drawer as the drawer's name, so give that trigger a clear label. An unformatted drawer has no built-in heading, so add your own heading to the content.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/unformatted.html) -->
@@ -153,11 +147,11 @@ Within the scope of the auro-drawer there is `aria-labelledby="drawer-header"`. 
 
 </auro-accordion>
 
-## Slot Examples
+## Slot examples
 
-### Aria Label Slot
+### Aria label slot
 
-To customize the aria-label text for the close button, use the `ariaLabel.drawer.close` slot to provide custom text. If no text is provided, the default text `"Close"` will be used.
+Add text to the `ariaLabel.drawer.close` slot to change what screen readers announce for the close button. Without it, screen readers announce "Close".
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label-slot.html) -->
@@ -172,19 +166,19 @@ To customize the aria-label text for the close button, use the `ariaLabel.drawer
 
 </auro-accordion>
 
-## CSS Shadow Part Examples
+## CSS shadow part examples
 
-### Customizing Styles
+### Customizing styles
 
-The drawer's size and some styles can be styled using CSS `part`.
+Style the drawer with CSS `::part()`:
 
-- `auro-drawer::part(drawer-wrapper)` to style the container of the drawer content (the drawer panel itself).
+- `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content (the drawer panel itself).
 - `auro-drawer ::part(drawer-header)` to style the header.
 - `auro-drawer ::part(drawer-content)` to style the content wrapper.
 - `auro-drawer ::part(drawer-footer)` to style the footer.
 - `auro-drawer ::part(close-button)` to style the close button.
 
-The drawer backdrop cannot be targeted via `::part()` because browser restrictions prevent CSS parts from targeting `::backdrop`. The `drawer-backdrop` part is kept for backwards compatibility — it targets a decorative `<div>` that sits behind the drawer panel.
+The drawer backdrop can't be targeted with `::part()` because browsers don't let CSS parts target `::backdrop`. The `drawer-backdrop` part is kept for backward compatibility: it targets a decorative `<div>` behind the drawer panel.
 
 To migrate to the new token approach, hide the legacy div and use the CSS custom properties instead:
 
@@ -201,14 +195,14 @@ auro-drawer {
 }
 ```
 
-| Custom Property | Default | Description |
+| Custom property | Default | Description |
 |---|---|---|
 | `--auro-drawer-backdrop-background` | `transparent` | Background of the native `::backdrop`. |
-| `--auro-drawer-backdrop-filter` | `none` | `backdrop-filter` applied to the native `::backdrop` (e.g. `blur(4px)`). |
+| `--auro-drawer-backdrop-filter` | `none` | `backdrop-filter` applied to the native `::backdrop`, such as `blur(4px)`. |
 | `--auro-drawer-backdrop-opacity` | `1` | Opacity of the native `::backdrop`. |
 | `--auro-drawer-backdrop-transition` | `opacity 0.3s ease` | Transition applied to the native `::backdrop`. |
 
-`close` slot can be used to replace the close button to a different element.
+To replace the close button with a different element, use the `close` slot.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizing.html) -->
@@ -223,11 +217,11 @@ auro-drawer {
 
 </auro-accordion>
 
-## Common Usage Patterns & Functional Examples
+## Common usage patterns
 
-### Drawer with Dropdown Components
+### Drawer with dropdown components
 
-This is a use case where there is a popover and combobox component inside the drawer component, creating a stack of layered components.
+Shows a popover and a combobox inside a drawer, creating a stack of layered components.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/popover-and-dropdown.html) -->
@@ -242,4 +236,10 @@ This is a use case where there is a popover and combobox component inside the dr
 
 </auro-accordion>
 
+## Restyle with CSS custom properties
+
+Restyle the component by changing the values of the following tokens.
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../src/styles/drawerContentTokens.scss) -->
+<!-- AURO-GENERATED-CONTENT:END -->
 

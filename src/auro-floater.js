@@ -47,8 +47,8 @@ export class AuroFloater extends LitElement {
 
   /**
    * @ignore
-   * The configuration for floaingUI.
-   * @returns {object} Floater configuration object.
+   * The configuration for floatingUI.
+   * @returns {object} The floater configuration object.
    */
   get floaterConfig() {
     return {

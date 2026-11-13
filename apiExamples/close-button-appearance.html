@@ -7,18 +7,19 @@
   }
 </style>
 <div>
-  <auro-button id="openInverseCloseButtonAppearance">Open inverse CloseButtonAppearance drawer</auro-button>
+  <auro-button id="openInverseCloseButtonAppearance">Open drawer with inverse close button</auro-button>
 </div>
 <auro-drawer id="inverseCloseButtonAppearance" close-button-appearance="inverse">
-  <span slot="header">Default Drawer</span>
+  <span slot="header">Default drawer</span>
   <div slot="content">
     <p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
     <p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
     <auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
     <ul>
       <li>Caerphilly croque monsieur fondue</li>
+    </ul>
       <auro-radio-group appearance="inverse">
-        <span slot="legend">Accordion Test</span>
+        <span slot="legend">Payment method</span>
         <auro-radio
           id="basicGroupRadio1"
           label="Credit or debit card"
@@ -41,11 +42,13 @@
       <auro-input placeholder="John Doe" bordered required appearance="inverse">
         <span slot="label">Full name</span>
         <span slot="helptext">Please enter your full name.</span>
-      </auro-input>  
+      </auro-input>
+    <ul>
       <li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
       <li>Cheddar cheese and biscuits chalk and cheese</li>
+    </ul>
       <auro-checkbox-group appearance="inverse">
-        <span slot="legend">Form label goes here</span>
+        <span slot="legend">Baggage options</span>
         <auro-checkbox value="value1" name="basic" id="checkbox-basic1"
           >Checkbox option</auro-checkbox
         >
@@ -60,6 +63,7 @@
         >
       </auro-checkbox-group>
 
+    <ul>
       <li>Camembert de normandie stinking bishop bavarian bergkase</li>
     </ul>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi quis commodo odio aenean sed. Tortor at risus viverra adipiscing at in tellus integer feugiat. Dictum sit amet justo donec enim diam vulputate. Ullamcorper a lacus vestibulum sed arcu non. Sed cras ornare arcu dui vivamus arcu felis. Morbi tristique senectus et netus et. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Nunc faucibus a pellentesque sit amet porttitor eget dolor. Eleifend mi in nulla posuere sollicitudin aliquam. Dolor sed viverra ipsum nunc aliquet bibendum enim.</p>
@@ -74,7 +78,7 @@
       <p>Volutpat blandit aliquam etiam erat velit scelerisque. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Lectus sit amet est placerat in egestas erat imperdiet sed. Platea dictumst quisque sagittis purus sit. Elit ut aliquam purus sit amet luctus venenatis lectus magna. Rhoncus mattis rhoncus urna neque viverra justo nec ultrices. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla pharetra diam sit amet nisl suscipit adipiscing. Id aliquet lectus proin nibh nisl condimentum id venenatis. Phasellus faucibus scelerisque eleifend donec pretium vulputate. Vulputate eu scelerisque felis imperdiet proin fermentum leo. Duis at consectetur lorem donec massa sapien faucibus et molestie.</p>
   </div>
   <div slot="footer">
-    <auro-button secondary id="closeInverseCloseButtonAppearance" appearance="inverse">Close</auro-button>
+    <auro-button variant="secondary" id="closeInverseCloseButtonAppearance" appearance="inverse">Close</auro-button>
   </div>
 </auro-drawer>
 

@@ -57,7 +57,7 @@ A panel that slides in from an edge of the screen to show content or actions wit
 | close                  | Content that replaces the close button. Clicking it closes the drawer. Not shown when `modal` or `unformatted` is set.                         |
 | content                | The drawer's body content. Appears after the default slot's content.                                                                           |
 | footer                 | Action buttons at the bottom of the drawer. Add a button that closes the drawer here when `modal` is set. Not shown when `unformatted` is set. |
-| header                 | The heading text at the top of the drawer. Not shown when `unformatted` is set.                                                                |
+| header                 | The heading text at the top of the drawer. Screen readers also announce it as the drawer's name. Not shown when `unformatted` is set.          |
 
 ### CSS shadow parts
 
@@ -918,7 +918,7 @@ An unformatted drawer has no built-in heading, so add your own heading to the co
 <auro-button id="openUnformatted">Open unformatted drawer</auro-button>
 </div>
 <auro-drawer id="unformattedDrawer" unformatted size="md">
-<span slot="content">
+<div slot="content">
 <img style="display: block; width: 100%" src="https://blog.alaskaair.com/wp-content/uploads/2020/11/111-psp-blog-img-guide.jpg" alt="Alaska Airlines pride lights" />
 <div class="unformattedWrapper">
 <h1>This is a header</h1>
@@ -927,7 +927,7 @@ An unformatted drawer has no built-in heading, so add your own heading to the co
 <auro-button variant="secondary" id="closeUnformatted">Close</auro-button>
 </div>
 </div>
-</span>
+</div>
 </auro-drawer>
 <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -940,7 +940,7 @@ An unformatted drawer has no built-in heading, so add your own heading to the co
   &lt;auro-button id="openUnformatted"&gt;Open unformatted drawer&lt;/auro-button&gt;
 &lt;/div&gt;
 &#10;&lt;auro-drawer id="unformattedDrawer" unformatted size="md"&gt;
-  &lt;span slot="content"&gt;
+  &lt;div slot="content"&gt;
     &lt;img style="display: block; width: 100%" src="https://blog.alaskaair.com/wp-content/uploads/2020/11/111-psp-blog-img-guide.jpg" alt="Alaska Airlines pride lights" /&gt;
     &lt;div class="unformattedWrapper"&gt;
       &lt;h1&gt;This is a header&lt;/h1&gt;
@@ -949,7 +949,7 @@ An unformatted drawer has no built-in heading, so add your own heading to the co
         &lt;auro-button variant="secondary" id="closeUnformatted"&gt;Close&lt;/auro-button&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/span&gt;
+  &lt;/div&gt;
 &lt;/auro-drawer&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -1027,11 +1027,11 @@ Add text to the `ariaLabel.drawer.close` slot to change what screen readers anno
 
 Style the drawer with CSS `::part()`:
 
-- `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content (the drawer panel itself).
-- `auro-drawer ::part(drawer-header)` to style the header.
-- `auro-drawer ::part(drawer-content)` to style the content wrapper.
-- `auro-drawer ::part(drawer-footer)` to style the footer.
-- `auro-drawer ::part(close-button)` to style the close button.
+- `auro-drawer ::part(drawer-wrapper)`: The drawer panel, which wraps the header, content, and footer.
+- `auro-drawer ::part(drawer-header)`: The heading at the top of the drawer.
+- `auro-drawer ::part(drawer-content)`: The container for the drawer's body content.
+- `auro-drawer ::part(drawer-footer)`: The container for the drawer's action buttons.
+- `auro-drawer ::part(close-button)`: The button that closes the drawer.
 
 The drawer backdrop can't be targeted with `::part()` because browsers don't let CSS parts target `::backdrop`. The `drawer-backdrop` part is kept for backward compatibility: it targets a decorative `<div>` behind the drawer panel.
 

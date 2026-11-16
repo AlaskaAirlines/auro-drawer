@@ -44,7 +44,7 @@ const CONFIG = {
  * @slot close - Content that replaces the close button. Clicking it closes the drawer. Not shown when `modal` or `unformatted` is set.
  * @slot ariaLabel.drawer.close - Text that screen readers announce for the close button, for example "Close filters". Defaults to "Close".
  *
- * @fires auroDrawer-toggled - Event fired when the drawer is toggled open or closed.
+ * @fires auroDrawer-toggled - Fires when the drawer opens or closes. The event's `detail` has `expanded`, which is true when the drawer is open, and `eventType`, the reason the drawer changed, such as `disconnect` when the drawer is removed from the page. `eventType` is `unknown` when no reason is given.
  *
  * @csspart {deprecated} drawer-backdrop - Deprecated: Set `display: none` on this part and use the `--auro-drawer-backdrop-*` CSS custom properties instead. A decorative `<div>` behind the drawer that shows the default dimmed background.
  * @csspart drawer-wrapper - The container that wraps the drawer's header, content, and footer.
@@ -67,6 +67,10 @@ export class AuroDrawer extends AuroFloater {
     this._initializeDefaults();
   }
 
+  /**
+   * @private
+   * Sets the default values for the drawer's properties.
+   */
   _initializeDefaults() {
     this.closeButtonAppearance = "default";
     this.placement = "right";

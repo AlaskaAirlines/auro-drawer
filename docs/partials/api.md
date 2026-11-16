@@ -132,7 +132,7 @@ Use `unformatted` when you need full control of the drawer's layout. It removes 
 
 #### Accessibility
 
-Screen readers announce the text of the element that opens the drawer as the drawer's name, so give that trigger a clear label. An unformatted drawer has no built-in heading, so add your own heading to the content.
+An unformatted drawer has no built-in heading, so add your own heading to the content.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/unformatted.html) -->

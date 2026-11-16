@@ -135,19 +135,19 @@ export class AuroFloater extends LitElement {
   }
 
   /**
-   * Opens the native dialog inside the bib.
-   *
-   * - `nested`: `setAttribute("open", "")` to anchor within the parent container.
-   * - `!modal && !nested`: `showPopover()` to keep positional CSS intact
-   *   without taking on `showModal()`'s native modal semantics — `dialog.open`
-   *   is not set and the background is never made inert. Browsers without the
-   *   Popover API fall back to `dialog.show()`, which does set `dialog.open`
-   *   but is likewise non-modal. Focus is still contained on every path:
-   *   auro-drawer-content installs a `FocusTrap` regardless of how the dialog
-   *   was opened, not just on the `showModal()` one.
-   * - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
+   * Opens the drawer, the same as setting the `open` attribute.
    */
   async show() {
+    // How the native dialog opens depends on the drawer's mode:
+    // - `nested`: `setAttribute("open", "")` to anchor within the parent container.
+    // - `!modal && !nested`: `showPopover()` to keep positional CSS intact
+    //   without taking on `showModal()`'s native modal semantics — `dialog.open`
+    //   is not set and the background is never made inert. Browsers without the
+    //   Popover API fall back to `dialog.show()`, which does set `dialog.open`
+    //   but is likewise non-modal. Focus is still contained on every path:
+    //   auro-drawer-content installs a `FocusTrap` regardless of how the dialog
+    //   was opened, not just on the `showModal()` one.
+    // - `modal && !nested`: `showModal()` for native focus containment and top-layer rendering.
     const generation = ++this._showGeneration;
     clearTimeout(this._closeTimeout);
     if (!this.floater) {
@@ -190,7 +190,8 @@ export class AuroFloater extends LitElement {
   }
 
   /**
-   * Closes the native dialog.
+   * Closes the drawer, the same as removing the `open` attribute.
+   * @param {string} [eventType] - The reason the drawer is closing. It's passed to the `auroDrawer-toggled` event as `detail.eventType`, which is `unknown` when omitted.
    */
   hide(eventType = undefined) {
     // Invalidate any in-flight show() that is awaiting bib.updateComplete so it

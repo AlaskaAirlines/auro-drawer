@@ -118,7 +118,7 @@ import { AuroDrawer } from '@aurodesignsystem/auro-drawer/class';
 &#10;// Register with a custom name if desired
 AuroDrawer.register('custom-drawer');</code></pre>
 
-This will create a new custom element `<custom-drawer>` that behaves exactly like `<auro-drawer>`, allowing both to coexist on the same page without interfering with each other.
+Registering creates a new custom element `<custom-drawer>` that behaves exactly like `<auro-drawer>`, so both can coexist on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->

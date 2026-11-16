@@ -209,6 +209,61 @@ function runFullTest(mobileView) {
         const nativeBtn = closeBtn.shadowRoot.querySelector("button");
         expect(nativeBtn.getAttribute("aria-label")).to.equal("Dismiss drawer");
       });
+
+      it("should name the dialog from the header slot text", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+        await el.bib.updateComplete;
+        expect(el.bib.shadowRoot.querySelector("#dialogLabel").textContent).to.equal("Baggage rules");
+      });
+
+      it("should name the dialog from the trigger text when there is no header text", async () => {
+        const el = await fixture(html`<auro-drawer></auro-drawer>`);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open baggage rules";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Open baggage rules");
+      });
+
+      it("should prefer the header slot text over the trigger text", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open baggage rules";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+      });
+
+      it("should ignore the header slot text when the drawer is unformatted", async () => {
+        const el = await fixture(html`
+          <auro-drawer unformatted>
+            <span slot="header">Hidden heading</span>
+          </auro-drawer>
+        `);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open drawer";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Open drawer");
+      });
     });
   });
 

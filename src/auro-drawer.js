@@ -39,7 +39,7 @@ const CONFIG = {
  *
  * @slot - The drawer's body content. Appears in the same place as the `content` slot.
  * @slot content - The drawer's body content. Appears after the default slot's content.
- * @slot header - The heading text at the top of the drawer. Not shown when `unformatted` is set.
+ * @slot header - The heading text at the top of the drawer. Screen readers also announce it as the drawer's name. Not shown when `unformatted` is set.
  * @slot footer - Action buttons at the bottom of the drawer. Add a button that closes the drawer here when `modal` is set. Not shown when `unformatted` is set.
  * @slot close - Content that replaces the close button. Clicking it closes the drawer. Not shown when `modal` or `unformatted` is set.
  * @slot ariaLabel.drawer.close - Text that screen readers announce for the close button, for example "Close filters". Defaults to "Close".
@@ -194,10 +194,10 @@ export class AuroDrawer extends AuroFloater {
   }
 
   /**
-   * Sets the expanded state of the drawer.
+   * Sets whether the drawer fills its available space.
    * Called by floatingUI.
    * @ignore
-   * @param {boolean} value - Whether the drawer is expanded.
+   * @param {boolean} value - If true, the drawer fills its available space. If false, the drawer uses its normal size.
    */
   set expanded(value) {
     if (value) {
@@ -208,9 +208,9 @@ export class AuroDrawer extends AuroFloater {
   }
 
   /**
-   * Gets the expanded state of the drawer.
+   * Checks whether the drawer fills its available space.
    * @ignore
-   * @returns {boolean} Whether the drawer is expanded.
+   * @returns {boolean} True if the drawer fills its available space; false otherwise.
    */
   get expanded() {
     return this.drawerBib.hasAttribute("stretch");
@@ -228,6 +228,9 @@ export class AuroDrawer extends AuroFloater {
     this.drawerBib.triggerElement = this.triggerElement;
     this.drawerBib.addEventListener("close-click", () => {
       this.hide();
+    });
+    this.drawerBib.addEventListener("header-change", () => {
+      this.updateBibLabel();
     });
     this.append(this.drawerBib);
 
@@ -257,6 +260,31 @@ export class AuroDrawer extends AuroFloater {
     // <dialog> for any presentation that takes the page scroll lock, which is what
     // makes the dismissible drawer report its modality correctly. See auro-floater.js
     // show() for the three open paths.
+  }
+
+  /**
+   * Gets the text that names the dialog for screen readers.
+   * @private
+   * @returns {string | undefined} The text of the header slot, or the text of the trigger element when the header has no text or the drawer is unformatted.
+   */
+  getBibLabel() {
+    const headerText = this.unformatted
+      ? undefined
+      : this.drawerBib
+          ?.querySelector(':scope > [slot="header"]')
+          ?.textContent.trim();
+
+    return headerText || super.getBibLabel();
+  }
+
+  /**
+   * Sets the dialog's label from the header text, or from the trigger text when there's no header text.
+   * @private
+   */
+  updateBibLabel() {
+    if (this.bib) {
+      this.bib.bibLabel = this.getBibLabel();
+    }
   }
 
   /**
@@ -313,5 +341,7 @@ export class AuroDrawer extends AuroFloater {
       }
       this.setupAria();
     }
+
+    this.updateBibLabel();
   }
 }

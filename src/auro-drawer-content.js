@@ -106,6 +106,10 @@ export class AuroDrawerContent extends LitElement {
     this.requestUpdate();
   }
 
+  handleHeaderSlotChange() {
+    this.dispatchEvent(new CustomEvent("header-change"));
+  }
+
   handleCloseButtonClick() {
     this.dispatchEvent(new CustomEvent("close-click"));
   }
@@ -170,7 +174,7 @@ export class AuroDrawerContent extends LitElement {
             : html`
           <div class="header-row">
               <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header" part="drawer-header">
-                <slot name="header"></slot>
+                <slot name="header" @slotchange=${this.handleHeaderSlotChange}></slot>
               </h1>
             ${
               this.modal

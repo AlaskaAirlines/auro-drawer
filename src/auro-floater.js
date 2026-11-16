@@ -80,6 +80,15 @@ export class AuroFloater extends LitElement {
     };
   }
 
+  /**
+   * Gets the text that names the dialog for screen readers.
+   * @private
+   * @returns {string | undefined} The text of the trigger element, or undefined if there is no trigger.
+   */
+  getBibLabel() {
+    return this.triggerElement?.textContent.trim();
+  }
+
   firstUpdated() {
     this.floater = new AuroFloatingUI(this, this.behavior);
 
@@ -122,7 +131,7 @@ export class AuroFloater extends LitElement {
 
       // Use bibLabel + aria-labelledby on the <dialog> instead of aria-label
       // directly — iOS VoiceOver does not reliably read aria-label on <dialog>.
-      this.bib.bibLabel = this.triggerElement?.textContent.trim();
+      this.bib.bibLabel = this.getBibLabel();
     }
 
     if (changedProperties.has("isPopoverVisible")) {

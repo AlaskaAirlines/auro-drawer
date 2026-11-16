@@ -56,7 +56,7 @@ A panel that slides in from an edge of the screen to show content or actions wit
 | close                  | Content that replaces the close button. Clicking it closes the drawer. Not shown when `modal` or `unformatted` is set.                         |
 | content                | The drawer's body content. Appears after the default slot's content.                                                                           |
 | footer                 | Action buttons at the bottom of the drawer. Add a button that closes the drawer here when `modal` is set. Not shown when `unformatted` is set. |
-| header                 | The heading text at the top of the drawer. Not shown when `unformatted` is set.                                                                |
+| header                 | The heading text at the top of the drawer. Screen readers also announce it as the drawer's name. Not shown when `unformatted` is set.          |
 
 ### CSS shadow parts
 

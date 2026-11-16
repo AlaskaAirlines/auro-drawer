@@ -172,11 +172,11 @@ Add text to the `ariaLabel.drawer.close` slot to change what screen readers anno
 
 Style the drawer with CSS `::part()`:
 
-- `auro-drawer ::part(drawer-wrapper)` to style the container of the drawer content (the drawer panel itself).
-- `auro-drawer ::part(drawer-header)` to style the header.
-- `auro-drawer ::part(drawer-content)` to style the content wrapper.
-- `auro-drawer ::part(drawer-footer)` to style the footer.
-- `auro-drawer ::part(close-button)` to style the close button.
+- `auro-drawer ::part(drawer-wrapper)`: The drawer panel, which wraps the header, content, and footer.
+- `auro-drawer ::part(drawer-header)`: The heading at the top of the drawer.
+- `auro-drawer ::part(drawer-content)`: The container for the drawer's body content.
+- `auro-drawer ::part(drawer-footer)`: The container for the drawer's action buttons.
+- `auro-drawer ::part(close-button)`: The button that closes the drawer.
 
 The drawer backdrop can't be targeted with `::part()` because browsers don't let CSS parts target `::backdrop`. The `drawer-backdrop` part is kept for backward compatibility: it targets a decorative `<div>` behind the drawer panel.
 

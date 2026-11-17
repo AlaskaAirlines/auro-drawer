@@ -33,7 +33,7 @@ function toggleDrawer(drawerID) {
 Add a trigger that calls the function. In this example, an `auro-button` toggles the drawer with the ID `demo1`:
 
 ``` html
-<auro-button onClick="toggleDrawer('#demo1')">Open Drawer</auro-button>
+<auro-button onClick="toggleDrawer('#demo1')">Open drawer</auro-button>
 ```
 
 ## The structure

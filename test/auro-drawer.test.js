@@ -280,6 +280,41 @@ function runFullTest(mobileView) {
         expect(el.bib.bibLabel).to.equal("Seat rules");
       });
 
+      it("should apply color tokens set on the auro-drawer element", async () => {
+        const el = await fixture(html`
+          <auro-drawer
+            style="--ds-auro-drawer-container-color: rgb(1, 2, 3); --ds-auro-drawer-text-color: rgb(4, 5, 6);">
+            <span slot="header">Colors</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+
+        const wrapper = el.drawerBib.shadowRoot.querySelector(".wrapper");
+        expect(getComputedStyle(wrapper).backgroundColor).to.equal("rgb(1, 2, 3)");
+        expect(getComputedStyle(el.querySelector('[slot="header"]')).color).to.equal("rgb(4, 5, 6)");
+      });
+
+      it("should apply color tokens set on the drawer-wrapper part", async () => {
+        const el = await fixture(html`
+          <div>
+            <style>
+              #partTokens ::part(drawer-wrapper) {
+                --ds-auro-drawer-text-color: rgb(7, 8, 9);
+              }
+            </style>
+            <auro-drawer id="partTokens">
+              <span slot="header">Colors</span>
+            </auro-drawer>
+          </div>
+        `);
+        const drawer = el.querySelector("auro-drawer");
+        await elementUpdated(drawer);
+        await drawer.drawerBib.updateComplete;
+
+        expect(getComputedStyle(drawer.querySelector('[slot="header"]')).color).to.equal("rgb(7, 8, 9)");
+      });
+
       it("should not refresh the dialog name when content outside the header changes", async () => {
         const el = await fixture(html`
           <auro-drawer>

@@ -1,7 +1,7 @@
 .wrapper {
-  background: var(--ds-auro-drawer-container-color);
+  background: var(--ds-auro-drawer-container-color, var(--_container-color-default));
 }
 
 ::slotted(*) {
-  color: var(--ds-auro-drawer-text-color);
+  color: var(--ds-auro-drawer-text-color, var(--_text-color-default));
 }

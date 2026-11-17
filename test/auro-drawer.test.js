@@ -264,6 +264,40 @@ function runFullTest(mobileView) {
 
         expect(el.bib.bibLabel).to.equal("Open drawer");
       });
+
+      it("should update the dialog name when the header text changes", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+
+        el.querySelector('[slot="header"]').textContent = "Seat rules";
+        await sleep(0);
+
+        expect(el.bib.bibLabel).to.equal("Seat rules");
+      });
+
+      it("should not refresh the dialog name when content outside the header changes", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+            <div slot="content">Body</div>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+
+        let fired = false;
+        el.drawerBib.addEventListener("header-change", () => {
+          fired = true;
+        });
+        el.querySelector('[slot="content"]').textContent = "Changed body";
+        await sleep(0);
+
+        expect(fired).to.be.false;
+      });
     });
   });
 

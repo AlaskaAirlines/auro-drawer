@@ -265,14 +265,17 @@ export class AuroDrawer extends AuroFloater {
   /**
    * Gets the text that names the dialog for screen readers.
    * @private
-   * @returns {string | undefined} The text of the header slot, or the text of the trigger element when the header has no text or the drawer is unformatted.
+   * @returns {string | undefined} The text of all elements in the header slot, or the text of the trigger element when the header has no text or the drawer is unformatted.
    */
   getBibLabel() {
     const headerText = this.unformatted
       ? undefined
-      : this.drawerBib
-          ?.querySelector(':scope > [slot="header"]')
-          ?.textContent.trim();
+      : Array.from(
+          this.drawerBib?.querySelectorAll(':scope > [slot="header"]') ?? [],
+        )
+          .map((el) => el.textContent.trim())
+          .filter(Boolean)
+          .join(" ");
 
     return headerText || super.getBibLabel();
   }

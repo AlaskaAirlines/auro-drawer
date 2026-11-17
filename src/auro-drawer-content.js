@@ -110,6 +110,43 @@ export class AuroDrawerContent extends LitElement {
     this.dispatchEvent(new CustomEvent("header-change"));
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+
+    // slotchange doesn't fire when text changes inside an already-assigned header element
+    this.headerObserver = new MutationObserver((mutations) => {
+      if (mutations.some((mutation) => this.isInHeaderSlot(mutation.target))) {
+        this.handleHeaderSlotChange();
+      }
+    });
+    this.headerObserver.observe(this, {
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.headerObserver?.disconnect();
+    this.headerObserver = undefined;
+
+    super.disconnectedCallback();
+  }
+
+  /**
+   * Checks whether a node is, or is inside, a direct child assigned to the header slot.
+   * @private
+   * @param {Node} node - The node to check.
+   * @returns {boolean} True if the node is, or is inside, an element in the header slot; false otherwise.
+   */
+  isInHeaderSlot(node) {
+    let current = node;
+    while (current && current.parentNode !== this) {
+      current = current.parentNode;
+    }
+    return current?.getAttribute?.("slot") === "header";
+  }
+
   handleCloseButtonClick() {
     this.dispatchEvent(new CustomEvent("close-click"));
   }

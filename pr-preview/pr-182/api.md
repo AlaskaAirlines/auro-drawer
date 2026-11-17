@@ -1384,7 +1384,7 @@ Restyle the component by changing the values of the following tokens.
 <pre class="language-scss"><code class="language-scss">@use "@aurodesignsystem/design-tokens/dist/legacy/auro-classic/SCSSVariables" as vac;
 @use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
 &#10;:host {
-  --ds-auro-drawer-container-color: var(--ds-basic-color-surface-default, #{v.$ds-basic-color-surface-default});
-  --ds-auro-drawer-text-color: var(--ds-basic-color-texticon-default, #{v.$ds-basic-color-texticon-default});
+  --_container-color: var(--ds-auro-drawer-container-color, var(--ds-basic-color-surface-default, #{v.$ds-basic-color-surface-default}));
+  --_text-color: var(--ds-auro-drawer-text-color, var(--ds-basic-color-texticon-default, #{v.$ds-basic-color-texticon-default}));
 }</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->

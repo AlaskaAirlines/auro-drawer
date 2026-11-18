@@ -1,6 +1,6 @@
 <!--
  THIS PAGE'S CONTENT SHOULD BE KEPT MINIMAL.
- ONLY ADD EXAMPLES THAT ARE TRULY NECESSARY FOR THE INDEX PAGE — THE BASIC EXAMPLE IS USUALLY ENOUGH.
+ ONLY ADD EXAMPLES THAT ARE TRULY NECESSARY FOR THE INDEX PAGE. THE BASIC EXAMPLE IS USUALLY ENOUGH.
  ALL OTHER EXAMPLES SHOULD GO IN THE API DOCUMENTATION.
 -->
 
@@ -8,44 +8,43 @@
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
-The `<auro-drawer>` element is an intrusive interactive element, not passive. The element is best used when there is a requirement the user be made aware of the content being shown, moving focus from the main content to the drawer content.
+A panel that slides in from the edge of the screen and moves focus from the page to the drawer's content. Use it when people need to see or act on content before they go back to what they were doing.
 
-The element also supports a modal (blocking) state where the user must interact with the content of the element in order to continue. Passive dismissal of the content is not allowed. Users of this state must add a trigger for the user to move beyond this content.
+A modal drawer goes further: people must act on its content to continue, because pressing Escape or clicking outside it doesn't close it. Add a button that closes a modal drawer.
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## Use Cases
+## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./../docs/partials/useCases.md -->
-The `auro-drawer` component should be used in situations where users may:
+Use `auro-drawer` when people may need to:
 
-* Be prompted to take an action before doing anything else or going back
-* Be prompted to view content with the option of closing it
+* Take an action before doing anything else or going back.
+* View content, with the option to close it.
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## The Setup
+## The setup
 
-Triggering the drawer relies on functions being installed. See the following example code that is installed into this demo.
+Set the `open` attribute to open the drawer, and remove it to close the drawer. This demo installs the following function to do that:
 
 <pre class="language-javascript"><code class="language-javascript">function toggleDrawer(drawerID) {
   const drawer = document.querySelector(drawerID);
-​
-  if (drawer.hasAttribute('open')) {
+&#10;  if (drawer.hasAttribute('open')) {
     drawer.removeAttribute('open');
   } else {
     drawer.setAttribute('open', true);
   }
 }</code></pre>
 
-Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a drawer with the ID of `#demo1`.
+Add a trigger that calls the function. In this example, an `auro-button` toggles the drawer with the ID `demo1`:
 
 ``` html
-<auro-button onClick="toggleDrawer('#demo1')">Open Drawer</auro-button>
+<auro-button onClick="toggleDrawer('#demo1')">Open drawer</auro-button>
 ```
 
-## The Structure
+## The structure
 
-The structure of the drawer itself consists of three slots. The `header`, `content` and `footer` slots. See the scaffolding example below for adding content to the component.
+Put your content in the `header`, `content`, and `footer` slots. The following scaffolding shows where each one goes.
 
 ``` html
 <auro-drawer id="[unique ID]">
@@ -57,49 +56,44 @@ The structure of the drawer itself consists of three slots. The `header`, `conte
       [footer content]
 </span>
 </auro-drawer>
-```
-
-It should be noted that the footer slot is reserved for the placement of action buttons.
-
-## Example(s)
-
-### Basic
-
-<div class="exampleWrapper">
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
-<!-- The below content is automatically added from ./../apiExamples/basic.html -->
-<div>
-<auro-button id="openBasic">Open default drawer</auro-button>
-</div>
-<auro-drawer id="defaultDrawer">
-<span slot="header">Default Drawer</span>
-<div slot="content">
-<p>When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See <auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank">alaskaair.com/bagrules</auro-hyperlink> for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.</p>
-<p>Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.</p>
-<auro-header level="3" display="500">Before checking your bags, remember to:</auro-header>
-<ul>
-<li>Caerphilly croque monsieur fondue</li>
-<li>Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings</li>
-<li>Cheddar cheese and biscuits chalk and cheese</li>
-<li>Camembert de normandie stinking bishop bavarian bergkase</li>
-</ul>
-</div>
-<div slot="footer">
-<auro-button secondary id="closeBasic">Close</auro-button>
-</div>
-</auro-drawer>
-<!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion alignRight>
-<span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
-
-<pre class="language-html"><code class="language-html">&lt;div&gt;
+<pre class="language-html"><code class="language-html">&#10;Use the `footer` slot for action buttons.
+&#10;## Examples
+&#10;### Basic
+&#10;&lt;div class="exampleWrapper"&gt;
+  &lt;!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) --&gt;
+  &lt;!-- The below content is automatically added from ./../apiExamples/basic.html --&gt;
+  &lt;div&gt;
+    &lt;auro-button id="openBasic"&gt;Open default drawer&lt;/auro-button&gt;
+  &lt;/div&gt;
+  &lt;auro-drawer id="defaultDrawer"&gt;
+    &lt;span slot="header"&gt;Default drawer&lt;/span&gt;
+    &lt;div slot="content"&gt;
+      &lt;p&gt;When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See &lt;auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank"&gt;alaskaair.com/bagrules&lt;/auro-hyperlink&gt; for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.&lt;/p&gt;
+      &lt;p&gt;Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.&lt;/p&gt;
+      &lt;auro-header level="3" display="500"&gt;Before checking your bags, remember to:&lt;/auro-header&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Caerphilly croque monsieur fondue&lt;/li&gt;
+        &lt;li&gt;Taleggio goat mascarpone cow manchego cheese and wine emmental cheese strings&lt;/li&gt;
+        &lt;li&gt;Cheddar cheese and biscuits chalk and cheese&lt;/li&gt;
+        &lt;li&gt;Camembert de normandie stinking bishop bavarian bergkase&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div slot="footer"&gt;
+      &lt;auro-button variant="secondary" id="closeBasic"&gt;Close&lt;/auro-button&gt;
+    &lt;/div&gt;
+  &lt;/auro-drawer&gt;
+  &lt;!-- AURO-GENERATED-CONTENT:END --&gt;
+&lt;/div&gt;
+&lt;auro-accordion alignRight&gt;
+  &lt;span slot="trigger"&gt;See code&lt;/span&gt;
+&lt;!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) --&gt;
+&lt;!-- The below code snippet is automatically added from ./../apiExamples/basic.html --&gt;
+&#10;```html
+&lt;div&gt;
   &lt;auro-button id="openBasic"&gt;Open default drawer&lt;/auro-button&gt;
 &lt;/div&gt;
-&lt;auro-drawer id="defaultDrawer"&gt;
-  &lt;span slot="header"&gt;Default Drawer&lt;/span&gt;
+&#10;&lt;auro-drawer id="defaultDrawer"&gt;
+  &lt;span slot="header"&gt;Default drawer&lt;/span&gt;
   &lt;div slot="content"&gt;
     &lt;p&gt;When traveling on Alaska Airlines flights, Alaska Airlines checked baggage fees may apply. See &lt;auro-hyperlink href="https://www.alaskaair.com/bagrules" target="_blank"&gt;alaskaair.com/bagrules&lt;/auro-hyperlink&gt; for our rules. For itineraries that include other airlines, their checked baggage fees may apply, as displayed on their websites.&lt;/p&gt;
     &lt;p&gt;Baggage rules and fees will be based on the specific itinerary chosen. The applicable first and second bag fees will be displayed after you have added flights to the cart.&lt;/p&gt;
@@ -112,7 +106,7 @@ It should be noted that the footer slot is reserved for the placement of action 
     &lt;/ul&gt;
   &lt;/div&gt;
   &lt;div slot="footer"&gt;
-    &lt;auro-button secondary id="closeBasic"&gt;Close&lt;/auro-button&gt;
+    &lt;auro-button variant="secondary" id="closeBasic"&gt;Close&lt;/auro-button&gt;
   &lt;/div&gt;
 &lt;/auro-drawer&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->

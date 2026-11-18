@@ -13,7 +13,7 @@ export class AuroFloaterBib extends LitElement {
   static get properties() {
     return {
       /**
-       * Text used to label the dialog for screen readers via aria-labelledby.
+       * Text used to label the dialog for screen readers via `aria-labelledby`.
        */
       bibLabel: {
         type: String,

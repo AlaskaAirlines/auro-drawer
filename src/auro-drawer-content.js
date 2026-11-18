@@ -53,8 +53,8 @@ export class AuroDrawerContent extends LitElement {
   static get properties() {
     return {
       /**
-       * Defines whether the close button should be light colored for use on dark backgrounds.
-       * @property {'default', 'inverse'}
+       * Sets the color of the close button. Use `inverse` for a light button on a dark drawer background.
+       * @type {'default' | 'inverse'}
        * @default 'default'
        */
       closeButtonAppearance: {
@@ -104,6 +104,47 @@ export class AuroDrawerContent extends LitElement {
 
   handleSlotChange() {
     this.requestUpdate();
+  }
+
+  handleHeaderSlotChange() {
+    this.dispatchEvent(new CustomEvent("header-change"));
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // slotchange doesn't fire when text changes inside an already-assigned header element
+    this.headerObserver = new MutationObserver((mutations) => {
+      if (mutations.some((mutation) => this.isInHeaderSlot(mutation.target))) {
+        this.handleHeaderSlotChange();
+      }
+    });
+    this.headerObserver.observe(this, {
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  disconnectedCallback() {
+    this.headerObserver?.disconnect();
+    this.headerObserver = undefined;
+
+    super.disconnectedCallback();
+  }
+
+  /**
+   * Checks whether a node is, or is inside, a direct child assigned to the header slot.
+   * @private
+   * @param {Node} node - The node to check.
+   * @returns {boolean} True if the node is, or is inside, an element in the header slot; false otherwise.
+   */
+  isInHeaderSlot(node) {
+    let current = node;
+    while (current && current.parentNode !== this) {
+      current = current.parentNode;
+    }
+    return current?.getAttribute?.("slot") === "header";
   }
 
   handleCloseButtonClick() {
@@ -170,7 +211,7 @@ export class AuroDrawerContent extends LitElement {
             : html`
           <div class="header-row">
               <h1 class="heading heading-lg util_stackMarginNone--top" id="drawer-header" part="drawer-header">
-                <slot name="header"></slot>
+                <slot name="header" @slotchange=${this.handleHeaderSlotChange}></slot>
               </h1>
             ${
               this.modal

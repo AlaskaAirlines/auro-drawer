@@ -1,4 +1,4 @@
-The `auro-drawer` component should be used in situations where users may:
+Use `auro-drawer` when people may need to:
 
-* Be prompted to take an action before doing anything else or going back
-* Be prompted to view content with the option of closing it
+* Take an action before doing anything else or going back.
+* View content, with the option to close it.

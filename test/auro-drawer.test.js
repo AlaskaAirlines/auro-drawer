@@ -209,6 +209,130 @@ function runFullTest(mobileView) {
         const nativeBtn = closeBtn.shadowRoot.querySelector("button");
         expect(nativeBtn.getAttribute("aria-label")).to.equal("Dismiss drawer");
       });
+
+      it("should name the dialog from the header slot text", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+        await el.bib.updateComplete;
+        expect(el.bib.shadowRoot.querySelector("#dialogLabel").textContent).to.equal("Baggage rules");
+      });
+
+      it("should name the dialog from the trigger text when there is no header text", async () => {
+        const el = await fixture(html`<auro-drawer></auro-drawer>`);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open baggage rules";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Open baggage rules");
+      });
+
+      it("should prefer the header slot text over the trigger text", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open baggage rules";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+      });
+
+      it("should ignore the header slot text when the drawer is unformatted", async () => {
+        const el = await fixture(html`
+          <auro-drawer unformatted>
+            <span slot="header">Hidden heading</span>
+          </auro-drawer>
+        `);
+        const trigger = document.createElement("button");
+        trigger.textContent = "Open drawer";
+        el.triggerElement = trigger;
+        await elementUpdated(el);
+
+        expect(el.bib.bibLabel).to.equal("Open drawer");
+      });
+
+      it("should update the dialog name when the header text changes", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        expect(el.bib.bibLabel).to.equal("Baggage rules");
+
+        el.querySelector('[slot="header"]').textContent = "Seat rules";
+        await sleep(0);
+
+        expect(el.bib.bibLabel).to.equal("Seat rules");
+      });
+
+      it("should apply color tokens set on the auro-drawer element", async () => {
+        const el = await fixture(html`
+          <auro-drawer
+            style="--ds-auro-drawer-container-color: rgb(1, 2, 3); --ds-auro-drawer-text-color: rgb(4, 5, 6);">
+            <span slot="header">Colors</span>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+        await el.drawerBib.updateComplete;
+
+        const wrapper = el.drawerBib.shadowRoot.querySelector(".wrapper");
+        expect(getComputedStyle(wrapper).backgroundColor).to.equal("rgb(1, 2, 3)");
+        expect(getComputedStyle(el.querySelector('[slot="header"]')).color).to.equal("rgb(4, 5, 6)");
+      });
+
+      it("should apply color tokens set on the drawer-wrapper part", async () => {
+        const el = await fixture(html`
+          <div>
+            <style>
+              #partTokens ::part(drawer-wrapper) {
+                --ds-auro-drawer-text-color: rgb(7, 8, 9);
+              }
+            </style>
+            <auro-drawer id="partTokens">
+              <span slot="header">Colors</span>
+            </auro-drawer>
+          </div>
+        `);
+        const drawer = el.querySelector("auro-drawer");
+        await elementUpdated(drawer);
+        await drawer.drawerBib.updateComplete;
+
+        expect(getComputedStyle(drawer.querySelector('[slot="header"]')).color).to.equal("rgb(7, 8, 9)");
+      });
+
+      it("should not refresh the dialog name when content outside the header changes", async () => {
+        const el = await fixture(html`
+          <auro-drawer>
+            <span slot="header">Baggage rules</span>
+            <div slot="content">Body</div>
+          </auro-drawer>
+        `);
+        await elementUpdated(el);
+
+        let fired = false;
+        el.drawerBib.addEventListener("header-change", () => {
+          fired = true;
+        });
+        el.querySelector('[slot="content"]').textContent = "Changed body";
+        await sleep(0);
+
+        expect(fired).to.be.false;
+      });
     });
   });
 

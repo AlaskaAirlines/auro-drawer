@@ -6,4 +6,4 @@ import { AuroDrawer } from '@aurodesignsystem/auro-drawer/class';
 AuroDrawer.register('custom-drawer');
 ```
 
-This will create a new custom element `<custom-drawer>` that behaves exactly like `<auro-drawer>`, allowing both to coexist on the same page without interfering with each other.
+Registering creates a new custom element `<custom-drawer>` that behaves exactly like `<auro-drawer>`, so both can coexist on the same page without interfering with each other.

@@ -1,6 +1,6 @@
 <!--
  THIS PAGE'S CONTENT SHOULD BE KEPT MINIMAL.
- ONLY ADD EXAMPLES THAT ARE TRULY NECESSARY FOR THE INDEX PAGE — THE BASIC EXAMPLE IS USUALLY ENOUGH.
+ ONLY ADD EXAMPLES THAT ARE TRULY NECESSARY FOR THE INDEX PAGE. THE BASIC EXAMPLE IS USUALLY ENOUGH.
  ALL OTHER EXAMPLES SHOULD GO IN THE API DOCUMENTATION.
 -->
 
@@ -9,14 +9,14 @@
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
  
-## Use Cases
+## Use cases
  
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-## The Setup
+## The setup
 
-Triggering the drawer relies on functions being installed. See the following example code that is installed into this demo.
+Set the `open` attribute to open the drawer, and remove it to close the drawer. This demo installs the following function to do that:
 
 ```javascript
 function toggleDrawer(drawerID) {
@@ -30,15 +30,15 @@ function toggleDrawer(drawerID) {
 }
 ```
 
-Once the JavaScript is added to the scope of the experience, the next part is adding a trigger. In this example, the button component will toggle a drawer with the ID of `#demo1`.
+Add a trigger that calls the function. In this example, an `auro-button` toggles the drawer with the ID `demo1`:
 
 ``` html
-<auro-button onClick="toggleDrawer('#demo1')">Open Drawer</auro-button>
+<auro-button onClick="toggleDrawer('#demo1')">Open drawer</auro-button>
 ```
 
-## The Structure
+## The structure
 
-The structure of the drawer itself consists of three slots. The `header`, `content` and `footer` slots. See the scaffolding example below for adding content to the component.
+Put your content in the `header`, `content`, and `footer` slots. The following scaffolding shows where each one goes.
 
 ``` html
   <auro-drawer id="[unique ID]">
@@ -52,9 +52,9 @@ The structure of the drawer itself consists of three slots. The `header`, `conte
   </auro-drawer>
 ```
 
-It should be noted that the footer slot is reserved for the placement of action buttons.
+Use the `footer` slot for action buttons.
  
-## Example(s)
+## Examples
 
 ### Basic
  

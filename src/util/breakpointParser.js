@@ -2,10 +2,9 @@ const DESIGN_TOKEN_BREAKPOINT_PREFIX = "--ds-grid-breakpoint-";
 const DESIGN_TOKEN_BREAKPOINT_OPTIONS = ["lg", "md", "sm", "xs"];
 
 /**
- * Parses a design token to get its pixel value.
- * Returns the pixel value of the design token or undefined if the token is invalid.
- * @param {string} value - `lg`, `md`, `sm`, or `xs`.
- * @returns {string | undefined} The pixel value of the design token or undefined if invalid.
+ * Gets the pixel value of a breakpoint design token, or undefined if the token name isn't valid.
+ * @param {string} value - The breakpoint name: `lg`, `md`, `sm`, or `xs`.
+ * @returns {string | undefined} The breakpoint's pixel value, or undefined if the name isn't valid.
  */
 export function parseBreakpointToken(value) {
   // verify the defined breakpoint is valid and exit out if not
